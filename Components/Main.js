@@ -7,12 +7,15 @@ import firebase from 'firebase'
 // import { Navigation } from './shared/Navigation'
 import Loader from './shared/Loader'
 import Splash from './shared/Splash'
-// import Login from './views/Login'
+import Login from './views/user/Login'
+import Register from './views/user/Register'
+import Profile from './views/user/Profile'
 
 class Main extends Component {
   state = {
     fontLoaded: false,
-    dataLoaded: false
+    dataLoaded: true,
+    loggedIn: false
   }
 
   async componentWillMount() {
@@ -33,8 +36,8 @@ class Main extends Component {
       case true: 
         return <Splash />
       case false: 
-        // return <Login />
-        return <Splash />
+        return <Register />
+        // return <Splash />
       default:
         return <Splash />
     }

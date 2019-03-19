@@ -3,8 +3,8 @@ import { Platform, View, Text, Image } from 'react-native'
 import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import { Tabs, Button, Icon } from 'native-base'
 
-import Signup from '../views/Signup'
-import Login from '../views/Login'
+import Register from '../views/user/Register'
+import Login from '../views/user/Login'
 import Profile from '../views/Profile'
 import Schedule from '../views/Schedule'
 import Speakers from '../views/Speakers'
@@ -81,7 +81,7 @@ const AuthNav = createStackNavigator({ Login: Login })
 const MainNav = createStackNavigator({
   Home: TabbedNave,
   Login: Login,
-  Signup: Signup,
+  Register: Register,
   Profile: Profile,
   Feedback: Feedback,
   Conduct: Conduct,
