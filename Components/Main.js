@@ -6,6 +6,7 @@ import firebase from 'firebase'
 
 // import { Navigation } from './shared/Navigation'
 import Loader from './shared/Loader'
+import Header from './shared/Header'
 import Splash from './shared/Splash'
 import Login from './views/user/Login'
 import Register from './views/user/Register'
@@ -36,7 +37,10 @@ class Main extends Component {
       case true: 
         return <Splash />
       case false: 
-        return <Register />
+        return (
+
+          <Header pageName='First Page' />
+        )
         // return <Splash />
       default:
         return <Splash />
