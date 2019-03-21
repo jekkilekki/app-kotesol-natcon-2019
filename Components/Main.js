@@ -4,13 +4,18 @@ import { View, Platform } from 'react-native'
 import { Asset, AppLoading, SplashScreen } from 'expo'
 import firebase from 'firebase'
 
+import { apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId } from './utils/_config'
+
 // import { Navigation } from './shared/Navigation'
 import Loader from './shared/Loader'
 import Header from './shared/Header'
 import Splash from './shared/Splash'
 import Login from './views/user/Login'
+import LoginForm from './views/user/LoginForm'
 import Register from './views/user/Register'
+import RegisterForm from './views/user/RegisterForm'
 import Profile from './views/user/Profile'
+import SpeakerList from './views/speaker/SpeakerList'
 
 class Main extends Component {
   state = {
@@ -20,16 +25,25 @@ class Main extends Component {
   }
 
   async componentWillMount() {
-
-    /* TODO: Firebase stuff */
-
     // Make sure Expo fonts are loaded
     await Expo.Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')
     })
     this.setState({ fontLoaded: true })
+  }
 
+  componentDidMount() {
+    // Initialize Firebase
+    const config = {
+      apiKey,
+      authDomain,
+      databaseURL,
+      projectId,
+      storageBucket,
+      messagingSenderId
+    };
+    firebase.initializeApp(config);
   }
 
   renderInitialView() {
@@ -38,8 +52,11 @@ class Main extends Component {
         return <Splash />
       case false: 
         return (
-
-          <Header pageName='First Page' />
+          <View>
+            <Header pageName='First Page' />
+            <RegisterForm />
+            <LoginForm />
+          </View>
         )
         // return <Splash />
       default:
