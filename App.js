@@ -7,6 +7,14 @@ import { Provider } from 'react-redux'
 import middleware from './middleware'
 import reducer from './reducers'
 import Main from './Components/Main'
+import { Navigation } from './Components/shared/Navigation'
+import { createAppContainer, createSwitchNavigator, createStackNavigator, createBottomTabNavigator } from 'react-navigation'
+import WelcomeScreen from './Components/screens/WelcomeScreen';
+import AuthScreen from './Components/screens/AuthScreen';
+import ScheduleScreen from './Components/screens/ScheduleScreen';
+import SpeakersScreen from './Components/screens/SpeakersScreen';
+import MapScreen from './Components/screens/MapScreen';
+import AboutScreen from './Components/screens/AboutScreen';
 
 const store = createStore(
   reducer,
@@ -19,10 +27,25 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Main />
+        <AppContainer />
       </Provider>
-    );
+    )
   }
 }
+
+const TabbedNavigation = createBottomTabNavigator({
+  Schedule: ScheduleScreen,
+  Speakers: SpeakersScreen,
+  Map: MapScreen,
+  About: AboutScreen
+})
+
+const RootNavigation = createSwitchNavigator({
+  Welcome: WelcomeScreen,
+  Auth: AuthScreen,
+  Home: TabbedNavigation
+})
+
+const AppContainer = createAppContainer(RootNavigation)
 
 export default App

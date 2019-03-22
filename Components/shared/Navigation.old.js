@@ -1,57 +1,51 @@
 import React from 'react'
 import { Platform, View, Text, Image } from 'react-native'
-import { 
-  createSwitchNavigator, 
-  createStackNavigator, 
-  createBottomTabNavigator, 
-  createMaterialTopTabNavigator,
-  createAppContainer
-} from 'react-navigation'
+import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import { Tabs, Button, Icon } from 'native-base'
 
-import WelcomeScreen from '../screens/WelcomeScreen'
-import AuthScreen from '../screens/AuthScreen'
-
-import ScheduleScreen from '../screens/ScheduleScreen'
-import SpeakersScreen from '../screens/SpeakersScreen'
-import MapScreen from '../screens/MapScreen'
-import AboutScreen from '../screens/AboutScreen';
-
-import SettingsScreen from '../screens/SettingsScreen'
-import FeedbackScreen from '../screens/FeedbackScreen';
-import ConductScreen from '../screens/ConductScreen';
-import PrivacyScreen from '../screens/PrivacyScreen';
+import Register from '../views/user/Register'
+import Login from '../views/user/Login'
+import Profile from '../views/user/Profile'
+// import Schedule from '../views/Schedule'
+// import Speakers from '../views/Speakers'
+// import Sponsors from '../views/Sponsors'
+// import Location from '../views/Location'
+// import About from '../views/About'
+// import Feedback from '../views/Feedback'
+// import Tickets from '../views/Tickets'
+// import Conduct from '../views/Conduct'
+// import Privacy from '../views/Privacy'
 
 import { tealA700, tealA400, white } from '../../utils/colors'
 
 const appTabs = {
   Schedule: {
-    screen: ScheduleScreen,
-    defaultNavigationOptions: {
+    screen: Schedule,
+    navigationOptions: {
       tabBarLabel: 'Schedule',
       tabBarIcon: ({ tintColor }) =>
         <Icon name='clock' />
     }
   },
   Speakers: {
-    screen: SpeakersScreen,
-    defaultNavigationOptions: {
+    screen: Speakers,
+    navigationOptions: {
       tabBarLabel: 'Speakers',
       tabBarIcon: ({ tintColor }) => 
         <Icon name='albums' />
     }
   },
-  Map: {
-    screen: MapScreen,
-    defaultNavigationOptions: {
+  Location: {
+    screen: Location,
+    navigationOptions: {
       tabBarLabel: 'Map',
       tabBarIcon: ({ tintColor }) => 
         <Icon name='map' />
     }
   },
   About: {
-    screen: AboutScreen,
-    defaultNavigationOptions: {
+    screen: About,
+    navigationOptions: {
       tabBarLabel: 'About',
       tabBarIcon: ({ tintColor }) => 
         <Icon name='information-circle' />
@@ -82,16 +76,16 @@ const TabbedNav = Platform.OS === 'ios'
   ? createBottomTabNavigator(appTabs, appTabsOptions)
   : createMaterialTopTabNavigator(appTabs, appTabsOptions)
 
-const AuthNav = createStackNavigator({ Auth: AuthScreen })
+const AuthNav = createStackNavigator({ Login: Login })
 
 const MainNav = createStackNavigator({
-  Welcome: WelcomeScreen,
-  Home: TabbedNav,
-  Auth: AuthNav,
-  Settings: SettingsScreen,
-  Feedback: FeedbackScreen,
-  Conduct: ConductScreen,
-  Privacy: PrivacyScreen,
+  Home: TabbedNave,
+  Login: Login,
+  Register: Register,
+  Profile: Profile,
+  Feedback: Feedback,
+  Conduct: Conduct,
+  Privacy: Privacy,
 }, {
   initialRouteName: 'Home',
   navigationOptions: ({ navigation }) => {
@@ -123,7 +117,7 @@ const RootNav = createStackNavigator({
   headerMode: 'none'
 })
 
-const Navigation = createSwitchNavigator({
+export const Navigation = createSwitchNavigator({
   // AuthLoading: Loader,
   App: RootNav,
   Auth: AuthNav
@@ -131,6 +125,6 @@ const Navigation = createSwitchNavigator({
   initialRouteName: 'App'
 })
 
-export default Navigation
+
 
 
