@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 
 class ScheduleScreen extends Component {
+  static navigationOptions = {
+    title: 'Schedule',
+    headerStyle: {
+      backgroundColor: '#151537',
+      color: '#ffffff'
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
 
 import middleware from './middleware'
 import reducer from './reducers'
-import Main from './Components/Main'
-import { Navigation } from './Components/shared/Navigation'
-import { createAppContainer, createSwitchNavigator, createStackNavigator, createBottomTabNavigator } from 'react-navigation'
+// import Main from './Components/Main'
+// import { Navigation } from './Components/shared/Navigation'
+import { createAppContainer, createSwitchNavigator, createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import WelcomeScreen from './Components/screens/WelcomeScreen';
 import AuthScreen from './Components/screens/AuthScreen';
 import ScheduleScreen from './Components/screens/ScheduleScreen';
@@ -23,6 +23,8 @@ const store = createStore(
   middleware
 )
 
+const showIntro = true;
+
 class App extends Component {
   render() {
     return (
@@ -33,7 +35,14 @@ class App extends Component {
   }
 }
 
-const TabbedNavigation = createBottomTabNavigator({
+const iosNavigation = createBottomTabNavigator({
+  Schedule: ScheduleScreen,
+  Speakers: SpeakersScreen,
+  Map: MapScreen,
+  About: AboutScreen
+})
+
+const androidNavigation = createMaterialTopTabNavigator({
   Schedule: ScheduleScreen,
   Speakers: SpeakersScreen,
   Map: MapScreen,
@@ -43,7 +52,15 @@ const TabbedNavigation = createBottomTabNavigator({
 const RootNavigation = createSwitchNavigator({
   Welcome: WelcomeScreen,
   Auth: AuthScreen,
-  Home: TabbedNavigation
+  Home: Platform.OS === 'ios' ? iosNavigation : androidNavigation
+}, {
+  initialRouteName: showIntro ? 'Welcome' : 'Home',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#151537',
+      color: '#ffffff'
+    }
+  }
 })
 
 const AppContainer = createAppContainer(RootNavigation)

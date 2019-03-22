@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 
 class AuthScreen extends Component {
+  static navigationOptions = {
+    title: 'Register or Login'
+  }
+
   render() {
     return (
       <View style={styles.container}>
