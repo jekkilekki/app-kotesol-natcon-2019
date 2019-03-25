@@ -13,10 +13,16 @@ class Slides extends Component {
         <Text style={styles.title}>{slide.title}</Text>
         <Text style={styles.text}>{slide.text}</Text>
         {( this.props.data.length - 1 === i ) && 
-          <Button 
-            title="GO!" 
-            onPress={this.props.onComplete} // Problem
-          /> 
+          <View>
+            <Button 
+              title="Login" 
+              onPress={this.props.onLogin} // Problem
+            /> 
+            <Button 
+              title="GO!" 
+              onPress={this.props.onComplete} // Problem
+            /> 
+          </View>
         }
       </View>
     ))

@@ -1,5 +1,5 @@
 import { getInitialData } from '../utils/api'
-import { setAuthedUser } from '../actions/authedUser'
+import { setAuthedUser } from './authActions'
 // import { showLoading, hideLoading } from 'react-redux-loading'
 
 const AUTHED_ID = null

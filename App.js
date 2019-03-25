@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
 
+import store from './store'
 import middleware from './middleware'
 import reducer from './reducers'
 // import Main from './Components/Main'
@@ -16,12 +17,12 @@ import SpeakersScreen from './Components/screens/SpeakersScreen';
 import MapScreen from './Components/screens/MapScreen';
 import AboutScreen from './Components/screens/AboutScreen';
 
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  // composeWithDevTools( middleware ) // Windows 
-  // middleware
-)
+// const store = createStore(
+//   reducer,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+//   // composeWithDevTools( middleware ) // Windows 
+//   // middleware
+// )
 
 const showIntro = true;
 
