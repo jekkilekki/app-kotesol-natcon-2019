@@ -26,7 +26,7 @@ const SLIDE_DATA = [
 
 class WelcomeScreen extends Component {
   onSlidesComplete = () => {
-    this.props.navigation.navigate('home')
+    this.props.navigation.navigate('Home')
   }
 
   render() {

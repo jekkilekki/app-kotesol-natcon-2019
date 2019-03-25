@@ -15,7 +15,7 @@ class Slides extends Component {
         {( this.props.data.length - 1 === i ) && 
           <Button 
             title="GO!" 
-            onPress={() => this.props.navigation.navigate('Auth')} // Problem
+            onPress={this.props.onComplete} // Problem
           /> 
         }
       </View>
@@ -23,6 +23,7 @@ class Slides extends Component {
   }
 
   render() {
+    const { navigation } = this.props
     return (
       <ScrollView
         horizontal
