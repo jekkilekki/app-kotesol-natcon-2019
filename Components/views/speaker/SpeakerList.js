@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import axios from 'axios'
 
 import Loader from '../../shared/Loader'
@@ -20,16 +20,23 @@ class SpeakerList extends Component {
       return <Loader />
     }
     return (
-      <View>
+      <ScrollView style={styles.screenContent}>
         {this.state.speakers.map((speaker, i) => (
           <SpeakerDetails 
             key={i}
             speaker={speaker}
           />
         ))}
-      </View>
+      </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  screenContent: {
+    flex: 1,
+    margin: 10
+  }
+})
 
 export default SpeakerList

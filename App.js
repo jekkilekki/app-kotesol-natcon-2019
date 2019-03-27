@@ -24,7 +24,7 @@ import AboutScreen from './Components/screens/AboutScreen';
 //   // middleware
 // )
 
-const showIntro = true;
+const showIntro = false;
 
 class App extends Component {
   render() {

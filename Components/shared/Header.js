@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { primary, black, white } from '../../utils/colors';
+import { primary, black, white, purple, blueDark } from '../../utils/colors';
 
 class Header extends Component {
   state = {
-    background: primary,
-    color: black
+    background: blueDark,
+    color: white
   }
 
   render() {

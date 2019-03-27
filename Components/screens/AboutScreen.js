@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+import Header from '../shared/Header'
+
 class AboutScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>AboutScreen</Text>
+      <View style={{ flex: 1 }}>
+        <Header pageName='About' />
+        <View style={styles.container}>
+          <Text>AboutScreen</Text>
+        </View>
       </View>
     )
   }

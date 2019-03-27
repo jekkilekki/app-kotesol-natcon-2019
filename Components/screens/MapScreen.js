@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { MapView } from 'expo'
 
+import Header from '../shared/Header'
 import Loader from '../shared/Loader'
 
 class MapScreen extends Component {
@@ -16,15 +17,21 @@ class MapScreen extends Component {
   }
 
   componentDidMount() {
-    this.setState({ mapLoaded: true })
+    // this.setState({ mapLoaded: true })
   }
 
   render() {
     if (!this.state.mapLoaded) {
-      return <Loader />
+      return (
+        <View style={{ flex: 1 }}>
+          <Header pageName='Location' />
+          <Loader />
+        </View>
+      )
     }
     return (
       <View style={styles.container}>
+        <Header pageName='Location' />
         <MapView style={{flex: 1}}
           initialRegion={this.state.region}
         />
