@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+import Header from '../shared/Header'
+import SpeakerList from '../views/speaker/SpeakerList'
+
 class SpeakersScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>SpeakersScreen</Text>
+      <View>
+        <Header 
+          pageName='Speakers' 
+          background='#151537' 
+          color='#ffffff'
+        />
+        <SpeakerList />
       </View>
     )
   }

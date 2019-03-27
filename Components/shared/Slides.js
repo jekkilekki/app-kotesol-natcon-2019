@@ -15,7 +15,7 @@ class Slides extends Component {
         {( this.props.data.length - 1 === i ) && 
           <View>
             <Button 
-              title="Login" 
+              title="Login with Facebook" 
               onPress={this.props.onLogin} // Problem
             /> 
             <Button 

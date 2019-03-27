@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { primary, black } from '../../utils/colors';
+import { primary, black, white } from '../../utils/colors';
 
 class Header extends Component {
+  state = {
+    background: primary,
+    color: black
+  }
+
   render() {
     return (
-      <View style={styles.header}>
-        <Text style={styles.title}>{this.props.pageName}</Text>
+      <View 
+        style={[styles.header, {
+          backgroundColor: this.props.background || this.state.background,
+        }]}>
+        <Text style={[styles.title, { color: this.props.color || this.state.color }]}>{this.props.pageName}</Text>
       </View>
     )
   }
