@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/AntDesign'
 
 class MyButton extends Component {
   render() {
@@ -17,7 +17,7 @@ class MyButton extends Component {
         {this.props.icon &&
           <Icon 
             name={this.props.icon} 
-            size={this.props.iconSize || 24} 
+            size={this.props.iconSize || 20} 
             color={this.props.iconColor || '#fff'} 
           />
         }
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     marginBottom: 10,
     alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 50,
     flexDirection: 'row',
   },
@@ -43,7 +44,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#fff',
     marginLeft: 10,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlign: 'center'
   }
 })
 

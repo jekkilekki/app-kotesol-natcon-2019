@@ -9,7 +9,7 @@ const isIphoneX =
   Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812)
 
 class Slides extends Component {
-  fbClick= () => {
+  fbClick = () => {
     this.props.onLogin()
   }
 
@@ -23,8 +23,17 @@ class Slides extends Component {
             <View>
               <TouchableOpacity onPress={this.props.onLogin}>
                 <MyButton 
-                  icon='facebook-box'
-                  text='Sign in with Facebook'
+                  icon='login'
+                  text='Login with Email &amp; Password'
+                  color1='#60f'
+                  color2='#60f'
+                  color3='#60f'
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.props.onLogin}>
+                <MyButton 
+                  icon='facebook-square'
+                  text='Login with Facebook'
                 />
               </TouchableOpacity>
             </View>
@@ -42,7 +51,6 @@ class Slides extends Component {
   }
 
   render() {
-    const { navigation } = this.props
     return (
       <ScrollView
         horizontal

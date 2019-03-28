@@ -6,17 +6,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 class MyButton extends Component {
   render() {
     return (
-      <View
-        style={styles.buttonStyle}
-      >
-        {this.props.icon &&
-          <Icon 
-            name={this.props.icon} 
-            size={this.props.iconSize || 24} 
-            color={this.props.iconColor || '#fff'} 
-          />
-        }
-        <Text style={styles.buttonText}>{this.props.text}</Text>
+      <View style={[styles.buttonStyle, {
+        backgroundColor: this.props.backgroundColor || 'transparent',
+        color: this.props.color || 'black'
+      }]}>
+        {this.props.children}
       </View>
     )
   }
@@ -24,21 +18,18 @@ class MyButton extends Component {
 
 const styles = StyleSheet.create({
   buttonStyle: {
+    flex: 1,
+    flexDirection: 'row',
     position: 'absolute',
     bottom: 0,
     height: 70,
     paddingTop: 20,
     paddingBottom: 20,
     width: '100%',
-    justifyContent: 'center',
-    backgroundColor: '#00dddd'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    color: '#fff'
   },
-  buttonText: {
-    backgroundColor: 'transparent',
-    fontSize: 18,
-    color: '#fff',
-    textAlign: 'center'
-  }
 })
 
 export default MyButton

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, ImageBackground, AsyncStorage } from 'react-native'
+import { View, SafeAreaView, Text, StyleSheet, Button, ImageBackground, AsyncStorage } from 'react-native'
 import { AppLoading } from 'expo'
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 
 import Slides from '../shared/Slides'
+import ButtonBottom from '../shared/ButtonBottom'
 
 const SLIDE_DATA = [
   {
@@ -56,6 +57,10 @@ class WelcomeScreen extends Component {
     this.props.navigation.navigate('Home')
   }
 
+  onSlidesNext = () => {
+    this.props.scrollToEnd()
+  }
+
   render() {
     if ( this.state.token ) {
       return <AppLoading />
@@ -66,7 +71,15 @@ class WelcomeScreen extends Component {
           data={SLIDE_DATA} 
           onLogin={this.onLoginPress}
           onComplete={this.onSlidesComplete} 
+          onNext={this.onSlidesNext}
         />
+        <ButtonBottom backgroundColor='transparent'>
+          <Button title='Skip' onPress={this.onSlidesComplete} />
+          <View style={styles.indicator}>
+          
+          </View>
+          <Button title='Next' onPress={this.onSlidesNext} />
+        </ButtonBottom>
       </View>
     )
   }
@@ -77,6 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    fontFamily: 'nunito'
   }
 })
 

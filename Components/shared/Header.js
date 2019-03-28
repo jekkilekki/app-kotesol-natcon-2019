@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Platform } from 'react-native'
 import { primary, black, white, purple, blueDark } from '../../utils/colors';
 
 class Header extends Component {
@@ -22,18 +22,17 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: primary,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 60,
-    paddingTop: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
     shadowColor: black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 2,
-    position: 'relative',
   },
   title: {
+    fontFamily: 'futura',
     fontSize: 20
   }
 })

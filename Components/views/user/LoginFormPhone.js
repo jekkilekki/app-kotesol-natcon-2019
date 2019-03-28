@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import axios from 'axios'
 import firebase from 'firebase'
@@ -8,8 +8,8 @@ const ROOT_URL = 'https://us-central1-knc-app-2019.cloudfunctions.net'
 
 class LoginForm extends Component {
   state = {
-    email: '',
-    password: '',
+    phone: '',
+    code: '',
     error: ''
   }
 
@@ -28,20 +28,20 @@ class LoginForm extends Component {
   render() {
     return (
       <View>
-        <Text>Email</Text>
-        <TextInput 
-          placeholder='Email'
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
+        <Input 
+          label='Enter phone number'
+          placeholder='000-000-0000'
+          value={this.state.phone}
+          onChangeText={phone => this.setState({ phone })}
         />
-        <Text>Password</Text>
-        <TextInput 
-          placeholder='Password'
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
+        <Input 
+          label='Enter code'
+          placeholder='XXXX'
+          value={this.state.code}
+          onChangeText={code => this.setState({ code })}
         />
         <Button 
-          title='Login' 
+          title='Submit' 
           onPress={this._handleSubmit}
         />
       </View>

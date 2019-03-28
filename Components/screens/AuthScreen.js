@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import * as actions from '../../actions'
 
 import Loader from '../shared/Loader'
+import Header from '../shared/Header'
+import LoginForm from '../views/user/LoginForm'
 
 class AuthScreen extends Component {
   static navigationOptions = {
@@ -29,8 +31,9 @@ class AuthScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Loader />
+      <View style={{ flex: 1 }}>
+        <Header pageName='Login' />
+        <LoginForm />
         <Button
           title="Go back"
           onPress={() => this.props.navigation.navigate('Welcome')}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, SafeAreaView, Text, StyleSheet, Button } from 'react-native'
 
-import Header from '../shared/Header'
+import HeaderGradient from '../shared/HeaderGradient'
 
 class ScheduleScreen extends Component {
   static navigationOptions = {
@@ -14,16 +14,16 @@ class ScheduleScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Header pageName='Schedule' />
+      <SafeAreaView style={{ flex: 1 }}>
+        <HeaderGradient pageName='Schedule' />
         <View style={styles.container}>
-          <Text>ScheduleScreen</Text>
+          <Text style={{fontFamily: 'nunito'}}>ScheduleScreen</Text>
           <Button
             title="Go back"
             onPress={() => this.props.navigation.navigate('Welcome')}
           />
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 }
