@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { MapView } from 'expo'
 
-import Header from '../shared/Header'
+import Header from '../shared/layout/AppHeader'
 import Loader from '../shared/Loader'
+import AppScreen from '../shared/layout/AppScreen'
 
 class MapScreen extends Component {
   state = {
@@ -23,19 +24,22 @@ class MapScreen extends Component {
   render() {
     if (!this.state.mapLoaded) {
       return (
-        <View style={{ flex: 1 }}>
-          <Header pageName='Location' />
+        <AppScreen>
+          <Header 
+            pageName='Location' 
+            pageSub='Discover Jeonju'
+          />
           <Loader />
-        </View>
+        </AppScreen>
       )
     }
     return (
-      <View style={styles.container}>
+      <AppScreen>
         <Header pageName='Location' />
         <MapView style={{flex: 1}}
           initialRegion={this.state.region}
         />
-      </View>
+      </AppScreen>
     )
   }
 }

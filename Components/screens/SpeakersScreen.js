@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 
-import Header from '../shared/Header'
+import AppScreen from '../shared/layout/AppScreen'
+import Header from '../shared/layout/AppHeader'
 import SpeakerList from '../views/speaker/SpeakerList'
 
 class SpeakersScreen extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Header pageName='Speakers' />
+      <AppScreen>
+        <Header 
+          pageName='Speakers' 
+          pageSub='Big names, Bigger ideas'
+        />
         <SpeakerList />
-      </View>
+      </AppScreen>
     )
   }
 }

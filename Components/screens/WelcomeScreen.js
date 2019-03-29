@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from '../../actions'
 
 import Slides from '../shared/Slides'
-import ButtonBottom from '../shared/ButtonBottom'
+import ButtonBottom from '../shared/layout/AppFooterButton'
 
 const SLIDE_DATA = [
   {

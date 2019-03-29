@@ -50,6 +50,8 @@ class App extends Component {
   async componentDidMount() {
     await Font.loadAsync({
       'nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
+      'nunito-bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
+      'nunito-black': require('./assets/fonts/Nunito/Nunito-Black.ttf'),
       'futura': require('./assets/fonts/Futura/Futura-Condensed-Medium.otf')
     })
     this.setState({ fontLoaded: true })

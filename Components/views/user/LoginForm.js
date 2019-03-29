@@ -4,6 +4,9 @@ import { Input, Button } from 'react-native-elements'
 import axios from 'axios'
 import firebase from 'firebase'
 
+import AppInput from '../../shared/AppInput'
+import MyButton from '../../shared/MyButton'
+
 const ROOT_URL = 'https://us-central1-knc-app-2019.cloudfunctions.net'
 
 class LoginForm extends Component {
@@ -27,23 +30,23 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Email</Text>
-        <TextInput 
+      <View style={{flex: 1}}>
+        <AppInput 
+          label='Email'
           placeholder='Email'
           value={this.state.email}
           onChangeText={email => this.setState({ email })}
         />
-        <Text>Password</Text>
-        <TextInput 
+        <AppInput 
+          label='Password'
           placeholder='Password'
           value={this.state.password}
           onChangeText={password => this.setState({ password })}
         />
-        <Button 
+        {/* <MyButton 
           title='Login' 
           onPress={this._handleSubmit}
-        />
+        /> */}
       </View>
     )
   }

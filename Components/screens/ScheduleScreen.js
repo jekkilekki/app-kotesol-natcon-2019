@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Text, StyleSheet, Button } from 'react-native'
 
-import HeaderGradient from '../shared/HeaderGradient'
+import AppHeader from '../shared/layout/AppHeader'
+import AppText from '../shared/text/AppText'
+import AppScreen from '../shared/layout/AppScreen'
 
 class ScheduleScreen extends Component {
   static navigationOptions = {
@@ -14,16 +16,19 @@ class ScheduleScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <HeaderGradient pageName='Schedule' />
+      <AppScreen>
+        <AppHeader 
+          pageName='Schedule' 
+          pageSub='Explore the presentation tracks'
+        />
         <View style={styles.container}>
-          <Text style={{fontFamily: 'nunito'}}>ScheduleScreen</Text>
+          <AppText>ScheduleScreen</AppText>
           <Button
-            title="Go back"
+            title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome')}
           />
         </View>
-      </SafeAreaView>
+      </AppScreen>
     )
   }
 }

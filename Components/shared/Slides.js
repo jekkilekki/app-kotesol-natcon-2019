@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { StyleSheet, Button, FlatList, ScrollView, View, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
 import MyButton from './MyButton'
-import ButtonBottom from './ButtonBottom'
+import ButtonBottom from './layout/AppFooterButton'
 
 const { width, height } = Dimensions.get('window')
-
-const isIphoneX = 
-  Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812)
 
 class Slides extends Component {
   fbClick = () => {

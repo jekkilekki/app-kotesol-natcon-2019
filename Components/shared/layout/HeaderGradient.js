@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { withNavigation } from 'react-navigation'
 import { Text, View, StyleSheet, Platform } from 'react-native'
-import { primary, black, white, purple, blueDark } from '../../utils/colors'
+import { primary, black, white, purple, purpleDarkest, blue, blueDark } from '../../../utils/colors'
 import { LinearGradient } from 'expo'
-import ProfileButton from './ProfileButton'
+import ProfileButton from '../ProfileButton'
 
 class HeaderGradient extends Component {
   state = {
@@ -10,16 +11,24 @@ class HeaderGradient extends Component {
     color: white
   }
 
+  _handleProfile = () => {
+    this.props.navigation.navigate('Auth')
+  }
+
   render() {
     return (
       <LinearGradient 
-        colors={[this.props.color1 || blueDark, this.props.color2 || purple]}
+        colors={[
+          this.props.color1 || blue, 
+          this.props.color2 || purple
+        ]}
         style={styles.header}
-        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-        locations={[0,0.6]}
+        start={{x: 0.0, y: 0.25}} 
+        end={{x: 0.75, y: 1}}
+        locations={[0,1]}
       >
         <Text style={[styles.title, { color: this.props.color || this.state.color }]}>{this.props.pageName}</Text>
-        <ProfileButton />
+        <ProfileButton onPress={this._handleProfile} />
       </LinearGradient>
     )
   }
@@ -47,4 +56,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default HeaderGradient
+export default withNavigation(HeaderGradient)

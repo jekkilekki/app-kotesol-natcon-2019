@@ -1,7 +1,10 @@
-export * from './ButtonBottom'
-export * from './Header'
+export * from './layout/AppFooterButton'
+export * from './layout/AppHeader'
 export * from './Loader'
 export * from './MyButton'
 export * from './Navigation'
 export * from './Slides'
 export * from './Splash'
+
+export * from './text/AppText'
+export * from './AppInput'
