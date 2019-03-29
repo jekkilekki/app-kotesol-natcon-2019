@@ -30,7 +30,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View>
         <AppInput 
           label='Email'
           placeholder='Email'

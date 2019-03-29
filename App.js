@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Platform } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
-import { Font } from 'expo'
+import { Font, AnimatedRegion } from 'expo'
 import { Icon } from 'native-base'
 
 import store from './store'
@@ -22,6 +22,7 @@ import ScheduleScreen from './Components/screens/ScheduleScreen';
 import SpeakersScreen from './Components/screens/SpeakersScreen';
 import MapScreen from './Components/screens/MapScreen';
 import AboutScreen from './Components/screens/AboutScreen';
+import TabBar from './Components/navigation/TabBar';
 
 // const store = createStore(
 //   reducer,
@@ -52,7 +53,8 @@ class App extends Component {
       'nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
       'nunito-bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
       'nunito-black': require('./assets/fonts/Nunito/Nunito-Black.ttf'),
-      'futura': require('./assets/fonts/Futura/Futura-Condensed-Medium.otf')
+      'futura': require('./assets/fonts/Futura/Futura-Condensed-Medium.otf'),
+      'futura-bold': require('./assets/fonts/Futura/Futura-Condensed-Bold.otf')
     })
     this.setState({ fontLoaded: true })
   }
@@ -98,10 +100,51 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'About',
       tabBarIcon: ({ focused, tintColor }) => 
-        <Icon name='information-circle' />
+        <Icon name='information-circle' />,
     },
   },
+}, { 
+  initialRouteName: 'Schedule',
+  tabBarComponent: (props) => <TabBar {...props} />,
+  // tabBarOptions: {
+  //   style: {
+  //     backgroundColor: '#232377',
+  //     paddingTop: 10
+  //   },
+  //   labelStyle: {
+  //     fontFamily: 'futura',
+  //     textTransform: 'uppercase',
+  //     color: '#fff'
+  //   },
+  //   activeTintColor: '#fff',
+  //   inactiveTintColor: '#000'
+  // },
 })
+
+/* React Nav Transitions: https://medium.com/async-la/custom-transitions-in-react-navigation-2f759408a053 */
+const transitionConfig = () => {
+  return {
+    transitionSpec: {
+      duration: 750,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing,
+      useNativeDriver: true,
+    },
+    screenInterpolator: sceneProps => {
+      const { layout, position, scene } = sceneProps
+
+      const thisSceneIndex = scene.index 
+      const width = layout.initWidth 
+
+      const translateX = position.interpolate({
+        inputRange: [thisSceneIndex - 1, thisSceneIndex],
+        outputRange: [width, 0],
+      })
+
+      return { transform: [ { translateX } ] }
+    }
+  }
+}
 
 // const androidNavigation = createMaterialBottomTabNavigator({
 //   Schedule: ScheduleScreen,

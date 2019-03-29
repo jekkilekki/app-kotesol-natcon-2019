@@ -24,9 +24,11 @@ const styles = StyleSheet.create({
     color: '#232377',
     paddingRight: 5,
     paddingLeft: 5,
+    paddingTop: 10,
+    paddingBottom: 10,
     fontSize: 18,
     lineHeight: 24,
-    flex: 1,
+    flex: 3,
     borderColor: blueGray100,
     borderWidth: 1,
     borderRadius: 5
@@ -37,8 +39,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    height: 40,
-    flex: 1,
+    height: 60,
     flexDirection: 'row',
     alignItems: 'center'
   }

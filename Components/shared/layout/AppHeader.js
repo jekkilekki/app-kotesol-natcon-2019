@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Platform } from 'react-native'
+import { Text, View, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { primary, black, white, purple, blueDark } from '../../../utils/colors'
 
@@ -8,8 +8,13 @@ import { isIphoneX } from '../../../utils/helpers'
 import AppScreenTitle from '../text/AppScreenTitle'
 import AppScreenSubtitle from '../text/AppScreenSubtitle'
 import ProfileButton from '../ProfileButton'
+import AppText from '../text/AppText';
 
 class Header extends Component {
+  _handleCancel = () => {
+    this.props.navigation.navigate('Home')
+  }
+
   _handleProfile = () => {
     this.props.navigation.navigate('Auth')
   }
@@ -22,7 +27,12 @@ class Header extends Component {
         }]}>
         <AppScreenTitle>{this.props.pageName}</AppScreenTitle>
         <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
-        <ProfileButton onPress={this._handleProfile} />
+        {this.props.pageName !== 'Login' &&
+          <ProfileButton onPress={this._handleProfile} />
+        }
+        {this.props.pageName === 'Login' &&
+          <ProfileButton onPress={this._handleCancel} text={'X'} />
+        }
       </View>
     )
   }
@@ -41,10 +51,6 @@ const styles = StyleSheet.create({
     // shadowOpacity: 0.2,
     // elevation: 2,
   },
-  title: {
-    fontFamily: 'futura',
-    fontSize: 20
-  }
 })
 
 export default withNavigation(Header)

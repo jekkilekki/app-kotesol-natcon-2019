@@ -8,6 +8,8 @@ import AppHeader from '../shared/layout/AppHeader'
 import LoginForm from '../views/user/LoginForm'
 import AppScreen from '../shared/layout/AppScreen';
 import MyButton from '../shared/MyButton';
+import ScreenContent from '../shared/layout/ScreenContent';
+import AppText from '../shared/text/AppText';
 
 class AuthScreen extends Component {
   static navigationOptions = {
@@ -37,15 +39,18 @@ class AuthScreen extends Component {
         <AppHeader 
           pageName='Login'
           pageSub='Unlock the hidden features'
+          cancelButton
         />
-        <View style={styles.container}>
-          <LoginForm />
+        <ScreenContent>
           <MyButton onPress={() => this.props.fbLogin()}/>
+          <AppText center bold padding>&mdash; OR &mdash;</AppText>
+          <LoginForm />
+          
           <Button
             title="Go back"
             onPress={() => this.props.navigation.navigate('Home')}
           />
-        </View>
+        </ScreenContent>
       </AppScreen>
     )
   }

@@ -5,7 +5,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import posed from 'react-native-pose'
 
-const windowWidth = Dimensions.get('window'.width)
+const windowWidth = Dimensions.get('window').width
 const tabWidth = windowWidth / 4
 const SpotLight = posed.View({
   route0: { x: 0 },
@@ -22,7 +22,7 @@ const Scaler = posed.View({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 52,
+    height: 60,
     elevation: 2,
     alignItems: 'center'
   },
@@ -87,7 +87,7 @@ const TabBar = (props) => {
               pose={isRouteActive ? 'active' : 'inactive'}
               style={styles.scaler}
             >
-              {renderIcon({ route, focuse: isRouteActive, tintColor })}
+              {renderIcon({ route, focused: isRouteActive, tintColor })}
             </Scaler>
           </TouchableOpacity>
         )
