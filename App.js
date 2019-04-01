@@ -5,6 +5,9 @@ import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
 import { Font, AnimatedRegion } from 'expo'
 import { Icon } from 'native-base'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
+import FoundationIcon from 'react-native-vector-icons/Foundation'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import store from './store'
 import middleware from './middleware'
@@ -70,13 +73,20 @@ class App extends Component {
   }
 }
 
+const drawerNav = createDrawerNavigator({
+  Schedule: ScheduleScreen,
+  Speakers: SpeakersScreen,
+  Map: MapScreen,
+  About: AboutScreen,
+})
+
 const iosNavigation = createBottomTabNavigator({
   Schedule: {
     screen: ScheduleScreen,
     navigationOptions: {
       tabBarLabel: 'Schedule',
       tabBarIcon: ({ focused, tintColor }) => 
-        <Icon name='clock' />
+        <MaterialCommunityIcon name='calendar-clock' size={20} />
     },
   },
   Speakers: {
@@ -84,7 +94,7 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Speakers',
       tabBarIcon: ({ focused, tintColor }) => 
-        <Icon name='mic' />
+        <EntypoIcon name='modern-mic' size={20} />
     },
   },
   Map: {
@@ -92,7 +102,7 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Venue',
       tabBarIcon: ({ focused, tintColor }) => 
-        <Icon name='locate' />
+        <FoundationIcon name='map' size={20} />
     },
   },
   About: {
@@ -100,9 +110,17 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'About',
       tabBarIcon: ({ focused, tintColor }) => 
-        <Icon name='information-circle' />,
+        <EntypoIcon name='info-with-circle' size={20} />,
     },
   },
+  Drawer: {
+    screen: drawerNav,
+    navigationOptions: {
+      tabBarLabel: 'More',
+      tabBarIcon: ({ focused, tintColor }) => 
+        <EntypoIcon name='grid' size={26} />
+    }
+  }
 }, { 
   initialRouteName: 'Schedule',
   tabBarComponent: (props) => <TabBar {...props} />,

@@ -10,14 +10,14 @@ const ProfileButton = (props) => {
     <TouchableOpacity 
       style={[
         styles.profileButton, {
-          backgroundColor: props.text ? '#00ddddd' : 'transparent'
+          backgroundColor: '#d63aff',
         }
       ]}
       onPress={props.onPress}
     >
       {props.image && <Image source={image} />}
-      {props.text && <AppText>{props.text}</AppText>}
-      {!props.image && !props.text && <Icon name='user' size={16} />}
+      {props.text && <AppText style={{color: '#fff'}}>{props.text}</AppText>}
+      {!props.image && !props.text && <Icon name='user' size={16} style={{color: '#fff'}} />}
     </TouchableOpacity>
   )
 }
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: '#fff',
     borderWidth: 1,
-    backgroundColor: '#00dddd',
+    backgroundColor: '#d63aff',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#151537',

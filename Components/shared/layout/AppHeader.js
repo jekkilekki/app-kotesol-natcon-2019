@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingTop: isIphoneX() ? 40 : 10,
+    paddingTop: isIphoneX() ? 60 : 30,
     paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
