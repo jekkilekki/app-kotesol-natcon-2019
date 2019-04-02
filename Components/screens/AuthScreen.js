@@ -42,14 +42,9 @@ class AuthScreen extends Component {
           cancelButton
         />
         <ScreenContent>
-          <MyButton onPress={() => this.props.fbLogin()}/>
-          <AppText center bold padding>&mdash; OR &mdash;</AppText>
           <LoginForm />
-          
-          <Button
-            title="Go back"
-            onPress={() => this.props.navigation.navigate('Home')}
-          />
+          <AppText center bold padding>&mdash; OR &mdash;</AppText>
+          <MyButton onPress={() => this.props.fbLogin()}/>
         </ScreenContent>
       </AppScreen>
     )

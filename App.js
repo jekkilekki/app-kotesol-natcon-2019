@@ -19,13 +19,15 @@ import { apiKey, authDomain, databaseURL, storageBucket, messagingSenderId } fro
 import firebase from 'firebase'
 
 
-import WelcomeScreen from './Components/screens/WelcomeScreen';
-import AuthScreen from './Components/screens/AuthScreen';
-import ScheduleScreen from './Components/screens/ScheduleScreen';
-import SpeakersScreen from './Components/screens/SpeakersScreen';
-import MapScreen from './Components/screens/MapScreen';
-import AboutScreen from './Components/screens/AboutScreen';
-import TabBar from './Components/navigation/TabBar';
+import WelcomeScreen from './Components/screens/WelcomeScreen'
+import AuthScreen from './Components/screens/AuthScreen'
+import ProfileScreen from './Components/screens/ProfileScreen'
+import ScheduleScreen from './Components/screens/ScheduleScreen'
+import SpeakersScreen from './Components/screens/SpeakersScreen'
+import MapScreen from './Components/screens/MapScreen'
+import AboutScreen from './Components/screens/AboutScreen'
+import MoreScreen from './Components/screens/MoreScreen'
+import TabBar from './Components/navigation/TabBar'
 
 // const store = createStore(
 //   reducer,
@@ -38,7 +40,8 @@ const showIntro = false;
 
 class App extends Component {
   state = {
-    fontLoaded: false
+    fontLoaded: false,
+    loggedIn: null
   }
 
   componentWillMount() {
@@ -48,6 +51,14 @@ class App extends Component {
       databaseURL,
       storageBucket,
       messagingSenderId
+    })
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true })
+      } else {
+        this.setState({ loggedIn: false })
+      }
     })
   }
 
@@ -66,7 +77,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         { this.state.fontLoaded &&
-          <AppContainer />
+          <AppContainer loggedIn={this.state.loggedIn} />
         }
       </Provider>
     )
@@ -114,7 +125,7 @@ const iosNavigation = createBottomTabNavigator({
     },
   },
   Drawer: {
-    screen: drawerNav,
+    screen: MoreScreen,
     navigationOptions: {
       tabBarLabel: 'More',
       tabBarIcon: ({ focused, tintColor }) => 
@@ -173,6 +184,7 @@ const transitionConfig = () => {
 
 const drawerNavigation = createDrawerNavigator({
   Welcome: WelcomeScreen,
+  // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
   Auth: AuthScreen,
   Schedule: ScheduleScreen,
   Speakers: SpeakersScreen,
@@ -182,7 +194,9 @@ const drawerNavigation = createDrawerNavigator({
 
 const RootNavigation = createSwitchNavigator({
   Welcome: WelcomeScreen,
+  // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
   Auth: AuthScreen,
+  Profile: ProfileScreen,
   Home: iosNavigation
 }, {
   initialRouteName: showIntro ? 'Welcome' : 'Home',

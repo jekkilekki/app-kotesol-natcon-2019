@@ -3,7 +3,7 @@ import { TextInput, View, Text, StyleSheet } from 'react-native'
 import AppText from './text/AppText'
 import { blueGray100 } from '../../utils/colors';
 
-const AppInput = ({ label, value, placeholder, onChangeText }) => {
+const AppInput = ({ label, value, placeholder, onChangeText, secureTextEntry }) => {
   return (
     <View style={styles.container}>
       {label && <AppText style={styles.label}>{label}</AppText>}
@@ -13,6 +13,7 @@ const AppInput = ({ label, value, placeholder, onChangeText }) => {
         placeholder={placeholder || label}
         onChangeText={onChangeText}
         autoCorrect={false}
+        secureTextEntry={secureTextEntry}
       />
     </View>
   )

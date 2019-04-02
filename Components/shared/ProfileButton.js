@@ -10,7 +10,7 @@ const ProfileButton = (props) => {
     <TouchableOpacity 
       style={[
         styles.profileButton, {
-          backgroundColor: '#d63aff',
+          backgroundColor: props.loggedIn ? '#00dddd' : '#d63aff',
         }
       ]}
       onPress={props.onPress}

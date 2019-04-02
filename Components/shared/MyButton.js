@@ -22,7 +22,7 @@ class MyButton extends Component {
               color={this.props.iconColor || '#fff'} 
             />
           }
-          <Text style={styles.buttonText}>{this.props.text || 'Login with Facebook'}</Text>
+          <Text style={styles.buttonText}>{this.props.title || 'Login with Facebook'}</Text>
         </LinearGradient>
       </TouchableOpacity>
     )
