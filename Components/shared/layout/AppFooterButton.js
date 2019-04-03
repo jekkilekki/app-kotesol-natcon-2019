@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-class MyButton extends Component {
+class AppFooterButton extends Component {
   render() {
     return (
       <View style={[styles.buttonStyle, {
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default MyButton
+export default AppFooterButton

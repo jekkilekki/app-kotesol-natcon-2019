@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, ImageBackground } from 'react-native'
+import { View, SafeAreaView, ImageBackground, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo'
 
-import { blue, purple, purpleDark } from '../../../utils/colors'
+import { blue, purple, purpleDark, purpleDarker, blueDark, blueDarker } from '../../../utils/colors'
 
 class AppScreen extends Component {
   _renderImageBackground() {
@@ -11,7 +11,9 @@ class AppScreen extends Component {
         source={this.props.image}
         style={{width: '100%', height: '100%'}}
       >
-        {this.props.children}
+        <ScrollView>
+          {this.props.children}
+        </ScrollView>
       </ImageBackground>
     )
   }
@@ -20,15 +22,17 @@ class AppScreen extends Component {
     return (
       <LinearGradient
           colors={[
-            this.props.color1 || blue, 
-            this.props.color2 || purple
+            this.props.color1 || blueDark, 
+            this.props.color2 || blueDarker
           ]}
           style={{flex: 1}}
           start={{x: 0.0, y: 0.25}} 
           end={{x: 0.75, y: 1}}
           locations={[0,1]}
         >
-          {this.props.children}
+          <ScrollView>
+            {this.props.children}
+          </ScrollView>
         </LinearGradient>
     )
   }

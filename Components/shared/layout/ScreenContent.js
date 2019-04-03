@@ -15,10 +15,9 @@ const screenContent = {
   flex: 1,
   paddingTop: 10,
   paddingBottom: 10,
-  paddingRight: 10,
-  paddingLeft: 10,
+  paddingRight: 15,
+  paddingLeft: 15,
   width: width,
-  height: height
 }
 
 export default ScreenContent

@@ -124,7 +124,7 @@ const iosNavigation = createBottomTabNavigator({
         <EntypoIcon name='info-with-circle' size={20} />,
     },
   },
-  Drawer: {
+  More: {
     screen: MoreScreen,
     navigationOptions: {
       tabBarLabel: 'More',
@@ -133,7 +133,7 @@ const iosNavigation = createBottomTabNavigator({
     }
   }
 }, { 
-  initialRouteName: 'Schedule',
+  initialRouteName: 'About',
   tabBarComponent: (props) => <TabBar {...props} />,
   // tabBarOptions: {
   //   style: {

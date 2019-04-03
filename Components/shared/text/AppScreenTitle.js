@@ -10,7 +10,7 @@ const AppScreenTitle = (props) => {
 const style = {
   fontFamily: 'futura-bold',
   fontSize: 30,
-  color: '#232377'
+  color: '#fff'
 }
 
 export default AppScreenTitle

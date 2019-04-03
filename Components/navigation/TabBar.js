@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     backgroundColor: '#00dddd',
-    borderRadius: 24
+    borderRadius: 24,
+    top: -1
   },
   scaler: {
     flex: 1,

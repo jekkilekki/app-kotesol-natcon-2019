@@ -10,6 +10,7 @@ const AppScreenSubtitle = (props) => {
 const style = {
   fontFamily: 'nunito',
   fontSize: 15,
+  color: '#fff',
   opacity: 0.75
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Button, FlatList, ScrollView, View, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
 import MyButton from './MyButton'
-import ButtonBottom from './layout/AppFooterButton'
+import AppFooterButton from './layout/AppFooterButton'
 
 const { width, height } = Dimensions.get('window')
 
@@ -21,7 +21,7 @@ class Slides extends Component {
               <TouchableOpacity onPress={this.props.onLogin}>
                 <MyButton 
                   icon='login'
-                  text='Login with Email &amp; Password'
+                  title='Login with Email &amp; Password'
                   color1='#60f'
                   color2='#60f'
                   color3='#60f'
@@ -38,8 +38,8 @@ class Slides extends Component {
         </View>
         {(this.props.data.length - 1 === i ) &&
           <TouchableOpacity onPress={this.props.onComplete}>
-            <ButtonBottom 
-              text='See the Schedule'
+            <AppFooterButton 
+              title='See the Schedule'
             />
           </TouchableOpacity>
         }
