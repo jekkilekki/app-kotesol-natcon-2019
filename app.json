@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/img/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/img/kotesol-natcon-2019-app-splash-title.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -27,6 +27,7 @@
       "supportsTablet": true
     },
     "androidStatusBar": {
+      "barStyle": "light-content",
       "backgroundColor": "#232377"
     }
   }

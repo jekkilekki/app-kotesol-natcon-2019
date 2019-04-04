@@ -5,7 +5,11 @@ import AppText from './AppText'
 const P = (props) => {
   return (
     <AppText 
-      style={{paddingBottom: 10, opacity: 0.9}}
+      style={{
+        paddingBottom: 10, 
+        opacity: 0.9,
+        fontSize: props.note ? 12 : 15
+      }}
     >
       {props.children}
     </AppText>

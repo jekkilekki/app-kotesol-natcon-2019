@@ -3,13 +3,18 @@ import { Text } from 'react-native'
 
 const AppScreenTitle = (props) => {
   return (
-    <Text style={style}>{props.children}</Text>
+    <Text style={
+      [style, {
+        fontSize: props.small ? 24 : 30
+      }
+    ]}>
+      {props.children}
+    </Text>
   )
 }
 
 const style = {
   fontFamily: 'futura-bold',
-  fontSize: 30,
   color: '#fff'
 }
 

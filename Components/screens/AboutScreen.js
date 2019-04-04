@@ -9,7 +9,7 @@ import H1 from '../shared/text/H1'
 import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
 import AppText from '../shared/text/AppText'
-import ContentButton from '../shared/buttons/ContentButton';
+import ContentButton from '../shared/buttons/ContentButton'
 
 class AboutScreen extends Component {
   render() {
@@ -40,6 +40,7 @@ class AboutScreen extends Component {
             </P>
             <ContentButton
               title='View Code of Conduct'
+              onPress={() => this.props.navigation.navigate('Conduct')}
             />
           </ScreenSection>
           <ScreenSection>
@@ -58,6 +59,7 @@ class AboutScreen extends Component {
             </P>
             <ContentButton
               title='View Privacy Policy'
+              onPress={() => this.props.navigation.navigate('Privacy')}
             />
           </ScreenSection>
         </ScreenContent>

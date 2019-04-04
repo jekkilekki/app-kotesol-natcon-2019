@@ -27,6 +27,8 @@ import SpeakersScreen from './Components/screens/SpeakersScreen'
 import MapScreen from './Components/screens/MapScreen'
 import AboutScreen from './Components/screens/AboutScreen'
 import MoreScreen from './Components/screens/MoreScreen'
+import ConductScreen from './Components/screens/ConductScreen'
+import PrivacyScreen from './Components/screens/PrivacyScreen'
 import TabBar from './Components/navigation/TabBar'
 
 // const store = createStore(
@@ -192,14 +194,31 @@ const drawerNavigation = createDrawerNavigator({
   About: AboutScreen
 })
 
+const stackNav = createStackNavigator({
+  Home: iosNavigation,
+  Profile: ProfileScreen,
+  Conduct: ConductScreen,
+  Privacy: PrivacyScreen
+}, { 
+  initialRouteName: 'Home',
+  mode: 'modal',
+  headerMode: 'none',
+  headerBackTitleStyle: {
+    color: '#00dddd'
+  },
+  navigationOptions: {
+    headerVisible: false
+  } 
+})
+
 const RootNavigation = createSwitchNavigator({
   Welcome: WelcomeScreen,
   // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
   Auth: AuthScreen,
-  Profile: ProfileScreen,
-  Home: iosNavigation
+  // Home: iosNavigation,
+  App: stackNav
 }, {
-  initialRouteName: showIntro ? 'Welcome' : 'Home',
+  initialRouteName: showIntro ? 'Welcome' : 'App',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: '#151537',
