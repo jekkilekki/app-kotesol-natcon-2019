@@ -1,69 +1,4 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { MapView } from 'expo'
-
-import AppHeader from '../shared/layout/AppHeader'
-import Loader from '../shared/Loader'
-import AppScreen from '../shared/layout/AppScreen'
-
-class MapScreen extends Component {
-  state = {
-    mapLoaded: false,
-    region: {
-      latitude: 35.813805,
-      longitude: 127.089688,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }
-  }
-
-  componentDidMount() {
-    this.setState({ mapLoaded: true })
-  }
-
-  _onRegionChange = (region) => {
-    this.setState({ region })
-  }
-
-  render() {
-    if (!this.state.mapLoaded) {
-      return (
-        <AppScreen>
-          <AppHeader 
-            pageName='Location' 
-            pageSub='Discover Jeonju'
-          />
-          <Loader />
-        </AppScreen>
-      )
-    }
-    return (
-      <AppScreen>
-        <AppHeader 
-          pageName='Location' 
-          pageSub='Discover Jeonju'
-        />
-        <MapView 
-          style={{ alignSelf: 'stretch', height: 300 }} 
-          initialRegion={this.state.region} 
-          provider={MapView.PROVIDER_GOOGLE}
-          customMapStyle={mapStyle}
-          onRegionChange={this._onRegionChange}
-        />
-      </AppScreen>
-    )
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
-
-const mapStyle = [
+[
   {
     "elementType": "geometry",
     "stylers": [
@@ -347,5 +282,3 @@ const mapStyle = [
     ]
   }
 ]
-
-export default MapScreen

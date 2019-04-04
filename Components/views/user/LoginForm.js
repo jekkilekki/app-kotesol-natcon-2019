@@ -7,7 +7,7 @@ import firebase from 'firebase'
 
 import AppText from '../../shared/text/AppText'
 import AppInput from '../../shared/AppInput'
-import MyButton from '../../shared/MyButton'
+import MyButton from '../../shared/buttons/MyButton'
 import Loader from '../../shared/Loader'
 
 const ROOT_URL = 'https://us-central1-knc-app-2019.cloudfunctions.net'

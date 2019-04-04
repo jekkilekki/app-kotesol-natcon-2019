@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Button, FlatList, ScrollView, View, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
-import MyButton from './MyButton'
+import MyButton from './buttons/MyButton'
 import AppFooterButton from './layout/AppFooterButton'
 
 const { width, height } = Dimensions.get('window')

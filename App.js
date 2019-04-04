@@ -135,7 +135,7 @@ const iosNavigation = createBottomTabNavigator({
     }
   }
 }, { 
-  initialRouteName: 'About',
+  initialRouteName: 'Speakers',
   tabBarComponent: (props) => <TabBar {...props} />,
   // tabBarOptions: {
   //   style: {

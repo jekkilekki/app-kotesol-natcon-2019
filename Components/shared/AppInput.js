@@ -22,7 +22,7 @@ const AppInput = ({ label, value, placeholder, onChangeText, secureTextEntry }) 
 const styles = StyleSheet.create({
   input: {
     fontFamily: 'nunito',
-    color: '#232377',
+    color: '#fff',
     paddingRight: 5,
     paddingLeft: 5,
     paddingTop: 10,

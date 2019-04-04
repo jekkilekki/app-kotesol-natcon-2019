@@ -8,7 +8,8 @@ const P = (props) => {
       style={{
         paddingBottom: 10, 
         opacity: 0.9,
-        fontSize: props.note ? 12 : 15
+        fontSize: props.note ? 12 : 15,
+        color: props.dark ? '#232377' : '#fff'
       }}
     >
       {props.children}

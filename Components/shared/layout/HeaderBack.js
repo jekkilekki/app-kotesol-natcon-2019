@@ -7,7 +7,7 @@ import { isIphoneX } from '../../../utils/helpers'
 
 import AppScreenTitle from '../text/AppScreenTitle'
 import AppScreenSubtitle from '../text/AppScreenSubtitle'
-import ProfileButton from '../ProfileButton'
+import ProfileButton from '../buttons/ProfileButton'
 import AppText from '../text/AppText';
 
 class HeaderBack extends Component {

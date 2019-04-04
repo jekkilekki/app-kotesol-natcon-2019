@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Button } from 'react-native'
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
 import AppText from '../shared/text/AppText'
+import ScreenContent from '../shared/layout/ScreenContent';
 
 class MoreScreen extends Component {
   render() {
@@ -13,7 +14,9 @@ class MoreScreen extends Component {
           pageName='Sitemap' 
           pageSub='Navigate to any page in this app'
         />
-        <AppText>MoreScreen</AppText>
+        <ScreenContent>
+          <AppText>MoreScreen</AppText>
+        </ScreenContent>
       </AppScreen>
     )
   }

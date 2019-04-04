@@ -3,8 +3,9 @@ import { View } from 'react-native'
 
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
-import SpeakerList from '../views/speaker/SpeakerList'
+import SpeakerList from '../SpeakerList'
 import AppSearch from '../shared/layout/AppSearch';
+import ScreenContent from '../shared/layout/ScreenContent';
 
 class SpeakersScreen extends Component {
   render() {
@@ -14,8 +15,10 @@ class SpeakersScreen extends Component {
           pageName='Speakers' 
           pageSub='Big names, Bigger ideas'
         />
-        <AppSearch />
-        <SpeakerList />
+        <ScreenContent>
+          <AppSearch />
+          <SpeakerList />
+        </ScreenContent>
       </AppScreen>
     )
   }

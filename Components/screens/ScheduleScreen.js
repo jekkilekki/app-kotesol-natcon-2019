@@ -4,6 +4,8 @@ import { View, SafeAreaView, Text, StyleSheet, Button } from 'react-native'
 import AppHeader from '../shared/layout/AppHeader'
 import AppText from '../shared/text/AppText'
 import AppScreen from '../shared/layout/AppScreen'
+import ScreenContent from '../shared/layout/ScreenContent'
+import ContentButton from '../shared/buttons/ContentButton'
 
 class ScheduleScreen extends Component {
   static navigationOptions = {
@@ -21,13 +23,12 @@ class ScheduleScreen extends Component {
           pageName='Schedule' 
           pageSub='Explore the presentation tracks'
         />
-        <View style={styles.container}>
-          <AppText>ScheduleScreen</AppText>
-          <Button
+        <ScreenContent>
+          <ContentButton
             title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome')}
           />
-        </View>
+        </ScreenContent>
       </AppScreen>
     )
   }

@@ -3,7 +3,7 @@ import { withNavigation } from 'react-navigation'
 import { Text, View, StyleSheet, Platform } from 'react-native'
 import { primary, black, white, purple, purpleDarkest, blue, blueDark } from '../../../utils/colors'
 import { LinearGradient } from 'expo'
-import ProfileButton from '../ProfileButton'
+import ProfileButton from '../buttons/ProfileButton'
 
 class HeaderGradient extends Component {
   state = {

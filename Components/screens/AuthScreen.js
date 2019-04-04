@@ -6,10 +6,10 @@ import * as actions from '../../actions'
 import Loader from '../shared/Loader'
 import AppHeader from '../shared/layout/AppHeader'
 import LoginForm from '../views/user/LoginForm'
-import AppScreen from '../shared/layout/AppScreen';
-import MyButton from '../shared/MyButton';
-import ScreenContent from '../shared/layout/ScreenContent';
-import AppText from '../shared/text/AppText';
+import AppScreen from '../shared/layout/AppScreen'
+import MyButton from '../shared/buttons/MyButton'
+import ScreenContent from '../shared/layout/ScreenContent'
+import AppText from '../shared/text/AppText'
 
 class AuthScreen extends Component {
   static navigationOptions = {
@@ -35,7 +35,7 @@ class AuthScreen extends Component {
 
   render() {
     return (
-      <AppScreen>
+      <AppScreen image={require('../../assets/img/kotesol-natcon-2019-app-splash-cloud-higher.jpg')}>
         <AppHeader 
           pageName='Login'
           pageSub='Unlock the hidden features'
