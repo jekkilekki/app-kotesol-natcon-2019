@@ -61,12 +61,12 @@ class LoginForm extends Component {
           if ( newUser ) {
             this._onLoginSuccess()
           } 
-        } catch {
-          this._onLoginFail()
+        } catch(e) {
+          this._onLoginFail(e)
         }
       } 
-    } catch {
-      this._onLoginFail()
+    } catch(e) {
+      this._onLoginFail(e)
     }
   }
 
@@ -80,11 +80,12 @@ class LoginForm extends Component {
     this.props.navigation.navigate('Profile')
   }
 
-  _onLoginFail = () => {
+  _onLoginFail = (e) => {
     this.setState({
       error: 'Authentication Failed. Please try again.',
       loading: false
     })
+    alert(JSON.stringify(e))
   }
 
   render() {

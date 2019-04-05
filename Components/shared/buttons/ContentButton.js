@@ -8,8 +8,16 @@ import AppText from '../text/AppText'
 const ContentButton = (props) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View style={styles.contentButton}>
-        <AppText style={styles.buttonText}>
+      <View 
+        style={[styles.contentButton,
+          { backgroundColor: props.opaque ? '#00dddd' : 'rgba(0,221,221,0.3)',}
+        ]}
+      >
+        <AppText 
+          style={[styles.buttonText,
+            { color: props.opaque ? '#fff' : '#00dddd' }
+          ]}
+        >
           {props.title ? props.title : props.children}
         </AppText>
       </View>
@@ -19,7 +27,6 @@ const ContentButton = (props) => {
 
 const styles = StyleSheet.create({
   contentButton: {
-    backgroundColor: 'rgba(0,221,221,0.3)',
     marginTop: 10,
     marginBottom: 10,
     paddingTop: 10,
@@ -28,7 +35,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 12,
-    color: '#00dddd',
     textTransform: 'uppercase',
     textAlign: 'center'
   }

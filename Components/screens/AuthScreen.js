@@ -6,16 +6,13 @@ import * as actions from '../../actions'
 import Loader from '../shared/Loader'
 import AppHeader from '../shared/layout/AppHeader'
 import LoginForm from '../views/user/LoginForm'
+import LoginRedux from '../views/user/LoginRedux'
 import AppScreen from '../shared/layout/AppScreen'
 import MyButton from '../shared/buttons/MyButton'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppText from '../shared/text/AppText'
 
 class AuthScreen extends Component {
-  static navigationOptions = {
-    title: 'Register or Login'
-  }
-
   componentDidMount() {
     // this.props.fbLogin()
     // Delete the token that lets us know we're logged in (remove after testing)
@@ -42,7 +39,7 @@ class AuthScreen extends Component {
           cancelButton
         />
         <ScreenContent>
-          <LoginForm />
+          <LoginRedux />
           <AppText center bold padding>&mdash; OR &mdash;</AppText>
           <MyButton onPress={() => this.props.fbLogin()}/>
         </ScreenContent>

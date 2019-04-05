@@ -24,6 +24,7 @@ import AuthScreen from './Components/screens/AuthScreen'
 import ProfileScreen from './Components/screens/ProfileScreen'
 import ScheduleScreen from './Components/screens/ScheduleScreen'
 import SpeakersScreen from './Components/screens/SpeakersScreen'
+import SessionSingleScreen from './Components/screens/SessionSingleScreen'
 import MapScreen from './Components/screens/MapScreen'
 import AboutScreen from './Components/screens/AboutScreen'
 import MoreScreen from './Components/screens/MoreScreen'
@@ -196,6 +197,7 @@ const drawerNavigation = createDrawerNavigator({
 
 const stackNav = createStackNavigator({
   Home: iosNavigation,
+  Session: SessionSingleScreen,
   Profile: ProfileScreen,
   Conduct: ConductScreen,
   Privacy: PrivacyScreen

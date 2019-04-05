@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, SafeAreaView, ImageBackground, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo'
 
-import { blue, purple, purpleDark, purpleDarker, blueDark, blueDarker } from '../../../utils/colors'
+import { blue, purple, purpler, purpleDark, purpleDarker, blueDark, blueDarker } from '../../../utils/colors'
 
 class AppScreen extends Component {
   _renderImageBackground() {
@@ -22,8 +22,8 @@ class AppScreen extends Component {
     return (
       <LinearGradient
           colors={[
-            this.props.color1 || blueDark, 
-            this.props.color2 || blueDarker
+            this.props.color1 || purpler, 
+            this.props.color2 || purpler
           ]}
           style={{flex: 1}}
           start={{x: 0.0, y: 0.25}} 

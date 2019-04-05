@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { withNavigation } from 'react-navigation'
 
 import H1 from './shared/text/H1'
 import H2 from './shared/text/H2'
@@ -8,14 +9,19 @@ import P from './shared/text/P'
 import AppText from './shared/text/AppText'
 
 class SpeakerDetails extends Component {
+  _goToSession = () => {
+    const { speaker, navigation } = this.props 
+    navigation.navigate( 'Session', { id: speaker.item.id, speaker: speaker.item })
+  }
+
   render() {
     const { id, title, name, nickname, shortname, 
             affiliation, other, time, room, summary, 
             abstract, bio, img, media, email, phone 
-          } = this.props.speaker
+          } = this.props.speaker.item
 
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={this._goToSession}>
         <View style={styles.cardStyle}>
           <View>
             <Image 
@@ -64,4 +70,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SpeakerDetails
+export default withNavigation(SpeakerDetails)

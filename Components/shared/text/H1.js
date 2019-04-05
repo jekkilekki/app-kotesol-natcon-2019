@@ -8,8 +8,9 @@ const H1 = (props) => {
       size={props.small ? 18 : 24}
       fontFamily='futura-bold'
       style={{
-        paddingBottom: 10,
-        color: props.dark ? '#232377' : '#fff'
+        marginBottom: 10,
+        color: props.dark ? '#232377' : '#fff',
+        // backgroundColor: props.dark ? 'transparent' : '#232377'
       }}
     >
       {props.children}
