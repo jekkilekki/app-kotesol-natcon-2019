@@ -15,6 +15,21 @@ const SpotLight = posed.View({
   route4: { x: tabWidth * 4 }
 })
 
+const Inner = posed.View({
+  passive: {
+    backgroundColor: [
+      'x',
+      {
+        inputRange: Array.from({ length: 5 }).map(
+          (_, i) => i * tabWidth
+        ),
+        outputRange: ["#00dddd", "#00b9f1", "#6600ff", "#d63aff", "#ed0972"]
+      },
+      true
+    ]
+  }
+})
+
 const Scaler = posed.View({
   active: { scale: 1.25 },
   inactive: { scale: 1 }
@@ -65,7 +80,7 @@ const TabBar = (props) => {
     <View style={styles.container}>
       <View style={StyleSheet.absoluteFillObject}>
         <SpotLight style={styles.spotLight} pose={`route${activeRouteIndex}`}>
-          <View style={styles.spotLightInner} />
+          <Inner style={styles.spotLightInner} />
         </SpotLight>
       </View>
 

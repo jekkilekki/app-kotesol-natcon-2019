@@ -100,7 +100,7 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Schedule',
       tabBarIcon: ({ focused, tintColor }) => 
-        <MaterialCommunityIcon name='calendar-clock' size={20} />
+        <MaterialCommunityIcon name='calendar-clock' size={20} color={tintColor} focused={focused} />
     },
   },
   Speakers: {
@@ -108,7 +108,7 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Speakers',
       tabBarIcon: ({ focused, tintColor }) => 
-        <EntypoIcon name='modern-mic' size={20} />
+        <EntypoIcon name='modern-mic' size={20} color={tintColor} focused={focused} />
     },
   },
   Map: {
@@ -116,7 +116,7 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Venue',
       tabBarIcon: ({ focused, tintColor }) => 
-        <FoundationIcon name='map' size={20} />
+        <FoundationIcon name='map' size={20} color={tintColor} focused={focused} />
     },
   },
   About: {
@@ -124,7 +124,7 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'About',
       tabBarIcon: ({ focused, tintColor }) => 
-        <EntypoIcon name='info-with-circle' size={20} />,
+        <EntypoIcon name='info-with-circle' size={20} color={tintColor} focused={focused} />,
     },
   },
   More: {
@@ -132,25 +132,25 @@ const iosNavigation = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'More',
       tabBarIcon: ({ focused, tintColor }) => 
-        <EntypoIcon name='grid' size={26} />
+        <EntypoIcon name='grid' size={26} color={tintColor} focused={focused} />
     }
   }
 }, { 
   initialRouteName: 'Speakers',
-  tabBarComponent: (props) => <TabBar {...props} />,
-  // tabBarOptions: {
-  //   style: {
-  //     backgroundColor: '#232377',
-  //     paddingTop: 10
-  //   },
-  //   labelStyle: {
-  //     fontFamily: 'futura',
-  //     textTransform: 'uppercase',
-  //     color: '#fff'
-  //   },
-  //   activeTintColor: '#fff',
-  //   inactiveTintColor: '#000'
-  // },
+  tabBarComponent: (props) => <TabBar tabColors={["#f62626", "#ff8a14", "#e5ff0a", "#21ff30", "#196eff"]} {...props} />,
+  tabBarOptions: {
+    style: {
+      backgroundColor: '#232377',
+      paddingTop: 10
+    },
+    labelStyle: {
+      fontFamily: 'futura',
+      textTransform: 'uppercase',
+      color: '#fff'
+    },
+    activeTintColor: '#fff',
+    inactiveTintColor: '#201b48'
+  },
 })
 
 /* React Nav Transitions: https://medium.com/async-la/custom-transitions-in-react-navigation-2f759408a053 */
