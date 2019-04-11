@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import auth from './authActions'
+import AuthActions from './authActions'
 import speakers from './speakersReducer'
 
 const reducers = combineReducers({
-  auth: () => { return {} },
+  auth: AuthActions,
   speakers
 })
 

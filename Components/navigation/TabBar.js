@@ -26,7 +26,8 @@ const Inner = posed.View({
         outputRange: ["#00dddd", "#00b9f1", "#6600ff", "#d63aff", "#ed0972"]
       },
       true
-    ]
+    ],
+    useNativeDriver: false
   }
 })
 

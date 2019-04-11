@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Image, StyleSheet, WebView } from 'react-native'
 
 import AppScreen from '../shared/layout/AppScreen'
 import HeaderBack from '../shared/layout/HeaderBack'
@@ -22,7 +22,10 @@ class SessionSingleScreen extends Component {
             style={styles.speakerImg}
             source={{ uri: speaker.img }} 
           />
-          <P>{speaker.abstract}</P>
+          <WebView
+            originWhitelist={['*']}
+            source={{html: `${speaker.abstract}`}}
+          />
           <ContentButton
             title="Check Screen Props"
             onPress={() => alert(JSON.stringify(speaker))}

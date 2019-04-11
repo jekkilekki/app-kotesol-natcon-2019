@@ -1,22 +1,30 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-
+// import { connect } from 'react-redux'
+// import { inputEmail, inputPassword, firebaseLoginUser } from '../../../actions'
+ 
 import AppInput from '../../shared/AppInput'
 import AppText from '../../shared/text/AppText'
 import ContentButton from '../../shared/buttons/ContentButton'
+import Loader from '../../shared/Loader'
 
 class LoginRedux extends Component {
-  state = {
-    email: '',
-    password: ''
+  _onEmailInput = (text) => {
+    this.props._onEmailInput(text)
   }
 
-  _onInput(text) {
+  _onPasswordInput = (text) => {
+    this.props._onPasswordInput(text)
+  }
 
+  _onLogin = () => {
+    // const { email, password, error } = this.props
+    // this.props.firebaseLoginUser({ email, password })
+    this.props._onLogin()
   }
 
   renderButton() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return <Loader />
     }
 
@@ -24,8 +32,9 @@ class LoginRedux extends Component {
       <ContentButton 
         title='Login' 
         opaque
-        // onPress={this._handleSubmit}
+        // onPress={this._onLogin}
         onPress={this._onLogin}
+        disabled={this.props.email === '' && this.props.password === ''}
       />
     )
   }
@@ -33,18 +42,18 @@ class LoginRedux extends Component {
   render() {
     return (
       <View>
-        <AppText style={styles.error}>{this.state.error}</AppText>
+        <AppText style={styles.error}>{this.props.error}</AppText>
         <AppInput 
           label='Email'
           placeholder='user@email.com'
-          value={this.state.email}
-          onChangeText={email => this._onInput(email)}
+          value={this.props.email}
+          onChangeText={this._onEmailInput}
         />
         <AppInput 
           label='Password'
           placeholder='password'
-          value={this.state.password}
-          onChangeText={password => this._onInput(password)}
+          value={this.props.password}
+          onChangeText={this._onPasswordInput}
           secureTextEntry
         />
         {this.renderButton()}
@@ -59,5 +68,14 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 })
+
+// const mapStateToProps = ({ auth }) => {
+//   const { email, password, error, loading, user } = auth
+//   return { email, password, error, loading, user }
+// }
+
+// export default connect(mapStateToProps, {
+//   inputEmail, inputPassword, firebaseLoginUser
+// })(LoginRedux)
 
 export default LoginRedux

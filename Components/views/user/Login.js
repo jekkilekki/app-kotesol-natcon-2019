@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    authedUser: state.autheUser
+    authedUser: state.authedUser
   }
 }
 

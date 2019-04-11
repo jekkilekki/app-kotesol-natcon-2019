@@ -7,10 +7,13 @@ import AppText from '../text/AppText'
 
 const ContentButton = (props) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity 
+      onPress={props.onPress}
+      disabled={props.disabled}  
+    >
       <View 
         style={[styles.contentButton,
-          { backgroundColor: props.opaque ? '#00dddd' : 'rgba(0,221,221,0.3)',}
+          { backgroundColor: props.opaque && !props.disabled ? '#00dddd' : 'rgba(0,221,221,0.3)',}
         ]}
       >
         <AppText 
