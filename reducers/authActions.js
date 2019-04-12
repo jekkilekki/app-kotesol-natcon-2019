@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
     case SET_AUTHED_USER:
-      return action.uid
+      return { ...state, user: action.payload }
     case FB_LOGIN_SUCCESS: 
       return { token: action.payload }
     case FB_LOGIN_FAIL: 

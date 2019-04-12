@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Button, FlatList, ScrollView, View, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import MyButton from './buttons/MyButton'
 import AppFooterButton from './layout/AppFooterButton'
 
@@ -18,7 +19,7 @@ class Slides extends Component {
           <Text style={styles.text}>{slide.text}</Text>
           {( this.props.data.length - 1 === i ) && 
             <View>
-              <TouchableOpacity onPress={this.props.onLogin}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Auth')}>
                 <MyButton 
                   icon='login'
                   title='Login with Email &amp; Password'
@@ -83,4 +84,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Slides
+export default withNavigation(Slides)

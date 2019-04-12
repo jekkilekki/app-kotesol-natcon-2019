@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Text, StyleSheet, Button, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-// import * as actions from '../../actions'
 import { inputEmail, inputPassword, firebaseLoginUser, fbLogin } from '../../actions'
 
 import Loader from '../shared/Loader'
@@ -49,7 +48,11 @@ class AuthScreen extends Component {
   }
 
   render() {
-    const { email, password, error, loading, user, token } = this.props
+    const { email, password, error, loading, user, token, loggedIn, navigation } = this.props
+
+    if ( loggedIn ) {
+      navigation.navigate('Profile')
+    }
 
     return (
       <AppScreen image={require('../../assets/img/kotesol-natcon-2019-app-splash-cloud-higher.jpg')}>
@@ -71,7 +74,7 @@ class AuthScreen extends Component {
             _onLogin={this._onLogin}
           />
           <AppText center bold padding>&mdash; OR &mdash;</AppText>
-          <MyButton onPress={() => this.props.fbLogin()}/>
+          <MyButton onPress={() => this.props.fbLogin(navigation)}/>
         </ScreenContent>
       </AppScreen>
     )

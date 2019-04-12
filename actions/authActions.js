@@ -7,12 +7,12 @@ import {
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_LOGIN_USER,
 } from './types'
 
-export function setAuthedUser(id) {
-  return {
-    type: SET_AUTHED_USER,
-    id
-  }
-}
+// export function setAuthedUser(id) {
+//   return {
+//     type: SET_AUTHED_USER,
+//     id
+//   }
+// }
 
 /**
  * Facebook Login logic
@@ -20,7 +20,7 @@ export function setAuthedUser(id) {
 // Usage of AsyncStorage
 // AsyncStorage.setItem('fb_token', token)
 // AsyncStorage.getItem('fb_token')
-export const fbLogin = () => async dispatch => {
+export const fbLogin = (navigation) => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token')
   if (token) {
     // Dispatch FB_LOGIN_SUCCESS action
@@ -30,11 +30,11 @@ export const fbLogin = () => async dispatch => {
     })
   } else {
     // Start up FB Login process
-    doFBLogin(dispatch);
+    doFBLogin(dispatch, navigation);
   }
 }
 
-const doFBLogin = async dispatch => {
+const doFBLogin = async (dispatch, navigation) => {
   let { type, token } = await Facebook.logInWithReadPermissionsAsync(
     '2279054512415452', {
       permissions: ['public_profile']
@@ -45,12 +45,24 @@ const doFBLogin = async dispatch => {
   }
 
   await AsyncStorage.setItem('fb_token', token)
-  const response = await fetch(`https://graph.facebok.com/me?access_token=${token}`)
-  alert('Logged in!', `Hi ${(await response.json()).name}!`)
   dispatch({
     type: FB_LOGIN_SUCCESS,
     payload: token
   })
+
+  /**
+   * Need to pull SET_AUTHED_USER out and have 2 different ways to handle it 
+   * 1. Facebook User
+   * 2. Firebase User
+   */
+  let user = await fetch(`https://graph.facebook.com/me?access_token=${token}`)
+  // alert('Logged in!', `Hi ${(await response.json()).name}!`)
+  dispatch({
+    type: SET_AUTHED_USER,
+    payload: user
+  })
+
+  navigation.navigate('Profile', { user: user })
 }
 
 export const inputEmail = (text) => {
@@ -73,28 +85,35 @@ export const firebaseLoginUser = ({ email, password, navigation }) => {
 
     try {
       let user = await firebase.auth().signInWithEmailAndPassword( email, password )
-      firebaseLoginUserSuccess(dispatch, user)
-      navigation.navigate('Home')
+      firebaseLoginUserSuccess(dispatch, user, navigation)
     } catch(err) {
       console.log(err)
       try {
         let user = await firebase.auth().createUserWithEmailAndPassword( email, password )
-        firebaseLoginUserSuccess(dispatch, user)
-        navigation.navigate('Home')
+        firebaseLoginUserSuccess(dispatch, user, navigation)
       } catch(err) {
-        firebaseLoginUserFail(dispatch)
+        firebaseLoginUserFail(dispatch, err)
       }
     }
   }
 }
 
-const firebaseLoginUserFail = (dispatch) => {
-  dispatch({ type: FIREBASE_LOGIN_FAIL })
+const firebaseLoginUserFail = (dispatch, err) => {
+  dispatch({ 
+    type: FIREBASE_LOGIN_FAIL,
+    payload: err
+  })
 }
 
-const firebaseLoginUserSuccess = (dispatch, user) => {
+const firebaseLoginUserSuccess = async (dispatch, user, navigation) => {
   dispatch({
     type: FIREBASE_LOGIN_SUCCESS,
     payload: user
   })
+  dispatch({
+    type: SET_AUTHED_USER,
+    payload: user
+  })
+
+  navigation.navigate('Profile', { user: user })
 }

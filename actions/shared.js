@@ -4,8 +4,8 @@ import { setAuthedUser } from './authActions'
 
 const AUTHED_ID = null
 
-export function handleInitialData() {
-  return dispatch => {
+export const handleInitialData = () => {
+  return (dispatch) => {
     return getInitialData()
       .then(() => {
         dispatch( setAuthedUser( AUTHED_ID ))

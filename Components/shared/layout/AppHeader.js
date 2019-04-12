@@ -16,7 +16,11 @@ class Header extends Component {
   }
 
   _handleProfile = () => {
-    this.props.navigation.navigate('Auth')
+    // if ( this.props.auth.user !== null ) {
+    //   this.props.navigation.navigate('Profile')
+    // } else {
+      this.props.navigation.navigate('Auth')
+    // }
   }
 
   render() {

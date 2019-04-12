@@ -24,7 +24,8 @@ class SessionSingleScreen extends Component {
           />
           <WebView
             originWhitelist={['*']}
-            source={{html: `${speaker.abstract}`}}
+            source={{html: speaker.abstract}}
+            useWebKit
           />
           <ContentButton
             title="Check Screen Props"

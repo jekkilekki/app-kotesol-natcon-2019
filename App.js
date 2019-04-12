@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Platform } from 'react-native'
+import { StyleSheet, Text, View, Platform, AsyncStorage } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 import { Provider } from 'react-redux'
@@ -74,6 +74,9 @@ class App extends Component {
       'futura-bold': require('./assets/fonts/Futura/Futura-Condensed-Bold.otf')
     })
     this.setState({ fontLoaded: true })
+
+    let token = await AsyncStorage.getItem('fb_token')
+    if (token) this.setState({ loggedIn: true })
   }
 
   render() {
