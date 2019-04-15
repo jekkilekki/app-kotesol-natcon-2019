@@ -1,6 +1,7 @@
 import { 
   FB_LOGIN_SUCCESS, FB_LOGIN_FAIL,
-  FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_LOGIN_USER,
+  FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
+  FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER,
   INPUT_EMAIL, INPUT_PASSWORD, SET_AUTHED_USER
 } from '../actions/types'
 
@@ -27,6 +28,8 @@ export default ( state = INITIAL_STATE, action ) => {
       return { ...state, password: action.payload }
     case FIREBASE_LOGIN_USER: 
       return { ...state, loading: true, error: '' }
+    case FIREBASE_LOGOUT_USER:
+      return { ...state, user: null }
     case FIREBASE_LOGIN_SUCCESS: 
       return { ...state, ...INITIAL_STATE, user: action.payload }
     case FIREBASE_LOGIN_FAIL:

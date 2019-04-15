@@ -4,7 +4,8 @@ import firebase from 'firebase'
 import { 
   FB_LOGIN_SUCCESS, FB_LOGIN_FAIL, FB_LOGIN_USER,
   INPUT_EMAIL, INPUT_PASSWORD, SET_AUTHED_USER, 
-  FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_LOGIN_USER,
+  FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
+  FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER
 } from './types'
 
 // export function setAuthedUser(id) {
@@ -116,4 +117,11 @@ const firebaseLoginUserSuccess = async (dispatch, user, navigation) => {
   })
 
   navigation.navigate('Profile', { user: user })
+}
+
+export const firebaseLogoutUser = () => {
+  return (dispatch) => {
+    dispatch({ type: FIREBASE_LOGOUT_USER })
+    firebase.auth().signOut()
+  }
 }

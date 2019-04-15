@@ -1,19 +1,28 @@
 import React from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
 import AppText from './text/AppText'
-import { blueGray100 } from '../../utils/colors';
+import { blueGray100 } from '../../utils/colors'
 
-const AppInput = ({ label, value, placeholder, onChangeText, secureTextEntry }) => {
+const AppInput = ({ 
+  label, value, placeholder, onChangeText, secureTextEntry,
+  multiline, numberOfLines
+}) => {
   return (
     <View style={styles.container}>
       {label && <AppText style={styles.label}>{label}</AppText>}
       <TextInput 
-        style={styles.input} 
+        style={[styles.input, {
+          height: multiline ? 100 : 'auto',
+          fontSize: multiline ? 15 : 18
+        }]} 
         value={value}
         placeholder={placeholder || label}
+        placeholderTextColor={'rgba(255,255,255,0.3)'}
         onChangeText={onChangeText}
         autoCorrect={false}
         secureTextEntry={secureTextEntry}
+        multiline={multiline}
+        numberOfLines={numberOfLines}
       />
     </View>
   )
@@ -23,26 +32,29 @@ const styles = StyleSheet.create({
   input: {
     fontFamily: 'nunito',
     color: '#fff',
-    paddingRight: 5,
-    paddingLeft: 5,
+    paddingRight: 10,
+    paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 5,
-    fontSize: 15,
-    flex: 3,
+    marginBottom: 10,
+    fontSize: 18,
+    flex: 1,
     backgroundColor: '#232377',
     borderColor: 'rgba(0,221,221,0.3)',
     borderWidth: 1,
-    borderRadius: 5
+    borderRadius: 5,
   },
   label: {
-    fontSize: 18,
-    marginRight: 20,
-    flex: 1
+    marginBottom: 3,
+    // fontSize: 18,
+    // position: 'absolute',
+    // zIndex: 10,
+    // left: 5
   },
   container: {
-    height: 60,
-    flexDirection: 'row',
-    alignItems: 'center'
+    // height: 60,
+    // flexDirection: 'row',
+    // alignItems: 'center'
   }
 })
 

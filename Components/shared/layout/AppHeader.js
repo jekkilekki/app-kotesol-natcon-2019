@@ -31,7 +31,7 @@ class Header extends Component {
         }]}>
         <AppScreenTitle>{this.props.pageName}</AppScreenTitle>
         <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
-        {this.props.pageName !== 'Login' &&
+        {this.props.pageName !== 'Login' && this.props.pageName !== 'Profile' && 
           <ProfileButton onPress={this._handleProfile} />
         }
         {this.props.pageName === 'Login' &&

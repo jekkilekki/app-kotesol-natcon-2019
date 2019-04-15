@@ -18,7 +18,6 @@ import { createAppContainer, createSwitchNavigator, createStackNavigator, create
 import { apiKey, authDomain, databaseURL, storageBucket, messagingSenderId } from './utils/_config'
 import firebase from 'firebase'
 
-
 import WelcomeScreen from './Components/screens/WelcomeScreen'
 import AuthScreen from './Components/screens/AuthScreen'
 import ProfileScreen from './Components/screens/ProfileScreen'
@@ -90,14 +89,14 @@ class App extends Component {
   }
 }
 
-const drawerNav = createDrawerNavigator({
-  Schedule: ScheduleScreen,
-  Speakers: SpeakersScreen,
-  Map: MapScreen,
-  About: AboutScreen,
-})
+// const drawerNav = createDrawerNavigator({
+//   Schedule: ScheduleScreen,
+//   Speakers: SpeakersScreen,
+//   Map: MapScreen,
+//   About: AboutScreen,
+// })
 
-const iosNavigation = createBottomTabNavigator({
+const tabNavigation = createBottomTabNavigator({
   Schedule: {
     screen: ScheduleScreen,
     navigationOptions: {
@@ -188,24 +187,24 @@ const transitionConfig = () => {
 //   About: AboutScreen
 // })
 
-const drawerNavigation = createDrawerNavigator({
-  Welcome: WelcomeScreen,
-  // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
-  Auth: AuthScreen,
-  Schedule: ScheduleScreen,
-  Speakers: SpeakersScreen,
-  Map: MapScreen,
-  About: AboutScreen
-})
+// const drawerNavigation = createDrawerNavigator({
+//   Welcome: WelcomeScreen,
+//   // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
+//   Auth: AuthScreen,
+//   Schedule: ScheduleScreen,
+//   Speakers: SpeakersScreen,
+//   Map: MapScreen,
+//   About: AboutScreen
+// })
 
 const stackNav = createStackNavigator({
-  Home: iosNavigation,
+  Home: tabNavigation,
   Session: SessionSingleScreen,
   Profile: ProfileScreen,
   Conduct: ConductScreen,
   Privacy: PrivacyScreen
 }, { 
-  initialRouteName: 'Home',
+  initialRouteName: 'Profile',
   mode: 'modal',
   headerMode: 'none',
   headerBackTitleStyle: {

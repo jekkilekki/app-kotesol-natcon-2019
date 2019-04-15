@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
-import AuthActions from './authActions'
+import appActions from './appActions'
+import authActions from './authActions'
 import speakers from './speakersReducer'
 
 const reducers = combineReducers({
-  auth: AuthActions,
+  app: appActions,
+  auth: authActions,
   speakers
 })
 

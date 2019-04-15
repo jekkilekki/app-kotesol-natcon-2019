@@ -18,6 +18,10 @@ class AuthScreen extends Component {
     // Delete the token that lets us know we're logged in (remove after testing)
     AsyncStorage.removeItem('fb_token')
     this.onAuthComplete(this.props)
+
+    if ( this.props.user ) {
+      this.props.navigation.navigate( 'Profile' )
+    }
   }
 
   componentWillReceiveProps(nextProps) {
