@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, Image } from 'react-native'
 import firebase from 'firebase'
 import { connect } from 'react-redux'
 import { firebaseLogoutUser } from '../../actions'
@@ -18,6 +18,11 @@ class ProfileScreen extends Component {
     }
   }
 
+  _onSave = () => {
+    // Need to save this data to Firebase - to recall it all later
+    this.props.navigation.navigate('Home')
+  }
+
   _onLogout = () => {
     this.props.firebaseLogoutUser()
     this.props.navigation.navigate('Home')
@@ -33,16 +38,19 @@ class ProfileScreen extends Component {
           pageSub='Update your info, connect with others'
         />
         <ScreenContent>
+          {user && user.picture !== undefined &&
+            <Image source={{uri: user.picture.data.url}} style={styles.userImg} />
+          }
           <AppInput 
             label='First Name'
             placeholder='Aaron'
-            value={user && token ? user._bodyText : ''}
+            value={user && user.first_name !== undefined ? user.first_name : ''}
             // onChangeText={this._onTextInput}
           />
           <AppInput 
             label='Last Name'
             placeholder='Snowberger'
-            value={user && token ? user._bodyText : ''}
+            value={user && user.last_name !== undefined ? user.last_name : ''}
             // onChangeText={this._onTextInput}
           />
           <AppInput 
@@ -62,12 +70,12 @@ class ProfileScreen extends Component {
           <AppInput 
             label='Email'
             placeholder='john@doe.com'
-            value={user && !token ? user.user.email : ''}
+            value={user && user.email !== undefined ? user.email : ''}
             // onChangeText={this._onTextInput}
           />
           <ContentButton
             title="Save"
-            // onPress={this._onSave}
+            onPress={this._onSave}
           />
           <Button
             title="Logout"
@@ -84,6 +92,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  userImg: {
+    backgroundColor: 'white',
+    height: 100,
+    width: 100,
+    borderRadius: 10
   }
 })
 

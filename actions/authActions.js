@@ -7,13 +7,7 @@ import {
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
   FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER
 } from './types'
-
-// export function setAuthedUser(id) {
-//   return {
-//     type: SET_AUTHED_USER,
-//     id
-//   }
-// }
+import { generateUID } from '../utils/helpers';
 
 /**
  * Facebook Login logic
@@ -51,18 +45,17 @@ const doFBLogin = async (dispatch, navigation) => {
     payload: token
   })
 
-  /**
-   * Need to pull SET_AUTHED_USER out and have 2 different ways to handle it 
-   * 1. Facebook User
-   * 2. Firebase User
-   */
-  let user = await fetch(`https://graph.facebook.com/me?access_token=${token}`)
-  // alert('Logged in!', `Hi ${(await response.json()).name}!`)
+  let user = await fetch(`https://graph.facebook.com/me?fields=id,first_name,last_name,email,picture{url}&access_token=${token}`)
+
+  setAuthedUser( dispatch, await user.json(), token, navigation );
+}
+
+const setAuthedUser = async ( dispatch, user, token, navigation ) => {
   dispatch({
     type: SET_AUTHED_USER,
     payload: user
   })
-
+  
   navigation.navigate('Profile', { user: user })
 }
 
@@ -109,14 +102,12 @@ const firebaseLoginUserFail = (dispatch, err) => {
 const firebaseLoginUserSuccess = async (dispatch, user, navigation) => {
   dispatch({
     type: FIREBASE_LOGIN_SUCCESS,
-    payload: user
-  })
-  dispatch({
-    type: SET_AUTHED_USER,
-    payload: user
+    payload: user.user
   })
 
-  navigation.navigate('Profile', { user: user })
+  let token = generateUID()
+
+  setAuthedUser( dispatch, user.user, token, navigation )
 }
 
 export const firebaseLogoutUser = () => {
