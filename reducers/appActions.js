@@ -1,5 +1,6 @@
 import { 
-  FONTS_LOADED, IMAGES_LOADED
+  FONTS_LOADED, IMAGES_LOADED,
+  ATTENDEES_FETCH_SUCCESS
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -15,6 +16,8 @@ export default ( state = INITIAL_STATE, action ) => {
       return { ...state, fontsLoaded: true }
     case IMAGES_LOADED: 
       return { ...state, imagesLoaded: true }
+    case ATTENDEES_FETCH_SUCCESS: 
+      return { ...state, action }
     default: 
       return state
   }

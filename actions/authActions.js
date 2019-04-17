@@ -7,6 +7,7 @@ import {
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
   FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER
 } from './types'
+import { profileSave } from './userActions'
 import { generateUID } from '../utils/helpers';
 
 /**
@@ -29,6 +30,8 @@ export const fbLogin = (navigation) => async dispatch => {
   }
 }
 
+// @TODO
+// Good example with some refactoring: https://medium.com/datadriveninvestor/facebook-login-with-react-native-expo-firebase-and-typescript-56df4ed6099a
 const doFBLogin = async (dispatch, navigation) => {
   let { type, token } = await Facebook.logInWithReadPermissionsAsync(
     '2279054512415452', {
@@ -39,15 +42,30 @@ const doFBLogin = async (dispatch, navigation) => {
     return dispatch({ type: FB_LOGIN_FAIL })
   }
 
-  await AsyncStorage.setItem('fb_token', token)
-  dispatch({
-    type: FB_LOGIN_SUCCESS,
-    payload: token
-  })
+  if ( type === 'success' && token ) {
+    await AsyncStorage.setItem('fb_token', token)
+    dispatch({
+      type: FB_LOGIN_SUCCESS,
+      payload: token
+    })
 
-  let user = await fetch(`https://graph.facebook.com/me?fields=id,first_name,last_name,email,picture{url}&access_token=${token}`)
+    // Build Firebase credential with the Facebook access token
+    const credential = firebase.auth.FacebookAuthProvider.credential(token)
 
-  setAuthedUser( dispatch, await user.json(), token, navigation );
+    // Sign into Firebase with the Facebook credential
+    let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
+    // const { photoURL, displayName, email } = user
+    // let aff = ''
+    // let bio = ''
+    // let friends = []
+    // let sch = []
+    
+    // profileSave({ photoURL, displayName, displayName, aff, bio, email, friends, sch, navigation })
+    setAuthedUser( dispatch, user.user, token, navigation )
+  }
+  
+  // let user = await fetch(`https://graph.facebook.com/me?fields=id,first_name,last_name,email,picture{url}&access_token=${token}`)
+  // setAuthedUser( dispatch, await user.json(), token, navigation );
 }
 
 const setAuthedUser = async ( dispatch, user, token, navigation ) => {

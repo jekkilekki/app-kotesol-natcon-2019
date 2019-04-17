@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, Image } from 'react-native'
+import { View, Text, StyleSheet, Button, Image, Picker } from 'react-native'
 import firebase from 'firebase'
 import { connect } from 'react-redux'
-import { firebaseLogoutUser } from '../../actions'
+import { firebaseLogoutUser, profileFieldUpdate, profileSave } from '../../actions'
 
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
@@ -20,6 +20,10 @@ class ProfileScreen extends Component {
 
   _onSave = () => {
     // Need to save this data to Firebase - to recall it all later
+    const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
+
+    this.props.profileSave({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation })
+
     this.props.navigation.navigate('Home')
   }
 
@@ -29,7 +33,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { user, token } = this.props
+    const { user, token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = this.props
 
     return (
       <AppScreen>
@@ -44,35 +48,47 @@ class ProfileScreen extends Component {
           <AppInput 
             label='First Name'
             placeholder='Aaron'
-            value={user && user.first_name !== undefined ? user.first_name : ''}
-            // onChangeText={this._onTextInput}
+            value={firstName}
+            onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'firstName', value })}
           />
           <AppInput 
             label='Last Name'
             placeholder='Snowberger'
-            value={user && user.last_name !== undefined ? user.last_name : ''}
-            // onChangeText={this._onTextInput}
+            value={lastName}
+            onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'lastName', value })}
           />
           <AppInput 
             label='Affiliation'
             placeholder='Jeonju University'
-            value={this.props.affiliation}
-            // onChangeText={this._onTextInput}
+            value={affiliation}
+            onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'affiliation', value })}
           />
           <AppInput 
             label='Short Bio'
             placeholder="I'm a teacher at..."
-            value={this.props.shortBio}
-            // onChangeText={this._onTextInput}
+            value={shortBio}
+            onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'shortBio', value })}
             multiline
             numberOfLines={6}
           />
           <AppInput 
             label='Email'
             placeholder='john@doe.com'
-            value={user && user.email !== undefined ? user.email : ''}
-            // onChangeText={this._onTextInput}
+            value={email}
+            onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'email', value })}
           />
+          {/* <Picker
+            style={{ flex: 1 }}
+            selectedValue={this.props.room}
+            onValueChange={(value) => this.props.profileFieldUpdate({ prop: 'room', value })}
+          >
+            <Picker.Item label='101' value='101' />
+            <Picker.Item label='102' value='102' />
+            <Picker.Item label='201' value='201' />
+            <Picker.Item label='202' value='202' />
+            <Picker.Item label='203' value='203' />
+            <Picker.Item label='204' value='204' />
+          </Picker> */}
           <ContentButton
             title="Save"
             onPress={this._onSave}
@@ -101,9 +117,23 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, profile }) => {
   const { user, token } = auth
-  return { user, token }
+  const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = profile
+  
+  if ( user !== null ) {
+    return { user, token, 
+      img: img || user.photoURL, 
+      firstName: firstName || user.displayName, 
+      lastName: lastName || user.displayName, affiliation, shortBio, 
+      email: email || user.email, 
+      myFriends, mySchedule 
+    }
+  }
+
+  return { user, token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
 }
 
-export default connect(mapStateToProps, { firebaseLogoutUser })(ProfileScreen)
+export default connect(mapStateToProps, { 
+  firebaseLogoutUser, profileFieldUpdate, profileSave
+})(ProfileScreen)
