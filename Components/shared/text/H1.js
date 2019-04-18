@@ -7,11 +7,11 @@ const H1 = (props) => {
     <AppText 
       size={props.small ? 18 : 24}
       fontFamily='futura-bold'
-      style={{
+      style={[{
         marginBottom: 10,
         color: props.dark ? '#232377' : '#fff',
         // backgroundColor: props.dark ? 'transparent' : '#232377'
-      }}
+      }, props.style]}
     >
       {props.children}
     </AppText>

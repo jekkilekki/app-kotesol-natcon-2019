@@ -7,10 +7,10 @@ const H2 = (props) => {
     <AppText 
       size={props.small ? 16 : 24}
       fontFamily='nunito-black'
-      style={{
+      style={[{
         paddingBottom: 10,
         color: props.dark ? '#232377' : '#fff'
-      }}
+      }, props.style]}
     >
       {props.children}
     </AppText>

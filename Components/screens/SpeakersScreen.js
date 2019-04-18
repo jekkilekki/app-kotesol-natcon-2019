@@ -40,12 +40,19 @@ class SpeakersScreen extends Component {
           pageSub='Big names, Bigger ideas'
         />
         <AppSearch onChangeText={this._searchSpeakers} />
-        <ScreenContent>
+        <ScreenContent style={speakerScreenStyle}>
           <SpeakerList speakers={speakerList} />
         </ScreenContent>
       </AppScreen>
     )
   }
+}
+
+const speakerScreenStyle = {
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
 }
 
 const mapStateToProps = ({ speakers }) => {
