@@ -10,11 +10,29 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import AppSearch from '../shared/layout/AppSearch'
 
 class SpeakersScreen extends Component {
+  state = {
+    speakerList: this.props.speakers.data
+  }
+
   _searchSpeakers = (query) => {
     this.props.speakerSearch(query)
+
+    const { speakers } = this.props
+    const filteredList = speakers.data.filter((speaker) => {
+      const speakerData = `${speaker.title.toString().toLowerCase()}
+                          ${speaker.name.toString().toLowerCase()}`
+      const filterData = query.toLowerCase()
+
+      return speakerData.indexOf(filterData) > -1
+    })
+    this.setState({
+      speakerList: filteredList
+    })
   }
 
   render() {
+    const { speakerList } = this.state
+
     return (
       <AppScreen>
         <AppHeader 
@@ -23,7 +41,7 @@ class SpeakersScreen extends Component {
         />
         <AppSearch onChangeText={this._searchSpeakers} />
         <ScreenContent>
-          <SpeakerList speakers={this.props.speakers.data} />
+          <SpeakerList speakers={speakerList} />
         </ScreenContent>
       </AppScreen>
     )
