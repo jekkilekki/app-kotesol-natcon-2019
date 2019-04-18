@@ -39,7 +39,10 @@ const doFBLogin = async (dispatch, navigation) => {
     });
   
   if ( type === 'cancel' ) {
-    return dispatch({ type: FB_LOGIN_FAIL })
+    return dispatch({ 
+      type: FB_LOGIN_FAIL,
+      payload: 'Facebook login canceled.'
+    })
   }
 
   if ( type === 'success' && token ) {

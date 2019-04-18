@@ -12,7 +12,7 @@ class SessionSingleScreen extends Component {
     const { speaker } = this.props.navigation.state.params
 
     return (
-      <AppScreen>
+      <AppScreen background>
         <HeaderBack
           pageName={speaker.title}
           pageSub={speaker.name}

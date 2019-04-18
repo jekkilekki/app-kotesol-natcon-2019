@@ -5,21 +5,22 @@ import { blueGray100 } from '../../utils/colors'
 
 const AppInput = ({ 
   label, value, placeholder, onChangeText, secureTextEntry,
-  multiline, numberOfLines
+  multiline, numberOfLines, autoCorrect, autoCapitalize, styleZ
 }) => {
   return (
     <View style={styles.container}>
       {label && <AppText style={styles.label}>{label}</AppText>}
       <TextInput 
         style={[styles.input, {
-          height: multiline ? 100 : 'auto',
+          height: multiline ? 100 : 40,
           fontSize: multiline ? 15 : 18
         }]} 
         value={value}
         placeholder={placeholder || label}
         placeholderTextColor={'rgba(255,255,255,0.3)'}
         onChangeText={onChangeText}
-        autoCorrect={false}
+        autoCorrect={autoCorrect}
+        autoCapitalize={autoCapitalize}
         secureTextEntry={secureTextEntry}
         multiline={multiline}
         numberOfLines={numberOfLines}

@@ -1,23 +1,26 @@
 import React from 'react'
-import { View, Dimensions } from 'react-native'
+import { View, ScrollView, Dimensions, Platform } from 'react-native'
 
 const { width, height } = Dimensions.get('window')
 
 const ScreenContent = (props) => {
   return (
-    <View style={screenContent}>
+    <ScrollView style={[screenContent, props.style]}>
       {props.children}
-    </View>
+    </ScrollView>
   )
 }
 
+// Height of TabBar = 60, height of AppHeader = 139 (iOS) || 110 (Android)
 const screenContent = {
-  flex: 1,
+  // flex: 1,
+  backgroundColor: 'transparent',
   paddingTop: 10,
   paddingBottom: 10,
   paddingRight: 15,
   paddingLeft: 15,
   width: width,
+  // height: height - 250
 }
 
 export default ScreenContent

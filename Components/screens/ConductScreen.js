@@ -14,7 +14,7 @@ import ContentButton from '../shared/buttons/ContentButton'
 class ConductScreen extends Component {
   render() {
     return (
-      <AppScreen>
+      <AppScreen background>
         <HeaderBack
           pageName='Code of Conduct' 
           pageSub='We take our code of conduct very seriously &amp; you should too'

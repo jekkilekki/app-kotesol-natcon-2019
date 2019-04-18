@@ -19,9 +19,9 @@ export default ( state = INITIAL_STATE, action ) => {
     case SET_AUTHED_USER:
       return { ...state, user: action.payload }
     case FB_LOGIN_SUCCESS: 
-      return { token: action.payload }
+      return { ...state, token: action.payload, error: '', loading: true }
     case FB_LOGIN_FAIL: 
-      return { token: null }
+      return { ...state, error: action.payload, token: null }
     case INPUT_EMAIL: 
       return { ...state, email: action.payload }
     case INPUT_PASSWORD: 
@@ -33,7 +33,21 @@ export default ( state = INITIAL_STATE, action ) => {
     case FIREBASE_LOGIN_SUCCESS: 
       return { ...state, ...INITIAL_STATE, user: action.payload }
     case FIREBASE_LOGIN_FAIL:
-      return { ...state, error: 'Authentication failed. Please try again.', password: '', loading: false }
+      const { message } = action.payload
+      let error = message
+
+      switch ( message ) {
+        case 'The email address is already in use by another account.':
+          error += ' Did you forget your password?'
+          break
+        case 'The email address is badly formatted.':
+          error = 'Please enter a valid email address.'
+          break 
+        default:
+          error = error 
+      }
+
+      return { ...state, error: error, password: '', loading: false }
     default: 
       return state
   }

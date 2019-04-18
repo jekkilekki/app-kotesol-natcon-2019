@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('window')
 
 const ScreenSection = (props) => {
   return (
-    <View style={screenSection}>
+    <View style={[screenSection, props.style]}>
       {props.children}
     </View>
   )

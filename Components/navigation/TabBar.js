@@ -4,6 +4,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import posed from 'react-native-pose'
+import { black } from '../../utils/colors';
 
 const windowWidth = Dimensions.get('window').width
 const tabWidth = windowWidth / 5
@@ -34,34 +35,6 @@ const Inner = posed.View({
 const Scaler = posed.View({
   active: { scale: 1.25 },
   inactive: { scale: 1 }
-})
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    height: 60,
-    elevation: 2,
-    alignItems: 'center'
-  },
-  tabButton: { flex: 1 },
-  spotLight: {
-    width: tabWidth,
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  spotLightInner: {
-    width: 48,
-    height: 48,
-    backgroundColor: '#00dddd',
-    borderRadius: 24,
-    top: -1
-  },
-  scaler: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
 })
 
 const TabBar = (props) => {
@@ -113,5 +86,38 @@ const TabBar = (props) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    height: 60,
+    elevation: 6,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    shadowColor: black,
+    shadowOffset: { width: 0, height: -1 },
+    shadowRadius: 5,
+    shadowOpacity: 0.2,
+  },
+  tabButton: { flex: 1 },
+  spotLight: {
+    width: tabWidth,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  spotLightInner: {
+    width: 48,
+    height: 48,
+    backgroundColor: '#00dddd',
+    borderRadius: 24,
+    top: -1
+  },
+  scaler: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
 
 export default TabBar

@@ -36,14 +36,15 @@ class ProfileScreen extends Component {
     const { user, token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = this.props
 
     return (
-      <AppScreen>
+      <AppScreen background>
         <AppHeader 
           pageName='Profile' 
           pageSub='Update your info, connect with others'
+          noShadow
         />
         <ScreenContent>
-          {user && user.picture !== undefined &&
-            <Image source={{uri: user.picture.data.url}} style={styles.userImg} />
+          {user && 
+            <Image source={{uri: img}} style={styles.userImg} />
           }
           <AppInput 
             label='First Name'

@@ -14,7 +14,7 @@ import ContentButton from '../shared/buttons/ContentButton'
 class PrivacyScreen extends Component {
   render() {
     return (
-      <AppScreen>
+      <AppScreen background>
         <HeaderBack
           pageName='Privacy Policy' 
           pageSub='We take your personal information seriously'

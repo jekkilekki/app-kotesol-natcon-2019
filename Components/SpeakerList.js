@@ -37,6 +37,9 @@ class SpeakerList extends Component {
 
   render() {
     const { speakerList, loading } = this.state
+    const { speakers } = this.props
+
+    console.log(this.props)
 
     if ( loading ) {
       return <Loader />
@@ -44,9 +47,9 @@ class SpeakerList extends Component {
 
     return (
       <ScrollView style={{flex: 1}}>
-        <AppSearch onChangeText={(search) => this._filterSpeakers(search)} />
+        {/* <AppSearch onChangeText={(search) => this._filterSpeakers(search)} /> */}
         <FlatList
-          data={speakerList}
+          data={speakers}
           renderItem={(speaker) => <SpeakerCard speaker={speaker} />}
           keyExtractor={(speaker) => String(speaker.id)}
         />
@@ -55,8 +58,11 @@ class SpeakerList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { speakers: state.speakers }
-}
+// const mapStateToProps = ({ speakers }) => {
+//   console.log(speakers)
+//   return { speakers }
+// }
 
-export default connect(mapStateToProps)(SpeakerList)
+// export default connect(mapStateToProps)(SpeakerList)
+
+export default SpeakerList

@@ -4,23 +4,25 @@ import { View, Text, StyleSheet } from 'react-native'
 import AppScreen from '../shared/layout/AppScreen'
 import ScreenContent from '../shared/layout/ScreenContent'
 import ScreenSection from '../shared/layout/ScreenSection'
-import Header from '../shared/layout/AppHeader'
+import AppHeader from '../shared/layout/AppHeader'
 import H1 from '../shared/text/H1'
 import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
 import AppText from '../shared/text/AppText'
 import ContentButton from '../shared/buttons/ContentButton'
+import { purpler } from '../../utils/colors'
 
 class AboutScreen extends Component {
   render() {
     return (
-      <AppScreen>
-        <Header 
+      <AppScreen background>
+        <AppHeader 
           pageName='About' 
           pageSub='Sponsors, Team, Fine Print'
+          noShadow
         />
         <ScreenContent>
-          <ScreenSection>
+          <ScreenSection style={{borderTopWidth: 0}}>
             <H1>Wifi Network</H1>
             <AppText>
               Thanks to Jeonju University's cooperation to ensure wifi connectivity for our attendees.

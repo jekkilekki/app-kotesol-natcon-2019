@@ -41,13 +41,15 @@ class LoginRedux extends Component {
 
   render() {
     return (
-      <View>
+      <View style={this.props.style}>
         <AppText style={styles.error}>{this.props.error}</AppText>
         <AppInput 
           label='Email'
           placeholder='user@email.com'
           value={this.props.email}
           onChangeText={this._onEmailInput}
+          autoCorrect={false}
+          autoCapitalize={'none'}
         />
         <AppInput 
           label='Password'
@@ -65,7 +67,8 @@ class LoginRedux extends Component {
 const styles = StyleSheet.create({
   error: {
     color: 'red',
-    fontSize: 20
+    fontSize: 15, 
+    marginBottom: 5
   }
 })
 

@@ -1,98 +1,75 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { View, Text, Platform, StyleSheet } from 'react-native'
-import { createAppContainer } from 'react-navigation'
-import { Asset, AppLoading, SplashScreen } from 'expo'
+import { StyleSheet, Text, View, Platform, AsyncStorage } from 'react-native'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'remote-redux-devtools'
+import { Provider } from 'react-redux'
+import { Font, AnimatedRegion } from 'expo'
+import { Icon } from 'native-base'
+
+import store from './store'
+import middleware from './middleware'
+import reducer from './reducers'
+// import Main from './Components/Main'
+// import { Navigation } from './Components/shared/Navigation'
+import { apiKey, authDomain, databaseURL, storageBucket, messagingSenderId } from './utils/_config'
 import firebase from 'firebase'
 
-import { apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId } from '../utils/_config'
+// const store = createStore(
+//   reducer,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+//   // composeWithDevTools( middleware ) // Windows 
+//   // middleware
+// )
 
-import { Navigation } from './shared/Navigation'
-import Loader from './shared/Loader'
-import Header from './shared/Header'
-import Splash from './shared/Splash'
-import Login from './views/user/Login'
-import LoginForm from './views/user/LoginFormPhone'
-import Register from './views/user/Register'
-import RegisterForm from './views/user/RegisterForm'
-import Profile from './views/user/Profile'
-import SpeakerList from './views/speaker/SpeakerList'
+const showIntro = false;
 
-class Main extends Component {
+class App extends Component {
   state = {
     fontLoaded: false,
-    dataLoaded: true,
-    loggedIn: false
+    loggedIn: null
   }
 
-  async componentWillMount() {
-    // Make sure Expo fonts are loaded
-    await Expo.Font.loadAsync({
-      'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf')
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey,
+      authDomain,
+      databaseURL,
+      storageBucket,
+      messagingSenderId
+    })
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true })
+      } else {
+        this.setState({ loggedIn: false })
+      }
+    })
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
+      'nunito-bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
+      'nunito-black': require('./assets/fonts/Nunito/Nunito-Black.ttf'),
+      'futura': require('./assets/fonts/Futura/Futura-Condensed-Medium.otf'),
+      'futura-bold': require('./assets/fonts/Futura/Futura-Condensed-Bold.otf')
     })
     this.setState({ fontLoaded: true })
-  }
 
-  // componentDidMount() {
-  //   // Initialize Firebase
-  //   const config = {
-  //     apiKey,
-  //     authDomain,
-  //     databaseURL,
-  //     projectId,
-  //     storageBucket,
-  //     messagingSenderId
-  //   }
-  //   firebase.initializeApp(config)
-  // }
-
-  renderInitialView() {
-    switch( this.state.loggedIn ) {
-      case true: 
-        return <Splash />
-      case false: 
-        return (
-          <View>
-            <Header pageName='First Page' />
-            <RegisterForm />
-            <LoginForm />
-          </View>
-        )
-        // return <Splash />
-      default:
-        return <Splash />
-    }
+    let token = await AsyncStorage.getItem('fb_token')
+    if (token) this.setState({ loggedIn: true })
   }
 
   render() {
-    // If the data isn't yet loaded, show nothing
-    if ( !this.state.fontLoaded ) {
-      return null
-    }
-
-    if ( !this.state.dataLoaded ) {
-      return <Loader />
-    }
-
     return (
-      <View style={styles.container}>
-        {/* {this.renderInitialView()} */}
-        {/* <Text>Hello Sucka!</Text> */}
-        <Navigation />
-      </View>
+      <Provider store={store}>
+        { this.state.fontLoaded &&
+          <AppContainer loggedIn={this.state.loggedIn} />
+        }
+      </Provider>
     )
   }
-
-  /* TODO: mapStateToProps */
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
-
-export default Main
+export default App

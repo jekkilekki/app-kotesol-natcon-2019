@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, SafeAreaView, Text, StyleSheet, Button, AsyncStorage } from 'react-native'
+import { StyleSheet, Dimensions, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { inputEmail, inputPassword, firebaseLoginUser, fbLogin } from '../../actions'
 
@@ -58,9 +58,12 @@ class AuthScreen extends Component {
       navigation.navigate('Profile')
     }
 
+    const { height } = Dimensions
+
     return (
       <AppScreen image={require('../../assets/img/kotesol-natcon-2019-app-splash-cloud-higher.jpg')}>
         <AppHeader 
+          style={{backgroundColor: 'transparent'}}
           pageName='Login'
           pageSub='Unlock the hidden features'
           cancelButton
