@@ -33,24 +33,18 @@ class App extends Component {
     })
   }
 
-  // async componentDidMount() {
-  //   await Font.loadAsync({
-  //     'nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
-  //     'nunito-bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
-  //     'nunito-black': require('./assets/fonts/Nunito/Nunito-Black.ttf'),
-  //     'futura': require('./assets/fonts/Futura/Futura-Condensed-Medium.otf'),
-  //     'futura-bold': require('./assets/fonts/Futura/Futura-Condensed-Bold.otf')
-  //   })
-  //   this.setState({ fontLoaded: true })
-
-  //   let token = await AsyncStorage.getItem('knc_token')
-  //   if (token) this.setState({ loggedIn: true })
-  // }
+  async componentDidMount() {
+    let token = await AsyncStorage.getItem('knc_token')
+    if (token) {
+      alert(token)
+      this.setState({ loggedIn: true })
+    }
+  }
 
   render() {
     return (
       <Provider store={store}>
-        <Main />
+        <Main loggedIn={this.state.loggedIn} />
       </Provider>
     )
   }

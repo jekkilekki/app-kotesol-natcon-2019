@@ -20,9 +20,9 @@ class ProfileScreen extends Component {
 
   _onSave = () => {
     // Need to save this data to Firebase - to recall it all later
-    const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
+    const { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
 
-    this.props.profileSave({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation })
+    this.props.profileSave({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation })
 
     this.props.navigation.navigate('Home')
   }

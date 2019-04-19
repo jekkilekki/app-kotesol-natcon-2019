@@ -47,3 +47,10 @@ export const speakerFilter = (query) => {
     payload: query
   }
 }
+
+export const appReady = () => {
+  return {
+    type: ASSETS_LOADED,
+    // payload: text
+  }
+}

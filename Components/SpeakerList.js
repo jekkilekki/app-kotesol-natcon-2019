@@ -17,20 +17,6 @@ class SpeakerList extends Component {
     this.setState({ speakerList: this.props.speakers, loading: false })
   }
 
-  _filterSpeakers = (speaker) => {
-    const { speakerList } = this.state
-    const newList = speakerList.filter((speaker) => {
-      const speakers = `${speaker.title.toString().toLowerCase()}
-                        ${speaker.name.toString().toLowerCase()}`
-      const search = speaker.toLowerCase()
-
-      return speakers.indexOf(search) > -1
-    })
-    this.setState({
-      speakerList: newList
-    })
-  }
-
   renderItem(speaker) {
     return <SpeakerCard speaker={speaker} />
   }
@@ -39,15 +25,12 @@ class SpeakerList extends Component {
     const { speakerList, loading } = this.state
     const { speakers } = this.props
 
-    console.log(this.props)
-
     if ( loading ) {
       return <Loader />
     }
 
     return (
       <ScrollView style={{flex: 1}}>
-        {/* <AppSearch onChangeText={(search) => this._filterSpeakers(search)} /> */}
         <FlatList
           data={speakers}
           renderItem={(speaker) => <SpeakerCard speaker={speaker} filter={this.props.filter} />}
@@ -57,12 +40,5 @@ class SpeakerList extends Component {
     )
   }
 }
-
-// const mapStateToProps = ({ speakers }) => {
-//   console.log(speakers)
-//   return { speakers }
-// }
-
-// export default connect(mapStateToProps)(SpeakerList)
 
 export default SpeakerList

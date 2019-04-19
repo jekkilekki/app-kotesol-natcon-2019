@@ -10,15 +10,16 @@ export const profileFieldUpdate = ({ prop, value }) => {
   }
 }
 
-export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation }) => {
+export const profileSave = ({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation }) => {
   const { currentUser } = firebase.auth()
 
   return async (dispatch) => {
     await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
+      .set({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
 
     dispatch({
-      type: PROFILE_SAVE
+      type: PROFILE_SAVE,
+      payload: { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
     })
     
     navigation.navigate('Home')

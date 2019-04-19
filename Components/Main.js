@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
-import { View, Text, Image, Platform, StatusBar, StyleSheet } from 'react-native'
+// import { View, Text, Image, Platform, StatusBar, StyleSheet } from 'react-native'
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import { AppNavigation } from './navigation/AppNav';
+import { connect } from 'react-redux'
+import { appReady } from '../actions'
 
-cacheImages = (images) => {
-  return images.map(image => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image)
-    } else {
-      return Asset.fromModule(image).downloadAsync()
-    }
-  })
-}
+// cacheImages = (images) => {
+//   return images.map(image => {
+//     if (typeof image === 'string') {
+//       return Image.prefetch(image)
+//     } else {
+//       return Asset.fromModule(image).downloadAsync()
+//     }
+//   })
+// }
 
-cacheFonts = (fonts) => {
-  return fonts.map(font => Font.loadAsync(font))
-}
+// cacheFonts = (fonts) => {
+//   return fonts.map(font => Font.loadAsync(font))
+// }
 
 class Main extends Component {
   state = {
@@ -42,19 +44,28 @@ class Main extends Component {
     ])
   }
 
+  _appLoaded = () => {
+    this.setState({ ready: true })
+    this.props.appReady()
+  }
+
   render() {
     if ( !this.state.ready ) {
       return (
         <AppLoading
           startAsync={this._loadAssetsAsync}
-          onFinish={() => this.setState({ ready: true })}
+          onFinish={() => this._appLoaded()}
           onError={console.warn}
         />
       )
     }
 
-    return <AppNavigation />
+    return <AppNavigation loggedIn={this.props.loggedIn} />
   }
 }
 
-export default Main
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps, { appReady })(Main)

@@ -148,12 +148,12 @@ export const RootNavigation = createSwitchNavigator({
   App: stackNav
 }, {
   initialRouteName: 'App',
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: '#151537',
-      color: '#ffffff'
-    }
-  }
+  // defaultNavigationOptions: {
+  //   headerStyle: {
+  //     backgroundColor: '#151537',
+  //     color: '#ffffff'
+  //   }
+  // }
 })
 
 export const AppNavigation = createAppContainer(RootNavigation)
