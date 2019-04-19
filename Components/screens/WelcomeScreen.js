@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, SafeAreaView, Text, StyleSheet, Button, ImageBackground, AsyncStorage } from 'react-native'
 import { AppLoading } from 'expo'
 import { connect } from 'react-redux'
-import * as actions from '../../actions'
+import { profileGetWithToken } from '../../actions'
 
 import Slides from '../shared/Slides'
 import ButtonBottom from '../shared/layout/AppFooterButton'
@@ -29,23 +29,36 @@ const SLIDE_DATA = [
 ]
 
 class WelcomeScreen extends Component {
-  state = { token: null }
-
-  componentWillMount() {
-    this._getFBtoken()
+  state = { 
+    token: null,
+    slideNum: 0
   }
 
-  _getFBtoken = async () => {
+  componentDidMount() {
+    const { profile, navigation } = this.props
+    if ( profile.token === '' && !navigation.state.params ) {
+      this._getToken()
+    }
+  }
+
+  _getToken = async () => {
+    // const { navigation } = this.props
+    // if ( navigation.state.params.overrideRedirect ) {
+    //   return
+    // }
+    
     try {
-      const token = await AsyncStorage.getItem('fb_token')
+      const token = await AsyncStorage.getItem('knc_token')
       if (token) {
+        console.warn(token)
+        this.props.profileGetWithToken(token)
         this.props.navigation.navigate('Schedule')
-        this.setState({ token })
+        // this.setState({ token })
       } else {
         this.setState({ token: false })
       }
     } catch (err) {
-      // Error retrieving data
+      // Error retrieving data 
     }
   }
 
@@ -58,7 +71,13 @@ class WelcomeScreen extends Component {
   }
 
   onSlidesNext = () => {
-    this.props.scrollToEnd()
+    alert('sliding!')
+    if ( this.state.slideNum === 2 ) {
+      this.setState({ slideNum: 0 })
+    } else {
+      this.setState({ slideNum: this.state.slideNum+1 })
+    }
+    this.slide.scrollTo( this.state.slideNum )
   }
 
   render() {
@@ -72,13 +91,14 @@ class WelcomeScreen extends Component {
           onLogin={this.onLoginPress}
           onComplete={this.onSlidesComplete} 
           onNext={this.onSlidesNext}
+          ref={'slides'}
         />
         <ButtonBottom backgroundColor='transparent'>
           <Button title='Skip' onPress={this.onSlidesComplete} />
           <View style={styles.indicator}>
           
           </View>
-          <Button title='Next' onPress={this.onSlidesNext} />
+          <Button title='Next' onPress={() => this.refs.slides.scrollToEnd()} />
         </ButtonBottom>
       </View>
     )
@@ -94,4 +114,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default WelcomeScreen
+const mapStateToProps = ({ profile }) => {
+  return { profile }
+}
+
+export default connect(mapStateToProps, { profileGetWithToken })(WelcomeScreen)

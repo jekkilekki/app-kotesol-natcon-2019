@@ -1,5 +1,6 @@
 import {
-  PROFILE_LOAD, PROFILE_FIELD_UPDATE, PROFILE_SAVE, PROFILE_FETCH_SUCCESS
+  PROFILE_LOAD, PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
+  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -37,6 +38,8 @@ export default (state = INITIAL_STATE, action) => {
           mySchedule: action.payload.mySchedule
         }
     case PROFILE_FETCH_SUCCESS: 
+      return state
+    case PROFILE_FETCH_FAIL:
       return state
     default: 
       return state

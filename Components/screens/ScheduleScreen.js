@@ -26,7 +26,7 @@ class ScheduleScreen extends Component {
         <ScreenContent>
           <ContentButton
             title="View Welcome Screen"
-            onPress={() => this.props.navigation.navigate('Welcome')}
+            onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
           />
         </ScreenContent>
       </AppScreen>

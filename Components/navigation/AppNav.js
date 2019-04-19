@@ -147,7 +147,7 @@ export const RootNavigation = createSwitchNavigator({
   Auth: AuthScreen,
   App: stackNav
 }, {
-  initialRouteName: 'App',
+  initialRouteName: 'Welcome',
   // defaultNavigationOptions: {
   //   headerStyle: {
   //     backgroundColor: '#151537',

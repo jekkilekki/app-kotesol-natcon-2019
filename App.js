@@ -8,7 +8,7 @@ import firebase from 'firebase'
 import { apiKey, authDomain, databaseURL, storageBucket, messagingSenderId } from './utils/_config'
 
 console.disableYellowBox = true
-console.ignoredYellowBox = ['Warning: useNativeDriver']
+console.ignoredYellowBox = ['Warning: Hey, listen!']
 
 class App extends Component {
   state = {
@@ -31,14 +31,6 @@ class App extends Component {
         this.setState({ loggedIn: false })
       }
     })
-  }
-
-  async componentDidMount() {
-    let token = await AsyncStorage.getItem('knc_token')
-    if (token) {
-      alert(token)
-      this.setState({ loggedIn: true })
-    }
   }
 
   render() {

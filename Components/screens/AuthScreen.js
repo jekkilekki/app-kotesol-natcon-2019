@@ -19,7 +19,7 @@ class AuthScreen extends Component {
     AsyncStorage.removeItem('fb_token')
     this.onAuthComplete(this.props)
 
-    if ( this.props.user ) {
+    if ( this.props.user || this.props.token ) {
       this.props.navigation.navigate( 'Profile' )
     }
   }
@@ -94,9 +94,10 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, profile }) => {
   const { email, password, error, loading, user } = auth
-  return { email, password, error, loading, user }
+  const { token } = profile
+  return { token, email, password, error, loading, user }
 }
 
 export default connect(mapStateToProps, {
