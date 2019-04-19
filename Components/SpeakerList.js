@@ -50,7 +50,7 @@ class SpeakerList extends Component {
         {/* <AppSearch onChangeText={(search) => this._filterSpeakers(search)} /> */}
         <FlatList
           data={speakers}
-          renderItem={(speaker) => <SpeakerCard speaker={speaker} />}
+          renderItem={(speaker) => <SpeakerCard speaker={speaker} filter={this.props.filter} />}
           keyExtractor={(speaker) => String(speaker.id)}
         />
       </ScrollView>

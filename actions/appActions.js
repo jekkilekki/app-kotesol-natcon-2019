@@ -1,25 +1,35 @@
 import { Font } from 'expo'
 import { 
-  FONTS_LOADED, FONTS_LOADED_FAIL, IMAGES_LOADED,
+  ASSETS_LOADED,
   SPEAKER_SEARCH, SPEAKER_FILTER
 } from './types'
 
-export const loadFonts = () => async dispatch => {
-  let fonts = await Font.loadAsync({
-    'nunito': require('../assets/fonts/Nunito/Nunito-Regular.ttf'),
-    'nunito-bold': require('../assets/fonts/Nunito/Nunito-Bold.ttf'),
-    'nunito-black': require('../assets/fonts/Nunito/Nunito-Black.ttf'),
-    'futura': require('../assets/fonts/Futura/Futura-Condensed-Medium.otf'),
-    'futura-bold': require('../assets/fonts/Futura/Futura-Condensed-Bold.otf')
-  })
-  if ( fonts ) {
+export const loadAssets = () => async (dispatch) => {
+  const assets = await Promise.all([
+    Asset.loadAsync([
+
+    ]),
+    Font.loadAsync({
+      ...Icon.Entypo.font,
+      ...Icon.Foundation.font,
+      ...Icon.FontAwesome.font,
+      ...Icon.MaterialIcons.font,
+      ...Icon.MaterialCommunityIcons.font,
+      'nunito': require('../assets/fonts/Nunito/Nunito-Regular.ttf'),
+      'nunito-bold': require('../assets/fonts/Nunito/Nunito-Bold.ttf'),
+      'nunito-black': require('../assets/fonts/Nunito/Nunito-Black.ttf'),
+      'futura': require('../assets/fonts/Futura/Futura-Condensed-Medium.otf'),
+      'futura-bold': require('../assets/fonts/Futura/Futura-Condensed-Bold.otf')
+    })
+  ])
+  if ( assets ) {
     dispatch({ 
-      type: FONTS_LOADED
+      type: ASSETS_LOADED
     })
   } else {
     // Start up FB Login process
     dispatch({
-      type: FONTS_LOADED_FAIL
+      type: ASSETS_LOADED_FAIL
     })
   }
 }

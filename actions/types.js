@@ -1,10 +1,8 @@
 /**
  * APP Types
  */
-export const FONTS_LOADED = 'fonts_loaded'
-export const FONTS_LOADED_FAIL = 'fonts_loaded_fail'
-export const IMAGES_LOADED = 'images_loaded'
-export const IMAGES_LOADED_FAIL = 'images_loaded_fail'
+export const ASSETS_LOADED = 'assets_loaded'
+export const ASSETS_LOADED_FAIL = 'assets_loaded_fail'
 export const SPEAKER_SEARCH = 'speaker_search'
 export const SPEAKER_FILTER = 'speaker_filter'
 

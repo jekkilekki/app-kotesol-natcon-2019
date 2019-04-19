@@ -30,6 +30,24 @@ class SpeakersScreen extends Component {
     })
   }
 
+  _filterSpeakers = (query) => {
+    this.props.speakerFilter(query)
+
+    const { speakers } = this.props
+    const filteredList = speakers.data.filter((speaker) => {
+      const speakerData = `${speaker.track.toString().toLowerCase()}`
+      const filterData = query.toLowerCase()
+
+      if ( filterData === 'all' ) {
+        return speakerData
+      }
+      return speakerData.indexOf(filterData) > -1
+    })
+    this.setState({
+      speakerList: filteredList
+    })
+  }
+
   render() {
     const { speakerList } = this.state
 
@@ -39,9 +57,9 @@ class SpeakersScreen extends Component {
           pageName='Speakers' 
           pageSub='Big names, Bigger ideas'
         />
-        <AppSearch onChangeText={this._searchSpeakers} />
+        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
         <ScreenContent style={speakerScreenStyle}>
-          <SpeakerList speakers={speakerList} />
+          <SpeakerList speakers={speakerList} filter={this._filterSpeakers} />
         </ScreenContent>
       </AppScreen>
     )

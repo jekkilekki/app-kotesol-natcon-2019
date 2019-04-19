@@ -22,7 +22,9 @@ class SessionSingleScreen extends Component {
             style={styles.speakerImg}
             source={{ uri: speaker.img }} 
           />
+          <P>{speaker.abstract}</P>
           <WebView
+            style={styles.content}
             originWhitelist={['*']}
             source={{html: speaker.abstract}}
             useWebKit
@@ -46,6 +48,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10
+  },
+  content: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    alignItems: 'stretch',
+    backgroundColor: '#f00'
   }
 })
 

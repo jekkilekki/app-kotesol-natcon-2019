@@ -1,75 +1,60 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Platform, AsyncStorage } from 'react-native'
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'remote-redux-devtools'
-import { Provider } from 'react-redux'
-import { Font, AnimatedRegion } from 'expo'
-import { Icon } from 'native-base'
+import { View, Text, Image, Platform, StatusBar, StyleSheet } from 'react-native'
+import { AppLoading, Asset, Font, Icon } from 'expo'
+import { AppNavigation } from './navigation/AppNav';
 
-import store from './store'
-import middleware from './middleware'
-import reducer from './reducers'
-// import Main from './Components/Main'
-// import { Navigation } from './Components/shared/Navigation'
-import { apiKey, authDomain, databaseURL, storageBucket, messagingSenderId } from './utils/_config'
-import firebase from 'firebase'
+cacheImages = (images) => {
+  return images.map(image => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image)
+    } else {
+      return Asset.fromModule(image).downloadAsync()
+    }
+  })
+}
 
-// const store = createStore(
-//   reducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-//   // composeWithDevTools( middleware ) // Windows 
-//   // middleware
-// )
+cacheFonts = (fonts) => {
+  return fonts.map(font => Font.loadAsync(font))
+}
 
-const showIntro = false;
-
-class App extends Component {
+class Main extends Component {
   state = {
-    fontLoaded: false,
-    loggedIn: null
+    ready: false
   }
 
-  componentWillMount() {
-    firebase.initializeApp({
-      apiKey,
-      authDomain,
-      databaseURL,
-      storageBucket,
-      messagingSenderId
-    })
+  _loadAssetsAsync = async () => {
+    return Promise.all([
+      Asset.loadAsync([
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true })
-      } else {
-        this.setState({ loggedIn: false })
-      }
-    })
-  }
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      'nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
-      'nunito-bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
-      'nunito-black': require('./assets/fonts/Nunito/Nunito-Black.ttf'),
-      'futura': require('./assets/fonts/Futura/Futura-Condensed-Medium.otf'),
-      'futura-bold': require('./assets/fonts/Futura/Futura-Condensed-Bold.otf')
-    })
-    this.setState({ fontLoaded: true })
-
-    let token = await AsyncStorage.getItem('fb_token')
-    if (token) this.setState({ loggedIn: true })
+      ]),
+      Font.loadAsync({
+        ...Icon.Entypo.font,
+        ...Icon.Foundation.font,
+        ...Icon.FontAwesome.font,
+        ...Icon.MaterialIcons.font,
+        ...Icon.MaterialCommunityIcons.font,
+        'nunito': require('../assets/fonts/Nunito/Nunito-Regular.ttf'),
+        'nunito-bold': require('../assets/fonts/Nunito/Nunito-Bold.ttf'),
+        'nunito-black': require('../assets/fonts/Nunito/Nunito-Black.ttf'),
+        'futura': require('../assets/fonts/Futura/Futura-Condensed-Medium.otf'),
+        'futura-bold': require('../assets/fonts/Futura/Futura-Condensed-Bold.otf')
+      })
+    ])
   }
 
   render() {
-    return (
-      <Provider store={store}>
-        { this.state.fontLoaded &&
-          <AppContainer loggedIn={this.state.loggedIn} />
-        }
-      </Provider>
-    )
+    if ( !this.state.ready ) {
+      return (
+        <AppLoading
+          startAsync={this._loadAssetsAsync}
+          onFinish={() => this.setState({ ready: true })}
+          onError={console.warn}
+        />
+      )
+    }
+
+    return <AppNavigation />
   }
 }
 
-export default App
+export default Main
