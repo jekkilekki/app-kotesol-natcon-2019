@@ -47,7 +47,7 @@ class MapScreen extends Component {
           style={{ alignSelf: 'stretch', height: 300 }} 
           initialRegion={this.state.region} 
           provider={MapView.PROVIDER_GOOGLE}
-          customMapStyle={mapStyle}
+          // customMapStyle={mapStyle}
           onRegionChange={this._onRegionChange}
         />
       </AppScreen>

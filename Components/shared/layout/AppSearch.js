@@ -11,12 +11,7 @@ import { black } from 'ansi-colors';
 const { width } = Dimensions.get('window')
 
 class AppSearch extends Component {
-  state = {
-    filter: ''
-  }
-
   _filter(query) {
-    this.setState({ filter: query })
     this.props.filter(query)
   }
 

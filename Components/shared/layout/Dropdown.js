@@ -5,7 +5,6 @@ import AppText from '../text/AppText'
 
 class Dropdown extends Component {
   state = {
-    filter: '',
     filterOpen: false
   }
 
@@ -14,7 +13,6 @@ class Dropdown extends Component {
   }
 
   _filter(query) {
-    this.setState({ filter: query })
     this.props.onChange(query)
     this.setState({ filterOpen: false })
   }
