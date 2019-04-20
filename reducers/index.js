@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import appReducer from './AppReducer'
 import authReducer from './AuthReducer'
-import profileReducer from './ProfileFormReducer'
+import profileReducer from './ProfileReducer'
 import speakers from './SpeakersReducer'
 
 const reducers = combineReducers({
