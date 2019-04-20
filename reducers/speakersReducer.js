@@ -1,4 +1,4 @@
-import data from './SpeakersList.json'
+import data from '../utils/SpeakersList.json'
 import {
   SPEAKER_SEARCH, SPEAKER_FILTER
 } from '../actions/types'

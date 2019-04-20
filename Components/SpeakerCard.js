@@ -61,16 +61,19 @@ class SpeakerDetails extends Component {
           onPress={this._goToSession}
           style={styles.cardStyle}
         >
-          <View>
-            <Image 
-              source={{ uri: img }} 
-              style={styles.thumbnailStyle} 
-            />
-          </View>
+
+            <View>
+              <Image 
+                source={{ uri: img }} 
+                style={styles.thumbnailStyle} 
+              />
+            </View>
+
           <View style={styles.talkMeta}>
             <AppText style={styles.talkLocation}>{time} - {room}</AppText>
             <H2 small dark style={styles.talkTitle}>{title}</H2>
             <AppText style={styles.talkSpeaker}>{name}</AppText>
+            <AppText style={styles.talkAffiliation}>{affiliation}</AppText>
             <SpeakerLike />
           </View>
         </TouchableOpacity>
@@ -110,6 +113,10 @@ const styles = StyleSheet.create({
     color: '#232377',
     fontSize: 10,
     marginBottom: 5, 
+  },
+  talkAffiliation: {
+    color: '#232377',
+    fontSize: 10,
   },
   talkTopic: {
     color: purpler,

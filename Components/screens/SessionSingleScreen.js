@@ -5,6 +5,7 @@ import AppScreen from '../shared/layout/AppScreen'
 import HeaderBack from '../shared/layout/HeaderBack'
 import ScreenContent from '../shared/layout/ScreenContent'
 import ContentButton from '../shared/buttons/ContentButton'
+import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
 
 class SessionSingleScreen extends Component {
@@ -22,13 +23,16 @@ class SessionSingleScreen extends Component {
             style={styles.speakerImg}
             source={{ uri: speaker.img }} 
           />
+          <H3>Talk Abstract</H3>
           <P>{speaker.abstract}</P>
-          <WebView
+          <H3>About {speaker.nickname}</H3>
+          <P>{speaker.bio}</P>
+          {/* <WebView
             style={styles.content}
             originWhitelist={['*']}
             source={{html: speaker.abstract}}
             useWebKit
-          />
+          /> */}
           <ContentButton
             title="Check Screen Props"
             onPress={() => alert(JSON.stringify(speaker))}

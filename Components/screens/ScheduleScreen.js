@@ -1,33 +1,73 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Text, StyleSheet, Button } from 'react-native'
+import { connect } from 'react-redux'
+import { speakerSearch, speakerFilter } from '../../actions'
 
 import AppHeader from '../shared/layout/AppHeader'
-import AppText from '../shared/text/AppText'
 import AppScreen from '../shared/layout/AppScreen'
 import ScreenContent from '../shared/layout/ScreenContent'
 import ContentButton from '../shared/buttons/ContentButton'
+import SpeakerList from '../SpeakerList'
+import AppSearch from '../shared/layout/AppSearch'
 
 class ScheduleScreen extends Component {
-  static navigationOptions = {
-    title: 'Schedule',
-    headerStyle: {
-      backgroundColor: '#151537',
-      color: '#ffffff'
-    }
+  state = {
+    speakerList: this.props.speakers
+  }
+
+  _searchSpeakers = (query) => {
+    this.props.speakerSearch(query)
+
+    const { speakers } = this.props
+    const filteredList = speakers.data.filter((speaker) => {
+      const speakerData = `${speaker.title.toString().toLowerCase()}
+                          ${speaker.name.toString().toLowerCase()}`
+      const filterData = query.toLowerCase()
+
+      return speakerData.indexOf(filterData) > -1
+    })
+    this.setState({
+      speakerList: filteredList
+    })
+  }
+
+  _filterSpeakers = (query) => {
+    this.props.speakerFilter(query)
+
+    const { speakers } = this.props
+    const filteredList = speakers.data.filter((speaker) => {
+      const speakerData = `${speaker.track.toString().toLowerCase()}`
+      const filterData = query.toLowerCase()
+
+      if ( filterData === 'all' ) {
+        return speakerData
+      }
+      return speakerData.indexOf(filterData) > -1
+    })
+    this.setState({
+      speakerList: filteredList
+    })
   }
 
   render() {
+    const { speakerList } = this.state
+
+    console.log(this.props.speakers)
+
     return (
       <AppScreen>
         <AppHeader 
           pageName='Schedule' 
           pageSub='Explore the presentation tracks'
         />
-        <ScreenContent>
+        <ScreenContent style={styles.speakerScreenStyle}>
+          
+          <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
           <ContentButton
             title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
           />
+          <SpeakerList speakers={speakerList} filter={this._filterSpeakers} />
         </ScreenContent>
       </AppScreen>
     )
@@ -40,7 +80,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%'
+  },
+  speakerScreenStyle: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   }
 })
 
-export default ScheduleScreen
+const mapStateToProps = ({ speakers }) => {
+  // const speakerArray = Object.keys(speakers).map(i => speakers[i])
+  return { 
+    speakers: speakers.data
+      .sort((a,b) => {
+        return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
+        // I want to sort by time AND room (to order the rooms after the time)
+        // return a.time - b.time || a.room - b.room
+      })
+  }
+}
+
+export default connect(mapStateToProps, {
+  speakerSearch, speakerFilter
+})(ScheduleScreen)
