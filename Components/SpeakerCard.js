@@ -7,6 +7,7 @@ import H2 from './shared/text/H2'
 import AppText from './shared/text/AppText'
 import { white, black, purpler } from '../utils/colors'
 import SpeakerLike from './SpeakerLike';
+import SpeakerTrackButton from './SpeakerTrackButton';
 
 const { width } = Dimensions.get('window')
 
@@ -21,20 +22,46 @@ class SpeakerDetails extends Component {
   }
 
   renderTrack(track) {
+    let trackColor = '#fff'
+    let trackBGColor = '#232377'
+
     switch (track) {
-      case 'Plenary':
-        return (
-          <TouchableOpacity onPress={() => this._filter(track)}>
-            <AppText center style={[styles.talkTopic, {color: '#fff', borderRadius: 30, backgroundColor: purpler}]}>{track}</AppText>
-          </TouchableOpacity>
-        )
+      case 'plenary':
+        trackBGColor = '#232377'
+        break
+      case 'Highlighted':
+        trackBGColor = '#232377'
+        break
+      case 'Motivation':
+        trackBGColor = 'goldenrod'
+        break
+      case 'Skills':
+        trackBGColor = 'olivegreen'
+        break
+      case 'Technology':
+        trackBGColor = 'aquamarine'
+        break
+      case 'Mixed':
+        trackBGColor = 'blue'
+        break
+      case 'Research':
+        trackBGColor = 'purple'
+        break
+      case 'Poster':
+        trackBGColor = 'green'
+        break
       default: 
-        return (
-          <TouchableOpacity onPress={() => this._filter(track)}>
-            <AppText center style={styles.talkTopic}>{track}</AppText>
-          </TouchableOpacity>
-        )
+        trackBGColor = '#fff'
+        trackColor = '#232377' 
     }
+
+    return (
+      <TouchableOpacity onPress={() => this._filter(track)}
+        style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}]}
+      >
+        <AppText center style={{fontSize: 10}}>{track}</AppText>
+      </TouchableOpacity>
+    )
   }
 
   render() {
@@ -56,19 +83,20 @@ class SpeakerDetails extends Component {
       >
         <View style={{alignContent: 'center'}}>
           {this.renderTrack(track)}
+          {/* <SpeakerTrackButton track={track} /> */}
         </View>
         <TouchableOpacity 
           onPress={this._goToSession}
           style={styles.cardStyle}
         >
-
+          {img !== '' &&
             <View>
               <Image 
                 source={{ uri: img }} 
                 style={styles.thumbnailStyle} 
               />
             </View>
-
+          }
           <View style={styles.talkMeta}>
             <AppText style={styles.talkLocation}>{time} - {room}</AppText>
             <H2 small dark style={styles.talkTitle}>{title}</H2>
@@ -118,17 +146,19 @@ const styles = StyleSheet.create({
     color: '#232377',
     fontSize: 10,
   },
-  talkTopic: {
-    color: purpler,
+  talkTopicButton: {
     borderWidth: 1,
     borderColor: purpler,
     borderRadius: 10,
-    fontSize: 10,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
     paddingRight: 10, 
     marginTop: 10
+  },
+  talkTopic: {
+    color: purpler,
+    fontSize: 10,
   },
   talkTitle: {
     fontSize: 16,

@@ -19,7 +19,7 @@ class ScheduleScreen extends Component {
     this.props.speakerSearch(query)
 
     const { speakers } = this.props
-    const filteredList = speakers.data.filter((speaker) => {
+    const filteredList = speakers.filter((speaker) => {
       const speakerData = `${speaker.title.toString().toLowerCase()}
                           ${speaker.name.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
@@ -35,7 +35,7 @@ class ScheduleScreen extends Component {
     this.props.speakerFilter(query)
 
     const { speakers } = this.props
-    const filteredList = speakers.data.filter((speaker) => {
+    const filteredList = speakers.filter((speaker) => {
       const speakerData = `${speaker.track.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
 
@@ -60,9 +60,8 @@ class ScheduleScreen extends Component {
           pageName='Schedule' 
           pageSub='Explore the presentation tracks'
         />
+        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
         <ScreenContent style={styles.speakerScreenStyle}>
-          
-          <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
           <ContentButton
             title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}

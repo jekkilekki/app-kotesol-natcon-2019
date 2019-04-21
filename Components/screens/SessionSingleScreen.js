@@ -19,10 +19,12 @@ class SessionSingleScreen extends Component {
           pageSub={speaker.name}
         />
         <ScreenContent>
-          <Image 
-            style={styles.speakerImg}
-            source={{ uri: speaker.img }} 
-          />
+          {speaker.img !== '' &&
+            <Image 
+              style={styles.speakerImg}
+              source={{ uri: speaker.img }} 
+            />
+          }
           <H3>Talk Abstract</H3>
           <P>{speaker.abstract}</P>
           <H3>About {speaker.nickname}</H3>
