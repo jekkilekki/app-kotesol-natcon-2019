@@ -4,6 +4,7 @@ import {
   createSwitchNavigator, 
   createStackNavigator, 
   createBottomTabNavigator, 
+  createMaterialTopTabNavigator
 } from 'react-navigation'
 
 import EntypoIcon from 'react-native-vector-icons/Entypo'
@@ -13,16 +14,22 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import WelcomeScreen from '../screens/WelcomeScreen'
 import AuthScreen from '../screens/AuthScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+// import AttendeesScreen from '../screens/AttendeesScreen'
+// import MyFriendsScreen from '../screens/MyFriendsScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
+import MyScheduleScreen from '../screens/MyScheduleScreen'
 import SpeakersScreen from '../screens/SpeakersScreen'
 import SessionSingleScreen from '../screens/SessionSingleScreen'
 import MapScreen from '../screens/MapScreen'
+// import MyPlacesScreen from '../screens/MyPlacesScreen'
 import AboutScreen from '../screens/AboutScreen'
 import MoreScreen from '../screens/MoreScreen'
 import ConductScreen from '../screens/ConductScreen'
 import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
+import MyTabBar from './MyTabBar'
 import { black } from '../../utils/colors';
+
 
 // const drawerNav = createDrawerNavigator({
 //   Schedule: ScheduleScreen,
@@ -30,6 +37,36 @@ import { black } from '../../utils/colors';
 //   Map: MapScreen,
 //   About: AboutScreen,
 // })
+
+const myScheduleNav = createMaterialTopTabNavigator({
+  Schedule: {
+    screen: ScheduleScreen,
+  },
+  MySchedule: {
+    screen: MyScheduleScreen
+  }
+}, { 
+  initialRouteName: 'Schedule',
+  tabBarComponent: (props) => 
+    <MyTabBar {...props} />,
+  tabBarOptions: {
+    // style: {
+    //   backgroundColor: '#232377',
+    //   paddingTop: 10,
+    //   shadowColor: black,
+    // shadowOffset: { width: 0, height: -2 },
+    // shadowOpacity: 0.2,
+    // elevation: 2,
+    // },
+    // labelStyle: {
+    //   fontFamily: 'futura',
+    //   textTransform: 'uppercase',
+    //   color: '#fff'
+    // },
+    activeTintColor: '#fff',
+    inactiveTintColor: '#201b48'
+  }
+})
 
 /* Main Tabbed Navigation in MAIN Screen Flow */
 const tabNavigation = createBottomTabNavigator({
@@ -136,7 +173,7 @@ const stackNav = createStackNavigator({
     color: '#00dddd'
   },
   navigationOptions: {
-    headerVisible: false
+    // headerVisible: false
   } 
 })
 

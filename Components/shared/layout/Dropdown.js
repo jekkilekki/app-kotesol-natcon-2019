@@ -19,8 +19,6 @@ class Dropdown extends Component {
 
   render() {
     const { list } = this.props 
-    // Needs work - either sort the list here or in the AppSearch component before sending it here
-    const sortedList = list.sort((a,b) => a - b)
 
     return (
       <View>
@@ -32,7 +30,7 @@ class Dropdown extends Component {
             <TouchableOpacity onPress={() => this._filter('all')}>
               <AppText style={styles.listItem}>View All</AppText>
             </TouchableOpacity>
-            {sortedList.map((track, i) => 
+            {list.map((track, i) => 
               <TouchableOpacity key={i} onPress={() => this._filter(track)}>
                 <AppText style={styles.listItem}>{track}</AppText>
               </TouchableOpacity>

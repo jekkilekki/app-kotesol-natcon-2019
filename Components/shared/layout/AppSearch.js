@@ -16,7 +16,7 @@ class AppSearch extends Component {
   }
 
   render() {
-    const { uniqueTracks } = this.props
+    const { tracks } = this.props
 
     return (
       <View style={styles.searchStyle}>
@@ -26,7 +26,7 @@ class AppSearch extends Component {
           style={styles.searchInput}
           onChangeText={this.props.onChangeText}
         />
-        <Dropdown list={uniqueTracks} onChange={(value) => this._filter(value)} />
+        <Dropdown list={tracks} onChange={(value) => this._filter(value)} />
       </View>
     )
   }
@@ -67,7 +67,9 @@ const mapStateToProps = ({ speakers }) => {
   const tracks = speakerData.map(speaker => speaker.track)
   const uniqueTracks = [...new Set(tracks)]
 
-  return { uniqueTracks }
+  return { tracks: uniqueTracks.sort((a,b) => 
+    a.toLowerCase() < b.toLowerCase() ? -1 : 
+    a.toLowerCase() > b.toLowerCase() ? 1 : 0 ) }
 }
 
 export default connect(mapStateToProps)(AppSearch)

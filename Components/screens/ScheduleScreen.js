@@ -9,6 +9,8 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import ContentButton from '../shared/buttons/ContentButton'
 import SpeakerList from '../SpeakerList'
 import AppSearch from '../shared/layout/AppSearch'
+import MyTabBar from '../navigation/MyTabBar'
+import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding';
 
 class ScheduleScreen extends Component {
   state = {
@@ -61,12 +63,14 @@ class ScheduleScreen extends Component {
           pageSub='Explore the presentation tracks'
         />
         <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
+        {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
           <ContentButton
             title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
           />
           <SpeakerList speakers={speakerList} filter={this._filterSpeakers} />
+          <ScreenBottomPadding size={100} />
         </ScreenContent>
       </AppScreen>
     )

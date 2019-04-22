@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo'
 import H2 from './shared/text/H2'
 import AppText from './shared/text/AppText'
 import { white, black, purpler } from '../utils/colors'
-import SpeakerLike from './SpeakerLike';
+import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 
 const { width } = Dimensions.get('window')
@@ -21,48 +21,48 @@ class SpeakerDetails extends Component {
     this.props.filter(query)
   }
 
-  renderTrack(track) {
-    let trackColor = '#fff'
-    let trackBGColor = '#232377'
+  // renderTrack(track) {
+  //   let trackColor = '#fff'
+  //   let trackBGColor = '#232377'
 
-    switch (track) {
-      case 'plenary':
-        trackBGColor = '#232377'
-        break
-      case 'Highlighted':
-        trackBGColor = '#232377'
-        break
-      case 'Motivation':
-        trackBGColor = 'goldenrod'
-        break
-      case 'Skills':
-        trackBGColor = 'olivegreen'
-        break
-      case 'Technology':
-        trackBGColor = 'aquamarine'
-        break
-      case 'Mixed':
-        trackBGColor = 'blue'
-        break
-      case 'Research':
-        trackBGColor = 'purple'
-        break
-      case 'Poster':
-        trackBGColor = 'green'
-        break
-      default: 
-        trackBGColor = '#fff'
-        trackColor = '#232377' 
-    }
+  //   switch (track) {
+  //     case 'plenary':
+  //       trackBGColor = '#232377'
+  //       break
+  //     case 'Highlighted':
+  //       trackBGColor = '#232377'
+  //       break
+  //     case 'Motivation':
+  //       trackBGColor = '#F597A8'
+  //       break
+  //     case 'Skills':
+  //       trackBGColor = '#00b9f1'
+  //       break
+  //     case 'Technology':
+  //       trackBGColor = '#ed0972'
+  //       break
+  //     case 'Mixed':
+  //       trackBGColor = '#d63aff'
+  //       break
+  //     case 'Research':
+  //       trackBGColor = '#60f'
+  //       break
+  //     case 'Poster':
+  //       trackBGColor = '#00dddd'
+  //       break
+  //     default: 
+  //       trackBGColor = '#fff'
+  //       trackColor = '#232377' 
+  //   }
 
-    return (
-      <TouchableOpacity onPress={() => this._filter(track)}
-        style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}]}
-      >
-        <AppText center style={{fontSize: 10}}>{track}</AppText>
-      </TouchableOpacity>
-    )
-  }
+  //   return (
+  //     <TouchableOpacity onPress={() => this._filter(track)}
+  //       style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}]}
+  //     >
+  //       <AppText center style={{fontSize: 10}}>{track}</AppText>
+  //     </TouchableOpacity>
+  //   )
+  // }
 
   render() {
     const { id, title, name, nickname, shortname, 
@@ -82,8 +82,8 @@ class SpeakerDetails extends Component {
         // locations={[0,1]}
       >
         <View style={{alignContent: 'center'}}>
-          {this.renderTrack(track)}
-          {/* <SpeakerTrackButton track={track} /> */}
+          {/* {this.renderTrack(track)} */}
+          <SpeakerTrackButton track={track} onPress={() => this._filter(track)} />
         </View>
         <TouchableOpacity 
           onPress={this._goToSession}
@@ -102,7 +102,7 @@ class SpeakerDetails extends Component {
             <H2 small dark style={styles.talkTitle}>{title}</H2>
             <AppText style={styles.talkSpeaker}>{name}</AppText>
             <AppText style={styles.talkAffiliation}>{affiliation}</AppText>
-            <SpeakerLike />
+            <SpeakerLikeButton />
           </View>
         </TouchableOpacity>
       </LinearGradient>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   talkTopicButton: {
     borderWidth: 1,
-    borderColor: purpler,
+    borderColor: 'rgba(21,21,0,0.3)',
     borderRadius: 10,
     paddingTop: 3,
     paddingBottom: 3,

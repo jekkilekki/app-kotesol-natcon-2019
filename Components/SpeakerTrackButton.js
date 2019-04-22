@@ -5,8 +5,6 @@ import AppText from './shared/text/AppText'
 import { purpler } from '../utils/colors'
 
 class SpeakerTrackButton extends Component {
-
-
   render() {
     const { track } = this.props
 
@@ -16,42 +14,48 @@ class SpeakerTrackButton extends Component {
     switch (track) {
       case 'plenary':
         trackBGColor = '#232377'
+        break
       case 'Highlighted':
         trackBGColor = '#232377'
+        break
       case 'Motivation':
-        trackBGColor = 'goldenrod'
+        trackBGColor = '#F597A8'
+        break
       case 'Skills':
-        trackBGColor = 'olivegreen'
+        trackBGColor = '#00b9f1'
+        break
       case 'Technology':
-        trackBGColor = 'aquamarine'
+        trackBGColor = '#ed0972'
+        break
       case 'Mixed':
-        trackBGColor = 'blue'
+        trackBGColor = '#d63aff'
+        break
       case 'Research':
-        trackBGColor = 'purple'
+        trackBGColor = '#60f'
+        break
       case 'Poster':
-        trackBGColor = 'green'
+        trackBGColor = '#00dddd'
+        break
       default: 
         trackBGColor = '#fff'
         trackColor = '#232377' 
     }
 
     return (
-      <TouchableOpacity onPress={() => this.props.onPress(track)}
-        style={[styles.talkTopic]}
+      <TouchableOpacity onPress={this.props.onPress}
+        style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}]}
       >
-        <AppText center>{track}</AppText>
+        <AppText center style={{fontSize: 10}}>{track}</AppText>
       </TouchableOpacity>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  talkTopic: {
-    color: purpler,
+  talkTopicButton: {
     borderWidth: 1,
-    borderColor: purpler,
+    borderColor: 'rgba(21,21,0,0.2)',
     borderRadius: 10,
-    fontSize: 10,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,

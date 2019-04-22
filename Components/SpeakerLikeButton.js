@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-class SpeakerLike extends Component {
+class SpeakerLikeButton extends Component {
   state = {
     heart: 0
   }
@@ -16,18 +16,20 @@ class SpeakerLike extends Component {
   }
   
   renderHeart() {
+    const { large, color1, color2, color3 } = this.props
+
     if ( this.state.heart === 2 ) {
-      return <MaterialCommunityIcon name='heart-multiple' color={'red'} size={20} />
+      return <MaterialCommunityIcon name='heart-multiple' color={color3 || 'red'} size={large ? 28 : 20} />
     } else if ( this.state.heart === 1 ) {
-      return <MaterialCommunityIcon name='heart' color={'coral'} size={16} />
+      return <MaterialCommunityIcon name='heart' color={color2 || 'coral'} size={large ? 24 : 16} />
     } else {
-      return <MaterialCommunityIcon name='heart-outline' color={'rgba(21,21,21,0.5)'} />
+      return <MaterialCommunityIcon name='heart-outline' color={color1 || 'rgba(21,21,21,0.5)'} size={large ? 20 : 12 } />
     }
   }
 
   render() {
     return (
-      <TouchableOpacity style={styles.likeMe} onPress={() => this._changeHeart()}>
+      <TouchableOpacity style={[styles.likeMe, this.props.style]} onPress={() => this._changeHeart()}>
         {this.renderHeart()}
       </TouchableOpacity>
     )
@@ -42,4 +44,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SpeakerLike
+export default SpeakerLikeButton

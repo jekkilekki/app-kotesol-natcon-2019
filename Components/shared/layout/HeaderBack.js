@@ -25,7 +25,7 @@ class HeaderBack extends Component {
         style={[styles.header, {
           backgroundColor: this.props.background || 'transparent',
         }]}>
-        <HeaderBackButton onPress={() => this.props.navigation.goBack()} />
+        <HeaderBackButton tintColor={'#00dddd'} onPress={() => this.props.navigation.goBack()} />
         <AppScreenTitle small>{this.props.pageName}</AppScreenTitle>
         <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
       </View>
@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingTop: isIphoneX() ? 70 : 40,
-    paddingBottom: 10,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingTop: isIphoneX() ? 30 : 0,
+    // paddingBottom: 10,
+    // paddingLeft: 15,
+    // paddingRight: 15,
     // shadowColor: black,
     // shadowOffset: { width: 0, height: 2 },
     // shadowOpacity: 0.2,
