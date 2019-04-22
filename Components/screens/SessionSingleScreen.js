@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   speakerImgOverlay: {
     position: 'absolute',
-    bottom: 5,
+    bottom: -15,
     marginLeft: -15,
     // marginBottom: -15,
     padding: 15,

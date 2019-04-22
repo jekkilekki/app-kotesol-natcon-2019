@@ -62,14 +62,15 @@ class ScheduleScreen extends Component {
           pageName='Schedule' 
           pageSub='Explore the presentation tracks'
         />
-        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
+        {/* Maybe we don't put Search on the ScheduleScreen - or we have to rewrite / modify the search / filter functions. */}
+        {/* <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} /> */}
         {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
           <ContentButton
             title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
           />
-          <SpeakerList speakers={speakerList} filter={this._filterSpeakers} />
+            <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} />
           <ScreenBottomPadding size={100} />
         </ScreenContent>
       </AppScreen>
