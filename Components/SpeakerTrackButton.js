@@ -43,7 +43,7 @@ class SpeakerTrackButton extends Component {
 
     return (
       <TouchableOpacity onPress={this.props.onPress}
-        style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}]}
+        style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}, this.props.style]}
       >
         <AppText center style={{fontSize: 10}}>{track}</AppText>
       </TouchableOpacity>

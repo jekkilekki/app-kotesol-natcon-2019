@@ -44,7 +44,7 @@ class Dropdown extends Component {
 
 const styles = StyleSheet.create({
   searchFilter: {
-    marginTop: 5
+    // marginTop: 5
   },
   filterPicker: {
     position: 'absolute',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 1,
     right: 0,
-    top: 44,
+    top: 34,
     width: 160,
     // height: 100,
     shadowColor: '#000',

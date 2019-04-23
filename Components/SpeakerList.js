@@ -3,6 +3,7 @@ import { ScrollView, View, FlatList, SectionList, StyleSheet } from 'react-nativ
 import { connect } from 'react-redux'
 
 import SpeakerCard from './SpeakerCard'
+import SpeakerCardSmall from './SpeakerCardSmall'
 import AppSearch from '../Components/shared/layout/AppSearch'
 import Loader from '../Components/shared/Loader'
 import AppText from './shared/text/AppText'
@@ -11,7 +12,7 @@ import H2 from './shared/text/H2'
 class SpeakerList extends Component {
   state = {
     searchValue: '',
-    speakerList: [],
+    speakerList: this.props.speakers,
     speakerSectionList: [],
     loading: true
   }
@@ -25,9 +26,11 @@ class SpeakerList extends Component {
       let sectionObj = {}
       sectionObj.title = this._getTimeString(speakerArray[i][0].time)
       sectionObj.data = speakerArray[i] 
-      sectionObj.key = i
+      sectionObj.key = sectionObj.title
       speakerSections.push(sectionObj)
     }
+
+    console.log(speakerSections)
 
     const allDay = speakerSections.pop()
     speakerSections.unshift(allDay)
@@ -47,16 +50,14 @@ class SpeakerList extends Component {
 
   _getTimeString(time) {
     switch (time) {
-      case '13:00':
-        return '1:00'
-      case '14:00':
-        return '2:00'
-      case '15:00':
-        return '3:00'
-      case '16:00':
-        return '4:00'
-      default:
-        return time
+      case '10:00': return '10:00 - 10:50'
+      case '11:00': return '11:00 - 11:50'
+      case '12:00': return '12:00 (Lunch)'
+      case '13:00': return '1:00 - 1:50'
+      case '14:00': return '2:00 - 2:50'
+      case '15:00': return '3:00 - 3:50'
+      case '16:00': return '4:00 - 4:50'
+      default: return time
     }
   }
 
@@ -64,9 +65,11 @@ class SpeakerList extends Component {
     const { speakers } = this.props
     return (
       <FlatList
-        data={speakers}
+        data={speakers.sort((a,b) => {
+          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+        })}
         renderItem={(speaker) => 
-          <SpeakerCard speaker={speaker} filter={this.props.filter} />
+          <SpeakerCardSmall speaker={speaker} filter={this.props.filter} />
         }
         keyExtractor={(speaker) => String(speaker.id)}
       />
@@ -82,11 +85,12 @@ class SpeakerList extends Component {
         }
         renderSectionHeader={({section}) => (
             <View style={styles.sectionBox}>
-              <View style={styles.sectionDivider} />
+              {/* <View style={styles.sectionDivider} /> */}
               <H2 style={styles.sectionTitle}>{section.title}</H2>
             </View>
           )
         }
+        keyExtractor={(item, index) => item.id}
       />
     )
   }
@@ -123,10 +127,12 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: '#232377',
-    backgroundColor: '#fff',
+    backgroundColor: '#e1e1e1',
     textAlign: 'center',
+    paddingTop: 5,
+    paddingBottom: 5,
     marginTop: 10,
-    marginBottom: -5,
+    marginBottom: 0,
   }
 })
 

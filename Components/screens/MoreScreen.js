@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, Button } from 'react-native'
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
 import AppText from '../shared/text/AppText'
-import ScreenContent from '../shared/layout/ScreenContent';
+import ScreenContent from '../shared/layout/ScreenContent'
+import ContentButton from '../shared/buttons/ContentButton'
 
 class MoreScreen extends Component {
   render() {
@@ -15,7 +16,10 @@ class MoreScreen extends Component {
           pageSub='Navigate to any page in this app'
         />
         <ScreenContent>
-          <AppText>MoreScreen</AppText>
+          <ContentButton
+            title="View Welcome Screen"
+            onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
+          />
         </ScreenContent>
       </AppScreen>
     )

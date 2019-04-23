@@ -34,11 +34,11 @@ class AppSearch extends Component {
 
 const styles = StyleSheet.create({
   searchStyle: {
-    height: 50,
+    height: 35,
     backgroundColor: purpler,
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 5,
+    // paddingTop: 5,
     paddingBottom: 5,
     flexDirection: 'row',
     zIndex: 10
@@ -48,16 +48,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingRight: 10,
     paddingLeft: 10,
-    paddingTop: 5,
+    paddingTop: 6,
     paddingBottom: 5,
     marginBottom: 10,
     marginRight: 10,
-    fontSize: 18,
+    fontSize: 15,
     backgroundColor: '#232377',
     borderColor: 'rgba(0,221,221,0.3)',
     borderWidth: 1,
     borderRadius: 5,
-    height: 35,
+    height: 26,
     width: width - 60
   },
 })
@@ -66,8 +66,9 @@ const mapStateToProps = ({ speakers }) => {
   const speakerData = speakers.data
   const tracks = speakerData.map(speaker => speaker.track)
   const uniqueTracks = [...new Set(tracks)]
+  const filteredList = uniqueTracks.filter((track) => track !== '')
 
-  return { tracks: uniqueTracks.sort((a,b) => 
+  return { tracks: filteredList.sort((a,b) => 
     a.toLowerCase() < b.toLowerCase() ? -1 : 
     a.toLowerCase() > b.toLowerCase() ? 1 : 0 ) }
 }

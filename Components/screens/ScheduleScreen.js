@@ -11,6 +11,7 @@ import SpeakerList from '../SpeakerList'
 import AppSearch from '../shared/layout/AppSearch'
 import MyTabBar from '../navigation/MyTabBar'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding';
+import BubbleTab from '../shared/layout/BubbleTab';
 
 class ScheduleScreen extends Component {
   state = {
@@ -63,14 +64,11 @@ class ScheduleScreen extends Component {
           pageSub='Explore the presentation tracks'
         />
         {/* Maybe we don't put Search on the ScheduleScreen - or we have to rewrite / modify the search / filter functions. */}
-        {/* <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} /> */}
+        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
+        <BubbleTab tabs={['Schedule', 'My Schedule']} />
         {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
-          <ContentButton
-            title="View Welcome Screen"
-            onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
-          />
-            <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} />
+          <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} />
           <ScreenBottomPadding size={100} />
         </ScreenContent>
       </AppScreen>
@@ -94,13 +92,13 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = ({ speakers }) => {
-  // const speakerArray = Object.keys(speakers).map(i => speakers[i])
   return { 
     speakers: speakers.data
       .sort((a,b) => {
+        if ( a.time === b.time ) {
+          return a.room < b.room ? -1 : a.room > b.room ? 1 : 0
+        }
         return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
-        // I want to sort by time AND room (to order the rooms after the time)
-        // return a.time - b.time || a.room - b.room
       })
   }
 }

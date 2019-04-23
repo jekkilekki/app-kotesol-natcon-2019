@@ -1,5 +1,28 @@
 [
   {
+    "id": "knc2019-lunch",
+    "title": "Lunch Break",
+    "abstract": "",
+    "summary": "",
+    "topic": "",
+    "subtopic": "",
+    "track": "",
+    "type": "",
+    "time": "12:00",
+    "room": "Jeonju University campus area",
+    "name": "",
+    "nickname": "",
+    "shortname": "",
+    "affiliation": "",
+    "bio": "",
+    "co-presenter": "",
+    "other": "",
+    "img": "",
+    "media": ["", ""],
+    "email": "",
+    "phone": ""
+  },
+  {
     "id": "plenary",
     "title": "Teacher Identity in Language Teaching",
     "name": "Jack C. Richards",

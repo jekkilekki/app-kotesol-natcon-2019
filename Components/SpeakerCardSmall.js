@@ -11,7 +11,7 @@ import SpeakerTrackButton from './SpeakerTrackButton';
 
 const { width } = Dimensions.get('window')
 
-class SpeakerCard extends Component {
+class SpeakerCardSmall extends Component {
   _goToSession = () => {
     const { speaker, navigation } = this.props 
     navigation.navigate( 'Session', { id: speaker.item.id, speaker: speaker.item })
@@ -70,30 +70,20 @@ class SpeakerCard extends Component {
             abstract, bio, img, media, email, phone, track
           } = this.props.speaker.item
 
-    const lunch = 'knc2019-lunch'
-
-    if ( id === lunch ) return null
-    
     return (
-      <LinearGradient 
-        style={styles.cardBackground} 
-        colors={id === 'plenary' 
-                  ? [white, 'rgba(233,150,255,0.5)']
-                  : [white, 'rgba(233,150,255,0.1)']
-                }
-        // start={{x: 0.0, y: 0}} 
-        // end={{x: 1, y: 1}}
-        // locations={[0,1]}
+      <TouchableOpacity 
+        onPress={this._goToSession}
+        style={styles.cardStyle}
       >
-        {id !== lunch &&
-          <View style={{alignContent: 'center'}}>
-            {/* {this.renderTrack(track)} */}
-            <SpeakerTrackButton track={track} onPress={() => this._filter(track)} />
-          </View>
-        }
-        <TouchableOpacity 
-          onPress={id === lunch ? () => this.props.navigation.navigate('Map') : this._goToSession}
-          style={styles.cardStyle}
+        <LinearGradient 
+          style={styles.cardBackground} 
+          colors={id === 'plenary' 
+                    ? [white, 'rgba(233,150,255,0.5)']
+                    : [white, 'rgba(233,150,255,0.1)']
+                  }
+          // start={{x: 0.0, y: 0}} 
+          // end={{x: 1, y: 1}}
+          // locations={[0,1]}
         >
           {img !== '' &&
             <View>
@@ -104,41 +94,39 @@ class SpeakerCard extends Component {
             </View>
           }
           <View style={styles.talkMeta}>
-            {id !== lunch && 
+            <View style={{flex: 1, flexDirection: 'row', alignContent: 'flex-start'}}>
+              {/* {this.renderTrack(track)} */}
+              <SpeakerTrackButton track={track} style={{marginTop: -5, marginRight: 5, padding: 2}} onPress={() => this._filter(track)} />
               <AppText style={styles.talkLocation}>{time} - {room}</AppText>
-            }
+            </View>
+            
             <H2 small dark style={styles.talkTitle}>{title}</H2>
-            {id !== lunch &&
-              <View>
-                <AppText style={styles.talkSpeaker}>{name}</AppText>
-                <AppText style={styles.talkAffiliation}>{affiliation}</AppText>
-                <SpeakerLikeButton />
-              </View>
-            }
+            <AppText style={styles.talkSpeaker}>{name}</AppText>
+            <AppText style={styles.talkAffiliation}>{affiliation}</AppText>
+            <SpeakerLikeButton />
           </View>
-        </TouchableOpacity>
-      </LinearGradient>
+        </LinearGradient>
+      </TouchableOpacity>
     )
   }
 }
 
 const styles = StyleSheet.create({
   cardBackground: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
-    // height: 50
+    flex: 1,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    // justifyContent: 'center'
   },
   cardStyle: {
     flexDirection: 'row',
     borderRadius: 5,
     backgroundColor: 'rgba(255,255,255,1)',
-    padding: 10,
-    margin: 10,
-    width: width - 20,
+    margin: 0,
+    width: width,
     shadowColor: black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -177,13 +165,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   talkTitle: {
-    fontSize: 16,
+    fontSize: 14,
     paddingBottom: 5
   },
   talkSpeaker: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#232377'
   }
 })
 
-export default withNavigation(SpeakerCard)
+export default withNavigation(SpeakerCardSmall)
