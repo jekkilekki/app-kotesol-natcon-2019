@@ -20,7 +20,15 @@ class SpeakerList extends Component {
     loading: true
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log( "next props ", nextProps )
+    this.setState({
+      nextProps
+    })
+  }
+
   componentDidMount() {
+    console.log( "In the Speaker List ", this.props.speakers )
     const speakerData = this._groupByTime(this.props.speakers)
     const speakerArray = Object.keys(speakerData).map(i => speakerData[i])
     let speakerSections = []
@@ -82,7 +90,7 @@ class SpeakerList extends Component {
   renderSchedule() {
     return (
       <SectionList
-        sections={this.state.speakerSectionList}
+        sections={this.state.speakerSectionList} // somehow need to refresh this every time Search or Filter happens
         renderItem={(speaker) => 
           <SpeakerCardSmall speaker={speaker} filter={this.props.filter} />
         }
@@ -100,9 +108,6 @@ class SpeakerList extends Component {
 
   render() {
     const { loading } = this.state
-    const { speakers } = this.props
-
-    console.log(this.state.speakerSectionList)
 
     if ( loading ) {
       return <Loader />

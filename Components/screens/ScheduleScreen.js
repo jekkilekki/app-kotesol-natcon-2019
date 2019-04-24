@@ -22,6 +22,7 @@ class ScheduleScreen extends Component {
     this.props.speakerSearch(query)
 
     const { speakers } = this.props
+    console.log( speakers )
     const filteredList = speakers.filter((speaker) => {
       const speakerData = `${speaker.title.toString().toLowerCase()}
                           ${speaker.name.toString().toLowerCase()}`
@@ -54,8 +55,6 @@ class ScheduleScreen extends Component {
 
   render() {
     const { speakerList } = this.state
-
-    console.log(this.props.speakers)
 
     return (
       <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>

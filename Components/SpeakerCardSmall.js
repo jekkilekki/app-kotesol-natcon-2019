@@ -32,7 +32,7 @@ class SpeakerCardSmall extends Component {
             abstract, bio, img, media, email, phone, track, coPresenter
           } = this.props.speaker.item
 
-    if ( id === 'knc2019-lunch' ) return null
+    if ( id === 'knc2019-lunch' || id === 'plenary-old' ) return null
 
     return (
       <TouchableOpacity 
@@ -40,7 +40,7 @@ class SpeakerCardSmall extends Component {
         style={styles.cardStyle}
       >
         <LinearGradient 
-          style={[styles.cardBackground, {paddingTop: this.state.expanded ? 15 : 10}]} 
+          style={[styles.cardBackground, {paddingTop: 15}]} 
           // colors={[white, white]}
           colors={id === 'plenary' 
                     ? ['rgba(233,150,255,0.5)', 'rgba(233,150,255,1)']
@@ -70,8 +70,8 @@ class SpeakerCardSmall extends Component {
             <H2 small dark normal style={[styles.talkTitle, 
               {
                 paddingRight: this.state.expanded && img ? 10 : 0,
-                paddingTop: this.state.expanded && name ? 5 : 0,
-                paddingBottom: this.state.expanded ? 10 : 0,
+                paddingTop: 5,
+                paddingBottom: 10,
               }
             ]}>{title}</H2>
             {this.state.expanded && 

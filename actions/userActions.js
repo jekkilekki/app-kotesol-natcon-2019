@@ -18,6 +18,8 @@ export const profileSave = ({ token, img, firstName, lastName, affiliation, shor
     await firebase.database().ref(`/users/${currentUser.uid}`)
       .set({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
 
+    await AsyncStorage.setItem('knc_user', { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
+    
     dispatch({
       type: PROFILE_SAVE,
       payload: { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }

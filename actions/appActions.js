@@ -1,15 +1,24 @@
 import { Font } from 'expo'
 import { 
   ASSETS_LOADED,
-  SPEAKER_SEARCH, SPEAKER_FILTER
+  SPEAKER_SEARCH, SPEAKER_FILTER, PROFILE_SAVE
 } from './types'
 
 export const loadAssets = () => async (dispatch) => {
+  let user = await AsyncStorage.getItem('knc_user')
+  if ( user ) {
+    dispatch({
+      type: PROFILE_SAVE,
+      payload: user
+    })
+  }
+
   const assets = await Promise.all([
     Asset.loadAsync([
 
     ]),
     Font.loadAsync({
+      ...Icon.AntDesign.font,
       ...Icon.Entypo.font,
       ...Icon.Foundation.font,
       ...Icon.FontAwesome.font,
@@ -22,6 +31,7 @@ export const loadAssets = () => async (dispatch) => {
       'futura-bold': require('../assets/fonts/Futura/Futura-Condensed-Bold.otf')
     })
   ])
+
   if ( assets ) {
     dispatch({ 
       type: ASSETS_LOADED
