@@ -8,10 +8,15 @@ import AppText from './shared/text/AppText'
 import { white, black, purpler } from '../utils/colors'
 import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const { width } = Dimensions.get('window')
 
 class SpeakerCardSmall extends Component {
+  state = {
+    expanded: true
+  }
+
   _goToSession = () => {
     const { speaker, navigation } = this.props 
     navigation.navigate( 'Session', { id: speaker.item.id, speaker: speaker.item })
@@ -21,54 +26,13 @@ class SpeakerCardSmall extends Component {
     this.props.filter(query)
   }
 
-  // renderTrack(track) {
-  //   let trackColor = '#fff'
-  //   let trackBGColor = '#232377'
-
-  //   switch (track) {
-  //     case 'plenary':
-  //       trackBGColor = '#232377'
-  //       break
-  //     case 'Highlighted':
-  //       trackBGColor = '#232377'
-  //       break
-  //     case 'Motivation':
-  //       trackBGColor = '#F597A8'
-  //       break
-  //     case 'Skills':
-  //       trackBGColor = '#00b9f1'
-  //       break
-  //     case 'Technology':
-  //       trackBGColor = '#ed0972'
-  //       break
-  //     case 'Mixed':
-  //       trackBGColor = '#d63aff'
-  //       break
-  //     case 'Research':
-  //       trackBGColor = '#60f'
-  //       break
-  //     case 'Poster':
-  //       trackBGColor = '#00dddd'
-  //       break
-  //     default: 
-  //       trackBGColor = '#fff'
-  //       trackColor = '#232377' 
-  //   }
-
-  //   return (
-  //     <TouchableOpacity onPress={() => this._filter(track)}
-  //       style={[styles.talkTopicButton, {color: trackColor, backgroundColor: trackBGColor}]}
-  //     >
-  //       <AppText center style={{fontSize: 10}}>{track}</AppText>
-  //     </TouchableOpacity>
-  //   )
-  // }
-
   render() {
     const { id, title, name, nickname, shortname, 
             affiliation, other, time, room, summary, 
-            abstract, bio, img, media, email, phone, track
+            abstract, bio, img, media, email, phone, track, coPresenter
           } = this.props.speaker.item
+
+    if ( id === 'knc2019-lunch' ) return null
 
     return (
       <TouchableOpacity 
@@ -76,35 +40,62 @@ class SpeakerCardSmall extends Component {
         style={styles.cardStyle}
       >
         <LinearGradient 
-          style={styles.cardBackground} 
+          style={[styles.cardBackground, {paddingTop: this.state.expanded ? 15 : 10}]} 
+          // colors={[white, white]}
           colors={id === 'plenary' 
-                    ? [white, 'rgba(233,150,255,0.5)']
-                    : [white, 'rgba(233,150,255,0.1)']
+                    ? ['rgba(233,150,255,0.5)', 'rgba(233,150,255,1)']
+                    : [white, white]
                   }
-          // start={{x: 0.0, y: 0}} 
-          // end={{x: 1, y: 1}}
-          // locations={[0,1]}
+          start={{x: 0.0, y: 0}} 
+          end={{x: 1, y: 1}}
+          locations={[0,1]}
         >
-          {img !== '' &&
-            <View>
+          {this.state.expanded 
+            ? <TouchableOpacity style={styles.expandButton} onPress={() => this.setState({expanded: false})}>
+                <MaterialCommunityIcon name={'arrow-expand-up'} />
+              </TouchableOpacity>
+            : <TouchableOpacity style={styles.expandButton} onPress={() => this.setState({expanded: true})}>
+                <MaterialCommunityIcon name={'arrow-expand-down'} />
+              </TouchableOpacity>
+          }
+          <View style={[styles.talkMeta, {
+            paddingRight: this.state.expanded && img ? 60 : 0
+          }]}>
+            {name !== '' && <AppText style={styles.talkSpeaker}>{name}
+              {affiliation !== '' &&
+                <AppText style={styles.talkAffiliation}> ({affiliation})</AppText>
+              }
+            </AppText>
+            }
+            <H2 small dark normal style={[styles.talkTitle, 
+              {
+                paddingRight: this.state.expanded && img ? 10 : 0,
+                paddingTop: this.state.expanded && name ? 5 : 0,
+                paddingBottom: this.state.expanded ? 10 : 0,
+              }
+            ]}>{title}</H2>
+            {this.state.expanded && 
+            <View style={{flex: 1, opacity: 0.7, flexDirection: 'row', alignContent: 'flex-start', borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(35,35,119,0.5)', paddingTop: 10}}>
+              {/* {this.renderTrack(track)} */}
+              {coPresenter !== '' &&
+                <AppText style={styles.talkLocation}>Co-presenter</AppText>
+              }
+              <AppText style={styles.talkTime}>{time}
+                <AppText style={styles.talkLocation}> - {room}</AppText>
+              </AppText>
+              <SpeakerTrackButton track={track} style={{marginTop: -2, marginLeft: 7, padding: 2}} onPress={() => this._filter(track)} />
+            </View>
+            }
+            <SpeakerLikeButton />
+          </View>
+          {this.state.expanded && img !== '' &&
+            <View style={styles.thumbnailStyle}>
               <Image 
                 source={{ uri: img }} 
-                style={styles.thumbnailStyle} 
+                style={styles.thumbnailImg} 
               />
             </View>
           }
-          <View style={styles.talkMeta}>
-            <View style={{flex: 1, flexDirection: 'row', alignContent: 'flex-start'}}>
-              {/* {this.renderTrack(track)} */}
-              <SpeakerTrackButton track={track} style={{marginTop: -5, marginRight: 5, padding: 2}} onPress={() => this._filter(track)} />
-              <AppText style={styles.talkLocation}>{time} - {room}</AppText>
-            </View>
-            
-            <H2 small dark style={styles.talkTitle}>{title}</H2>
-            <AppText style={styles.talkSpeaker}>{name}</AppText>
-            <AppText style={styles.talkAffiliation}>{affiliation}</AppText>
-            <SpeakerLikeButton />
-          </View>
         </LinearGradient>
       </TouchableOpacity>
     )
@@ -112,65 +103,89 @@ class SpeakerCardSmall extends Component {
 }
 
 const styles = StyleSheet.create({
+  expandButton: {
+    position: 'absolute',
+    top: 10,
+    right: 20,
+    opacity: 0.5,
+    zIndex: 10
+  },
   cardBackground: {
     flex: 1,
-    padding: 10,
-    paddingLeft: 20,
     paddingRight: 20,
+    paddingLeft: 20,
+    paddingBottom: 10,
+    borderRadius: 20,
     // flexDirection: 'row',
     // flexWrap: 'wrap',
     // justifyContent: 'center'
   },
   cardStyle: {
     flexDirection: 'row',
-    borderRadius: 5,
+    borderRadius: 20,
     backgroundColor: 'rgba(255,255,255,1)',
-    margin: 0,
-    width: width,
+    marginTop: 0,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    width: width - 20,
     shadowColor: black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 1,
   },
   thumbnailStyle: {
+    // marginRight: 10,
+    position: 'absolute',
+    top: 20,
+    right: 20
+  },
+  thumbnailImg: {
     width: 60,
     height: 60,
-    borderRadius: 5,
-    marginRight: 10
+    borderRadius: 30,
   },
   talkMeta: {
     flex: 1,
   },
-  talkLocation: {
+  talkTime: {
+    fontFamily: 'nunito-bold',
     color: '#232377',
     fontSize: 10,
-    marginBottom: 5, 
+    borderTopWidth: 1,
+    borderTopColor: '#232377'
+  },
+  talkLocation: {
+    fontFamily: 'nunito',
+    color: '#232377',
+    fontSize: 10,
   },
   talkAffiliation: {
     color: '#232377',
     fontSize: 10,
+    opacity: 0.5
   },
-  talkTopicButton: {
-    borderWidth: 1,
-    borderColor: 'rgba(21,21,0,0.3)',
-    borderRadius: 10,
-    paddingTop: 3,
-    paddingBottom: 3,
-    paddingLeft: 10,
-    paddingRight: 10, 
-    marginTop: 10
-  },
+  // talkTopicButton: {
+  //   borderWidth: 1,
+  //   borderColor: 'rgba(21,21,0,0.3)',
+  //   borderRadius: 10,
+  //   // paddingTop: 3,
+  //   // paddingBottom: 3,
+  //   paddingLeft: 10,
+  //   paddingRight: 10, 
+  //   marginTop: 13
+  // },
   talkTopic: {
     color: purpler,
     fontSize: 10,
   },
   talkTitle: {
-    fontSize: 14,
-    paddingBottom: 5
+    fontSize: 15,
+    color: '#161637',
   },
   talkSpeaker: {
     fontSize: 12,
-    color: '#232377'
+    color: 'rgba(35,35,119,0.8)'
   }
 })
 

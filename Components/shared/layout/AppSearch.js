@@ -20,6 +20,7 @@ class AppSearch extends Component {
 
     return (
       <View style={styles.searchStyle}>
+        <MaterialIcon name={'search'} size={18} style={styles.searchIcon} />
         <TextInput 
           placeholder={'Search'}
           placeholderTextColor={'rgba(255,255,255,0.3)'}
@@ -43,20 +44,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     zIndex: 10
   },
+  searchIcon: {
+    color: 'rgba(255,255,255,0.3)',
+    position: 'absolute',
+    left: 15,
+    top: 4,
+    zIndex: 10
+  },
   searchInput: {
     fontFamily: 'nunito',
     color: '#fff',
     paddingRight: 10,
-    paddingLeft: 10,
+    paddingLeft: 27,
     paddingTop: 6,
     paddingBottom: 5,
     marginBottom: 10,
     marginRight: 10,
     fontSize: 15,
     backgroundColor: '#232377',
-    borderColor: 'rgba(0,221,221,0.3)',
-    borderWidth: 1,
-    borderRadius: 5,
+    // borderColor: 'rgba(0,221,221,0.3)',
+    // borderWidth: 1,
+    borderRadius: 15,
     height: 26,
     width: width - 60
   },

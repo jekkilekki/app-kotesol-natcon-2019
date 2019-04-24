@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, FlatList, SectionList, StyleSheet } from 'react-native'
+import { ScrollView, View, FlatList, SectionList, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 
 import SpeakerCard from './SpeakerCard'
@@ -8,6 +8,9 @@ import AppSearch from '../Components/shared/layout/AppSearch'
 import Loader from '../Components/shared/Loader'
 import AppText from './shared/text/AppText'
 import H2 from './shared/text/H2'
+import ScreenBottomPadding from './shared/layout/ScreenBottomPadding';
+
+const { width, height } = Dimensions.get('window')
 
 class SpeakerList extends Component {
   state = {
@@ -81,7 +84,7 @@ class SpeakerList extends Component {
       <SectionList
         sections={this.state.speakerSectionList}
         renderItem={(speaker) => 
-          <SpeakerCard speaker={speaker} filter={this.props.filter} />
+          <SpeakerCardSmall speaker={speaker} filter={this.props.filter} />
         }
         renderSectionHeader={({section}) => (
             <View style={styles.sectionBox}>
@@ -108,11 +111,12 @@ class SpeakerList extends Component {
     return (
       // @TODO: Make a "full view" (like now) and a "compact view" for faster scanning - like Gmail
 
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
         { this.props.schedule ? 
             this.renderSchedule() :
             this.renderList()
         }
+        <ScreenBottomPadding size={60} />
       </ScrollView>
     )
   }
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: '#232377',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: 'transparent',
     textAlign: 'center',
     paddingTop: 5,
     paddingBottom: 5,

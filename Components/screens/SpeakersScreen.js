@@ -52,7 +52,7 @@ class SpeakersScreen extends Component {
     const { speakerList } = this.state
 
     return (
-      <AppScreen>
+      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
         <AppHeader 
           pageName='Speakers' 
           pageSub='Big names, Bigger ideas'

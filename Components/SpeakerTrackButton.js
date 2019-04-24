@@ -53,14 +53,15 @@ class SpeakerTrackButton extends Component {
 
 const styles = StyleSheet.create({
   talkTopicButton: {
-    borderWidth: 1,
-    borderColor: 'rgba(21,21,0,0.2)',
+    // borderWidth: 1,
+    // borderColor: 'rgba(21,21,0,0.2)',
     borderRadius: 10,
-    paddingTop: 3,
-    paddingBottom: 3,
-    paddingLeft: 10,
-    paddingRight: 10, 
-    marginTop: 10
+    // paddingTop: 1,
+    // paddingBottom: 1,
+    paddingLeft: 8,
+    paddingRight: 8, 
+    marginTop: 10,
+    height: 18
   },
 })
 

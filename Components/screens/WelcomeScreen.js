@@ -52,7 +52,7 @@ class WelcomeScreen extends Component {
       if (token) {
         console.warn(token)
         this.props.profileGetWithToken(token)
-        this.props.navigation.navigate('Schedule')
+        this.props.navigation.navigate('Speakers')
         // this.setState({ token })
       } else {
         this.setState({ token: false })

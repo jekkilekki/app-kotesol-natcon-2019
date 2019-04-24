@@ -58,7 +58,7 @@ class ScheduleScreen extends Component {
     console.log(this.props.speakers)
 
     return (
-      <AppScreen>
+      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
         <AppHeader 
           pageName='Schedule' 
           pageSub='Explore the presentation tracks'
