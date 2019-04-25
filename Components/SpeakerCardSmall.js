@@ -54,7 +54,7 @@ class SpeakerCardSmall extends Component {
 
     if ( id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration' ) {
       return (
-        <View style={[styles.cardStyleNormal]}>
+        <TouchableOpacity style={[styles.cardStyleNormal]} onPress={() => this.props.navigation.navigate('Map', {referer: id})}>
           <LinearGradient 
             style={[styles.cardBackground, {paddingTop: 15}]} 
             // colors={[white, white]}
@@ -65,7 +65,7 @@ class SpeakerCardSmall extends Component {
           >
             <H2 small normal>{title}</H2>
           </LinearGradient>
-        </View>
+        </TouchableOpacity>
       )
     }
 

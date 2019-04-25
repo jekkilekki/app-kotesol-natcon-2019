@@ -22,8 +22,8 @@ class SpeakerList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log( "next props ", nextProps )
-    if ( this.props.speakers.length > 0 ) {
+    // only create a new sectionList if filter / search turns up more than 0 results
+    if ( nextProps.speakers.length > 0 ) {
       this.setState({
         speakerSectionList: this._createSpeakerSections(nextProps.speakers)
       })
@@ -45,22 +45,22 @@ class SpeakerList extends Component {
 
   _createSpeakerSections(speakersPropsData) {
     let speakerData = this._groupByTime(speakersPropsData)
-      let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
-      let speakerSections = []
+    let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
+    let speakerSections = []
 
-      for ( var i = 0; i < speakerArray.length; i++ ) {
-        let sectionObj = {}
-        sectionObj.title = this._getTimeString(speakerArray[i][0].time)
-        sectionObj.data = speakerArray[i] || []
-        sectionObj.key = sectionObj.title
-        speakerSections.push(sectionObj)
-      }
+    for ( var i = 0; i < speakerArray.length; i++ ) {
+      let sectionObj = {}
+      sectionObj.title = this._getTimeString(speakerArray[i][0].time)
+      sectionObj.data = speakerArray[i] || []
+      sectionObj.key = sectionObj.title
+      speakerSections.push(sectionObj)
+    }
 
-      // Put the "All Day" stuff at the beginning of the schedule
-      const allDay = speakerSections.pop()
-      speakerSections.unshift(allDay)
+    // Put the "All Day" stuff at the beginning of the schedule
+    const allDay = speakerSections.pop()
+    speakerSections.unshift(allDay)
 
-      return speakerSections
+    return speakerSections
   }
 
   _groupByTime = (array) => 

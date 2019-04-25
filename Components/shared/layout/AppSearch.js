@@ -20,6 +20,10 @@ class AppSearch extends Component {
     this.props.expandCollapse()
   }
 
+  _gridRow = () => {
+
+  }
+
   render() {
     const { tracks } = this.props
 
@@ -38,6 +42,14 @@ class AppSearch extends Component {
             </TouchableOpacity>
           : <TouchableOpacity onPress={() => this._expandCollapse()}>
               <MaterialCommunityIcon name={'arrow-expand-vertical'} size={18} style={styles.expandCollapse} />
+            </TouchableOpacity>
+        }
+        {this.props.grid 
+          ? <TouchableOpacity onPress={() => this._gridRow()}>
+              <MaterialCommunityIcon name={'table-of-contents'} size={18} style={styles.expandCollapse} />
+            </TouchableOpacity>
+          : <TouchableOpacity onPress={() => this._gridRow()}>
+              <MaterialCommunityIcon name={'view-grid'} size={18} style={styles.expandCollapse} />
             </TouchableOpacity>
         }
         <Dropdown list={tracks} onChange={(value) => this._filter(value)} />
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderRadius: 15,
     height: 26,
-    width: width - 90
+    width: width - 120
   },
 })
 
