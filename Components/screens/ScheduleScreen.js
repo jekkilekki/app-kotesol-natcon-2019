@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, Text, StyleSheet, Button } from 'react-native'
 import { connect } from 'react-redux'
-import { speakerSearch, speakerFilter } from '../../actions'
+import { speakerSearch, speakerFilter, expandScheduleList, collapseScheduleList } from '../../actions'
 
 import AppHeader from '../shared/layout/AppHeader'
 import AppScreen from '../shared/layout/AppScreen'
@@ -15,15 +15,15 @@ import BubbleTab from '../shared/layout/BubbleTab';
 
 class ScheduleScreen extends Component {
   state = {
-    speakerList: this.props.speakers
+    speakerList: this.props.scheduledSpeakers,
+    expanded: false
   }
 
   _searchSpeakers = (query) => {
     this.props.speakerSearch(query)
 
-    const { speakers } = this.props
-    console.log( speakers )
-    const filteredList = speakers.filter((speaker) => {
+    const { scheduledSpeakers } = this.props
+    const filteredList = scheduledSpeakers.filter((speaker) => {
       const speakerData = `${speaker.title.toString().toLowerCase()}
                           ${speaker.name.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
@@ -38,8 +38,8 @@ class ScheduleScreen extends Component {
   _filterSpeakers = (query) => {
     this.props.speakerFilter(query)
 
-    const { speakers } = this.props
-    const filteredList = speakers.filter((speaker) => {
+    const { scheduledSpeakers } = this.props
+    const filteredList = scheduledSpeakers.filter((speaker) => {
       const speakerData = `${speaker.track.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
 
@@ -48,8 +48,20 @@ class ScheduleScreen extends Component {
       }
       return speakerData.indexOf(filterData) > -1
     })
+    console.log('filtering in the schedule screen yo: ', filteredList)
     this.setState({
       speakerList: filteredList
+    })
+  }
+
+  _expandCollapse = () => {
+    if ( this.props.expanded ) {
+      this.props.collapseScheduleList()
+    } else {
+      this.props.expandScheduleList()
+    }
+    this.setState({
+      expanded: !this.state.expanded
     })
   }
 
@@ -63,11 +75,11 @@ class ScheduleScreen extends Component {
           pageSub='Explore the presentation tracks'
         />
         {/* Maybe we don't put Search on the ScheduleScreen - or we have to rewrite / modify the search / filter functions. */}
-        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
+        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} expanded={this.state.expanded} expandCollapse={this._expandCollapse} />
         <BubbleTab tabs={['Schedule', 'My Schedule']} />
         {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
-          <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} />
+          <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} expanded={this.state.expanded} />
           <ScreenBottomPadding size={100} />
         </ScreenContent>
       </AppScreen>
@@ -90,18 +102,20 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ speakers }) => {
+const mapStateToProps = ({ speakers, app }) => {
+  const sortedData = speakers.data
+  .sort((a,b) => {
+    if ( a.time === b.time ) {
+      return a.room < b.room ? -1 : a.room > b.room ? 1 : 0
+    }
+    return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
+  })
   return { 
-    speakers: speakers.data
-      .sort((a,b) => {
-        if ( a.time === b.time ) {
-          return a.room < b.room ? -1 : a.room > b.room ? 1 : 0
-        }
-        return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
-      })
+    scheduledSpeakers: sortedData,
+    expanded: app.scheduleExpanded
   }
 }
 
 export default connect(mapStateToProps, {
-  speakerSearch, speakerFilter
+  speakerSearch, speakerFilter, expandScheduleList, collapseScheduleList
 })(ScheduleScreen)

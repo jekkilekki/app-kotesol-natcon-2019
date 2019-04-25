@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import AppInput from '../AppInput'
 import Dropdown from './Dropdown'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { purpler } from '../../../utils/colors'
 import { black } from 'ansi-colors';
 
@@ -13,6 +14,10 @@ const { width } = Dimensions.get('window')
 class AppSearch extends Component {
   _filter(query) {
     this.props.filter(query)
+  }
+
+  _expandCollapse = () => {
+    this.props.expandCollapse()
   }
 
   render() {
@@ -27,6 +32,14 @@ class AppSearch extends Component {
           style={styles.searchInput}
           onChangeText={this.props.onChangeText}
         />
+        {this.props.expanded 
+          ? <TouchableOpacity onPress={() => this._expandCollapse()}>
+              <MaterialCommunityIcon name={'arrow-collapse-vertical'} size={18} style={styles.expandCollapse} />
+            </TouchableOpacity>
+          : <TouchableOpacity onPress={() => this._expandCollapse()}>
+              <MaterialCommunityIcon name={'arrow-expand-vertical'} size={18} style={styles.expandCollapse} />
+            </TouchableOpacity>
+        }
         <Dropdown list={tracks} onChange={(value) => this._filter(value)} />
       </View>
     )
@@ -43,6 +56,11 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     flexDirection: 'row',
     zIndex: 10
+  },
+  expandCollapse: {
+    color: 'rgba(255,255,255,0.5)',
+    marginTop: 4,
+    marginRight: 10
   },
   searchIcon: {
     color: 'rgba(255,255,255,0.3)',
@@ -66,7 +84,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderRadius: 15,
     height: 26,
-    width: width - 60
+    width: width - 90
   },
 })
 

@@ -1,6 +1,7 @@
 import { Font } from 'expo'
 import { 
-  ASSETS_LOADED,
+  ASSETS_LOADED, SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
+  SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
   SPEAKER_SEARCH, SPEAKER_FILTER, PROFILE_SAVE
 } from './types'
 
@@ -62,5 +63,29 @@ export const appReady = () => {
   return {
     type: ASSETS_LOADED,
     // payload: text
+  }
+}
+
+export const expandSpeakersList = () => {
+  return {
+    type: SPEAKERS_LIST_EXPAND
+  }
+}
+
+export const collapseSpeakersList = () => {
+  return {
+    type: SPEAKERS_LIST_COLLAPSE
+  }
+}
+
+export const expandScheduleList = () => {
+  return {
+    type: SCHEDULE_LIST_EXPAND
+  }
+}
+
+export const collapseScheduleList = () => {
+  return {
+    type: SCHEDULE_LIST_COLLAPSE
   }
 }

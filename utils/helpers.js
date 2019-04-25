@@ -18,4 +18,18 @@ export function isIphoneX() {
     && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812)
 }
 
+export function getTrackColor(track) {
+  switch (track.toLowerCase()) {
+    case 'plenary': return '#232377'
+    case 'highlighted': return '#232377'
+    case 'motivation': return '#F597A8'
+    case 'skills': return '#00b9f1'
+    case 'technology': return '#ed0972'
+    case 'mixed': return '#d63aff'
+    case 'research': return '#60f'
+    case 'poster': return '#00dddd'
+    default: return '#232377' 
+  }
+}
+
 /* TODO: Local Notifications */

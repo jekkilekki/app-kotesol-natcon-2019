@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { speakerSearch, speakerFilter } from '../../actions'
+import { speakerSearch, speakerFilter, collapseSpeakersList, expandSpeakersList } from '../../actions'
 
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
 import SpeakerList from '../SpeakerList'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppSearch from '../shared/layout/AppSearch'
+import { app } from 'firebase';
 
 class SpeakersScreen extends Component {
   state = {
-    speakerList: this.props.speakers.data
+    speakerList: this.props.speakers,
+    expanded: this.props.expanded
   }
 
   _searchSpeakers = (query) => {
     this.props.speakerSearch(query)
 
     const { speakers } = this.props
-    const filteredList = speakers.data.filter((speaker) => {
+    const filteredList = speakers.filter((speaker) => {
       const speakerData = `${speaker.title.toString().toLowerCase()}
-                          ${speaker.name.toString().toLowerCase()}`
+                          ${speaker.name.toString().toLowerCase()}
+                          ${speaker.track.toString().toLowerCase()}
+                          ${speaker.affiliation.toString().toLowerCase()}
+                          ${speaker.room.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
 
       return speakerData.indexOf(filterData) > -1
@@ -34,7 +39,7 @@ class SpeakersScreen extends Component {
     this.props.speakerFilter(query)
 
     const { speakers } = this.props
-    const filteredList = speakers.data.filter((speaker) => {
+    const filteredList = speakers.filter((speaker) => {
       const speakerData = `${speaker.track.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
 
@@ -48,8 +53,20 @@ class SpeakersScreen extends Component {
     })
   }
 
+  _expandCollapse = () => {
+    if ( this.props.expanded ) {
+      this.props.collapseSpeakersList()
+    } else {
+      this.props.expandSpeakersList()
+    }
+    this.setState({
+      expanded: !this.state.expanded
+    })
+  }
+
   render() {
     const { speakerList } = this.state
+    console.log('speakers', this.props.expanded)
 
     return (
       <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
@@ -57,9 +74,9 @@ class SpeakersScreen extends Component {
           pageName='Speakers' 
           pageSub='Big names, Bigger ideas'
         />
-        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} />
+        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} expanded={this.props.expanded} expandCollapse={this._expandCollapse} />
         <ScreenContent style={speakerScreenStyle}>
-          <SpeakerList speakers={speakerList} filter={this._filterSpeakers} />
+          <SpeakerList screen={'Speakers'} speakers={speakerList} filter={this._filterSpeakers} expanded={this.props.expanded} />
         </ScreenContent>
       </AppScreen>
     )
@@ -73,13 +90,14 @@ const speakerScreenStyle = {
   paddingRight: 0,
 }
 
-const mapStateToProps = ({ speakers }) => {
+const mapStateToProps = ({ speakers, app }) => {
   // const speakerArray = Object.keys(speakers).map(i => speakers[i])
   return { 
-    speakers
+    speakers: speakers.data,
+    expanded: app.speakersExpanded
   }
 }
 
 export default connect(mapStateToProps, {
-  speakerSearch, speakerFilter
+  speakerSearch, speakerFilter, collapseSpeakersList, expandSpeakersList
 })(SpeakersScreen)

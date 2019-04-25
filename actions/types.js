@@ -6,6 +6,10 @@ export const ASSETS_LOADED_FAIL = 'assets_loaded_fail'
 export const PROFILE_LOAD = 'profile_load'
 export const SPEAKER_SEARCH = 'speaker_search'
 export const SPEAKER_FILTER = 'speaker_filter'
+export const SPEAKERS_LIST_EXPAND = 'speakers_list_expand'
+export const SPEAKERS_LIST_COLLAPSE = 'speakers_list_collapse'
+export const SCHEDULE_LIST_EXPAND = 'schedule_list_expand'
+export const SCHEDULE_LIST_COLLAPSE = 'schedule_list_collapse'
 
 /**
  * LOGIN Types
