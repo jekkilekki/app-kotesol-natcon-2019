@@ -5,23 +5,22 @@ import { LinearGradient } from 'expo'
 
 import H2 from './shared/text/H2'
 import AppText from './shared/text/AppText'
-import { white, black, purpler, blue, blueDark } from '../utils/colors'
+import { white, black, purpler, blue, blueDark, blueDarker, purple } from '../utils/colors'
 import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
-import PlenaryCard from './PlenaryCard'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { getTrackColor } from '../utils/helpers';
 
 const { width } = Dimensions.get('window')
 
-class SpeakerCardSmall extends Component {
+class PlenaryCard extends Component {
   state = {
     expanded: this.props.expanded
   }
 
   _goToSession = () => {
     const { speaker, navigation } = this.props 
-    navigation.navigate( 'Session', { id: speaker.item.id, speaker: speaker.item })
+    navigation.navigate( 'Session', { id: speaker.id, speaker: speaker })
   }
 
   _filter(query) {
@@ -44,35 +43,9 @@ class SpeakerCardSmall extends Component {
 
   render() {
     const { id, title, name, nickname, shortname, 
-            affiliation, other, time, room, summary, 
-            abstract, bio, img, media, email, phone, track, coPresenter
-          } = this.props.speaker.item
-
-    if ( this.props.screen === 'Speakers' && 
-      (id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration')
-      || id === 'plenary-old' ) 
-      return null 
-
-    if ( id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration' ) {
-      return (
-        <TouchableOpacity style={[styles.cardStyleNormal]} onPress={() => this.props.navigation.navigate('Map', {referer: id})}>
-          <LinearGradient 
-            style={[styles.cardBackground, {paddingTop: 15}]} 
-            // colors={[white, white]}
-            colors={[blue, blueDark]}
-            start={{x: 0.0, y: 0}} 
-            end={{x: 1, y: 1}}
-            locations={[0,1]}
-          >
-            <H2 small normal>{title}</H2>
-          </LinearGradient>
-        </TouchableOpacity>
-      )
-    }
-
-    if ( id === 'plenary' ) {
-      return <PlenaryCard speaker={this.props.speaker.item} navigation={this.props.navigation} expanded={this.state.expanded} />
-    }
+      affiliation, other, time, room, summary, 
+      abstract, bio, img, media, email, phone, track, coPresenter
+    } = this.props.speaker
 
     return (
       <TouchableOpacity 
@@ -83,7 +56,7 @@ class SpeakerCardSmall extends Component {
           style={[styles.cardBackground, {paddingTop: 15}]} 
           // colors={[white, white]}
           colors={id === 'plenary' 
-                    ? ['rgba(233,150,255,0.5)', 'rgba(233,150,255,1)']
+                    ? [purpler, purple]
                     : [white, white]
                   }
           start={{x: 0.0, y: 0}} 
@@ -143,6 +116,7 @@ class SpeakerCardSmall extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   expandButton: {
     position: 'absolute',
@@ -200,27 +174,27 @@ const styles = StyleSheet.create({
     right: 20
   },
   thumbnailImg: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
   talkMeta: {
     flex: 1,
   },
   talkTime: {
     fontFamily: 'nunito-bold',
-    color: '#232377',
+    color: '#fff',
     fontSize: 10,
     borderTopWidth: 1,
-    borderTopColor: '#232377'
+    borderTopColor: '#fff'
   },
   talkLocation: {
     fontFamily: 'nunito',
-    color: '#232377',
+    color: '#fff',
     fontSize: 10,
   },
   talkAffiliation: {
-    color: '#232377',
+    color: '#fff',
     fontSize: 10,
     opacity: 0.5
   },
@@ -239,13 +213,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   talkTitle: {
-    fontSize: 15,
-    color: '#161637',
+    fontSize: 18,
+    color: '#fff',
   },
   talkSpeaker: {
     fontSize: 12,
-    color: 'rgba(35,35,119,0.8)'
+    color: 'rgba(255,255,255,0.8)'
   }
 })
 
-export default withNavigation(SpeakerCardSmall)
+export default PlenaryCard

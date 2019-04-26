@@ -1,6 +1,6 @@
 import {
   PROFILE_LOAD, PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
-  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL
+  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL, SPEAKER_LIKE, SPEAKER_DISLIKE
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -41,6 +41,19 @@ export default (state = INITIAL_STATE, action) => {
       return state
     case PROFILE_FETCH_FAIL:
       return state
+    case SPEAKER_LIKE:
+      return {
+        ...state,
+        mySchedule: 
+          state.mySchedule.includes(action.payload) 
+            ? state.mySchedule 
+            : state.mySchedule.concat( action.payload ) 
+      }
+    case SPEAKER_DISLIKE: 
+      return {
+        ...state, 
+        mySchedule: state.mySchedule.filter(id => id !== action.payload)
+      }
     default: 
       return state
   }

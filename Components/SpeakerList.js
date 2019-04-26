@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, View, FlatList, SectionList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import SpeakerCard from './SpeakerCard'
+// import SpeakerCard from './SpeakerCard.old'
 import SpeakerCardSmall from './SpeakerCardSmall'
 import AppSearch from '../Components/shared/layout/AppSearch'
 import Loader from '../Components/shared/Loader'
@@ -117,7 +117,7 @@ class SpeakerList extends Component {
             </View>
           )
         }
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={item => item.id}
       />
     )
   }

@@ -16,12 +16,16 @@ class AppSearch extends Component {
     this.props.filter(query)
   }
 
+  _search(query) {
+    this.props.onChangeText(query)
+  }
+
   _expandCollapse = () => {
     this.props.expandCollapse()
   }
 
   _gridRow = () => {
-
+    this.props.gridRow()
   }
 
   render() {
@@ -34,7 +38,8 @@ class AppSearch extends Component {
           placeholder={'Search'}
           placeholderTextColor={'rgba(255,255,255,0.3)'}
           style={styles.searchInput}
-          onChangeText={this.props.onChangeText}
+          onChangeText={(value) => this._search(value)}
+          value={this.props.inputValue}
         />
         {this.props.expanded 
           ? <TouchableOpacity onPress={() => this._expandCollapse()}>
@@ -44,7 +49,7 @@ class AppSearch extends Component {
               <MaterialCommunityIcon name={'arrow-expand-vertical'} size={18} style={styles.expandCollapse} />
             </TouchableOpacity>
         }
-        {this.props.grid 
+        {this.props.display === 'grid' 
           ? <TouchableOpacity onPress={() => this._gridRow()}>
               <MaterialCommunityIcon name={'table-of-contents'} size={18} style={styles.expandCollapse} />
             </TouchableOpacity>

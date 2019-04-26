@@ -13,7 +13,8 @@ import { app } from 'firebase';
 class SpeakersScreen extends Component {
   state = {
     speakerList: this.props.speakers,
-    expanded: this.props.expanded
+    expanded: this.props.expanded,
+    display: 'row'
   }
 
   _searchSpeakers = (query) => {
@@ -64,6 +65,17 @@ class SpeakersScreen extends Component {
     })
   }
 
+  _gridRow = () => {
+    // if ( this.props.expanded ) {
+    //   this.props.collapseSpeakersList()
+    // } else {
+    //   this.props.expandSpeakersList()
+    // }
+    this.setState({
+      display: this.state.display === 'row' ? 'grid' : 'row'
+    })
+  }
+
   render() {
     const { speakerList } = this.state
     console.log('speakers', this.props.expanded)
@@ -74,9 +86,22 @@ class SpeakersScreen extends Component {
           pageName='Speakers' 
           pageSub='Big names, Bigger ideas'
         />
-        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} expanded={this.props.expanded} expandCollapse={this._expandCollapse} />
+        <AppSearch 
+          onChangeText={this._searchSpeakers} 
+          filter={this._filterSpeakers} 
+          expanded={this.props.expanded} 
+          expandCollapse={this._expandCollapse}
+          gridRow={this._gridRow} 
+          display={this.state.display}
+        />
         <ScreenContent style={speakerScreenStyle}>
-          <SpeakerList screen={'Speakers'} speakers={speakerList} filter={this._filterSpeakers} expanded={this.props.expanded} />
+          <SpeakerList 
+            screen={'Speakers'} 
+            speakers={speakerList} 
+            filter={this._filterSpeakers} 
+            expanded={this.props.expanded} 
+            display={this.state.display}
+          />
         </ScreenContent>
       </AppScreen>
     )

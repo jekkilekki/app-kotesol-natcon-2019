@@ -16,7 +16,8 @@ import BubbleTab from '../shared/layout/BubbleTab';
 class ScheduleScreen extends Component {
   state = {
     speakerList: this.props.scheduledSpeakers,
-    expanded: false
+    expanded: false, 
+    input: ''
   }
 
   _searchSpeakers = (query) => {
@@ -31,7 +32,8 @@ class ScheduleScreen extends Component {
       return speakerData.indexOf(filterData) > -1
     })
     this.setState({
-      speakerList: filteredList
+      speakerList: filteredList,
+      input: query
     })
   }
 
@@ -50,7 +52,8 @@ class ScheduleScreen extends Component {
     })
     console.log('filtering in the schedule screen yo: ', filteredList)
     this.setState({
-      speakerList: filteredList
+      speakerList: filteredList,
+      input: ''
     })
   }
 
@@ -75,7 +78,13 @@ class ScheduleScreen extends Component {
           pageSub='Explore the presentation tracks'
         />
         {/* Maybe we don't put Search on the ScheduleScreen - or we have to rewrite / modify the search / filter functions. */}
-        <AppSearch onChangeText={this._searchSpeakers} filter={this._filterSpeakers} expanded={this.state.expanded} expandCollapse={this._expandCollapse} />
+        <AppSearch 
+          onChangeText={this._searchSpeakers} 
+          filter={this._filterSpeakers} 
+          inputValue={this.state.input}
+          expanded={this.state.expanded} 
+          expandCollapse={this._expandCollapse} 
+        />
         <BubbleTab tabs={['Schedule', 'My Schedule']} />
         {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>

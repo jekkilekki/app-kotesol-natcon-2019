@@ -1,7 +1,9 @@
 import firebase from 'firebase'
 import {
   PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
-  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL
+  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL,
+  SPEAKER_LIKE,
+  SPEAKER_DISLIKE
 } from './types'
 
 export const profileFieldUpdate = ({ prop, value }) => {
@@ -75,5 +77,29 @@ export const profileFetch = ( uid = '' ) => {
           payload: snapshot.val()
         })
       })
+  }
+}
+
+export const updateProfile = () => {
+
+}
+
+export const likeSpeaker = (id) => {
+  return (dispatch) => {
+
+    // dispatch({
+    //   type: UPDATE_PROFILE,
+    // })
+    dispatch({
+      type: SPEAKER_LIKE,
+      payload: id
+    })
+  }
+}
+
+export const dislikeSpeaker = (id) => {
+  return {
+    type: SPEAKER_DISLIKE,
+    payload: id
   }
 }
