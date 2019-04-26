@@ -18,6 +18,7 @@ class SpeakerList extends Component {
     searchValue: '',
     speakerList: [],
     speakerSectionList: [],
+    sectionClass: {height: 0},
     loading: true
   }
 
@@ -46,6 +47,8 @@ class SpeakerList extends Component {
   _createSpeakerSections(speakersPropsData) {
     let speakerData = this._groupByTime(speakersPropsData)
     let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
+    console.log("Speaker Data: ", speakerData)
+    console.log("SpeakerArray: ", speakerArray)
     let speakerSections = []
 
     for ( var i = 0; i < speakerArray.length; i++ ) {
@@ -57,8 +60,10 @@ class SpeakerList extends Component {
     }
 
     // Put the "All Day" stuff at the beginning of the schedule
-    const allDay = speakerSections.pop()
-    speakerSections.unshift(allDay)
+    if ( 'All day' in speakerData ) {
+      const allDay = speakerSections.pop()
+      speakerSections.unshift(allDay)
+    }
 
     return speakerSections
   }
@@ -83,6 +88,15 @@ class SpeakerList extends Component {
       case '17:00': return '5:00 (Closing)'
       case '18:00': return 'After Party'
       default: return time
+    }
+  }
+
+  // TODO: How can we expand / collapse Sections by clicking on the button?
+  _expandSection = (section) => {
+    if ( this.state.sectionClass === {height: 0} ) {
+      this.setState({ sectionClass: {height: 'auto'}})
+    } else {
+      this.setState({ sectionClass: {height: 0}})
     }
   }
 
@@ -111,8 +125,8 @@ class SpeakerList extends Component {
         renderSectionHeader={({section}) => (
             <View style={styles.sectionBox}>
               <H2 style={styles.sectionTitle}>{section.title}</H2>
-              <TouchableOpacity style={styles.sectionButton} onPress={() => alert('Pressed!')}>
-                <MaterialIcon name={'arrow-drop-up'} />
+              <TouchableOpacity style={styles.sectionButton} onPress={(section) => this._expandSection(section)}>
+                <MaterialIcon name={'arrow-drop-up'} size={24} style={styles.sectionArrow} />
               </TouchableOpacity>
             </View>
           )
@@ -149,6 +163,16 @@ const styles = StyleSheet.create({
     height: 1,
     borderBottomWidth: 3,
     borderColor: '#232377'
+  },
+  sectionBox: {
+    flexDirection: 'row', 
+    justifyContent: 'center',
+    marginLeft: 15
+  },
+  sectionArrow: {
+    color: '#232377',
+    opacity: 0.8,
+    marginTop: 20
   },
   sectionTitle: {
     color: '#232377',

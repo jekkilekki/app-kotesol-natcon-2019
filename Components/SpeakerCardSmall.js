@@ -90,7 +90,12 @@ class SpeakerCardSmall extends Component {
           end={{x: 1, y: 1}}
           locations={[0,1]}
         >
-          {!this.state.expanded && <View style={[styles.trackColor, {backgroundColor: getTrackColor(track)}]} />}
+          {!this.state.expanded && 
+            <TouchableOpacity 
+              style={[styles.trackColor, {backgroundColor: getTrackColor(track)}]} 
+              onPress={() => this._filter(track)}
+            />
+          }
           {this.state.expanded 
             ? <TouchableOpacity style={styles.expandButton} onPress={() => this.setState({expanded: false})}>
                 <MaterialCommunityIcon name={'arrow-expand-up'} />

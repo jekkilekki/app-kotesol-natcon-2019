@@ -78,7 +78,7 @@ class ScheduleScreen extends Component {
           pageSub='Explore the presentation tracks'
         />
         {/* Maybe we don't put Search on the ScheduleScreen - or we have to rewrite / modify the search / filter functions. */}
-        <AppSearch 
+        <AppSearch schedule
           onChangeText={this._searchSpeakers} 
           filter={this._filterSpeakers} 
           inputValue={this.state.input}

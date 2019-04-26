@@ -37,7 +37,7 @@ class AppSearch extends Component {
         <TextInput 
           placeholder={'Search'}
           placeholderTextColor={'rgba(255,255,255,0.3)'}
-          style={styles.searchInput}
+          style={[styles.searchInput, {width: this.props.schedule ? width - 90 : width - 118}]}
           onChangeText={(value) => this._search(value)}
           value={this.props.inputValue}
         />
@@ -49,13 +49,15 @@ class AppSearch extends Component {
               <MaterialCommunityIcon name={'arrow-expand-vertical'} size={18} style={styles.expandCollapse} />
             </TouchableOpacity>
         }
-        {this.props.display === 'grid' 
-          ? <TouchableOpacity onPress={() => this._gridRow()}>
-              <MaterialCommunityIcon name={'table-of-contents'} size={18} style={styles.expandCollapse} />
-            </TouchableOpacity>
-          : <TouchableOpacity onPress={() => this._gridRow()}>
-              <MaterialCommunityIcon name={'view-grid'} size={18} style={styles.expandCollapse} />
-            </TouchableOpacity>
+        {!this.props.schedule && this.props.display === 'grid' &&
+          <TouchableOpacity onPress={() => this._gridRow()}>
+            <MaterialCommunityIcon name={'table-of-contents'} size={18} style={styles.expandCollapse} />
+          </TouchableOpacity>
+        }
+        {!this.props.schedule && this.props.display === 'row' &&
+          <TouchableOpacity onPress={() => this._gridRow()}>
+            <MaterialCommunityIcon name={'view-grid'} size={18} style={styles.expandCollapse} />
+          </TouchableOpacity>
         }
         <Dropdown list={tracks} onChange={(value) => this._filter(value)} />
       </View>
@@ -101,7 +103,6 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderRadius: 15,
     height: 26,
-    width: width - 120
   },
 })
 
