@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import { MapView } from 'expo'
 
 import AppHeader from '../shared/layout/AppHeader'
 import Loader from '../shared/Loader'
 import AppScreen from '../shared/layout/AppScreen'
+import ScreenContent from '../shared/layout/ScreenContent'
+import H2 from '../shared/text/H2'
 import mapStyle from '../../utils/mapStyle'
+
+const { width } = Dimensions.get('window')
 
 class MapScreen extends Component {
   state = {
@@ -44,13 +48,20 @@ class MapScreen extends Component {
           pageName='Location' 
           pageSub='Discover Jeonju'
         />
-        <MapView 
-          style={{ alignSelf: 'stretch', height: 300 }} 
-          initialRegion={this.state.region} 
-          provider={MapView.PROVIDER_GOOGLE}
-          customMapStyle={mapStyle}
-          onRegionChange={this._onRegionChange}
-        />
+        <ScreenContent>
+          <H2 color={'#232377'}>Venue: Star Center</H2>
+          <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={{width: 300, height: 300}} />
+          <H2 color={'#232377'}>Room Locations</H2>
+          <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={{width: 300, height: 300}} />
+          <H2 color={'#232377'}>Around Campus</H2>
+          <MapView 
+            style={{ alignSelf: 'stretch', height: 300 }} 
+            initialRegion={this.state.region} 
+            provider={MapView.PROVIDER_GOOGLE}
+            customMapStyle={mapStyle}
+            onRegionChange={this._onRegionChange}
+          />
+        </ScreenContent>
       </AppScreen>
     )
   }
@@ -61,6 +72,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  image: {
+    width: width,
+    height: width
+  },
+  center: {
+    width: 280, 
+    height: 320
+  },
+  floorPlan: {
+    width: 300,
+    height: 520
+  },
+  map: {
+    alignSelf: 'stretch',
+    height: 300
   }
 })
 

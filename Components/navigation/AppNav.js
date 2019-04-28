@@ -111,7 +111,7 @@ const tabNavigation = createBottomTabNavigator({
     }
   }
 }, { 
-  initialRouteName: 'Speakers',
+  initialRouteName: 'Map',
   tabBarComponent: (props) => 
     <TabBar tabColors={["#f62626", "#ff8a14", "#e5ff0a", "#21ff30", "#196eff"]} {...props} />,
   tabBarOptions: {
