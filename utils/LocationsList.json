@@ -1,0 +1,278 @@
+[
+  {
+    "id": "knc2019-cafe01",
+    "name": "Pandorothy Café",
+    "type": "café",
+    "location": "Star Center, 2nd floor",
+    "address": ["전북 전주시 완산구 천잠로 303 49동", "(우) 55069(지번) 효자동3가 1203"],
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe02",
+    "name": "Mango Six Café",
+    "type": "café",
+    "location": "Jayoo (Freedom) Building, front",
+    "address": ["전북 전주시 완산구 천잠로 303", "(우) 55069(지번) 효자동3가 1203"],
+    "phone": "063-225-9606",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe03",
+    "name": "Café Bene",
+    "type": "café",
+    "location": "Star Tower",
+    "address": "",
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe04",
+    "name": "NEW Café",
+    "type": "café",
+    "location": "Development Center, front",
+    "address": "",
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe05",
+    "name": "Ediya Café",
+    "type": "café",
+    "location": "Old gate",
+    "address": ["전북 전주시 완산구 백마산길 26", "(우) 55068(지번) 효자동3가 1172-1"],
+    "phone": "063-223-3133",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe06",
+    "name": "Kaldi Café",
+    "type": "café",
+    "location": "Back road",
+    "address": ["전북 전주시 완산구 천잠로 259-13", "(우) 55069(지번) 효자동2가 1066-21"],
+    "phone": "063-236-9393",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe07",
+    "name": "Starbucks 1",
+    "type": "café",
+    "location": "Near post office",
+    "address": ["전북 전주시 완산구 홍산로 238", "(우) 54969(지번) 효자동2가 1154-3"],
+    "phone": "063-236-8897",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe08",
+    "name": "Starbucks",
+    "type": "café",
+    "location": "Shinsikaji",
+    "address": ["전북 전주시 완산구 홍산중앙로 22", "(우) 54969(지번) 효자동3가 1541-7"],
+    "phone": "063-228-8750",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe09",
+    "name": "Café Bean",
+    "type": "café",
+    "location": "Vision University",
+    "address": ["전북 전주시 완산구 천잠로 235", "(우) 55069(지번) 효자동2가 1070"],
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe10",
+    "name": "Champion Kennel",
+    "type": "café",
+    "location": "Vision University, entrance",
+    "address": ["전북 전주시 완산구 천잠로 227-14", "(우) 55069(지번) 효자동2가 1058"],
+    "phone": "010-8882-0090",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe11",
+    "name": "Color in Coffee",
+    "type": "café",
+    "location": "Vision University",
+    "address": ["전북 전주시 완산구 천잠로 235", "(우) 55069(지번) 효자동2가 1070"],
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe12",
+    "name": "Ju Coffee",
+    "type": "café",
+    "location": "New Gate",
+    "address": ["전북 전주시 완산구 서원로 2 1층", "(우) 55060(지번) 효자동3가 1724-4"],
+    "phone": "063-237-5275",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe14",
+    "name": "The Liter",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 효자로 64 1층", "(우) 55068(지번) 효자동3가 1167-9"],
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe15",
+    "name": "Juicy",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 백마산길 10", "(우) 55068(지번) 효자동3가 1167-5"],
+    "phone": "063-228-9244",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe16",
+    "name": "Gong Cha",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 백마산길 14 1층", "(우) 55068(지번) 효자동3가 1169-10"],
+    "phone": "070-4065-0042",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe17",
+    "name": "Yogerpresso",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 백마산길 22-4 2층", "(우) 55068(지번) 효자동3가 1172-4"],
+    "phone": "063-245-2197",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe17",
+    "name": "Vero Espresso",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 백마산길 23", "(우) 55068(지번) 효자동3가 1183-11"],
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe18",
+    "name": "아퀴떼르메",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 천잠로 303 스타타워 1층", "(우) 55069(지번) 효자동3가 1203"],
+    "phone": "",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe19",
+    "name": "카페샌앤토",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 효자동3가 1203"],
+    "phone": "063-229-0455",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe20",
+    "name": "트리&카펜터스",
+    "type": "café",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 백마산길 67-5", "(우) 55068(지번) 효자동3가 1339-4"],
+    "phone": "010-3658-0793",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe21",
+    "name": "Holly's Coffee",
+    "type": "café",
+    "location": "By Car, shopping center",
+    "address": ["전북 전주시 완산구 효자동3가 1045-50 A동 1,2층"],
+    "phone": "063-901-0802",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-cafe22",
+    "name": "Café Drop Top",
+    "type": "café",
+    "location": "By Car",
+    "address": ["전북 전주시 완산구 효자로 161 103호", "(우) 54963(지번) 효자동3가 1693-5"],
+    "phone": "070-8808-2131",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  },
+  {
+    "id": "knc2019-food01",
+    "name": "Gilgoryeo",
+    "type": "eatery",
+    "location": "Old Gate",
+    "address": ["전북 전주시 완산구 백마산길 28", "(우) 55068(지번) 효자동3가 1173-1"],
+    "phone": "063-229-3735",
+    "website": "",
+    "menu": []
+    "img": "",
+    "comment": ""
+  }
+]
