@@ -50,7 +50,7 @@ class SpeakerCardSmall extends Component {
 
     if ( this.props.screen === 'Speakers' && 
       (id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration')
-      || id === 'plenary-old' ) 
+      || id === 'plenary-old' || name === 'Ehean Kim' ) 
       return null 
 
     if ( id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration' ) {
@@ -59,7 +59,7 @@ class SpeakerCardSmall extends Component {
           <LinearGradient 
             style={[styles.cardBackground, {paddingTop: 15}]} 
             // colors={[white, white]}
-            colors={[blue, blueDark]}
+            colors={[blueDark, blue]}
             start={{x: 0.0, y: 0}} 
             end={{x: 1, y: 1}}
             locations={[0,1]}
@@ -169,14 +169,14 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
     paddingBottom: 10,
-    borderRadius: 20,
+    borderRadius: 15,
     // flexDirection: 'row',
     // flexWrap: 'wrap',
     // justifyContent: 'center'
   },
   cardStyle: {
     flexDirection: 'row',
-    borderRadius: 20,
+    borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
     marginBottom: 10,

@@ -15,7 +15,7 @@ const { width } = Dimensions.get('window')
 
 class PlenaryCard extends Component {
   state = {
-    expanded: this.props.expanded
+    expanded: true || this.props.expanded
   }
 
   _goToSession = () => {
