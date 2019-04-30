@@ -156,6 +156,9 @@ class MapScreen extends Component {
             onRegionChange={this._onRegionChange}
             // mapType={'mutedStandard'}
           >
+            <P>
+              As with most universities in Korea, 
+            </P>
             <MapView.Marker
               identifier={'Star Center'}
               coordinate={jjuStarCenterCoords}
