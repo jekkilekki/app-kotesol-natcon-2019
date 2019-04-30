@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Button } from 'react-native'
 import { MapView } from 'expo'
 import { connect } from 'react-redux'
 // import MapboxGL from '@mapbox/react-native-mapbox-gl'
@@ -124,14 +124,13 @@ class MapScreen extends Component {
           <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
           <P dark>
             Jeonju University is located at the west end of Jeonju. From the bus terminal, 
-            it will take approximately 15 minutes by taxi (probably a little more than 5,000 
-            won) to arrive there. Star Center is located right in the center the university, 
-            and is the largest building on campus. It sits just in front of the large clock 
-            tower building, and has tennis courts below it.
+            it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive there. 
+            Star Center is located in the center the university, and is the largest building on campus. 
+            It sits just in front of the large clock tower building, and has tennis courts below it.
           </P><P dark>
-            The conference will take place on the 1st & 2nd floors of Star Center. You may enter 
-            through either the Onnuri Hall auditorium entrance (floor B1 in front of the clock tower), 
-            or the Food Court entrance (floor 2, near the fountain).
+            The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
+            through one of three doors: (1) Floor B1: Onnuri Hall auditorium entrance (in front of the clock tower), 
+            (2) Floor 1: parking garage entrance, or (3) Floor 2: Food Court entrance (near the fountain).
           </P>
           <H2 dark>Rooms</H2>
           <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image, {height: 540}]} />
@@ -145,6 +144,20 @@ class MapScreen extends Component {
           <TouchableOpacity onPress={() => this._centerMap()}>
             <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
           </TouchableOpacity>
+          <P dark>
+            As with most universities in Korea, Jeonju University's entrances are 
+            surrounded with many different cafés and eateries ranging from Korean lunchboxes 
+            (도시락), to sit-down BBQ places, to Western and international foods. This page 
+            highlights only a few of these, but also points out the main areas where you might 
+            find something tasty: (1) on campus, (2) the Old gate, (3) the New gate, (4) the 
+            New development area (Shinsikaji).
+          </P>
+          <View style={{flex: 1, justifyContent: 'space-between'}}>
+            <Button title={'Campus'} />
+            <Button title={'Old gate'} />
+            <Button title={'New gate'} />
+            <Button title={'Shinsikaji'} />
+          </View>
           <MapView 
             style={{ alignSelf: 'stretch', height: 300, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
             initialRegion={jjuStarCenterCoords} 
@@ -156,9 +169,6 @@ class MapScreen extends Component {
             onRegionChange={this._onRegionChange}
             // mapType={'mutedStandard'}
           >
-            <P>
-              As with most universities in Korea, 
-            </P>
             <MapView.Marker
               identifier={'Star Center'}
               coordinate={jjuStarCenterCoords}
