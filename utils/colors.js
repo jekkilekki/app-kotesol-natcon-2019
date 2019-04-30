@@ -17,6 +17,25 @@ export const pinkAlt = '#ed0972'
 export const pinkDark = '#ec174f'
 export const pinkDarker = '#d5164c'
 
+/* App Colors */
+export const appBlack = '#151537'
+export const appDarkBlue = '#232377'
+export const appOrange = '#F597A8'
+export const appBlue = '#00b9f1'
+export const appPink = '#ed0972'
+export const appPurple = '#d63aff'
+export const appDarkPurple = '#60f'
+export const appTeal = '#00dddd'
+
+export const appBlack70 = 'rgba(21,21,55,0.7)'
+export const appDarkBlue70 = 'rgba(35,35,119,0.7)'
+export const appOrange70 = 'rgba(245,151,168,0.7)'
+export const appBlue70 = 'rgba(0,185,241,0.7)'
+export const appPink70 = 'rgba(237,9,114,0.7)'
+export const appPurple70 = 'rgba(214,58,255,0.7)'
+export const appDarkPurple70 = 'rgba(102,0,255,0.7)'
+export const appTeal70 = 'rgba(0,221,221,0.7)'
+
 /* Base Colors */
 export const black = '#000000'
 export const white = '#ffffff'

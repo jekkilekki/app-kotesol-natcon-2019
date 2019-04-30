@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Button, TouchableOpacity, StyleSheet } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import AppText from '../text/AppText'
+import P from '../text/P';
 
 class Dropdown extends Component {
   state = {
@@ -9,6 +10,7 @@ class Dropdown extends Component {
   }
 
   _openFilterMenu = () => {
+    alert(this.props.list)
     this.setState({ filterOpen: !this.state.filterOpen })
   }
 
@@ -18,12 +20,15 @@ class Dropdown extends Component {
   }
 
   render() {
-    const { list } = this.props 
+    const { list, title } = this.props 
 
     return (
       <View>
         <TouchableOpacity onPress={this._openFilterMenu}>
-          <MaterialIcon style={styles.searchFilter} name='filter-list' size={24} color={'rgba(255,255,255,0.5)'} focused={'rgba(255,255,255,0.7)'} />
+          {title 
+            ? <P dark small>{title}</P>
+            : <MaterialIcon style={styles.searchFilter} name='filter-list' size={24} color={'rgba(255,255,255,0.5)'} focused={'rgba(255,255,255,0.7)'} />
+          }
         </TouchableOpacity>
         {this.state.filterOpen &&
           <View style={styles.filterPicker}>
@@ -60,6 +65,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     // shadowRadius: 5,
     elevation: 1,
+    zIndex: 10
   },
   listItem: {
     color: '#232377',

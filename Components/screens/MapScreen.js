@@ -2,32 +2,64 @@ import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Button } from 'react-native'
 import { MapView } from 'expo'
 import { connect } from 'react-redux'
-// import MapboxGL from '@mapbox/react-native-mapbox-gl'
-// import { mapboxToken } from '../../utils/_config'
 
 import AppHeader from '../shared/layout/AppHeader'
 import Loader from '../shared/Loader'
 import AppScreen from '../shared/layout/AppScreen'
 import ScreenContent from '../shared/layout/ScreenContent'
 import H2 from '../shared/text/H2'
-import mapStyle from '../../utils/mapStyle'
-import P from '../shared/text/P';
+import P from '../shared/text/P'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Dropdown from '../shared/layout/Dropdown'
+import SmallButton from '../shared/buttons/SmallButton'
+import ContentButton from '../shared/buttons/ContentButton'
+
+import { 
+  appBlack, appDarkBlue, appOrange, appBlue, appPink, appPurple, appDarkPurple, appTeal,
+  appBlack70, appDarkBlue70, appOrange70, appBlue70, appPink70, appPurple70, appDarkPurple70, appTeal70,
+} from '../../utils/colors'
 
 const { width } = Dimensions.get('window')
 const Marker = MapView.Marker
+const Circle = MapView.Circle
 
-// MapboxGL.setAccessToken( mapboxToken )
 const jjuStarCenterCoords = {
   latitude: 35.814088,
   longitude: 127.088927,
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }
+const jjuCoords = {
+  latitude: 35.814088,
+  longitude: 127.088927,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
+const shinsikajiCoords = {
+  latitude: 35.817314,
+  longitude: 127.109360,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
+const gaeksaCoords = {
+  latitude: 35.817700,
+  longitude: 127.143968,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
+const hanokVillageCoords = {
+  latitude: 35.814269,
+  longitude: 127.151225,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
 
 class MapScreen extends Component {
   state = {
+    map: jjuStarCenterCoords,
     mapLoaded: false,
+    markerArea: 'Campus',
+    markerType: 'café',
     region: jjuStarCenterCoords,
     camera: {
       center: {
@@ -47,29 +79,98 @@ class MapScreen extends Component {
 
   _onRegionChange = (region) => {
     this.setState({ region })
-    console.log(this.map.getCamera)
+  }
+
+  async getCamera() {
+    const camera = await this.map.getCamera()
+    alert('Current camera' + JSON.stringify(camera), [{text: 'OK'}], {cancelable: true})
+  }
+
+  async setCamera(location) {
+    const camera = await this.map.getCamera()
+    // This is similar to setState, just pass the properties to change
+    this.map.setCamera({
+      center: location
+    })
+  }
+
+  async animateCamera(location) {
+    const camera = await this.map.getCamera()
+    camera.center = location
+    this.map.animateCamera(camera, { duration: 1000 })
   }
 
   _centerMap = () => {
     this.setState({
       region: jjuStarCenterCoords
     })
-    this.map.animateToRegion({ region: jjuStarCenterCoords, duration: 500 })
+    this.map.animateToRegion({ jjuStarCenterCoords }, 1000)
+  }
+
+  renderMap() {
+    const { map } = this.state
+
+    return (
+      <MapView 
+        style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
+        region={map} 
+        // initialCamera={this.state.camera}
+        minZoomLevel={15}
+        provider={MapView.PROVIDER_GOOGLE}
+        ref={ref => this.map = ref}
+        onPanDrag={this._onRegionChange}
+      >
+        <Marker
+          identifier={'Star Center'}
+          coordinate={map}
+          anchor={{ x: 0.5, y: 0.5 }}
+          title={'Star Center'}
+          description={'KOTESOL 2019 National Conference'}
+          pinColor={'#d63aff'}
+          // image={carImage}
+        />
+        {this.renderMarkers()}
+      </MapView>
+    )
   }
 
   renderMarkers() {
     const { locations } = this.props
-    console.log(locations)
-    return this.props.locations.data.map((place, i) => (
-      <Marker
-        key={i}
-        identifier={place.id}
-        title={place.title}
-        description={place.description}
-        coordinate={place.coordinate}
-        pinColor={'#232377'}
-      />
-    ))
+
+    return locations.data.map((place, i) => {
+      if ( place.area.toLowerCase() === this.state.markerArea.toLowerCase() ) {
+        return (
+          <Marker
+            key={i}
+            identifier={place.id}
+            title={place.title}
+            description={place.description}
+            coordinate={place.coordinate}
+            pinColor={place.pinColor}
+          />
+        )
+      }
+    })
+  }
+
+  renderMapButtons() {
+    return (
+      <View>
+        <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 10}}>
+          <ContentButton title={'Jeonju University'} color={'#232377'} onPress={() => this.setState({ map: jjuStarCenterCoords})} />
+          <ContentButton title={'Shinsikaji (new downtown)'} color={'#00dddd'} onPress={() => this.setState({ map: shinsikajiCoords })} />
+          <ContentButton title={'Gaeksa (downtown)'} color={'#151537'} onPress={() => this.setState({ map: gaeksaCoords })} />
+          <ContentButton title={'Hanok Village'} color={'#60f'} onPress={() => this.setState({ map: hanokVillageCoords })} />
+        </View>
+        <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
+          <SmallButton title={'Coffee'} color={appTeal70} onPress={() => this.setState({ markerArea: 'Campus' })} />
+          <SmallButton title={'Food'} color={appDarkBlue70} onPress={() => this.setState({ markerArea: 'Old gate' })} />
+          <SmallButton title={'Drinks'} color={appPink70} onPress={() => this.setState({ markerArea: 'New gate' })} />
+          <SmallButton title={'Sights'} color={appPurple70} onPress={() => this.setState({ markerArea: 'Shinsikaji' })} />
+          <SmallButton title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerArea: 'Shinsikaji' })} />
+        </View>
+      </View>
+    )
   }
 
   render() {
@@ -93,15 +194,19 @@ class MapScreen extends Component {
         <ScreenContent>
         <MapView 
             style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -15, marginLeft: -15, marginRight: -15 }} 
-            initialRegion={jjuStarCenterCoords} 
+            region={jjuStarCenterCoords}
             // initialCamera={this.state.camera}
             minZoomLevel={17}
             provider={MapView.PROVIDER_GOOGLE}
-            // customMapStyle={mapStyle}
-            onRegionChange={this._onRegionChange}
-            // mapType={'mutedStandard'}
+            onPanDrag={this._onRegionChange}
           >
-            <MapView.Marker
+            <Circle 
+              center={jjuStarCenterCoords}
+              radius={40}
+              fillColor={'rgba(0,221,221,0.2)'}
+              strokeColor={'rgba(0,0,0,0.2)'}
+            />
+            <Marker
               identifier={'Star Center'}
               coordinate={jjuStarCenterCoords}
               anchor={{ x: 0.5, y: 0.5 }}
@@ -111,13 +216,13 @@ class MapScreen extends Component {
               // image={carImage}
             />
           </MapView>
-          {/* <MapboxGL.MapView
-            ref={c => this._map = c}
-            style={{flex: 1}}
-            zoomLevel={15}
-            centerCoordinate={jjuStarCenterCoords}
-          ></MapboxGL.MapView> */}
-          <H2 dark center>Jeonju University</H2>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <H2 dark center>Jeonju University</H2>
+            <TouchableOpacity onPress={() => this._centerMap()}>
+              <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
+            </TouchableOpacity>
+          </View>
+          <P dark small>(55069) 전라북도 전주시 완산구 천잠로 303 전주대학교</P>
           {/* <Image resizeMode='contain' source={require('../../assets/img/star-center-map-doctored.jpg')} style={[styles.image, {height: 260}]} /> */}
           {/* <H2 dark center>Star Center</H2> */}
           <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
@@ -141,9 +246,6 @@ class MapScreen extends Component {
             cluster of white Engineering buildings there.
           </P>
           <H2 dark>Around Campus</H2>
-          <TouchableOpacity onPress={() => this._centerMap()}>
-            <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
-          </TouchableOpacity>
           <P dark>
             As with most universities in Korea, Jeonju University's entrances are 
             surrounded with many different cafés and eateries ranging from Korean lunchboxes 
@@ -152,34 +254,8 @@ class MapScreen extends Component {
             find something tasty: (1) on campus, (2) the Old gate, (3) the New gate, (4) the 
             New development area (Shinsikaji).
           </P>
-          <View style={{flex: 1, justifyContent: 'space-between'}}>
-            <Button title={'Campus'} />
-            <Button title={'Old gate'} />
-            <Button title={'New gate'} />
-            <Button title={'Shinsikaji'} />
-          </View>
-          <MapView 
-            style={{ alignSelf: 'stretch', height: 300, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
-            initialRegion={jjuStarCenterCoords} 
-            // initialCamera={this.state.camera}
-            minZoomLevel={15}
-            provider={MapView.PROVIDER_GOOGLE}
-            ref={map => this.map = map}
-            // customMapStyle={mapStyle}
-            onRegionChange={this._onRegionChange}
-            // mapType={'mutedStandard'}
-          >
-            <MapView.Marker
-              identifier={'Star Center'}
-              coordinate={jjuStarCenterCoords}
-              anchor={{ x: 0.5, y: 0.5 }}
-              title={'Star Center'}
-              description={'KOTESOL 2019 National Conference'}
-              pinColor={'#d63aff'}
-              // image={carImage}
-            />
-            {this.renderMarkers()}
-          </MapView>
+          {this.renderMapButtons()}
+          {this.renderMap()}
         </ScreenContent>
       </AppScreen>
     )

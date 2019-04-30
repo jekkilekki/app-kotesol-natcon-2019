@@ -20,7 +20,7 @@ export function isIphoneX() {
 
 export function getTrackColor(track) {
   switch (track.toLowerCase()) {
-    case 'plenary': return '#232377'
+    case 'plenary': return '#151537'
     case 'highlighted': return '#232377'
     case 'motivation': return '#F597A8'
     case 'skills': return '#00b9f1'

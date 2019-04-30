@@ -8,8 +8,9 @@ const P = (props) => {
       style={[{
         paddingBottom: 10, 
         opacity: 0.9,
-        fontSize: props.note ? 12 : 15,
-        color: props.dark ? '#232377' : '#fff'
+        fontSize: props.note || props.small ? 12 : 15,
+        color: props.dark ? props.note || props.small ? 'rgba(0,0,0,0.7)' : '#232377' : '#fff',
+        marginTop: props.note || props.small ? -10 : 0
       }, props.style]}
     >
       {props.children}

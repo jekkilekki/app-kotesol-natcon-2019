@@ -13,7 +13,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.814106,
       "longitude": 127.089803
@@ -33,7 +33,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.812641,
       "longitude": 127.090226
@@ -53,7 +53,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.816209,
       "longitude": 127.089392
@@ -73,7 +73,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.814315,
       "longitude": 127.085609
@@ -93,7 +93,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.817686,
       "longitude": 127.090416
@@ -113,7 +113,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.810577,
       "longitude": 127.091771
@@ -133,7 +133,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.814971,
       "longitude": 127.106434
@@ -153,7 +153,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.815609,
       "longitude": 127.109273
@@ -173,7 +173,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.809582,
       "longitude": 127.090061
@@ -193,7 +193,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.807571,
       "longitude": 127.093698
@@ -213,7 +213,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.808110,
       "longitude": 127.089147
@@ -233,7 +233,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.813500,
       "longitude": 127.094599
@@ -253,7 +253,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.818059,
       "longitude": 127.092114
@@ -273,7 +273,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.818015,
       "longitude": 127.091986
@@ -293,7 +293,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.818027,
       "longitude": 127.091513
@@ -313,7 +313,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.818007,
       "longitude": 127.090774
@@ -333,7 +333,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 35.817284,
       "longitude": 127.090883
@@ -353,7 +353,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 0,
       "longitude": 0
@@ -373,7 +373,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 0,
       "longitude": 0
@@ -393,7 +393,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 0,
       "longitude": 0
@@ -413,7 +413,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 0,
       "longitude": 0
@@ -433,7 +433,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#00dddd",
     "coordinate": {
       "latitude": 0,
       "longitude": 0
@@ -453,7 +453,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.814106,
       "longitude": 127.089803
@@ -473,7 +473,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.817388,
       "longitude": 127.090158
@@ -493,7 +493,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.807803,
       "longitude": 127.094560
@@ -513,7 +513,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.808830,
       "longitude": 127.094196
@@ -533,7 +533,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.809465,
       "longitude": 127.094142
@@ -553,7 +553,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.809656,
       "longitude": 127.095998
@@ -573,7 +573,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.810143,
       "longitude": 127.095344
@@ -593,7 +593,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.813415,
       "longitude": 127.095526
@@ -613,7 +613,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.813406,
       "longitude": 127.094968
@@ -633,7 +633,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 0,
       "longitude": 0
@@ -653,7 +653,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.817443,
       "longitude": 127.091406
@@ -673,7 +673,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.818052,
       "longitude": 127.092018
@@ -693,7 +693,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.818435,
       "longitude": 127.094014
@@ -713,7 +713,7 @@
     "menu": [],
     "img": "",
     "comment": "",
-    "pinColor": "",
+    "pinColor": "#232377",
     "coordinate": {
       "latitude": 35.818059,
       "longitude": 127.092114
