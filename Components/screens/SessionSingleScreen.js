@@ -49,7 +49,7 @@ class SessionSingleScreen extends Component {
               // end={{x: 0.75, y: 1}}
               // locations={[0,1]}
             >
-              <SpeakerLikeButton large color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
+              <SpeakerLikeButton large id={speaker.id} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
               <View style={styles.speakerMeta}>
                 <AppScreenTitle small>{speaker.title}</AppScreenTitle>
                 <AppScreenSubtitle>{speaker.name}</AppScreenSubtitle>
