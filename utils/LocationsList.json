@@ -1,5 +1,9 @@
 [
   {
+    "id": "jju-cafés",
+    "type": "divider"
+  },
+  {
     "id": "knc2019-cafe01",
     "title": "Pandorothy Café",
     "type": "café",
@@ -41,7 +45,7 @@
   },
   {
     "id": "knc2019-cafe03",
-    "title": "Café Bene",
+    "title": "Café Bene?",
     "type": "café",
     "description": "Star Tower",
     "location": "Jeonju University",
@@ -121,46 +125,6 @@
   },
   {
     "id": "knc2019-cafe07",
-    "title": "Starbucks",
-    "type": "café",
-    "description": "",
-    "location": "Shinsikaji",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 홍산로 238", "(우) 54969(지번) 효자동2가 1154-3"],
-    "phone": "063-236-8897",
-    "website": "",
-    "menu": [],
-    "img": "",
-    "comment": "",
-    "pinColor": "#00dddd",
-    "coordinate": {
-      "latitude": 35.814971,
-      "longitude": 127.106434
-    }
-  },
-  {
-    "id": "knc2019-cafe08",
-    "title": "Starbucks",
-    "type": "café",
-    "description": "",
-    "location": "Shinsikaji",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 홍산중앙로 22", "(우) 54969(지번) 효자동3가 1541-7"],
-    "phone": "063-228-8750",
-    "website": "",
-    "menu": [],
-    "img": "",
-    "comment": "",
-    "pinColor": "#00dddd",
-    "coordinate": {
-      "latitude": 35.815609,
-      "longitude": 127.109273
-    }
-  },
-  {
-    "id": "knc2019-cafe09",
     "title": "Café Bean",
     "type": "café",
     "description": "Vision University",
@@ -180,27 +144,7 @@
     }
   },
   {
-    "id": "knc2019-cafe10",
-    "title": "Champion Kennel",
-    "type": "hidden",
-    "description": "Vision University, entrance",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 천잠로 227-14", "(우) 55069(지번) 효자동2가 1058"],
-    "phone": "010-8882-0090",
-    "website": "",
-    "menu": [],
-    "img": "",
-    "comment": "",
-    "pinColor": "#00dddd",
-    "coordinate": {
-      "latitude": 35.807571,
-      "longitude": 127.093698
-    }
-  },
-  {
-    "id": "knc2019-cafe11",
+    "id": "knc2019-cafe08",
     "title": "Color in Coffee",
     "type": "café",
     "description": "Vision University",
@@ -220,27 +164,7 @@
     }
   },
   {
-    "id": "knc2019-cafe12",
-    "title": "Ju Coffee",
-    "type": "hidden",
-    "description": "New Gate",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 서원로 2 1층", "(우) 55060(지번) 효자동3가 1724-4"],
-    "phone": "063-237-5275",
-    "website": "",
-    "menu": [],
-    "img": "",
-    "comment": "",
-    "pinColor": "#00dddd",
-    "coordinate": {
-      "latitude": 35.813500,
-      "longitude": 127.094599
-    }
-  },
-  {
-    "id": "knc2019-cafe14",
+    "id": "knc2019-cafe09",
     "title": "The Liter",
     "type": "café",
     "description": "Old Gate",
@@ -260,27 +184,7 @@
     }
   },
   {
-    "id": "knc2019-cafe15",
-    "title": "Juicy",
-    "type": "hidden",
-    "description": "Old Gate",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 백마산길 10", "(우) 55068(지번) 효자동3가 1167-5"],
-    "phone": "063-228-9244",
-    "website": "",
-    "menu": [],
-    "img": "",
-    "comment": "",
-    "pinColor": "#00dddd",
-    "coordinate": {
-      "latitude": 35.818015,
-      "longitude": 127.091986
-    }
-  },
-  {
-    "id": "knc2019-cafe16",
+    "id": "knc2019-cafe10",
     "title": "Gong Cha",
     "type": "café",
     "description": "Old Gate",
@@ -300,7 +204,7 @@
     }
   },
   {
-    "id": "knc2019-cafe17",
+    "id": "knc2019-cafe11",
     "title": "Yogerpresso",
     "type": "café",
     "description": "Old Gate",
@@ -320,36 +224,59 @@
     }
   },
   {
-    "id": "knc2019-cafe17",
-    "title": "Vero Espresso",
-    "type": "hidden",
-    "description": "Old Gate",
-    "location": "Jeonju University",
+    "id": "shinsikaji-cafés",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-cafe12",
+    "title": "Starbucks",
+    "type": "café",
+    "description": "",
+    "location": "Shinsikaji",
     "area": "",
     "stars": 0,
-    "address": ["전북 전주시 완산구 백마산길 23", "(우) 55068(지번) 효자동3가 1183-11"],
-    "phone": "",
+    "address": ["전북 전주시 완산구 홍산로 238", "(우) 54969(지번) 효자동2가 1154-3"],
+    "phone": "063-236-8897",
     "website": "",
     "menu": [],
     "img": "",
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 35.817284,
-      "longitude": 127.090883
+      "latitude": 35.814971,
+      "longitude": 127.106434
+    }
+  }, {
+    "id": "knc2019-cafe13",
+    "title": "Starbucks",
+    "type": "café",
+    "description": "",
+    "location": "Shinsikaji",
+    "area": "",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산중앙로 22", "(우) 54969(지번) 효자동3가 1541-7"],
+    "phone": "063-228-8750",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#00dddd",
+    "coordinate": {
+      "latitude": 35.815609,
+      "longitude": 127.109273
     }
   },
   {
-    "id": "knc2019-cafe18",
-    "title": "아퀴떼르메",
-    "type": "hidden",
-    "description": "Old Gate",
-    "location": "Jeonju University",
-    "area": "",
+    "id": "knc2019-cafe14",
+    "title": "Mango Six Café",
+    "type": "café",
+    "description": "Near the provincial office",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
     "stars": 0,
-    "address": ["전북 전주시 완산구 천잠로 303 스타타워 1층", "(우) 55069(지번) 효자동3가 1203"],
+    "address": ["전북 전주시 완산구 홍산중앙로 41", "(우) 54969(지번) 효자동3가 1535-1"],
     "phone": "",
-    "website": "",
+    "website": "http://www.mangosix.co.kr/",
     "menu": [],
     "img": "",
     "comment": "",
@@ -360,16 +287,100 @@
     }
   },
   {
-    "id": "knc2019-cafe19",
-    "title": "카페샌앤토",
-    "type": "hidden",
-    "description": "Old Gate",
-    "location": "Jeonju University",
-    "area": "",
+    "id": "knc2019-cafe15",
+    "title": "Holly's Coffee",
+    "type": "café",
+    "description": "Near the provincial office",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
     "stars": 0,
-    "address": ["전북 전주시 완산구 효자동3가 1203"],
-    "phone": "063-229-0455",
-    "website": "",
+    "address": ["전북 전주시 완산구 홍산남로 51", "(우) 54969(지번) 효자동3가 1534-3"],
+    "phone": "063-228-4005",
+    "website": "http://www.hollys.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#00dddd",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe16",
+    "title": "Twosome Place",
+    "type": "café",
+    "description": "Near the provincial office",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 홍산중앙로 13 1층", "(우) 54969(지번) 효자동2가 1155-10"],
+    "phone": "063-274-2323",
+    "website": "http://www.twosomeplace.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#00dddd",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe17",
+    "title": "Coffeenie",
+    "type": "café",
+    "description": "Near the provincial office",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산4길 6 1층", "(우) 54969(지번) 효자동3가 1528-1"],
+    "phone": "063-225-9057",
+    "website": "http://www.coffeenie.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#00dddd",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe18",
+    "title": "Sulbing Dessert Café",
+    "type": "café",
+    "description": "Near the provincial office",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산3길 5 2층", "(우) 54969(지번) 효자동3가 1527-8"],
+    "phone": "063-221-3988",
+    "website": "http://www.sulbing.com/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#00dddd",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "gaeksa-cafes",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-cafe19",
+    "title": "I Am Tiramisu Dessert Café",
+    "type": "café",
+    "description": "Near the provincial office",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 전라감영3길 12-11", "(우) 55038(지번) 중앙동2가 43-1"],
+    "phone": "063-284-9966",
+    "website": "https://www.instagram.com/iamtiramisu_jeonju/",
     "menu": [],
     "img": "",
     "comment": "",
@@ -381,15 +392,15 @@
   },
   {
     "id": "knc2019-cafe20",
-    "title": "트리&카펜터스",
-    "type": "hidden",
-    "description": "Old Gate",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 백마산길 67-5", "(우) 55068(지번) 효자동3가 1339-4"],
-    "phone": "010-3658-0793",
-    "website": "",
+    "title": "Starbucks",
+    "type": "café",
+    "description": "Near movie street",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 전주객사4길 44-18", "(우) 54999(지번) 고사동 144-2"],
+    "phone": "063-287-8462",
+    "website": "http://www.istarbucks.co.kr/",
     "menu": [],
     "img": "",
     "comment": "",
@@ -401,15 +412,15 @@
   },
   {
     "id": "knc2019-cafe21",
-    "title": "Holly's Coffee",
-    "type": "hidden",
-    "description": "By Car, shopping center",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 효자동3가 1045-50 A동 1,2층"],
-    "phone": "063-901-0802",
-    "website": "",
+    "title": "Ediya Café",
+    "type": "café",
+    "description": "Near movie street",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 전주객사5길 32", "(우) 54999(지번) 고사동 55-6"],
+    "phone": "063-288-1725",
+    "website": "http://www.ediya.com/",
     "menu": [],
     "img": "",
     "comment": "",
@@ -420,16 +431,16 @@
     }
   },
   {
-    "id": "knc2019-cafe22",
-    "title": "Café Drop Top",
-    "type": "hidden",
-    "description": "By Car",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 0,
-    "address": ["전북 전주시 완산구 효자로 161 103호", "(우) 54963(지번) 효자동3가 1693-5"],
-    "phone": "070-8808-2131",
-    "website": "",
+    "id": "knc2019-cafe21",
+    "title": "Beyond Café",
+    "type": "café",
+    "description": "Near movie street",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 전주객사3길 16", "(우) 54999(지번) 고사동 436-1"],
+    "phone": "",
+    "website": "https://www.instagram.com/cafe_beyond/",
     "menu": [],
     "img": "",
     "comment": "",
@@ -438,6 +449,10 @@
       "latitude": 0,
       "longitude": 0
     }
+  },
+  {
+    "id": "jju-food",
+    "type": "divider"
   },
   {
     "id": "knc2019-food00",
@@ -466,7 +481,7 @@
     "description": "Bagette burgers",
     "location": "Jeonju University",
     "area": "Old gate",
-    "stars": 3.5,
+    "stars": 4,
     "address": ["전북 전주시 완산구 백마산길 28", "(우) 55068(지번) 효자동3가 1173-1"],
     "phone": "063-229-3735",
     "website": "",
@@ -718,5 +733,489 @@
       "latitude": 35.818059,
       "longitude": 127.092114
     }
-  }
+  },
+  {
+    "id": "shinsikaji-food",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-food14",
+    "title": "Burger King",
+    "type": "eatery",
+    "description": "Hamburgers",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 3.4,
+    "address": ["전북 전주시 완산구 효자로 194", "(우) 54969(지번) 효자동3가 1525-1"],
+    "phone": "063-224-0332",
+    "website": "http://www.burgerking.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food15",
+    "title": "Lotteria",
+    "type": "eatery",
+    "description": "Hamburgers",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 홍산로 253 102호", "(우) 54966(지번) 효자동2가 1239-4"],
+    "phone": "063-221-0661",
+    "website": "http://www.lotteria.com/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food16",
+    "title": "Baskin Robbins",
+    "type": "eatery",
+    "description": "Ice cream",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 홍산중앙로 27", "(우) 54969(지번) 효자동3가 1535-8"],
+    "phone": "063-226-3142",
+    "website": "http://www.baskinrobbins.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food17",
+    "title": "Veteran Kalguksu",
+    "type": "eatery",
+    "description": "Korean, 칼국수",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 우전로 260", "(우) 54966(지번) 효자동2가 1227-3"],
+    "phone": "063-229-1977",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food18",
+    "title": "Pho Mein",
+    "type": "eatery",
+    "description": "Vietnamese, pho",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 홍산중앙로 45 1층", "(우) 54969(지번) 효자동3가 1527-11"],
+    "phone": "063-225-2231",
+    "website": "http://www.phomein.com/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food19",
+    "title": "March Rabbit",
+    "type": "eatery",
+    "description": "Vegetarian options, salad",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산남로 30 1층", "(우) 54966(지번) 효자동2가 1242-8"],
+    "phone": "063-226-1974",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food20",
+    "title": "Mad Hungry Pub & Grill",
+    "type": "eatery",
+    "description": "Hamburgers, Western food, drinks",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산중앙로 42", "(우) 54969(지번) 효자동3가 1536-1"],
+    "phone": "063-237-3618",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food21",
+    "title": "Dalgom",
+    "type": "eatery",
+    "description": "Hamburgers, roast beef sandwich",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 4.5,
+    "address": ["전북 전주시 완산구 홍산3길 11", "(우) 54969(지번) 효자동3가 1527-5"],
+    "phone": "063-223-5887",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "gaeksa-food",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-food22",
+    "title": "Yolo Taco",
+    "type": "eatery",
+    "description": "Mexican",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 3.5,
+    "address": ["전북 전주시 완산구 전주객사1길 75 1층", "(우) 54999(지번) 다가동4가 118-3"],
+    "phone": "063-285-5558",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food23",
+    "title": "Ay Mamita",
+    "type": "eatery",
+    "description": "Mexican",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 전주객사1길 46-7", "(우) 54999(지번) 다가동4가 90-1"],
+    "phone": "063-282-1585",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food24",
+    "title": "Charles Crown",
+    "type": "eatery",
+    "description": "Mexican",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 전라감영2길 28-36", "(우) 55038(지번) 중앙동1가 54-4"],
+    "phone": "010-3528-5358",
+    "website": "https://www.instagram.com/taco_charlescrown",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "hanok-food",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-food24",
+    "title": "Masala",
+    "type": "eatery",
+    "description": "Indian",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 어진길 122-6", "(우) 55039(지번) 경원동1가 126-45"],
+    "phone": "063-286-1226",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food25",
+    "title": "Nambu Market",
+    "type": "eatery",
+    "description": "Korean market",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 3.5,
+    "address": ["전북 전주시 완산구 풍남문1길 19-3", "(우) 55043(지번) 전동 295-4"],
+    "phone": "",
+    "website": "http://blog.naver.com/jjnambumarket",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food26",
+    "title": "Veteran Kalguksu",
+    "type": "eatery",
+    "description": "Korean, 칼국수, (original branch)",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 3.5,
+    "address": ["전북 전주시 완산구 경기전길 135", "(우) 55044(지번) 교동 84-10"],
+    "phone": "063-285-9898",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food27",
+    "title": "Poongnyun Bakery",
+    "type": "eatery",
+    "description": "Chocopies (Hanok branch)",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 태조로 21", "(우) 55044(지번) 교동 69-4"],
+    "phone": "063-284-0045",
+    "website": "http://www.pnbakery.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food28",
+    "title": "Poongnyun Bakery",
+    "type": "eatery",
+    "description": "Chocopies (original branch)",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 팔달로 145", "(우) 55043(지번) 전동 125-8"],
+    "phone": "063-231-3366",
+    "website": "http://www.pnbakery.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-food29",
+    "title": "Gilgoryeo",
+    "type": "eatery",
+    "description": "Bagette burgers",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 경기전길 124", "(우) 55044(지번) 교동 267-2"],
+    "phone": "063-286-5533",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "shisikaji-drinks",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-drinks01",
+    "title": "Taphouse 40",
+    "type": "drinks",
+    "description": "Drinks, 40 on tap",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산북로 60-18 1층", "(우) 54969(지번) 효자동3가 1533-4"],
+    "phone": "",
+    "website": "http://www.instagram.com/taean4446",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-drinks02",
+    "title": "Public",
+    "type": "drinks",
+    "description": "Drinks",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["전북 전주시 완산구 홍산중앙로 39", "(우) 54969(지번) 효자동3가 1535-2"],
+    "phone": "063-229-5842",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-drinks03",
+    "title": "Radio Garden",
+    "type": "drinks",
+    "description": "Drinks",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 홍산남로 71", "(우) 54969(지번) 효자동3가 1539-1"],
+    "phone": "063-236-2789",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "hanok-drinks",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-drinks04",
+    "title": "Nomadic Brewing Company",
+    "type": "drinks",
+    "description": "Jeonju's first craft brewery, foreign owned",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 전라감영3길 12-10", "(우) 55038(지번) 중앙동2가 50-4"],
+    "phone": "",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-drinks05",
+    "title": "Deep Into",
+    "type": "drinks",
+    "description": "Wine bar",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 전주객사3길 35", "(우) 54999(지번) 고사동 470-3"],
+    "phone": "063-282-2680",
+    "website": "https://www.facebook.com/Deepintojeonju/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "shisikaji-stay",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-hotel01",
+    "title": "",
+    "type": "hotel",
+    "description": "Hotel",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 0,
+    "address": ["", ""],
+    "phone": "",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
 ]
