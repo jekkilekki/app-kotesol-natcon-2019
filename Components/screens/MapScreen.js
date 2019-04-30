@@ -29,11 +29,9 @@ const jjuStarCenterCoords = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }
-const jjuCoords = {
-  latitude: 35.814088,
-  longitude: 127.088927,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
+const jjuMarker = {
+  title: 'Star Center',
+  description: 'KOTESOL 2019 National Conference'
 }
 const shinsikajiCoords = {
   latitude: 35.817314,
@@ -41,17 +39,29 @@ const shinsikajiCoords = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }
+const shinsikajiMarker = {
+  title: 'Shinsikaji',
+  description: 'The New Downtown'
+}
 const gaeksaCoords = {
   latitude: 35.817700,
   longitude: 127.143968,
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }
+const gaeksaMarker = {
+  title: 'Gaeksa',
+  description: 'The Old Downtown'
+}
 const hanokVillageCoords = {
   latitude: 35.814269,
   longitude: 127.151225,
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
+}
+const hanokMarker = {
+  title: 'Hanok Village',
+  description: 'Tourism District'
 }
 
 class MapScreen extends Component {
@@ -61,6 +71,7 @@ class MapScreen extends Component {
     markerArea: 'Campus',
     markerType: 'café',
     region: jjuStarCenterCoords,
+    mainMarker: jjuMarker,
     camera: {
       center: {
         latitude: 35.813805,
@@ -75,6 +86,7 @@ class MapScreen extends Component {
 
   componentDidMount() {
     this.setState({ mapLoaded: true })
+    // this.refs.starCenterMarker.showCallout()
   }
 
   _onRegionChange = (region) => {
@@ -120,17 +132,25 @@ class MapScreen extends Component {
         ref={ref => this.map = ref}
         onPanDrag={this._onRegionChange}
       >
-        <Marker
-          identifier={'Star Center'}
-          coordinate={map}
-          anchor={{ x: 0.5, y: 0.5 }}
-          title={'Star Center'}
-          description={'KOTESOL 2019 National Conference'}
-          pinColor={'#d63aff'}
-          // image={carImage}
-        />
+        {this.renderMainMarker()}
         {this.renderMarkers()}
       </MapView>
+    )
+  }
+
+  renderMainMarker(starCenter = false) {
+    const { map, mainMarker } = this.state
+    return (
+      <Marker
+        identifier={starCenter ? jjuMarker.title : mainMarker.title}
+        coordinate={starCenter ? jjuStarCenterCoords : map}
+        anchor={{ x: 0.5, y: 0.5 }}
+        title={starCenter ? jjuMarker.title : mainMarker.title}
+        description={starCenter ? jjuMarker.description : mainMarker.description}
+        pinColor={'#d63aff'}
+        ref={ref => this.starCenterMarker = ref}
+        // image={carImage}
+      />
     )
   }
 
@@ -138,7 +158,8 @@ class MapScreen extends Component {
     const { locations } = this.props
 
     return locations.data.map((place, i) => {
-      if ( place.area.toLowerCase() === this.state.markerArea.toLowerCase() ) {
+      if ( place.type === 'divider' ) return 
+      if ( place.type.toLowerCase() === this.state.markerType.toLowerCase() ) {
         return (
           <Marker
             key={i}
@@ -157,17 +178,25 @@ class MapScreen extends Component {
     return (
       <View>
         <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 10}}>
-          <ContentButton title={'Jeonju University'} color={'#232377'} onPress={() => this.setState({ map: jjuStarCenterCoords})} />
-          <ContentButton title={'Shinsikaji (new downtown)'} color={'#00dddd'} onPress={() => this.setState({ map: shinsikajiCoords })} />
-          <ContentButton title={'Gaeksa (downtown)'} color={'#151537'} onPress={() => this.setState({ map: gaeksaCoords })} />
-          <ContentButton title={'Hanok Village'} color={'#60f'} onPress={() => this.setState({ map: hanokVillageCoords })} />
+          <ContentButton title={'Jeonju University'} color={'#232377'} 
+            onPress={() => this.setState({ map: jjuStarCenterCoords, mainMarker: jjuMarker })} 
+          />
+          <ContentButton title={'Shinsikaji (new downtown)'} color={'#00dddd'} 
+            onPress={() => this.setState({ map: shinsikajiCoords, mainMarker: shinsikajiMarker })} 
+          />
+          <ContentButton title={'Gaeksa (downtown)'} color={'#151537'} 
+            onPress={() => this.setState({ map: gaeksaCoords, mainMarker: gaeksaMarker })} 
+          />
+          <ContentButton title={'Hanok Village'} color={'#60f'} 
+            onPress={() => this.setState({ map: hanokVillageCoords, mainMarker: hanokMarker })} 
+          />
         </View>
         <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
-          <SmallButton title={'Coffee'} color={appTeal70} onPress={() => this.setState({ markerArea: 'Campus' })} />
-          <SmallButton title={'Food'} color={appDarkBlue70} onPress={() => this.setState({ markerArea: 'Old gate' })} />
-          <SmallButton title={'Drinks'} color={appPink70} onPress={() => this.setState({ markerArea: 'New gate' })} />
-          <SmallButton title={'Sights'} color={appPurple70} onPress={() => this.setState({ markerArea: 'Shinsikaji' })} />
-          <SmallButton title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerArea: 'Shinsikaji' })} />
+          <SmallButton title={'Coffee'} color={appTeal70} onPress={() => this.setState({ markerType: 'café' })} />
+          <SmallButton title={'Food'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'food' })} />
+          <SmallButton title={'Drinks'} color={appPink70} onPress={() => this.setState({ markerType: 'drinks' })} />
+          <SmallButton title={'Sights'} color={appPurple70} onPress={() => this.setState({ markerType: 'sights' })} />
+          <SmallButton title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerType: 'stay' })} />
         </View>
       </View>
     )
@@ -206,15 +235,7 @@ class MapScreen extends Component {
               fillColor={'rgba(0,221,221,0.2)'}
               strokeColor={'rgba(0,0,0,0.2)'}
             />
-            <Marker
-              identifier={'Star Center'}
-              coordinate={jjuStarCenterCoords}
-              anchor={{ x: 0.5, y: 0.5 }}
-              title={'Star Center'}
-              description={'KOTESOL 2019 National Conference'}
-              pinColor={'#d63aff'}
-              // image={carImage}
-            />
+            {this.renderMainMarker(true)}
           </MapView>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <H2 dark center>Jeonju University</H2>

@@ -457,7 +457,7 @@
   {
     "id": "knc2019-food00",
     "title": "Star Center Food Court",
-    "type": "eatery",
+    "type": "food",
     "description": "Star Center, 2nd floor",
     "location": "Jeonju University",
     "area": "Campus",
@@ -477,7 +477,7 @@
   {
     "id": "knc2019-food01",
     "title": "Gilgoryeo",
-    "type": "eatery",
+    "type": "food",
     "description": "Bagette burgers",
     "location": "Jeonju University",
     "area": "Old gate",
@@ -497,7 +497,7 @@
   {
     "id": "knc2019-food02",
     "title": "Zip'n'Burger",
-    "type": "eatery",
+    "type": "food",
     "description": "Hamburgers",
     "location": "Jeonju University",
     "area": "Vision entrance",
@@ -577,7 +577,7 @@
   {
     "id": "knc2019-food06",
     "title": "Mr. Pad Thai",
-    "type": "eatery",
+    "type": "food",
     "description": "Thai food",
     "location": "Jeonju University",
     "area": "Vision entrance",
@@ -597,7 +597,7 @@
   {
     "id": "knc2019-food07",
     "title": "Mom's Touch",
-    "type": "eatery",
+    "type": "food",
     "description": "Chicken & burgers",
     "location": "Jeonju University",
     "area": "New gate",
@@ -617,7 +617,7 @@
   {
     "id": "knc2019-food08",
     "title": "Pho Sarang",
-    "type": "eatery",
+    "type": "food",
     "description": "Vietnamese",
     "location": "Jeonju University",
     "area": "New gate",
@@ -717,7 +717,7 @@
   {
     "id": "knc2019-food13",
     "title": "Mo Fac Story",
-    "type": "eatery",
+    "type": "food",
     "description": "Mexican, burritos",
     "location": "Jeonju University",
     "area": "Old gate",
@@ -741,7 +741,7 @@
   {
     "id": "knc2019-food14",
     "title": "Burger King",
-    "type": "eatery",
+    "type": "food",
     "description": "Hamburgers",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -761,7 +761,7 @@
   {
     "id": "knc2019-food15",
     "title": "Lotteria",
-    "type": "eatery",
+    "type": "food",
     "description": "Hamburgers",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -781,7 +781,7 @@
   {
     "id": "knc2019-food16",
     "title": "Baskin Robbins",
-    "type": "eatery",
+    "type": "food",
     "description": "Ice cream",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -801,7 +801,7 @@
   {
     "id": "knc2019-food17",
     "title": "Veteran Kalguksu",
-    "type": "eatery",
+    "type": "food",
     "description": "Korean, 칼국수",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -821,7 +821,7 @@
   {
     "id": "knc2019-food18",
     "title": "Pho Mein",
-    "type": "eatery",
+    "type": "food",
     "description": "Vietnamese, pho",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -841,7 +841,7 @@
   {
     "id": "knc2019-food19",
     "title": "March Rabbit",
-    "type": "eatery",
+    "type": "food",
     "description": "Vegetarian options, salad",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -861,7 +861,7 @@
   {
     "id": "knc2019-food20",
     "title": "Mad Hungry Pub & Grill",
-    "type": "eatery",
+    "type": "food",
     "description": "Hamburgers, Western food, drinks",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -881,7 +881,7 @@
   {
     "id": "knc2019-food21",
     "title": "Dalgom",
-    "type": "eatery",
+    "type": "food",
     "description": "Hamburgers, roast beef sandwich",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
@@ -905,7 +905,7 @@
   {
     "id": "knc2019-food22",
     "title": "Yolo Taco",
-    "type": "eatery",
+    "type": "food",
     "description": "Mexican",
     "location": "Gaeksa",
     "area": "Gaeksa",
@@ -925,7 +925,7 @@
   {
     "id": "knc2019-food23",
     "title": "Ay Mamita",
-    "type": "eatery",
+    "type": "food",
     "description": "Mexican",
     "location": "Gaeksa",
     "area": "Gaeksa",
@@ -945,7 +945,7 @@
   {
     "id": "knc2019-food24",
     "title": "Charles Crown",
-    "type": "eatery",
+    "type": "food",
     "description": "Mexican",
     "location": "Gaeksa",
     "area": "Gaeksa",
@@ -969,7 +969,7 @@
   {
     "id": "knc2019-food24",
     "title": "Masala",
-    "type": "eatery",
+    "type": "food",
     "description": "Indian",
     "location": "Hanok",
     "area": "Hanok",
@@ -989,7 +989,7 @@
   {
     "id": "knc2019-food25",
     "title": "Nambu Market",
-    "type": "eatery",
+    "type": "food",
     "description": "Korean market",
     "location": "Hanok",
     "area": "Hanok",
@@ -1009,7 +1009,7 @@
   {
     "id": "knc2019-food26",
     "title": "Veteran Kalguksu",
-    "type": "eatery",
+    "type": "food",
     "description": "Korean, 칼국수, (original branch)",
     "location": "Hanok",
     "area": "Hanok",
@@ -1029,7 +1029,7 @@
   {
     "id": "knc2019-food27",
     "title": "Poongnyun Bakery",
-    "type": "eatery",
+    "type": "food",
     "description": "Chocopies (Hanok branch)",
     "location": "Hanok",
     "area": "Hanok",
@@ -1049,7 +1049,7 @@
   {
     "id": "knc2019-food28",
     "title": "Poongnyun Bakery",
-    "type": "eatery",
+    "type": "food",
     "description": "Chocopies (original branch)",
     "location": "Hanok",
     "area": "Hanok",
@@ -1069,7 +1069,7 @@
   {
     "id": "knc2019-food29",
     "title": "Gilgoryeo",
-    "type": "eatery",
+    "type": "food",
     "description": "Bagette burgers",
     "location": "Hanok",
     "area": "Hanok",
@@ -1217,5 +1217,5 @@
       "latitude": 0,
       "longitude": 0
     }
-  },
+  }
 ]
