@@ -899,6 +899,26 @@
     }
   },
   {
+    "id": "knc2019-food22",
+    "title": "Pho Hanoi",
+    "type": "food",
+    "description": "Vietnamese",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 4.5,
+    "address": ["전북 전주시 완산구 홍산북로 69-6 3층", "(우) 54969(지번) 효자동3가 1530-1"],
+    "phone": "063-221-9009",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
     "id": "gaeksa-food",
     "type": "divider"
   },
@@ -1151,6 +1171,66 @@
     }
   },
   {
+    "id": "knc2019-drinks04",
+    "title": "Lord Movie",
+    "type": "drinks",
+    "description": "Drinks",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 홍산남로 73", "(우) 54969(지번) 효자동3가 1539-2"],
+    "phone": "010-2166-4004",
+    "website": "http://www.facebook.com/mylordmovie",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-drinks05",
+    "title": "Australopithecus",
+    "type": "drinks",
+    "description": "Drinks",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 5,
+    "address": ["전북 전주시 완산구 홍산북로 69-9 코오롱빌딩 1층", "(우) 54969(지번) 효자동3가 1528-12"],
+    "phone": "063-224-0916",
+    "website": "http://오스트랄로피테쿠스.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-drinks06",
+    "title": "Uncle Joe Bar",
+    "type": "drinks",
+    "description": "Drinks",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 3.5,
+    "address": ["전북 전주시 완산구 홍산중앙로 42", "(우) 54969(지번) 효자동3가 1536-1"],
+    "phone": "063-236-0313",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
     "id": "hanok-drinks",
     "type": "divider"
   },
@@ -1200,15 +1280,179 @@
   },
   {
     "id": "knc2019-hotel01",
-    "title": "",
-    "type": "hotel",
+    "title": "Grand Hilstone Hotel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "North of Jeonju University and Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 서곡5길 22-5", "(우) 54956(지번) 효자동3가 1404-1"],
+    "phone": "063-251-8000",
+    "website": "http://grandhillstone.com/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel02",
+    "title": "Day Nice Hotel",
+    "type": "stay",
     "description": "Hotel",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
-    "stars": 0,
-    "address": ["", ""],
-    "phone": "",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 홍산북로 46", "(우) 54969(지번) 효자동3가 1532-1"],
+    "phone": "063-231-8855",
     "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  }, 
+  {
+    "id": "knc2019-hotel03",
+    "title": "Hotel Pop",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 1,
+    "address": ["전북 전주시 완산구 홍산북로 74", "(우) 54969(지번) 효자동3가 1537-2"],
+    "phone": "063-228-7875",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel04",
+    "title": "J Mate Hotel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 1,
+    "address": ["전북 전주시 완산구 홍산북로 60-12", "(우) 54969(지번) 효자동3가 1532-11"],
+    "phone": "063-225-9085",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "hanok-hotels",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-hotel05",
+    "title": "Hotel Le Win",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Hanok Village",
+    "area": "Hanok",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 기린대로 85", "(우) 55041(지번) 풍남동3가 26-5"],
+    "phone": "063-232-7000",
+    "website": "http://hotellewin.com/",
+    "menu": [],
+    "img": "",
+    "comment": "Hotel Le Win is offering a special discount of 100,000 per night for KOTESOL members.",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel06",
+    "title": "Jeonju Indigo Hanok Guesthouse",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Hanok Village",
+    "area": "Hanok",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 은행로 5-9", "(우) 55040(지번) 풍남동2가 11-1"],
+    "phone": "010-6725-3337",
+    "website": "http://blog.naver.com/mkim1255",
+    "menu": [],
+    "img": "",
+    "comment": "She is offering a discount of 65,000 for small rooms and 90,000 for larger rooms (3-4 people).",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel07",
+    "title": "Jeonju Hanok Experience",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Hanok Village",
+    "area": "Hanok",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 기린대로 86", "(우) 55036(지번) 풍남동3가 26-24"],
+    "phone": "063-288-8828",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel08",
+    "title": "My Stay",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Hanok Village",
+    "area": "Hanok",
+    "stars": 3,
+    "address": ["전북 전주시 완산구 동문길 57-8", "(우) 55039(지번) 풍남동1가 42-3"],
+    "phone": "010-9020-3177",
+    "website": "http://www.mystay.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel09",
+    "title": "Laon Hanok Stay",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Hanok Village",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 한지길 99-6", "(우) 55041(지번) 풍남동3가 16-6"],
+    "phone": "010-7571-8888",
+    "website": "http://www.라온한옥꿀잠.com/",
     "menu": [],
     "img": "",
     "comment": "",
