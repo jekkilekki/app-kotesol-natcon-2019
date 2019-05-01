@@ -578,7 +578,7 @@
     "id": "knc2019-food06",
     "title": "Mr. Pad Thai",
     "type": "food",
-    "description": "Thai food",
+    "description": "Thai, vegetarian options",
     "location": "Jeonju University",
     "area": "Vision entrance",
     "stars": 4,
@@ -822,7 +822,7 @@
     "id": "knc2019-food18",
     "title": "March Rabbit",
     "type": "food",
-    "description": "Vegetarian options, salad",
+    "description": "Salad, vegetarian options",
     "location": "Shinsikaji",
     "area": "Shinsikaji",
     "stars": 0,
@@ -888,6 +888,26 @@
     "stars": 4.5,
     "address": ["전북 전주시 완산구 홍산북로 69-6 3층", "(우) 54969(지번) 효자동3가 1530-1"],
     "phone": "063-221-9009",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 35.818166,
+      "longitude": 127.110023
+    }
+  },
+  {
+    "id": "knc2019-food2909090",
+    "title": "Banya Dolsot Bap",
+    "type": "food",
+    "description": "Korean, vegetarian options",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 4.5,
+    "address": ["전북 전주시 완산구 홍산1길 6", "(우) 54969(지번) 효자동2가 1156-6"],
+    "phone": "063-278-3003",
     "website": "",
     "menu": [],
     "img": "",
@@ -1440,6 +1460,130 @@
     "coordinate": {
       "latitude": 35.815861,
       "longitude": 127.154380
+    }
+  },
+  {
+    "id": "gaeksa-hotels",
+    "type": "divider"
+  },
+  {
+    "id": "knc2019-hotel10",
+    "title": "Benikea Jeonju Hansang Hotel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 전주객사5길 43-3", "(우) 54999(지번) 고사동 199"],
+    "phone": "063-288-0014",
+    "website": "http://www.hotelhansung.com/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel11",
+    "title": "Jeonju Tourist Hotel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 전주객사5길 44-5", "(우) 54999(지번) 고사동 22"],
+    "phone": "063-280-7700",
+    "website": "http://www.jjhotel.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel12",
+    "title": "Ramada Jeonju",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 팔달로 227", "(우) 54999(지번) 고사동 1-2"],
+    "phone": "063-711-9000",
+    "website": "http://www.ramadajeonju.com/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel13",
+    "title": "The City Hotel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 충경로 65", "(우) 54999(지번) 경원동1가 57-1"],
+    "phone": "0503-5051-5580",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel14",
+    "title": "1% Hostel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 전동성당길 12-14", "(우) 55039(지번) 경원동1가 33-1"],
+    "phone": "063-282-9513",
+    "website": "https://www.facebook.com/onepercenthostel/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-hotel14",
+    "title": "N Bridge Hotel",
+    "type": "stay",
+    "description": "Hotel",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 2,
+    "address": ["전북 전주시 완산구 전주천서로 81", "(우) 55100(지번) 동서학동 66"],
+    "phone": "063-232-6000",
+    "website": "http://www.nbridge.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#232377",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
     }
   }
 ]
