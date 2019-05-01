@@ -32,4 +32,14 @@ export function getTrackColor(track) {
   }
 }
 
+export function getPinColor(pinType) {
+  switch (pinType.toLowerCase()) {
+    case 'drinks': return '#00b9f1'
+    case 'food': return '#ed0972'
+    case 'stay': return '#60f'
+    case 'café': return '#00dddd'
+    default: return '#232377' 
+  }
+}
+
 /* TODO: Local Notifications */

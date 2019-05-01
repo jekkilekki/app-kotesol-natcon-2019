@@ -14,6 +14,7 @@ import Dropdown from '../shared/layout/Dropdown'
 import SmallButton from '../shared/buttons/SmallButton'
 import ContentButton from '../shared/buttons/ContentButton'
 
+import { getPinColor } from '../../utils/helpers'
 import { 
   appBlack, appDarkBlue, appOrange, appBlue, appPink, appPurple, appDarkPurple, appTeal,
   appBlack70, appDarkBlue70, appOrange70, appBlue70, appPink70, appPurple70, appDarkPurple70, appTeal70,
@@ -159,7 +160,7 @@ class MapScreen extends Component {
 
     return locations.data.map((place, i) => {
       if ( place.type === 'divider' ) return 
-      if ( place.type.toLowerCase() === this.state.markerType.toLowerCase() ) {
+      if ( this.state.markerType === 'all' || place.type.toLowerCase() === this.state.markerType.toLowerCase() ) {
         return (
           <Marker
             key={i}
@@ -167,7 +168,7 @@ class MapScreen extends Component {
             title={place.title}
             description={place.description}
             coordinate={place.coordinate}
-            pinColor={place.pinColor}
+            pinColor={getPinColor(place.type)}
           />
         )
       }
@@ -192,10 +193,10 @@ class MapScreen extends Component {
           />
         </View>
         <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
+          <SmallButton title={'All'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'all' })} />
           <SmallButton title={'Coffee'} color={appTeal70} onPress={() => this.setState({ markerType: 'café' })} />
-          <SmallButton title={'Food'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'food' })} />
-          <SmallButton title={'Drinks'} color={appPink70} onPress={() => this.setState({ markerType: 'drinks' })} />
-          <SmallButton title={'Sights'} color={appPurple70} onPress={() => this.setState({ markerType: 'sights' })} />
+          <SmallButton title={'Food'} color={appPink70} onPress={() => this.setState({ markerType: 'food' })} />
+          <SmallButton title={'Drinks'} color={appBlue70} onPress={() => this.setState({ markerType: 'drinks' })} />
           <SmallButton title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerType: 'stay' })} />
         </View>
       </View>
