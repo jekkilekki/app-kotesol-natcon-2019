@@ -282,8 +282,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817317,
+      "longitude": 127.108738
     }
   },
   {
@@ -302,8 +302,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.815976,
+      "longitude": 127.107522
     }
   },
   {
@@ -322,8 +322,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.814858,
+      "longitude": 127.108704
     }
   },
   {
@@ -342,8 +342,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818361,
+      "longitude": 127.109257
     }
   },
   {
@@ -362,8 +362,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818319,
+      "longitude": 127.108387
     }
   },
   {
@@ -386,8 +386,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816591,
+      "longitude": 127.143661
     }
   },
   {
@@ -406,8 +406,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.819752,
+      "longitude": 127.144518
     }
   },
   {
@@ -426,8 +426,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.819598,
+      "longitude": 127.145441
     }
   },
   {
@@ -446,8 +446,8 @@
     "comment": "",
     "pinColor": "#00dddd",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817968,
+      "longitude": 127.142678
     }
   },
   {
@@ -636,26 +636,6 @@
   },
   {
     "id": "knc2019-food09",
-    "title": "Hongik Don Katsu",
-    "type": "hidden",
-    "description": "Old Gate",
-    "location": "Jeonju University",
-    "area": "",
-    "stars": 2.5,
-    "address": ["전북 전주시 완산구 효자로 52", "(우) 55068(지번) 효자동3가 1134-3"],
-    "phone": "063-221-5050",
-    "website": "http://www.hongikdonkatsu.com/",
-    "menu": [],
-    "img": "",
-    "comment": "",
-    "pinColor": "#232377",
-    "coordinate": {
-      "latitude": 0,
-      "longitude": 0
-    }
-  },
-  {
-    "id": "knc2019-food10",
     "title": "Heungi Dalk Kalbi",
     "type": "korean",
     "description": "Korean, 닭갈비",
@@ -675,7 +655,7 @@
     }
   },
   {
-    "id": "knc2019-food11",
+    "id": "knc2019-food10",
     "title": "Sinpo Woori Mandoo",
     "type": "korean",
     "description": "Korean",
@@ -695,7 +675,7 @@
     }
   },
   {
-    "id": "knc2019-food12",
+    "id": "knc2019-food11",
     "title": "우리국수잘하는집",
     "type": "korean",
     "description": "Korean, 국수",
@@ -715,7 +695,7 @@
     }
   },
   {
-    "id": "knc2019-food13",
+    "id": "knc2019-food12",
     "title": "Mo Fac Story",
     "type": "food",
     "description": "Mexican, burritos",
@@ -739,7 +719,7 @@
     "type": "divider"
   },
   {
-    "id": "knc2019-food14",
+    "id": "knc2019-food13",
     "title": "Burger King",
     "type": "food",
     "description": "Hamburgers",
@@ -754,12 +734,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818341,
+      "longitude": 127.106300
     }
   },
   {
-    "id": "knc2019-food15",
+    "id": "knc2019-food14",
     "title": "Lotteria",
     "type": "food",
     "description": "Hamburgers",
@@ -774,12 +754,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816330,
+      "longitude": 127.105552
     }
   },
   {
-    "id": "knc2019-food16",
+    "id": "knc2019-food15",
     "title": "Baskin Robbins",
     "type": "food",
     "description": "Ice cream",
@@ -794,12 +774,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.815974,
+      "longitude": 127.108737
     }
   },
   {
-    "id": "knc2019-food17",
+    "id": "knc2019-food16",
     "title": "Veteran Kalguksu",
     "type": "food",
     "description": "Korean, 칼국수",
@@ -814,12 +794,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817783,
+      "longitude": 127.102212
     }
   },
   {
-    "id": "knc2019-food18",
+    "id": "knc2019-food17",
     "title": "Pho Mein",
     "type": "food",
     "description": "Vietnamese, pho",
@@ -834,12 +814,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817595,
+      "longitude": 127.108821
     }
   },
   {
-    "id": "knc2019-food19",
+    "id": "knc2019-food18",
     "title": "March Rabbit",
     "type": "food",
     "description": "Vegetarian options, salad",
@@ -854,12 +834,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.815525,
+      "longitude": 127.105069
     }
   },
   {
-    "id": "knc2019-food20",
+    "id": "knc2019-food19",
     "title": "Mad Hungry Pub & Grill",
     "type": "food",
     "description": "Hamburgers, Western food, drinks",
@@ -874,12 +854,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817271,
+      "longitude": 127.109333
     }
   },
   {
-    "id": "knc2019-food21",
+    "id": "knc2019-food20",
     "title": "Dalgom",
     "type": "food",
     "description": "Hamburgers, roast beef sandwich",
@@ -894,12 +874,12 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818346,
+      "longitude": 127.107817
     }
   },
   {
-    "id": "knc2019-food22",
+    "id": "knc2019-food21",
     "title": "Pho Hanoi",
     "type": "food",
     "description": "Vietnamese",
@@ -914,8 +894,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818166,
+      "longitude": 127.110023
     }
   },
   {
@@ -938,8 +918,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.819515,
+      "longitude": 127.138450
     }
   },
   {
@@ -958,8 +938,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818630,
+      "longitude": 127.139369
     }
   },
   {
@@ -978,8 +958,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816009,
+      "longitude": 127.142489
     }
   },
   {
@@ -1002,8 +982,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816806,
+      "longitude": 127.148078
     }
   },
   {
@@ -1022,8 +1002,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.812653,
+      "longitude": 127.147040
     }
   },
   {
@@ -1042,8 +1022,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.813450,
+      "longitude": 127.151542
     }
   },
   {
@@ -1062,8 +1042,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.814515,
+      "longitude": 127.152422
     }
   },
   {
@@ -1082,8 +1062,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.815492,
+      "longitude": 127.147705
     }
   },
   {
@@ -1102,8 +1082,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.813963,
+      "longitude": 127.151076
     }
   },
   {
@@ -1126,8 +1106,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816788,
+      "longitude": 127.107967
     }
   },
   {
@@ -1146,8 +1126,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817135,
+      "longitude": 127.108729
     }
   },
   {
@@ -1166,8 +1146,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816093,
+      "longitude": 127.109753
     }
   },
   {
@@ -1186,8 +1166,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816050,
+      "longitude": 127.109974
     }
   },
   {
@@ -1206,8 +1186,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818186,
+      "longitude": 127.109964
     }
   },
   {
@@ -1226,8 +1206,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817331,
+      "longitude": 127.109365
     }
   },
   {
@@ -1250,8 +1230,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.816460,
+      "longitude": 127.143785
     }
   },
   {
@@ -1270,8 +1250,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818727,
+      "longitude": 127.142069
     }
   },
   {
@@ -1294,8 +1274,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.838291,
+      "longitude": 127.100626
     }
   },
   {
@@ -1314,8 +1294,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817311,
+      "longitude": 127.106976
     }
   }, 
   {
@@ -1334,8 +1314,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817317,
+      "longitude": 127.110003
     }
   },
   {
@@ -1354,8 +1334,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817094,
+      "longitude": 127.107976
     }
   },
   {
@@ -1378,8 +1358,8 @@
     "comment": "Hotel Le Win is offering a special discount of 100,000 per night for KOTESOL members.",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817023,
+      "longitude": 127.153894
     }
   },
   {
@@ -1398,8 +1378,8 @@
     "comment": "She is offering a discount of 65,000 for small rooms and 90,000 for larger rooms (3-4 people).",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.819756,
+      "longitude": 127.152200
     }
   },
   {
@@ -1418,8 +1398,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.817022,
+      "longitude": 127.154968
     }
   },
   {
@@ -1438,8 +1418,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818404,
+      "longitude": 127.150841
     }
   },
   {
@@ -1458,8 +1438,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.815861,
+      "longitude": 127.154380
     }
   }
 ]
