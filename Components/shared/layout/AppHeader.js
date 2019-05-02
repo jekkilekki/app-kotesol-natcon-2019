@@ -16,7 +16,8 @@ class Header extends Component {
   }
 
   _handleProfile = () => {
-    this.props.navigation.navigate('Auth')
+    // this.props.navigation.navigate('Auth')
+    this.props.navigation.openDrawer()
   }
 
   _findDimensions(layout) {
@@ -25,11 +26,11 @@ class Header extends Component {
   }
 
   renderProfileButton() {
-    if ( this.props.pageName !== 'Login' && this.props.pageName !== 'Profile' ) {
+    // if ( this.props.pageName !== 'Login' && this.props.pageName !== 'Profile' ) {
       return <ProfileButton onPress={this._handleProfile} />
-    } else if ( this.props.pageName === 'Login' ) { 
-      return <ProfileButton onPress={this._handleCancel} text={'X'} />
-    }
+    // } else if ( this.props.pageName === 'Login' ) { 
+    //   return <ProfileButton onPress={this._handleCancel} text={'X'} />
+    // }
   }
 
   render() {

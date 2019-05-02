@@ -7,6 +7,7 @@ import AppHeader from '../shared/layout/AppHeader'
 import Loader from '../shared/Loader'
 import AppScreen from '../shared/layout/AppScreen'
 import ScreenContent from '../shared/layout/ScreenContent'
+import AppText from '../shared/text/AppText'
 import H2 from '../shared/text/H2'
 import P from '../shared/text/P'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -177,26 +178,50 @@ class MapScreen extends Component {
 
   renderMapButtons() {
     return (
-      <View>
+      <View style={{borderTopWidth: StyleSheet.hairlineWidth, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15 }}>
         <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 10}}>
-          <ContentButton title={'Jeonju University'} color={'#232377'} 
+          <ContentButton color={'#232377'} 
+            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
             onPress={() => this.setState({ map: jjuStarCenterCoords, mainMarker: jjuMarker })} 
-          />
-          <ContentButton title={'Shinsikaji (new downtown)'} color={'#00dddd'} 
+          >
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <P dark center>Jeonju</P>
+              <P dark center small>University</P>
+            </View>
+          </ContentButton>
+          <ContentButton color={'#00dddd'} 
+            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
             onPress={() => this.setState({ map: shinsikajiCoords, mainMarker: shinsikajiMarker })} 
-          />
-          <ContentButton title={'Gaeksa (downtown)'} color={'#151537'} 
+            >
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <P dark center>Shinsikaji</P>
+              <P dark center small>New Downtown</P>
+            </View>
+          </ContentButton>
+          <ContentButton color={'#151537'} 
+            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
             onPress={() => this.setState({ map: gaeksaCoords, mainMarker: gaeksaMarker })} 
-          />
-          <ContentButton title={'Hanok Village'} color={'#60f'} 
+            >
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <P dark center>Gaeksa</P>
+              <P dark center small>Old Downtown</P>
+            </View>
+          </ContentButton>
+          <ContentButton color={'#60f'} 
+            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
             onPress={() => this.setState({ map: hanokVillageCoords, mainMarker: hanokMarker })} 
-          />
+            >
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <P dark center>Hanok</P>
+              <P dark center small>Village</P>
+            </View>
+          </ContentButton>
         </View>
-        <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
+        <View style={{flex: 1, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(0,0,0,0.3)', justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
           <SmallButton title={'All'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'all' })} />
           <SmallButton title={'Coffee'} color={appTeal70} onPress={() => this.setState({ markerType: 'café' })} />
           <SmallButton title={'Food'} color={appPink70} onPress={() => this.setState({ markerType: 'food' })} />
-          <SmallButton title={'Drinks'} color={appBlue70} onPress={() => this.setState({ markerType: 'drinks' })} />
+          <SmallButton title={'Drinks'} color={appOrange70} onPress={() => this.setState({ markerType: 'drinks' })} />
           <SmallButton title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerType: 'stay' })} />
         </View>
       </View>

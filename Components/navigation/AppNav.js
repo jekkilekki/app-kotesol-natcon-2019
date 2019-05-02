@@ -1,6 +1,7 @@
 import React from 'react'
 import { 
   createAppContainer, 
+  createDrawerNavigator,
   createSwitchNavigator, 
   createStackNavigator, 
   createBottomTabNavigator, 
@@ -14,7 +15,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import WelcomeScreen from '../screens/WelcomeScreen'
 import AuthScreen from '../screens/AuthScreen'
 import ProfileScreen from '../screens/ProfileScreen'
-// import AttendeesScreen from '../screens/AttendeesScreen'
+import AttendeesScreen from '../screens/AttendeesScreen'
 // import MyFriendsScreen from '../screens/MyFriendsScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
 import MyScheduleScreen from '../screens/MyScheduleScreen'
@@ -28,15 +29,8 @@ import ConductScreen from '../screens/ConductScreen'
 import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
 import MyTabBar from './MyTabBar'
+import DrawerComponent from './DrawerComponent'
 import { black } from '../../utils/colors';
-
-
-// const drawerNav = createDrawerNavigator({
-//   Schedule: ScheduleScreen,
-//   Speakers: SpeakersScreen,
-//   Map: MapScreen,
-//   About: AboutScreen,
-// })
 
 const myScheduleNav = createMaterialTopTabNavigator({
   Schedule: {
@@ -111,7 +105,7 @@ const tabNavigation = createBottomTabNavigator({
     }
   }
 }, { 
-  initialRouteName: 'Map',
+  // initialRouteName: 'Map',
   tabBarComponent: (props) => 
     <TabBar tabColors={["#f62626", "#ff8a14", "#e5ff0a", "#21ff30", "#196eff"]} {...props} />,
   tabBarOptions: {
@@ -162,7 +156,7 @@ const tabNavigation = createBottomTabNavigator({
 const stackNav = createStackNavigator({
   Home: tabNavigation,
   Session: SessionSingleScreen,
-  Profile: ProfileScreen,
+  // Profile: ProfileScreen,
   Conduct: ConductScreen,
   Privacy: PrivacyScreen
 }, { 
@@ -177,12 +171,37 @@ const stackNav = createStackNavigator({
   } 
 })
 
+const drawerNav = createDrawerNavigator({
+  Profile: ProfileScreen,
+  Home: tabNavigation,
+  Schedule: ScheduleScreen,
+  Speakers: SpeakersScreen,
+  Location: MapScreen,
+  About: AboutScreen,
+  Tutorial: WelcomeScreen,
+  Attendees: AttendeesScreen,
+  // MyFriends: MyFriendScreen,
+  MySchedule: MyScheduleScreen,
+  // MyPlaces: MyPlacesScreen,
+  Settings: ProfileScreen,
+}, {
+  drawerPosition: 'right',
+  overlayColor: '#151537',
+  drawerBackgroundColor: '#353577',
+  contentComponent: DrawerComponent,
+  contentOptions: {
+    activeTintColor: '#00dddd',
+    activeBackgroundColor: '#232377',
+    inactiveTintColor: '#fff'
+  }
+})
+
 /* Switch Nav to prevent "Back" button functionality on these pages */
 export const RootNavigation = createSwitchNavigator({
   Welcome: WelcomeScreen,
   // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
   Auth: AuthScreen,
-  App: stackNav
+  App: drawerNav
 }, {
   initialRouteName: 'Welcome',
   // defaultNavigationOptions: {

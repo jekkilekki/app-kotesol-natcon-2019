@@ -85,7 +85,7 @@ class ScheduleScreen extends Component {
           expanded={this.state.expanded} 
           expandCollapse={this._expandCollapse} 
         />
-        <BubbleTab tabs={['Schedule', 'My Schedule']} />
+        {/* <BubbleTab tabs={['Schedule', 'My Schedule']} /> */}
         {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
           <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} expanded={this.state.expanded} />

@@ -18,11 +18,17 @@ import { generateUID } from '../utils/helpers';
 // AsyncStorage.getItem('fb_token')
 export const fbLogin = (navigation) => async dispatch => {
   let token = await AsyncStorage.getItem('knc_token')
+  let user = await AsyncStorage.getItem('knc_user')
   if (token) {
     // Dispatch FB_LOGIN_SUCCESS action
     dispatch({ 
       type: FB_LOGIN_SUCCESS,
       payload: token
+    })
+  } else if ( user ) {
+    dispatch({
+      type: SET_AUTHED_USER,
+      payload: user
     })
   } else {
     // Start up FB Login process
@@ -71,7 +77,8 @@ const doFBLogin = async (dispatch, navigation) => {
 }
 
 const setAuthedUser = async ( dispatch, user, token, navigation ) => {
-  await AsyncStorage.setItem('knc_token', token)
+  // await AsyncStorage.setItem('knc_token', token)
+  await AsyncStorage.setItem('knc_user', user)
 
   dispatch({
     type: SET_AUTHED_USER,

@@ -8,9 +8,9 @@ class SmallButton extends Component {
 
     return (
       <TouchableOpacity onPress={this.props.onPress}
-        style={[styles.smallButton, {color: '#fff', backgroundColor: color}, this.props.style]}
+        style={[styles.smallButton, {color: color}, this.props.style]}
       >
-        <AppText center style={{fontSize: 10}}>{title}</AppText>
+        <AppText center style={{fontSize: 12, color: color, fontFamily: 'nunito-bold', textTransform: 'uppercase'}}>{title}</AppText>
       </TouchableOpacity>
     )
   }
@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
   smallButton: {
     // borderWidth: 1,
     // borderColor: 'rgba(21,21,0,0.2)',
-    borderRadius: 10,
+    // borderRadius: 10,
     // paddingTop: 1,
     // paddingBottom: 1,
-    paddingLeft: 8,
-    paddingRight: 8, 
+    // paddingLeft: 8,
+    // paddingRight: 8, 
     marginTop: 10,
     height: 18
   },

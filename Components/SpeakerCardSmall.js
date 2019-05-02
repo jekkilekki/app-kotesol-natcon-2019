@@ -42,11 +42,34 @@ class SpeakerCardSmall extends Component {
     }
   }
 
+  renderImg() {
+    if ( this.state.expanded && this.props.speaker.item.img !== '' ) {
+      if ( this.props.speaker.item.img.charAt(0) === 'h' ) {
+        return (
+          <View style={styles.thumbnailStyle}>
+            <Image source={{ uri: this.props.speaker.item.img }} style={styles.thumbnailImg} />
+          </View>
+        )
+      } else {
+        return null
+        (
+          <View style={styles.thumbnailStyle}>
+            <Image source={this.props.speaker.item.img} style={styles.thumbnailImg} />
+          </View>
+        )
+      }
+    }
+  }
+
   render() {
     const { id, title, name, nickname, shortname, 
             affiliation, other, time, room, summary, 
             abstract, bio, img, media, email, phone, track, coPresenter
           } = this.props.speaker.item
+
+    // const speakerImg = img.charAt(0) === 'h' ? uri(img) : require(img)
+
+          // console.log("IMAGE!!", img.charAt(0))
 
     if ( this.props.screen === 'Speakers' && 
       (id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration')
@@ -134,14 +157,7 @@ class SpeakerCardSmall extends Component {
             }
             <SpeakerLikeButton id={id} />
           </View>
-          {this.state.expanded && img !== '' &&
-            <View style={styles.thumbnailStyle}>
-              <Image 
-                source={{ uri: img }} 
-                style={styles.thumbnailImg} 
-              />
-            </View>
-          }
+          {this.renderImg()}
         </LinearGradient>
       </TouchableOpacity>
     )

@@ -431,7 +431,7 @@
     }
   },
   {
-    "id": "knc2019-cafe21",
+    "id": "knc2019-cafe22",
     "title": "Beyond Café",
     "type": "café",
     "description": "Near movie street",
@@ -517,7 +517,7 @@
   {
     "id": "knc2019-food03",
     "title": "착한낙지",
-    "type": "korean",
+    "type": "food",
     "description": "Korean, 낙지볶음",
     "location": "Jeonju University",
     "area": "Vision entrance",
@@ -537,7 +537,7 @@
   {
     "id": "knc2019-food04",
     "title": "아그집왕뼈감자탕",
-    "type": "korean",
+    "type": "food",
     "description": "Korean, 감자탕",
     "location": "Jeonju University",
     "area": "Vision entrance",
@@ -557,7 +557,7 @@
   {
     "id": "knc2019-food05",
     "title": "현대옥",
-    "type": "korean",
+    "type": "food",
     "description": "Korean, 콩나물국밥",
     "location": "Jeonju University",
     "area": "Vision entrance",
@@ -576,7 +576,7 @@
   },
   {
     "id": "knc2019-food06",
-    "title": "Mr. Pad Thai",
+    "title": "Pochana",
     "type": "food",
     "description": "Thai, vegetarian options",
     "location": "Jeonju University",
@@ -637,7 +637,7 @@
   {
     "id": "knc2019-food09",
     "title": "Heungi Dalk Kalbi",
-    "type": "korean",
+    "type": "food",
     "description": "Korean, 닭갈비",
     "location": "Jeonju University",
     "area": "Old gate",
@@ -657,7 +657,7 @@
   {
     "id": "knc2019-food10",
     "title": "Sinpo Woori Mandoo",
-    "type": "korean",
+    "type": "food",
     "description": "Korean",
     "location": "Jeonju University",
     "area": "Old gate",
@@ -677,7 +677,7 @@
   {
     "id": "knc2019-food11",
     "title": "우리국수잘하는집",
-    "type": "korean",
+    "type": "food",
     "description": "Korean, 국수",
     "location": "Jeonju University",
     "area": "Old gate",
@@ -899,7 +899,7 @@
     }
   },
   {
-    "id": "knc2019-food2909090",
+    "id": "knc2019-food22",
     "title": "Banya Dolsot Bap",
     "type": "food",
     "description": "Korean, vegetarian options",
@@ -923,7 +923,7 @@
     "type": "divider"
   },
   {
-    "id": "knc2019-food22",
+    "id": "knc2019-food23",
     "title": "Yolo Taco",
     "type": "food",
     "description": "Mexican",
@@ -943,7 +943,7 @@
     }
   },
   {
-    "id": "knc2019-food23",
+    "id": "knc2019-food24",
     "title": "Ay Mamita",
     "type": "food",
     "description": "Mexican",
@@ -963,7 +963,7 @@
     }
   },
   {
-    "id": "knc2019-food24",
+    "id": "knc2019-food25",
     "title": "Charles Crown",
     "type": "food",
     "description": "Mexican",
@@ -987,7 +987,7 @@
     "type": "divider"
   },
   {
-    "id": "knc2019-food24",
+    "id": "knc2019-food26",
     "title": "Masala",
     "type": "food",
     "description": "Indian",
@@ -1007,7 +1007,7 @@
     }
   },
   {
-    "id": "knc2019-food25",
+    "id": "knc2019-food27",
     "title": "Nambu Market",
     "type": "food",
     "description": "Korean market",
@@ -1027,7 +1027,7 @@
     }
   },
   {
-    "id": "knc2019-food26",
+    "id": "knc2019-food28",
     "title": "Veteran Kalguksu",
     "type": "food",
     "description": "Korean, 칼국수, (original branch)",
@@ -1047,7 +1047,7 @@
     }
   },
   {
-    "id": "knc2019-food27",
+    "id": "knc2019-food29",
     "title": "Poongnyun Bakery",
     "type": "food",
     "description": "Chocopies (Hanok branch)",
@@ -1067,7 +1067,7 @@
     }
   },
   {
-    "id": "knc2019-food28",
+    "id": "knc2019-food30",
     "title": "Poongnyun Bakery",
     "type": "food",
     "description": "Chocopies (original branch)",
@@ -1087,7 +1087,7 @@
     }
   },
   {
-    "id": "knc2019-food29",
+    "id": "knc2019-food31",
     "title": "Gilgoryeo",
     "type": "food",
     "description": "Bagette burgers",
@@ -1482,8 +1482,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.819882,
+      "longitude": 127.144804
     }
   },
   {
@@ -1502,8 +1502,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.820421,
+      "longitude": 127.145388
     }
   },
   {
@@ -1522,8 +1522,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.822282,
+      "longitude": 127.144516
     }
   },
   {
@@ -1542,8 +1542,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818928,
+      "longitude": 127.146562
     }
   },
   {
@@ -1562,8 +1562,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.818446,
+      "longitude": 127.147741
     }
   },
   {
@@ -1582,8 +1582,8 @@
     "comment": "",
     "pinColor": "#232377",
     "coordinate": {
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 35.809880,
+      "longitude": 127.152395
     }
   }
 ]

@@ -13,16 +13,19 @@ const ContentButton = (props) => {
     >
       <View 
         style={[styles.contentButton,
-          { backgroundColor: props.opaque && !props.disabled ? '#00dddd' : 'rgba(0,221,221,0.3)',}
+          { backgroundColor: props.opaque && !props.disabled ? '#00dddd' : 'rgba(0,221,221,0.3)',},
+          props.style
         ]}
       >
-        <AppText 
-          style={[styles.buttonText,
-            { color: props.opaque ? '#fff' : '#00dddd' }
-          ]}
-        >
-          {props.title ? props.title : props.children}
-        </AppText>
+        {props.title 
+        ? <AppText 
+            style={[styles.buttonText,
+              { color: props.opaque ? '#fff' : '#00dddd' },
+              props.style
+            ]}
+          >{props.title}</AppText>
+        : props.children
+        }
       </View>
     </TouchableOpacity>
   )

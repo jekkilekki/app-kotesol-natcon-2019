@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   shortBio: '',
   email: '',
   myFriends: [],
-  mySchedule: []
+  mySchedule: ['plenary']
 }
 
 export default (state = INITIAL_STATE, action) => {
