@@ -3,6 +3,8 @@
  */
 export const ASSETS_LOADED = 'assets_loaded'
 export const ASSETS_LOADED_FAIL = 'assets_loaded_fail'
+export const LOGIN_SUCCESS = 'app_login_success'
+export const LOGOUT_SUCCESS = 'app_logout_success'
 export const PROFILE_LOAD = 'profile_load'
 export const SPEAKER_SEARCH = 'speaker_search'
 export const SPEAKER_FILTER = 'speaker_filter'

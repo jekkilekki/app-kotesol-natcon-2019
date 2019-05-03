@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { AsyncStorage } from 'react-native'
 import { Provider } from 'react-redux'
 
 import store from './store'
@@ -26,8 +25,10 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        alert('Logged in!')
         this.setState({ loggedIn: true })
       } else {
+        alert('Logged out!')
         this.setState({ loggedIn: false })
       }
     })

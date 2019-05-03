@@ -1,6 +1,7 @@
 import { Font } from 'expo'
 import { 
-  ASSETS_LOADED, SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
+  ASSETS_LOADED, LOGIN_SUCCESS, LOGOUT_SUCCESS,
+  SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
   SPEAKER_SEARCH, SPEAKER_FILTER, PROFILE_SAVE
 } from './types'
@@ -8,10 +9,20 @@ import {
 export const loadAssets = () => async (dispatch) => {
   let user = await AsyncStorage.getItem('knc_user')
   if ( user ) {
+    console.log('User!!!', user)
     dispatch({
       type: PROFILE_SAVE,
       payload: user
     })
+  } else {
+    console.log('no user...')
+  }
+
+  let token = await AsyncStorage.getItem('knc_token')
+  if ( token ) {
+    console.log('Token!!!', token)
+  } else {
+    console.log('no token...')
   }
 
   const assets = await Promise.all([

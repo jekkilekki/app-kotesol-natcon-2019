@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { Text, View, SafeAreaView, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { primary, black, white, purple, purpler, blueDark } from '../../../utils/colors'
 
@@ -35,22 +35,24 @@ class Header extends Component {
 
   render() {
     return (
-      <View 
-        onLayout={(event) => { this._findDimensions(event.nativeEvent.layout) }}
-        style={[styles.header, 
-          { shadowColor: this.props.noShadow ? 'transparent' : black, },
-          this.props.style,
-        ]}
-      >
-        {this.renderProfileButton()}
-        <AppScreenTitle>{this.props.pageName}</AppScreenTitle>
-        <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
-        {this.props.children &&
-          <View style={{flex: 1}}>
-            {this.props.children}
-          </View>
-        }
-      </View>
+      <SafeAreaView style={{backgroundColor: purpler}}>
+        <View
+          // onLayout={(event) => { this._findDimensions(event.nativeEvent.layout) }}
+          style={[styles.header, 
+            { shadowColor: this.props.noShadow ? 'transparent' : black, },
+            this.props.style,
+          ]}
+        >
+          {this.renderProfileButton()}
+          <AppScreenTitle>{this.props.pageName}</AppScreenTitle>
+          <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
+          {this.props.children &&
+            <View style={{flex: 1}}>
+              {this.props.children}
+            </View>
+          }
+        </View>
+      </SafeAreaView>
     )
   }
 }
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingTop: isIphoneX() ? 50 : 20,
+    paddingTop: 0,
     paddingBottom: 10,
     paddingLeft: 15,
     paddingRight: 15,

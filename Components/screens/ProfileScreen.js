@@ -16,6 +16,7 @@ class ProfileScreen extends Component {
     if ( ! this.props.user ) {
       this.props.navigation.navigate( 'Auth' )
     }
+    this.props.navigation.closeDrawer()
   }
 
   _onSave = () => {

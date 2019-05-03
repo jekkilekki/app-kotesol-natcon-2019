@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'
-import { blue } from '../../../utils/colors'
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import { isIphoneX } from '../../../utils/helpers'
 import AppText from '../text/AppText'
 import { connect } from 'react-redux'
@@ -20,7 +20,23 @@ class ProfileButton extends Component {
   }
 
   render() {
-    const { user } = this.props
+    const { user, loggedIn, name } = this.props
+
+    if ( !loggedIn ) {
+      return (
+        <TouchableOpacity 
+          style={[
+            styles.profileButton, {
+              backgroundColor: 'transparent',
+              borderWidth: 0,
+            }
+          ]}
+          onPress={this.props.onPress}
+        >
+          <FontAwesomeIcon name={name ? name : 'bars'} size={16} style={{color: '#fff'}}/>
+        </TouchableOpacity>
+      )
+    }
 
     return (
       <TouchableOpacity 
@@ -42,7 +58,8 @@ const styles = StyleSheet.create({
   profileButton: {
     position: 'absolute',
     right: 10,
-    top: isIphoneX() ? 42 : 7,
+    top: 0,
+    // top: isIphoneX() ? 42 : 7,
     width: 30,
     height: 30,
     borderRadius: 50,
@@ -65,9 +82,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, app }) => {
   const { user } = auth
-  return { user }
+  return { user, loggedIn: app.loggedIn }
 }
 
 export default connect(mapStateToProps)(ProfileButton)

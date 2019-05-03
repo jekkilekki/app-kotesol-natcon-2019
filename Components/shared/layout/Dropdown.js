@@ -10,7 +10,7 @@ class Dropdown extends Component {
   }
 
   _openFilterMenu = () => {
-    alert(this.props.list)
+    // alert(this.props.list)
     this.setState({ filterOpen: !this.state.filterOpen })
   }
 
@@ -54,16 +54,16 @@ const styles = StyleSheet.create({
   filterPicker: {
     position: 'absolute',
     backgroundColor: '#fff',
-    borderColor: '#000',
-    borderWidth: 1,
+    borderColor: 'rgba(35, 35, 119, 0.3)',
+    borderWidth: StyleSheet.hairlineWidth,
     right: 0,
     top: 34,
-    width: 160,
+    width: 100,
     // height: 100,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    // shadowRadius: 5,
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
     elevation: 1,
     zIndex: 10
   },
