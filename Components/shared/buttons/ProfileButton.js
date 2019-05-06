@@ -20,7 +20,7 @@ class ProfileButton extends Component {
   }
 
   render() {
-    const { user, loggedIn, name } = this.props
+    const { user, loggedIn, name, cancelButton } = this.props
 
     if ( !loggedIn ) {
       return (
@@ -33,7 +33,10 @@ class ProfileButton extends Component {
           ]}
           onPress={this.props.onPress}
         >
-          <FontAwesomeIcon name={name ? name : 'bars'} size={16} style={{color: '#fff'}}/>
+          {cancelButton 
+            ? <FontAwesomeIcon name={name ? name : 'times'} size={16} style={{color: '#fff'}}/>
+            : <FontAwesomeIcon name={name ? name : 'bars'} size={16} style={{color: '#fff'}}/>
+          }
         </TouchableOpacity>
       )
     }

@@ -26,11 +26,10 @@ class Header extends Component {
   }
 
   renderProfileButton() {
-    // if ( this.props.pageName !== 'Login' && this.props.pageName !== 'Profile' ) {
-      return <ProfileButton onPress={this._handleProfile} />
-    // } else if ( this.props.pageName === 'Login' ) { 
-    //   return <ProfileButton onPress={this._handleCancel} text={'X'} />
-    // }
+    if ( this.props.pageName === 'Login' ) { 
+      return <ProfileButton onPress={this._handleCancel} cancelButton />
+    }
+    return <ProfileButton onPress={this._handleProfile} />
   }
 
   render() {

@@ -3,9 +3,6 @@
  */
 export const ASSETS_LOADED = 'assets_loaded'
 export const ASSETS_LOADED_FAIL = 'assets_loaded_fail'
-export const LOGIN_SUCCESS = 'app_login_success'
-export const LOGOUT_SUCCESS = 'app_logout_success'
-export const PROFILE_LOAD = 'profile_load'
 export const SPEAKER_SEARCH = 'speaker_search'
 export const SPEAKER_FILTER = 'speaker_filter'
 export const SPEAKERS_LIST_EXPAND = 'speakers_list_expand'
@@ -28,6 +25,13 @@ export const FIREBASE_LOGIN_SUCCESS = 'firebase_login_success'
 export const FIREBASE_LOGIN_FAIL = 'firebase_login_fail'
 export const FIREBASE_LOGIN_USER = 'firebase_login_user'
 export const FIREBASE_LOGOUT_USER = 'firebase_logout_user'
+
+// App Login
+export const LOGIN_USER = 'app_login_user'
+export const LOGIN_USER_SUCCESS = 'app_login_success'
+export const LOGIN_USER_FAIL = 'app_login_fail'
+export const LOGOUT_SUCCESS = 'app_logout_success'
+export const PROFILE_LOAD = 'profile_load'
 
 /**
  * USER Types

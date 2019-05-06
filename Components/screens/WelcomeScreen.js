@@ -30,37 +30,38 @@ const SLIDE_DATA = [
 
 class WelcomeScreen extends Component {
   state = { 
-    token: null,
+    // token: null,
     slideNum: 0
   }
 
   componentDidMount() {
-    const { profile, navigation } = this.props
-    if ( profile.token === '' && !navigation.state.params ) {
-      this._getToken()
-    }
+    const { profile, navigation, loggedIn } = this.props
+    // if ( profile.token === '' && !navigation.state.params ) {
+    //   this._getToken()
+    // }
+    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Home')
   }
 
-  _getToken = async () => {
-    // const { navigation } = this.props
-    // if ( navigation.state.params.overrideRedirect ) {
-    //   return
-    // }
+  // _getToken = async () => {
+  //   // const { navigation } = this.props
+  //   // if ( navigation.state.params.overrideRedirect ) {
+  //   //   return
+  //   // }
     
-    try {
-      const token = await AsyncStorage.getItem('knc_token')
-      if (token) {
-        console.warn(token)
-        this.props.profileGetWithToken(token)
-        this.props.navigation.navigate('Map')
-        // this.setState({ token })
-      } else {
-        this.setState({ token: false })
-      }
-    } catch (err) {
-      // Error retrieving data 
-    }
-  }
+  //   try {
+  //     const token = await AsyncStorage.getItem('knc_token')
+  //     if (token) {
+  //       console.warn(token)
+  //       this.props.profileGetWithToken(token)
+  //       this.props.navigation.navigate('Map')
+  //       // this.setState({ token })
+  //     } else {
+  //       this.setState({ token: false })
+  //     }
+  //   } catch (err) {
+  //     // Error retrieving data 
+  //   }
+  // }
 
   onLoginPress = () => {
     this.props.navigation.navigate('Auth')
@@ -114,8 +115,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ profile }) => {
-  return { profile }
+const mapStateToProps = ({ profile, app }) => {
+  return { profile, loggedIn: app.loggedIn }
 }
 
 export default connect(mapStateToProps, { profileGetWithToken })(WelcomeScreen)

@@ -50,7 +50,7 @@ class ScheduleScreen extends Component {
       }
       return speakerData.indexOf(filterData) > -1
     })
-    console.log('filtering in the schedule screen yo: ', filteredList)
+    // console.log('filtering in the schedule screen yo: ', filteredList)
     this.setState({
       speakerList: filteredList,
       input: ''

@@ -1,12 +1,16 @@
-import { Font } from 'expo'
 import { 
-  ASSETS_LOADED, LOGIN_SUCCESS, LOGOUT_SUCCESS,
+  ASSETS_LOADED, LOGIN_USER, LOGIN_SUCCESS, LOGOUT_SUCCESS,
   SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
   SPEAKER_SEARCH, SPEAKER_FILTER, PROFILE_SAVE
 } from './types'
 
-export const loadAssets = () => async (dispatch) => {
+export const loadUser = () => async (dispatch) => {
+  // Very first Redux function that runs
+  // 1. Load Fonts and Icons
+  // 2. Load User from AsyncStorage (or Firebase) if one exists
+  // 3. Dispatch actions to indicate new app state
+
   let user = await AsyncStorage.getItem('knc_user')
   if ( user ) {
     console.log('User!!!', user)
@@ -23,36 +27,6 @@ export const loadAssets = () => async (dispatch) => {
     console.log('Token!!!', token)
   } else {
     console.log('no token...')
-  }
-
-  const assets = await Promise.all([
-    Asset.loadAsync([
-
-    ]),
-    Font.loadAsync({
-      ...Icon.AntDesign.font,
-      ...Icon.Entypo.font,
-      ...Icon.Foundation.font,
-      ...Icon.FontAwesome.font,
-      ...Icon.MaterialIcons.font,
-      ...Icon.MaterialCommunityIcons.font,
-      'nunito': require('../assets/fonts/Nunito/Nunito-Regular.ttf'),
-      'nunito-bold': require('../assets/fonts/Nunito/Nunito-Bold.ttf'),
-      'nunito-black': require('../assets/fonts/Nunito/Nunito-Black.ttf'),
-      'futura': require('../assets/fonts/Futura/Futura-Condensed-Medium.otf'),
-      'futura-bold': require('../assets/fonts/Futura/Futura-Condensed-Bold.otf')
-    })
-  ])
-
-  if ( assets ) {
-    dispatch({ 
-      type: ASSETS_LOADED
-    })
-  } else {
-    // Start up FB Login process
-    dispatch({
-      type: ASSETS_LOADED_FAIL
-    })
   }
 }
 

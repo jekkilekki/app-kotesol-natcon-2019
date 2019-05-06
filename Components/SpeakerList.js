@@ -47,8 +47,8 @@ class SpeakerList extends Component {
   _createSpeakerSections(speakersPropsData) {
     let speakerData = this._groupByTime(speakersPropsData)
     let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
-    console.log("Speaker Data: ", speakerData)
-    console.log("SpeakerArray: ", speakerArray)
+    // console.log("Speaker Data: ", speakerData)
+    // console.log("SpeakerArray: ", speakerArray)
     let speakerSections = []
 
     for ( var i = 0; i < speakerArray.length; i++ ) {
@@ -105,7 +105,7 @@ class SpeakerList extends Component {
     return (
       <FlatList
         data={speakers.sort((a,b) => {
-          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+          return a.lastname < b.lastname ? -1 : a.lastname > b.lastname ? 1 : 0
         })}
         renderItem={(speaker) => 
           <SpeakerCardSmall screen={screen} speaker={speaker} filter={this.props.filter} expanded={this.props.speakersExpanded} />

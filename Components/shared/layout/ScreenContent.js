@@ -19,7 +19,7 @@ const screenContent = {
   paddingBottom: 10,
   paddingRight: 15,
   paddingLeft: 15,
-  marginBottom: 100,
+  // marginBottom: 100,
   width: width,
   // height: height - 250
 }

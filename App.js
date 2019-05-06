@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
+// import { appReady, loadUser, loginUser } from './actions'
 
 import store from './store'
 import Main from './Components/Main'
@@ -11,7 +12,7 @@ console.ignoredYellowBox = ['Warning: Hey, listen!']
 
 class App extends Component {
   state = {
-    loggedIn: null
+    user: null
   }
 
   componentWillMount() {
@@ -25,11 +26,14 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        alert('Logged in!')
-        this.setState({ loggedIn: true })
+        alert('App Logged in!')
+        console.log('App Logged in!~', user)
+        // this.props.loginUser(user)
+        this.setState({ user: user })
       } else {
-        alert('Logged out!')
-        this.setState({ loggedIn: false })
+        alert('App Logged out!')
+        // this.props.loginUser(null)
+        this.setState({ user: null })
       }
     })
   }
@@ -37,10 +41,16 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Main loggedIn={this.state.loggedIn} />
+        <Main user={this.state.user} />
       </Provider>
     )
   }
 }
+
+// const mapStateToProps = ({ app }) => {
+//   return { assetsLoaded: app.assetsLoaded }
+// }
+
+// export default connect(mapStateToProps, { appReady, loadUser, loginUser })(App)
 
 export default App

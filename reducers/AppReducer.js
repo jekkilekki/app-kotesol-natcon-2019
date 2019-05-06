@@ -1,14 +1,13 @@
 import { 
   ASSETS_LOADED, SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
-  ATTENDEES_FETCH_SUCCESS, LOGIN_SUCCESS, LOGOUT_SUCCESS
+  ATTENDEES_FETCH_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS
 } from '../actions/types'
 
 const INITIAL_STATE = {
   assetsLoaded: false,
   loggedIn: null,
   error: '',
-  loading: false,
   speakersExpanded: true,
   scheduleExpanded: false 
 }
@@ -17,7 +16,7 @@ export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
     case ASSETS_LOADED:
       return { ...state, assetsLoaded: true }
-    case LOGIN_SUCCESS:
+    case LOGIN_USER_SUCCESS:
       return { ...state, loggedIn: true }
     case LOGOUT_SUCCESS: 
       return { ...state, loggedIn: false }

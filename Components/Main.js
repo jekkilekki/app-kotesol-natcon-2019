@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
-// import { View, Text, Image, Platform, StatusBar, StyleSheet } from 'react-native'
 import { AppLoading, Asset, Font, Icon } from 'expo'
+import firebase from 'firebase'
 import { AppNavigation } from './navigation/AppNav';
 import { connect } from 'react-redux'
-import { appReady } from '../actions'
-
-// cacheImages = (images) => {
-//   return images.map(image => {
-//     if (typeof image === 'string') {
-//       return Image.prefetch(image)
-//     } else {
-//       return Asset.fromModule(image).downloadAsync()
-//     }
-//   })
-// }
-
-// cacheFonts = (fonts) => {
-//   return fonts.map(font => Font.loadAsync(font))
-// }
+import { appReady, loadUser, loginUser } from '../actions'
 
 class Main extends Component {
-  state = {
-    ready: false
+  componentWillReceiveProps(nextProps) {
+    const { user } = this.props
+    // firebase.auth().onAuthStateChanged((user) => {
+      if (this.props.user !== nextProps.user && nextProps.user !== null) {
+        alert('Main Logged in!')
+        console.log('Main Logged in!~', user)
+        this.props.loginUser(user)
+        // this.setState({ loggedIn: true })
+      } else {
+        alert('Main Logged out!')
+        this.props.loginUser(null)
+        // this.setState({ loggedIn: false })
+      }
+    // })
   }
 
   _loadAssetsAsync = async () => {
@@ -45,12 +43,12 @@ class Main extends Component {
   }
 
   _appLoaded = () => {
-    this.setState({ ready: true })
     this.props.appReady()
+    this.props.loadUser()
   }
 
   render() {
-    if ( !this.state.ready ) {
+    if ( !this.props.assetsLoaded ) {
       return (
         <AppLoading
           startAsync={this._loadAssetsAsync}
@@ -64,8 +62,8 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state
+const mapStateToProps = ({ app }) => {
+  return { assetsLoaded: app.assetsLoaded }
 }
 
-export default connect(mapStateToProps, { appReady })(Main)
+export default connect(mapStateToProps, { appReady, loadUser, loginUser })(Main)

@@ -2,6 +2,7 @@ import { AsyncStorage } from 'react-native'
 import { Facebook } from 'expo'
 import firebase from 'firebase'
 import { 
+  LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
   FB_LOGIN_SUCCESS, FB_LOGIN_FAIL, FB_LOGIN_USER,
   INPUT_EMAIL, INPUT_PASSWORD, SET_AUTHED_USER, 
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
@@ -100,6 +101,33 @@ export const inputPassword = (text) => {
     type: INPUT_PASSWORD,
     payload: text
   }
+}
+
+export const loginUser = (user) => {
+  return async (dispatch) => {
+    dispatch({ type: LOGIN_USER })
+
+    // if ( user === null ) {
+      await firebase.auth().onAuthStateChanged((checkUser) => {
+        if (checkUser) { loginUserSuccess(dispatch, checkUser) }
+        else loginUserFail(dispatch, 'No user in AsyncStorage found.')
+      })
+    // } 
+  }
+}
+
+const loginUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  })
+}
+
+const loginUserFail = (dispatch, err) => {
+  dispatch({
+    type: LOGIN_USER_FAIL,
+    payload: err 
+  })
 }
 
 export const firebaseLoginUser = ({ email, password, navigation }) => {
