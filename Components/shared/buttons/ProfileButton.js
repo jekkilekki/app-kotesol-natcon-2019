@@ -8,9 +8,11 @@ import { connect } from 'react-redux'
 
 class ProfileButton extends Component {
   renderButton() {
-    const { user, text } = this.props
-
-    if ( user && user.picture !== undefined ) {
+    const { user, text, cancelButton } = this.props
+    
+    if ( cancelButton ) {
+      return <FontAwesomeIcon name={name ? name : 'times'} size={16} style={{color: '#fff'}}/>
+    } else if ( user && user.picture !== undefined ) {
       return <Image source={{uri: user.picture.data.url}} style={styles.userImg} />
     } else if ( text ) {
       return <AppText fontFamily={'nunito-black'} style={{color: '#00dddd'}} size={24}>{text}</AppText>

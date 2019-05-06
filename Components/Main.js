@@ -1,26 +1,19 @@
 import React, { Component } from 'react'
 import { AppLoading, Asset, Font, Icon } from 'expo'
-import firebase from 'firebase'
 import { AppNavigation } from './navigation/AppNav';
 import { connect } from 'react-redux'
 import { appReady, loadUser, loginUser } from '../actions'
 
 class Main extends Component {
-  componentWillReceiveProps(nextProps) {
-    const { user } = this.props
-    // firebase.auth().onAuthStateChanged((user) => {
-      if (this.props.user !== nextProps.user && nextProps.user !== null) {
-        alert('Main Logged in!')
-        console.log('Main Logged in!~', user)
-        this.props.loginUser(user)
-        // this.setState({ loggedIn: true })
-      } else {
-        alert('Main Logged out!')
-        this.props.loginUser(null)
-        // this.setState({ loggedIn: false })
-      }
-    // })
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const { user, loginUser } = this.props
+
+  //   if (user !== nextProps.user && nextProps.user !== null) {
+  //     loginUser(user)
+  //   } else {
+  //     loginUser(null)
+  //   }
+  // }
 
   _loadAssetsAsync = async () => {
     return Promise.all([
@@ -43,8 +36,10 @@ class Main extends Component {
   }
 
   _appLoaded = () => {
+    // dispatch appReady action
     this.props.appReady()
-    this.props.loadUser()
+    // dispatch loginUser action
+    this.props.loginUser()
   }
 
   render() {

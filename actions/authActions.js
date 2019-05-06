@@ -8,8 +8,8 @@ import {
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
   FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER
 } from './types'
+import { generateUID } from '../utils/helpers'
 import { profileSave } from './userActions'
-import { generateUID } from '../utils/helpers';
 
 /**
  * Facebook Login logic
@@ -17,8 +17,9 @@ import { generateUID } from '../utils/helpers';
 // Usage of AsyncStorage
 // AsyncStorage.setItem('fb_token', token)
 // AsyncStorage.getItem('fb_token')
+// AsyncStorage.removeItem('fb_token')
 export const fbLogin = (navigation) => async dispatch => {
-  let token = await AsyncStorage.getItem('knc_token')
+  // let token = await AsyncStorage.getItem('knc_token')
   let user = await AsyncStorage.getItem('knc_user')
   if (token) {
     // Dispatch FB_LOGIN_SUCCESS action
@@ -63,21 +64,12 @@ const doFBLogin = async (dispatch, navigation) => {
 
     // Sign into Firebase with the Facebook credential
     let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
-    // const { photoURL, displayName, email } = user
-    // let aff = ''
-    // let bio = ''
-    // let friends = []
-    // let sch = []
     
-    // profileSave({ photoURL, displayName, displayName, aff, bio, email, friends, sch, navigation })
-    setAuthedUser( dispatch, user.user, token, navigation )
+    setAuthedUser( dispatch, user.user, navigation )
   }
-  
-  // let user = await fetch(`https://graph.facebook.com/me?fields=id,first_name,last_name,email,picture{url}&access_token=${token}`)
-  // setAuthedUser( dispatch, await user.json(), token, navigation );
 }
 
-const setAuthedUser = async ( dispatch, user, token, navigation ) => {
+const setAuthedUser = async ( dispatch, user, navigation ) => {
   // await AsyncStorage.setItem('knc_token', token)
   await AsyncStorage.setItem('knc_user', user)
 
@@ -103,24 +95,41 @@ export const inputPassword = (text) => {
   }
 }
 
-export const loginUser = (user) => {
+export const loginUser = (user = null) => {
   return async (dispatch) => {
     dispatch({ type: LOGIN_USER })
 
-    // if ( user === null ) {
+    // if ( user !== null ) {
+    //   loginUserSuccess(dispatch, user)
+    // } else {
       await firebase.auth().onAuthStateChanged((checkUser) => {
         if (checkUser) { loginUserSuccess(dispatch, checkUser) }
         else loginUserFail(dispatch, 'No user in AsyncStorage found.')
       })
-    // } 
+    // }
   }
 }
 
 const loginUserSuccess = (dispatch, user) => {
-  dispatch({
-    type: LOGIN_USER_SUCCESS,
-    payload: user
-  })
+  // return async (dispatch) => {
+    dispatch({
+      type: LOGIN_USER_SUCCESS,
+      payload: user
+    })
+
+    // profileSave({
+    //   token: '', 
+    //   img: '', 
+    //   firstName: 'Aaron', 
+    //   lastName: 'Snowberger', 
+    //   affiliation: 'test', 
+    //   shortBio: '', 
+    //   email: '', 
+    //   myFriends: '', 
+    //   mySchedule: '', 
+    //   navigation
+    // })
+  // }
 }
 
 const loginUserFail = (dispatch, err) => {
@@ -162,9 +171,9 @@ const firebaseLoginUserSuccess = async (dispatch, user, navigation) => {
     payload: user.user
   })
 
-  let token = generateUID()
+  // let token = generateUID()
 
-  setAuthedUser( dispatch, user.user, token, navigation )
+  setAuthedUser( dispatch, user.user, navigation )
 }
 
 export const firebaseLogoutUser = () => {

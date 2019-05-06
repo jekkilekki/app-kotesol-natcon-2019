@@ -26,13 +26,8 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        alert('App Logged in!')
-        console.log('App Logged in!~', user)
-        // this.props.loginUser(user)
         this.setState({ user: user })
       } else {
-        alert('App Logged out!')
-        // this.props.loginUser(null)
         this.setState({ user: null })
       }
     })
@@ -46,11 +41,5 @@ class App extends Component {
     )
   }
 }
-
-// const mapStateToProps = ({ app }) => {
-//   return { assetsLoaded: app.assetsLoaded }
-// }
-
-// export default connect(mapStateToProps, { appReady, loadUser, loginUser })(App)
 
 export default App

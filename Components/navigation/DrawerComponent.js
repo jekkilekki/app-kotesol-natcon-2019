@@ -77,8 +77,6 @@ class DrawerComponent extends Component {
   }
 
   renderMenuItems() {
-    const { loggedIn } = this.props
-
     const MENU = [
       {
         "screen": "Profile",
@@ -114,19 +112,23 @@ class DrawerComponent extends Component {
       },
     ]
 
+    const { loggedIn } = this.props
+
     return (
-      MENU.map((item, i) => {(
-        !( !loggedIn && item.screen === 'Profile' || !loggedIn && item.screen === 'MySchedule' ) ?
-        <TouchableOpacity key={i} style={styles.button} onPress={() => this._menuPress(item.screen)}>
-          {/* {this.renderMenuIcon(item.screen)} */}
-          <AppText>{item.title}</AppText>
-        </TouchableOpacity>
-        : null
-      )})
+      MENU.map((item, i) => (
+        ( !loggedIn && item.screen === 'Profile' || !loggedIn && item.screen === 'MySchedule' )
+        ? null
+        : <TouchableOpacity key={i} style={styles.button} onPress={() => this._menuPress(item.screen)}>
+            {/* {this.renderMenuIcon(item.screen)} */}
+            <AppText>{item.title}</AppText>
+          </TouchableOpacity>
+      ))
     )
   }
 
   render() {
+    const { loggedIn } = this.props
+
     return (
       <ScrollView>
         <SafeAreaView style={styles.container} forceInset={{top: 'always', horizontal: 'never'}}>
@@ -139,11 +141,15 @@ class DrawerComponent extends Component {
 
           {this.renderMenuItems()}
 
-          <ContentButton
+          {loggedIn
+            ? <ContentButton style={styles.logoutButton}
                 title="Logout"
                 icon="logout"
                 onPress={() => this._onLogout()}
               />
+            : null
+          }
+          
         </SafeAreaView>
       </ScrollView>
     )

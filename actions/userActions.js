@@ -13,7 +13,7 @@ export const profileFieldUpdate = ({ prop, value }) => {
   }
 }
 
-export const profileSave = ({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation }) => {
+export const profileSave = ({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation = '' }) => {
   const { currentUser } = firebase.auth()
 
   return async (dispatch) => {
@@ -27,7 +27,7 @@ export const profileSave = ({ token, img, firstName, lastName, affiliation, shor
       payload: { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
     })
     
-    navigation.navigate('Home')
+    // navigation.navigate('Home')
   }
 }
 
