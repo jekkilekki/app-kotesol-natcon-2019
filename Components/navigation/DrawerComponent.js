@@ -133,7 +133,7 @@ class DrawerComponent extends Component {
       <ScrollView>
         <SafeAreaView style={styles.container} forceInset={{top: 'always', horizontal: 'never'}}>
           <ImageBackground source={require('../../assets/img/splash.png')} style={styles.profileBox}>
-            <ProfileButton name={'times'} onPress={() => this.props.navigation.closeDrawer()} />
+            <ProfileButton name={'times'} onPress={() => this.props.navigation.closeDrawer()} cancelButton />
             {this.renderId()}
           </ImageBackground>
           

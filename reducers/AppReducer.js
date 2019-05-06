@@ -1,7 +1,7 @@
 import { 
   ASSETS_LOADED, SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
-  ATTENDEES_FETCH_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS
+  ATTENDEES_FETCH_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS, LOGIN_USER_FAIL
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -18,6 +18,8 @@ export default ( state = INITIAL_STATE, action ) => {
       return { ...state, assetsLoaded: true }
     case LOGIN_USER_SUCCESS:
       return { ...state, loggedIn: true }
+    case LOGIN_USER_FAIL: 
+      return { ...state, loggedIn: false }
     case LOGOUT_SUCCESS: 
       return { ...state, loggedIn: false }
     case SPEAKERS_LIST_COLLAPSE:

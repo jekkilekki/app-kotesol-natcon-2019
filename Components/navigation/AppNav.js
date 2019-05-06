@@ -184,6 +184,7 @@ const drawerNav = createDrawerNavigator({
   MySchedule: MyScheduleScreen,
   // MyPlaces: MyPlacesScreen,
   Settings: ProfileScreen,
+  Session: stackNav
 }, {
   drawerPosition: 'right',
   overlayColor: '#151537',

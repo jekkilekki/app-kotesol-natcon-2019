@@ -11,6 +11,7 @@ import AppScreen from '../shared/layout/AppScreen'
 import MyButton from '../shared/buttons/MyButton'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppText from '../shared/text/AppText'
+import { app } from 'firebase';
 
 class AuthScreen extends Component {
   componentDidMount() {
@@ -25,11 +26,14 @@ class AuthScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.onAuthComplete(nextProps)
+    // this.onAuthComplete(nextProps)
+    if (nextProps.loggedIn) {
+      this.props.navigation.navigate('Home')
+    }
   }
 
   onAuthComplete(props) {
-    if (props.token) {
+    if (props.loggedIn) {
       this.props.navigation.navigate('Schedule')
     }
   }
@@ -79,6 +83,7 @@ class AuthScreen extends Component {
             _onEmailInput={this._onEmailInput}
             _onPasswordInput={this._onPasswordInput}
             _onLogin={this._onLogin}
+            _onLoggedIn={this._onLoggedIn}
           />
           <AppText center bold padding>&mdash; OR &mdash;</AppText>
           <MyButton onPress={() => this.props.fbLogin(navigation)}/>
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ auth, profile }) => {
   const { email, password, error, loading, user } = auth
   const { token } = profile
-  return { token, email, password, error, loading, user }
+  return { token, email, password, error, loading, user, loggedIn: app.loggedIn }
 }
 
 export default connect(mapStateToProps, {

@@ -9,6 +9,12 @@ import ContentButton from '../../shared/buttons/ContentButton'
 import Loader from '../../shared/Loader'
 
 class LoginRedux extends Component {
+  componentDidMount() {
+    if ( this.props.loggedIn ) {
+      this.props._onLoggedIn()
+    }
+  }
+
   _onEmailInput = (text) => {
     this.props._onEmailInput(text)
   }

@@ -43,7 +43,7 @@ class Main extends Component {
   }
 
   render() {
-    if ( !this.props.assetsLoaded ) {
+    if ( this.props.loggedIn === null ) {
       return (
         <AppLoading
           startAsync={this._loadAssetsAsync}
@@ -58,7 +58,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = ({ app }) => {
-  return { assetsLoaded: app.assetsLoaded }
+  return { assetsLoaded: app.assetsLoaded, loggedIn: app.loggedIn }
 }
 
 export default connect(mapStateToProps, { appReady, loadUser, loginUser })(Main)

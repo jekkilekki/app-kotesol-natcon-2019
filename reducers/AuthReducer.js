@@ -18,11 +18,11 @@ const INITIAL_STATE = {
 export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
     case LOGIN_USER:
-      return { ...state, loading: true, error: '' }
+      return { ...state, error: '' }
     case LOGIN_USER_SUCCESS: 
       return { ...state, ...INITIAL_STATE, user: action.payload }
     case LOGIN_USER_FAIL:
-      return { ...state, ...INITIAL_STATE, error: action.payload }
+      return { ...state, ...INITIAL_STATE }
     case SET_AUTHED_USER:
       return { ...state, user: action.payload }
     case FB_LOGIN_SUCCESS: 
@@ -54,7 +54,7 @@ export default ( state = INITIAL_STATE, action ) => {
 
       return { ...state, error: error, password: '', loading: false }
     case FIREBASE_LOGOUT_USER:
-      return { ...state, user: null }
+      return { ...state, ...INITIAL_STATE }
     default: 
       return state
   }

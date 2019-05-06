@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 class ProfileButton extends Component {
   renderButton() {
-    const { user, text, cancelButton } = this.props
+    const { user, text, name, cancelButton } = this.props
     
     if ( cancelButton ) {
       return <FontAwesomeIcon name={name ? name : 'times'} size={16} style={{color: '#fff'}}/>
@@ -47,8 +47,8 @@ class ProfileButton extends Component {
       <TouchableOpacity 
         style={[
           styles.profileButton, {
-            backgroundColor: this.props.text ? 'transparent' : '#d63aff',
-            borderWidth: this.props.text ? 0 : 1,
+            backgroundColor: this.props.text || this.props.cancelButton ? 'transparent' : '#d63aff',
+            borderWidth: this.props.text || this.props.cancelButton ? 0 : 1,
           }
         ]}
         onPress={this.props.onPress}
