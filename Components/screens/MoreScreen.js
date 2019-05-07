@@ -20,6 +20,10 @@ class MoreScreen extends Component {
             title="View Welcome Screen"
             onPress={() => this.props.navigation.navigate('Welcome', { overrideRedirect: true })}
           />
+          <ContentButton
+            title="Attendees"
+            onPress={() => this.props.navigation.navigate('Attendees')}
+          />
         </ScreenContent>
       </AppScreen>
     )

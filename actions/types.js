@@ -49,3 +49,5 @@ export const USER_SAVE_SUCCESS = 'user_save_success'
 
 export const SPEAKER_LIKE = 'speaker_like'
 export const SPEAKER_DISLIKE = 'speaker_dislike'
+
+export const GET_ATTENDEES = 'get_attendees'

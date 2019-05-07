@@ -13,18 +13,17 @@ import ContentButton from '../shared/buttons/ContentButton'
 
 class ProfileScreen extends Component {
   componentDidMount() {
-    if ( ! this.props.user ) {
-      this.props.navigation.navigate( 'Auth' )
-    }
+    // if ( ! this.props.user ) {
+    //   this.props.navigation.navigate( 'Auth' )
+    // }
     this.props.navigation.closeDrawer()
   }
 
   _onSave = () => {
     // Need to save this data to Firebase - to recall it all later
-    const { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
-
-    this.props.profileSave({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation })
-
+    // const { profile, navigation } = this.props // maybe we don't need to destructure it
+    const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
+    this.props.profileSave({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation })
     this.props.navigation.navigate('Home')
   }
 
@@ -34,7 +33,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { user, token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = this.props
+    const { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = this.props
 
     return (
       <AppScreen background>
@@ -94,6 +93,7 @@ class ProfileScreen extends Component {
           <ContentButton
             title="Save"
             onPress={this._onSave}
+            disabled={firstName === '' || lastName === ''}
           />
           <Button
             title="Logout"
@@ -120,20 +120,20 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = ({ auth, profile }) => {
-  const { user, token } = auth
+  const { user } = auth
   const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = profile
   
   if ( user !== null ) {
-    return { user, token, 
-      img: img || user.photoURL, 
-      firstName: firstName || user.displayName, 
-      lastName: lastName || user.displayName, affiliation, shortBio, 
-      email: email || user.email, 
+    return { user,  
+      img,
+      firstName,
+      lastName, affiliation, shortBio, 
+      email, 
       myFriends, mySchedule 
     }
   }
 
-  return { user, token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
+  return { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
 }
 
 export default connect(mapStateToProps, { 
