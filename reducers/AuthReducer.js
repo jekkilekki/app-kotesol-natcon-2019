@@ -1,5 +1,5 @@
 import { 
-  LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
+  CHECK_AUTH_STATUS, USER_LOGGED_IN, USER_LOGGED_OUT,
   FB_LOGIN_SUCCESS, FB_LOGIN_FAIL,
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
   FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER,
@@ -17,11 +17,11 @@ const INITIAL_STATE = {
 
 export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
-    case LOGIN_USER:
+    case CHECK_AUTH_STATUS:
       return { ...state, error: '' }
-    case LOGIN_USER_SUCCESS: 
+    case USER_LOGGED_IN: 
       return { ...state, ...INITIAL_STATE, user: action.payload }
-    case LOGIN_USER_FAIL:
+    case USER_LOGGED_OUT:
       return { ...state, ...INITIAL_STATE }
     case SET_AUTHED_USER:
       return { ...state, user: action.payload }

@@ -2,45 +2,48 @@ import { AsyncStorage } from 'react-native'
 import { Facebook } from 'expo'
 import firebase from 'firebase'
 import { 
-  LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL,
+  CHECK_AUTH_STATUS, USER_LOGGED_IN, USER_LOGGED_OUT,
   FB_LOGIN_SUCCESS, FB_LOGIN_FAIL, FB_LOGIN_USER,
   INPUT_EMAIL, INPUT_PASSWORD, SET_AUTHED_USER, 
   FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
-  FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER, LOGOUT_SUCCESS
+  FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER, LOGOUT_SUCCESS, PROFILE_SAVE
 } from './types'
 import { generateUID } from '../utils/helpers'
-import { profileSave } from './userActions'
+import { profileSave, getProfile } from './profileActions'
+
+/**
+ * After appReady() (appActions.js) indicates that Font/Icon assets are loaded,
+ * check Firebase's User authentication status
+ */
+export const checkAuthStatus = () => {
+  return async (dispatch) => {
+    dispatch({ type: CHECK_AUTH_STATUS })
+
+    await firebase.auth().onAuthStateChanged((user) => {
+      if (user) { userLoggedIn(dispatch, user) }
+      else { userLoggedOut(dispatch) }
+    })
+  }
+}
+
+const userLoggedIn = (dispatch, user) => {
+  dispatch({
+    type: USER_LOGGED_IN,
+    payload: user
+  })
+}
+
+const userLoggedOut = (dispatch) => {
+  dispatch({
+    type: USER_LOGGED_OUT
+  })
+}
 
 /**
  * Facebook Login logic
  */
-// Usage of AsyncStorage
-// AsyncStorage.setItem('fb_token', token)
-// AsyncStorage.getItem('fb_token')
-// AsyncStorage.removeItem('fb_token')
-export const fbLogin = (navigation) => async dispatch => {
-  // let token = await AsyncStorage.getItem('knc_token')
-  // let user = await AsyncStorage.getItem('knc_user')
-  // if (token) {
-  //   // Dispatch FB_LOGIN_SUCCESS action
-  //   dispatch({ 
-  //     type: FB_LOGIN_SUCCESS,
-  //     payload: token
-  //   })
-  // } else if ( user ) {
-  //   dispatch({
-  //     type: SET_AUTHED_USER,
-  //     payload: user
-  //   })
-  // } else {
-    // Start up FB Login process
-    doFBLogin(dispatch, navigation);
-  // }
-}
-
-// @TODO
 // Good example with some refactoring: https://medium.com/datadriveninvestor/facebook-login-with-react-native-expo-firebase-and-typescript-56df4ed6099a
-const doFBLogin = async (dispatch, navigation) => {
+export const fbLogin = () => async (dispatch) => {
   let { type, token } = await Facebook.logInWithReadPermissionsAsync(
     '2279054512415452', {
       permissions: ['public_profile']
@@ -64,22 +67,22 @@ const doFBLogin = async (dispatch, navigation) => {
 
     // Sign into Firebase with the Facebook credential
     let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
-    // console.log("fb user", user)
-    setAuthedUser( dispatch, user.user, navigation )
+
+    if ( user ) getProfile()
   }
 }
 
-const setAuthedUser = async ( dispatch, user, navigation ) => {
-  // await AsyncStorage.setItem('knc_token', token)
-  await AsyncStorage.setItem('knc_user', user)
+// const setAuthedUser = async ( dispatch, user, navigation ) => {
+//   // await AsyncStorage.setItem('knc_token', token)
+//   await AsyncStorage.setItem('knc_user', user)
 
-  dispatch({
-    type: SET_AUTHED_USER,
-    payload: user
-  })
+//   dispatch({
+//     type: SET_AUTHED_USER,
+//     payload: user
+//   })
   
-  navigation.navigate('Home')
-}
+//   navigation.navigate('Home')
+// }
 
 export const inputEmail = (text) => {
   return {
@@ -93,50 +96,6 @@ export const inputPassword = (text) => {
     type: INPUT_PASSWORD,
     payload: text
   }
-}
-
-export const loginUser = (user = null) => {
-  return async (dispatch) => {
-    dispatch({ type: LOGIN_USER })
-
-    // if ( user !== null ) {
-    //   loginUserSuccess(dispatch, user)
-    // } else {
-      await firebase.auth().onAuthStateChanged((checkUser) => {
-        if (checkUser) { loginUserSuccess(dispatch, checkUser) }
-        // else return null
-        else loginUserFail(dispatch)
-      })
-    // }
-  }
-}
-
-const loginUserSuccess = (dispatch, user) => {
-  // return async (dispatch) => {
-    dispatch({
-      type: LOGIN_USER_SUCCESS,
-      payload: user
-    })
-
-    // profileSave({
-    //   token: '', 
-    //   img: '', 
-    //   firstName: 'Aaron', 
-    //   lastName: 'Snowberger', 
-    //   affiliation: 'test', 
-    //   shortBio: '', 
-    //   email: '', 
-    //   myFriends: '', 
-    //   mySchedule: '', 
-    //   navigation
-    // })
-  // }
-}
-
-const loginUserFail = (dispatch) => {
-  dispatch({
-    type: LOGIN_USER_FAIL
-  })
 }
 
 export const firebaseLoginUser = ({ email, password, navigation }) => {

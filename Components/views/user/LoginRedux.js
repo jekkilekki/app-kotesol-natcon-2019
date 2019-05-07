@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 // import { inputEmail, inputPassword, firebaseLoginUser } from '../../../actions'
  
 import AppInput from '../../shared/AppInput'
@@ -9,8 +9,8 @@ import ContentButton from '../../shared/buttons/ContentButton'
 import Loader from '../../shared/Loader'
 
 class LoginRedux extends Component {
-  componentDidMount() {
-    if ( this.props.loggedIn ) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps && nextProps.profileLoaded) {
       this.props._onLoggedIn()
     }
   }
@@ -78,13 +78,13 @@ const styles = StyleSheet.create({
   }
 })
 
-// const mapStateToProps = ({ auth }) => {
-//   const { email, password, error, loading, user } = auth
-//   return { email, password, error, loading, user }
-// }
+const mapStateToProps = ({ app }) => {
+  const { profileLoaded } = app
+  return { profileLoaded }
+}
 
 // export default connect(mapStateToProps, {
 //   inputEmail, inputPassword, firebaseLoginUser
 // })(LoginRedux)
 
-export default LoginRedux
+export default connect(mapStateToProps)(LoginRedux)

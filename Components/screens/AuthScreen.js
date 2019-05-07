@@ -27,7 +27,7 @@ class AuthScreen extends Component {
 
   componentWillReceiveProps(nextProps) {
     // this.onAuthComplete(nextProps)
-    if (nextProps.loggedIn) {
+    if (this.props !== nextProps && nextProps.profileLoaded) {
       this.props.navigation.navigate('Home')
     }
   }
@@ -39,7 +39,7 @@ class AuthScreen extends Component {
   }
 
   _onLoggedIn = () => {
-    this.props.navigation.navigate('Speakers')
+    this.props.navigation.navigate('Profile')
   }
 
   _onEmailInput = (text) => {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ auth, profile }) => {
   const { email, password, error, loading, user } = auth
   const { token } = profile
-  return { token, email, password, error, loading, user, loggedIn: app.loggedIn }
+  return { token, email, password, error, loading, user, loggedIn: app.loggedIn, profileLoaded: app.profileLoaded }
 }
 
 export default connect(mapStateToProps, {

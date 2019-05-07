@@ -2,14 +2,37 @@ import firebase from 'firebase'
 import {
   PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
   PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL,
-  SPEAKER_LIKE,
-  SPEAKER_DISLIKE
+  SPEAKER_LIKE, SPEAKER_DISLIKE
 } from './types'
 
 export const profileFieldUpdate = ({ prop, value }) => {
   return {
     type: PROFILE_FIELD_UPDATE,
     payload: { prop, value }
+  }
+}
+
+export const getProfile = () => {
+  const { currentUser } = firebase.auth()
+
+  return async (dispatch) => {
+    await firebase.database().ref(`users/${currentUser.uid}`)
+      .once('value').then((snapshot) => {
+        dispatch({
+          type: PROFILE_SAVE,
+          payload: { 
+            token: snapshot.val() && snapshot.val().token || '', 
+            img: snapshot.val() && snapshot.val().img || '', 
+            firstName: snapshot.val() && snapshot.val().firstName || '', 
+            lastName: snapshot.val() && snapshot.val().lastName || '', 
+            affiliation: snapshot.val() && snapshot.val().affiliation || '', 
+            shortBio: snapshot.val() && snapshot.val().shortBio || '', 
+            email: snapshot.val() && snapshot.val().email || '', 
+            myFriends: snapshot.val() && snapshot.val().myFriends || [], 
+            mySchedule: snapshot.val() && snapshot.val().mySchedule || ['plenary'] 
+          }
+        })
+      })
   }
 }
 

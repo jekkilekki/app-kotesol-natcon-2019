@@ -30,6 +30,16 @@ import {
 //   }
 // }
 
+/**
+ * Called from Main.js after Font & Icon assets are pre-loaded
+ * Next step is checking User Firebase authentication (authActions.js)
+ */
+export const appReady = () => {
+  return {
+    type: ASSETS_LOADED,
+  }
+}
+
 export const speakerSearch = (query) => {
   return {
     type: SPEAKER_SEARCH,
@@ -41,12 +51,6 @@ export const speakerFilter = (query) => {
   return {
     type: SPEAKER_FILTER,
     payload: query
-  }
-}
-
-export const appReady = () => {
-  return {
-    type: ASSETS_LOADED,
   }
 }
 

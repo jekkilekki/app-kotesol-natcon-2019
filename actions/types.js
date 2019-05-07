@@ -27,9 +27,9 @@ export const FIREBASE_LOGIN_USER = 'firebase_login_user'
 export const FIREBASE_LOGOUT_USER = 'firebase_logout_user'
 
 // App Login
-export const LOGIN_USER = 'app_login_user'
-export const LOGIN_USER_SUCCESS = 'app_login_success'
-export const LOGIN_USER_FAIL = 'app_login_fail'
+export const CHECK_AUTH_STATUS = 'app_check_auth_status'
+export const USER_LOGGED_IN = 'app_user_logged_in'
+export const USER_LOGGED_OUT = 'app_user_logged_out'
 export const LOGOUT_SUCCESS = 'app_logout_success'
 export const PROFILE_LOAD = 'profile_load'
 

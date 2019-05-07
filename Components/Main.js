@@ -2,18 +2,16 @@ import React, { Component } from 'react'
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import { AppNavigation } from './navigation/AppNav';
 import { connect } from 'react-redux'
-import { appReady, loadUser, loginUser } from '../actions'
+import { appReady, checkAuthStatus, getProfile } from '../actions'
 
 class Main extends Component {
-  // componentWillReceiveProps(nextProps) {
-  //   const { user, loginUser } = this.props
+  componentWillReceiveProps(nextProps) {
+    const { loggedIn } = this.props
 
-  //   if (user !== nextProps.user && nextProps.user !== null) {
-  //     loginUser(user)
-  //   } else {
-  //     loginUser(null)
-  //   }
-  // }
+    if (this.props.loggedIn !== nextProps.loggedIn && nextProps.loggedIn && !this.props.profileLoaded) {
+      this.props.getProfile()
+    } 
+  }
 
   _loadAssetsAsync = async () => {
     return Promise.all([
@@ -35,11 +33,11 @@ class Main extends Component {
     ])
   }
 
-  _appLoaded = () => {
+  _appLoaded = async () => {
     // dispatch appReady action
     this.props.appReady()
     // dispatch loginUser action
-    this.props.loginUser()
+    this.props.checkAuthStatus()
   }
 
   render() {
@@ -58,7 +56,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = ({ app }) => {
-  return { assetsLoaded: app.assetsLoaded, loggedIn: app.loggedIn }
+  return { assetsLoaded: app.assetsLoaded, loggedIn: app.loggedIn, profileLoaded: app.profileLoaded }
 }
 
-export default connect(mapStateToProps, { appReady, loadUser, loginUser })(Main)
+export default connect(mapStateToProps, { appReady, checkAuthStatus, getProfile })(Main)

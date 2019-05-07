@@ -1,12 +1,14 @@
 import { 
-  ASSETS_LOADED, SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
+  ASSETS_LOADED, USER_LOGGED_IN, USER_LOGGED_OUT, 
+  SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
-  ATTENDEES_FETCH_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS, LOGIN_USER_FAIL
+  ATTENDEES_FETCH_SUCCESS, LOGOUT_SUCCESS, PROFILE_SAVE,
 } from '../actions/types'
 
 const INITIAL_STATE = {
   assetsLoaded: false,
   loggedIn: null,
+  profileLoaded: false,
   error: '',
   speakersExpanded: true,
   scheduleExpanded: false 
@@ -16,12 +18,14 @@ export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
     case ASSETS_LOADED:
       return { ...state, assetsLoaded: true }
-    case LOGIN_USER_SUCCESS:
+    case USER_LOGGED_IN:
       return { ...state, loggedIn: true }
-    case LOGIN_USER_FAIL: 
-      return { ...state, loggedIn: false }
+    case USER_LOGGED_OUT: 
+      return { ...state, loggedIn: false, profileLoaded: false }
     case LOGOUT_SUCCESS: 
-      return { ...state, loggedIn: false }
+      return { ...state, loggedIn: false, profileLoaded: false }
+    case PROFILE_SAVE: 
+      return { ...state, profileLoaded: true }
     case SPEAKERS_LIST_COLLAPSE:
       return { ...state, speakersExpanded: false }
     case SPEAKERS_LIST_EXPAND:

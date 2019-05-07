@@ -26,7 +26,7 @@ class Header extends Component {
   }
 
   renderProfileButton() {
-    if ( this.props.pageName === 'Login' ) { 
+    if ( this.props.pageName === 'Login' || this.props.pageName === 'Profile' ) { 
       return <ProfileButton onPress={this._handleCancel} cancelButton />
     }
     return <ProfileButton onPress={this._handleProfile} />

@@ -1,6 +1,7 @@
 import {
   PROFILE_LOAD, PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
-  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL, SPEAKER_LIKE, SPEAKER_DISLIKE
+  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL, SPEAKER_LIKE, SPEAKER_DISLIKE,
+  FIREBASE_LOGOUT_USER
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -54,6 +55,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state, 
         mySchedule: state.mySchedule.filter(id => id !== action.payload)
       }
+    case FIREBASE_LOGOUT_USER: 
+      return { ...state, ...INITIAL_STATE }
     default: 
       return state
   }
