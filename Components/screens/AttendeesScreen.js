@@ -12,22 +12,22 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import AppText from '../shared/text/AppText'
 
 class AttendeesScreen extends Component {
-  state = {
-    attendeeList: this.props.attendees || {},
-    loaded: false
-  }
+  // state = {
+  //   attendeeList: this.props.attendees || {},
+  //   loaded: false
+  // }
   
-  componentWillMount() {
-    this.props.getAttendees()
-  }
+  // componentWillMount() {
+  //   this.props.getAttendees()
+  // }
 
-  componentWillReceiveProps(nextProps) {
-    console.log("this props", this.props.attendees)
-    console.log("next props", nextProps.attendees)
-    if ( !this.state.loaded && this.props.attendees !== nextProps.attendees && nextProps.attendees !== {} ) {
-      this.setState({ attendeeList: nextProps.attendees, loaded: true })
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("this props", this.props.attendees)
+  //   console.log("next props", nextProps.attendees)
+  //   if ( !this.state.loaded && this.props.attendees !== nextProps.attendees && nextProps.attendees !== {} ) {
+  //     this.setState({ attendeeList: nextProps.attendees, loaded: true })
+  //   }
+  // }
 
   // _searchAttendees = (query) => {
   //   this.props.attendeeSearch(query)
@@ -61,16 +61,13 @@ class AttendeesScreen extends Component {
           // display={this.state.display}
         />
         <ScreenContent style={attendeesScreenStyle}>
-        {this.props.attendees === undefined
-          ? <Loader />
-          : <AttendeesList 
+          <AttendeesList 
               // screen={'Speakers'} 
               // attendees={this.state.attendeesList} 
               // filter={this._filterSpeakers} 
               // expanded={this.props.expanded} 
               // display={this.state.display}
             />
-        }
         </ScreenContent>
       </AppScreen>
     )

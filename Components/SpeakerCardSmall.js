@@ -130,11 +130,12 @@ class SpeakerCardSmall extends Component {
           <View style={[styles.talkMeta, {
             paddingRight: this.state.expanded && img ? 60 : 0
           }]}>
-            {name !== '' && <AppText style={styles.talkSpeaker}>{name}
+            {name !== '' && 
+              <AppText style={styles.talkSpeaker}>{name}
               {affiliation !== '' &&
                 <AppText style={styles.talkAffiliation}> ({affiliation})</AppText>
               }
-            </AppText>
+              </AppText>
             }
             <H2 small dark normal style={[styles.talkTitle, 
               {

@@ -13,9 +13,9 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 const { width } = Dimensions.get('window')
 
 class AttendeeCard extends Component {
-  state = {
-    expanded: true || this.props.expanded
-  }
+  // state = {
+  //   expanded: true || this.props.expanded
+  // }
 
   render() {
     const { 
@@ -30,14 +30,18 @@ class AttendeeCard extends Component {
         // onPress={this._goToSession}
         style={styles.cardStyle}
       >
-        <View style={styles.cardBackground}>
-          <AppText style={styles.talkSpeaker}>{firstName} 
-            <AppText> {lastName}</AppText>
-            <AppText style={styles.talkAffiliation}> ({affiliation})</AppText>
-          </AppText>
-          <SpeakerLikeButton id={email} />
+        <View style={[styles.cardBackground, {paddingTop: 15}]}>
+          <View style={[styles.talkMeta, {
+            paddingRight: img ? 60 : 0
+          }]}>
+            <AppText dark style={styles.talkTitle}>{firstName} {lastName}</AppText>
+            {affiliation !== '' && 
+              <AppText dark style={styles.talkSpeaker}>{affiliation}</AppText>
+            }
+          </View>
+          {/* <SpeakerLikeButton id={email} /> */}
         </View>
-        {this.state.expanded && img !== '' &&
+        {img !== '' &&
           <View style={styles.thumbnailStyle}>
             <Image 
               source={{ uri: img }} 
@@ -72,14 +76,14 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
     paddingBottom: 10,
-    borderRadius: 20,
+    borderRadius: 15,
     // flexDirection: 'row',
     // flexWrap: 'wrap',
     // justifyContent: 'center'
   },
   cardStyle: {
     flexDirection: 'row',
-    borderRadius: 20,
+    borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
     marginBottom: 10,
@@ -104,31 +108,31 @@ const styles = StyleSheet.create({
   thumbnailStyle: {
     // marginRight: 10,
     position: 'absolute',
-    top: 20,
+    top: 10,
     right: 20
   },
   thumbnailImg: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   talkMeta: {
     flex: 1,
   },
   talkTime: {
     fontFamily: 'nunito-bold',
-    color: '#fff',
+    color: '#232377',
     fontSize: 10,
     borderTopWidth: 1,
-    borderTopColor: '#fff'
+    borderTopColor: '#232377'
   },
   talkLocation: {
     fontFamily: 'nunito',
-    color: '#fff',
+    color: '#232377',
     fontSize: 10,
   },
   talkAffiliation: {
-    color: '#fff',
+    color: '#232377',
     fontSize: 10,
     opacity: 0.5
   },
@@ -147,12 +151,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   talkTitle: {
-    fontSize: 18,
-    color: '#fff',
+    fontSize: 15,
+    color: '#161637',
   },
   talkSpeaker: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.8)'
+    color: 'rgba(35,35,119,0.8)'
   }
 })
 

@@ -9,7 +9,7 @@ const AppText = (props) => {
         textAlign: props.center ? 'center' : 'left',
         padding: props.padding ? 10 : 0,
         fontSize: props.size ? props.size : 15,
-        color: props.color ? props.color : '#fff'
+        color: props.color ? props.color : props.dark ? '#232377' : '#fff'
       }, 
       props.style]}
     >

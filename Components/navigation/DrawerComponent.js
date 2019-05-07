@@ -40,7 +40,7 @@ class DrawerComponent extends Component {
     // let userEmail = email !== '' ? email : 'Login below for full access'
 
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', marginTop: 15}}>
         <Image style={styles.profileImg} source={{uri: profileImg}} />
         <View>
           <AppText>{userName}</AppText>
@@ -65,11 +65,11 @@ class DrawerComponent extends Component {
     switch(button) {
       case 'Profile': return null
       case 'MySchedule': return null
-      case 'Schedule': return <MaterialCommunityIcon name='calendar-clock' size={20} />
-      case 'Speakers': return <EntypoIcon name='modern-mic' size={20} />
-      case 'Map': return <FoundationIcon name='map' size={20} />
-      case 'About': return <EntypoIcon name='info-with-circle' size={20} />
-      case 'More': return <EntypoIcon name='grid' size={20} />
+      case 'Schedule': return <MaterialCommunityIcon name='calendar-clock' size={20} style={styles.icon} />
+      case 'Speakers': return <EntypoIcon name='modern-mic' size={20} style={styles.icon} />
+      case 'Map': return <FoundationIcon name='map' size={20} style={styles.icon} />
+      case 'About': return <EntypoIcon name='info-with-circle' size={20} style={styles.icon} />
+      case 'More': return <EntypoIcon name='grid' size={20} style={styles.icon} />
       case 'Welcome': return null
       case 'Attendees': return null
       default: return null
@@ -78,38 +78,15 @@ class DrawerComponent extends Component {
 
   renderMenuItems() {
     const MENU = [
-      {
-        "screen": "Profile",
-        "title": "Your Profile"
-      },
-      {
-        "screen": "MySchedule",
-        "title": "Your Schedule"
-      },
-      {
-        "screen": "Schedule",
-        "title": "Schedule"
-      },
-      {
-        "screen": "Speakers",
-        "title": "Speakers"
-      },
-      {
-        "screen": "Map",
-        "title": "Location"
-      },
-      {
-        "screen": "About",
-        "title": "About"
-      },
-      {
-        "screen": "More",
-        "title": "More"
-      },
-      {
-        "screen": "Welcome",
-        "title": "App Tutorial"
-      },
+      { "screen": "Schedule", "title": "Schedule" },
+      { "screen": "MySchedule", "title": "Your Schedule" },
+      { "screen": "Speakers", "title": "Speakers" },
+      { "screen": "Map", "title": "Location" },
+      { "screen": "About", "title": "About" },
+      { "screen": "More", "title": "More" },
+      { "screen": "Attendees", "title": "Attendees" },
+      { "screen": "Profile", "title": "Your Profile" },
+      { "screen": "Welcome", "title": "App Tutorial" },
     ]
 
     const { loggedIn } = this.props
@@ -119,7 +96,7 @@ class DrawerComponent extends Component {
         ( !loggedIn && item.screen === 'Profile' || !loggedIn && item.screen === 'MySchedule' )
         ? null
         : <TouchableOpacity key={i} style={styles.button} onPress={() => this._menuPress(item.screen)}>
-            {/* {this.renderMenuIcon(item.screen)} */}
+            {this.renderMenuIcon(item.screen)}
             <AppText>{item.title}</AppText>
           </TouchableOpacity>
       ))
@@ -173,13 +150,17 @@ const styles = StyleSheet.create({
     width: 80,
     borderRadius: 40,
     marginRight: 15,
-    marginBottom: 10
   },
   button: {
     // backgroundColor: '#232377',
+    flexDirection: 'row',
     padding: 10,
     paddingLeft: 15,
     fontFamily: 'nunito-bold'
+  },
+  icon: {
+    color: 'rgba(255,255,255,0.7)',
+    marginRight: 10
   },
   logoutButton: {
     marginLeft: 15,

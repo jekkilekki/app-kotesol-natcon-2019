@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, ScrollView, Dimensions } from 'react-native'
 import AppText from './shared/text/AppText'
 import { connect } from 'react-redux'
 
 import AttendeeCard from './AttendeeCard'
 import Loader from './shared/Loader'
 
+const { width, height } = Dimensions.get('window')
+
 class AttendeesList extends Component {
-  state = {
-    attendeesLoaded: false
-  }
+  // state = {
+  //   attendeesLoaded: false
+  // }
 
-  componentWillReceiveProps(nextProps) {
-    if ( this.props.attendees !== nextProps.attendees && nextProps.attendees !== [] ) {
-      this.setState({ attendeesLoaded: true })
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if ( this.props.attendees !== nextProps.attendees && nextProps.attendees !== [] ) {
+  //     this.setState({ attendeesLoaded: true })
+  //   }
+  // }
 
-  render() {
-    console.log("Attendees yo", this.props.attendees)
-    if ( !this.state.attendeesLoaded ) return <Loader />
+  renderList() {
     return (
       <FlatList
         data={this.props.attendees.sort((a,b) => {
@@ -30,6 +30,17 @@ class AttendeesList extends Component {
         }
         keyExtractor={(attendee) => String(attendee.email)}
       />
+    )
+  }
+
+  render() {
+    // console.log("Attendees yo", this.props.attendees)
+    // if ( !this.state.attendeesLoaded ) return <Loader />
+    return (
+      <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
+        { this.renderList() }
+        {/* <ScreenBottomPadding size={60} /> */}
+      </ScrollView>
     )
   }
 }
