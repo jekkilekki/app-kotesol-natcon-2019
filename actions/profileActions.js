@@ -35,21 +35,19 @@ export const getProfile = () => {
   }
 }
 
-export const profileSave = ({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation = '' }) => {
+export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }) => {
   const { currentUser } = firebase.auth()
 
   return async (dispatch) => {
     await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
+      .set({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
 
-    await AsyncStorage.setItem('knc_user', { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
+    // await AsyncStorage.setItem('knc_user', { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
     
     dispatch({
       type: PROFILE_SAVE,
-      payload: { token, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
+      payload: { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
     })
-    
-    // navigation.navigate('Home')
   }
 }
 
