@@ -10,7 +10,7 @@ import ContentButton from '../shared/buttons/ContentButton'
 class MoreScreen extends Component {
   render() {
     return (
-      <AppScreen>
+      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
         <AppHeader 
           pageName='Sitemap' 
           pageSub='Navigate to any page in this app'

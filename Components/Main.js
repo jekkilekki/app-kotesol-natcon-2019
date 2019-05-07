@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import { AppNavigation } from './navigation/AppNav';
 import { connect } from 'react-redux'
-import { appReady, checkAuthStatus, getProfile } from '../actions'
+import { appReady, checkAuthStatus, getProfile, getAttendees } from '../actions'
 
 class Main extends Component {
   componentWillReceiveProps(nextProps) {
@@ -38,6 +38,8 @@ class Main extends Component {
     this.props.appReady()
     // dispatch loginUser action
     this.props.checkAuthStatus()
+    // get list of attendees
+    this.props.getAttendees() // not quite yet
   }
 
   render() {
@@ -59,4 +61,4 @@ const mapStateToProps = ({ app }) => {
   return { assetsLoaded: app.assetsLoaded, loggedIn: app.loggedIn, profileLoaded: app.profileLoaded }
 }
 
-export default connect(mapStateToProps, { appReady, checkAuthStatus, getProfile })(Main)
+export default connect(mapStateToProps, { appReady, checkAuthStatus, getProfile, getAttendees })(Main)

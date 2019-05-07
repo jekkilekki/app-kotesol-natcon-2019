@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-// import { inputEmail, inputPassword, firebaseLoginUser } from '../../../actions'
  
 import AppInput from '../../shared/AppInput'
 import AppText from '../../shared/text/AppText'
@@ -11,7 +10,7 @@ import Loader from '../../shared/Loader'
 class LoginRedux extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props !== nextProps && nextProps.profileLoaded) {
-      this.props._onLoggedIn()
+      this.props._onLoginSuccess()
     }
   }
 
@@ -24,8 +23,6 @@ class LoginRedux extends Component {
   }
 
   _onLogin = () => {
-    // const { email, password, error } = this.props
-    // this.props.firebaseLoginUser({ email, password })
     this.props._onLogin()
   }
 
@@ -38,7 +35,6 @@ class LoginRedux extends Component {
       <ContentButton 
         title='Login' 
         opaque
-        // onPress={this._onLogin}
         onPress={this._onLogin}
         disabled={this.props.email === '' && this.props.password === ''}
       />
@@ -82,9 +78,5 @@ const mapStateToProps = ({ app }) => {
   const { profileLoaded } = app
   return { profileLoaded }
 }
-
-// export default connect(mapStateToProps, {
-//   inputEmail, inputPassword, firebaseLoginUser
-// })(LoginRedux)
 
 export default connect(mapStateToProps)(LoginRedux)

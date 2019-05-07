@@ -14,33 +14,29 @@ import AppText from '../shared/text/AppText'
 import { app } from 'firebase';
 
 class AuthScreen extends Component {
-  componentDidMount() {
-    // this.props.fbLogin()
-    // Delete the token that lets us know we're logged in (remove after testing)
-    AsyncStorage.removeItem('fb_token')
-    this.onAuthComplete(this.props)
+  // componentDidMount() {
+  //   // this.props.fbLogin()
+  //   // Delete the token that lets us know we're logged in (remove after testing)
+  //   AsyncStorage.removeItem('fb_token')
+  //   this.onAuthComplete(this.props)
 
-    if ( this.props.user || this.props.token ) {
-      this.props.navigation.navigate( 'Profile' )
-    }
-  }
+  //   if ( this.props.user || this.props.token ) {
+  //     this.props.navigation.navigate( 'Profile' )
+  //   }
+  // }
 
-  componentWillReceiveProps(nextProps) {
-    // this.onAuthComplete(nextProps)
-    if (this.props !== nextProps && nextProps.profileLoaded) {
-      this.props.navigation.navigate('Home')
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   // this.onAuthComplete(nextProps)
+  //   if (this.props !== nextProps && nextProps.profileLoaded) {
+  //     this.props.navigation.navigate('Home')
+  //   }
+  // }
 
-  onAuthComplete(props) {
-    if (props.loggedIn) {
-      this.props.navigation.navigate('Schedule')
-    }
-  }
-
-  _onLoggedIn = () => {
-    this.props.navigation.navigate('Profile')
-  }
+  // onAuthComplete(props) {
+  //   if (props.loggedIn) {
+  //     this.props.navigation.navigate('Schedule')
+  //   }
+  // }
 
   _onEmailInput = (text) => {
     this.props.inputEmail(text)
@@ -51,8 +47,12 @@ class AuthScreen extends Component {
   }
 
   _onLogin = () => {
-    const { email, password, navigation } = this.props
-    this.props.firebaseLoginUser({ email, password, navigation })
+    const { email, password } = this.props
+    this.props.firebaseLoginUser({ email, password })
+  }
+
+  _onLoginSuccess = () => {
+    this.props.navigation.navigate('Profile')
   }
 
   render() {
@@ -83,7 +83,7 @@ class AuthScreen extends Component {
             _onEmailInput={this._onEmailInput}
             _onPasswordInput={this._onPasswordInput}
             _onLogin={this._onLogin}
-            _onLoggedIn={this._onLoggedIn}
+            _onLoginSuccess={this._onLoginSuccess}
           />
           <AppText center bold padding>&mdash; OR &mdash;</AppText>
           <MyButton onPress={() => this.props.fbLogin(navigation)}/>

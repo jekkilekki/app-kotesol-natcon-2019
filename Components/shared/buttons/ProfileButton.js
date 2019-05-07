@@ -8,12 +8,12 @@ import { connect } from 'react-redux'
 
 class ProfileButton extends Component {
   renderButton() {
-    const { user, text, name, cancelButton } = this.props
+    const { profileImg, text, name, cancelButton } = this.props
     
     if ( cancelButton ) {
       return <FontAwesomeIcon name={name ? name : 'times'} size={16} style={{color: '#fff'}}/>
-    } else if ( user && user.picture !== undefined ) {
-      return <Image source={{uri: user.picture.data.url}} style={styles.userImg} />
+    } else if ( profileImg !== '' ) {
+      return <Image source={{uri: profileImg}} style={styles.userImg} />
     } else if ( text ) {
       return <AppText fontFamily={'nunito-black'} style={{color: '#00dddd'}} size={24}>{text}</AppText>
     } else {
@@ -22,7 +22,7 @@ class ProfileButton extends Component {
   }
 
   render() {
-    const { user, loggedIn, name, cancelButton } = this.props
+    const { loggedIn, name, cancelButton } = this.props
 
     if ( !loggedIn ) {
       return (
@@ -87,9 +87,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ auth, app }) => {
-  const { user } = auth
-  return { user, loggedIn: app.loggedIn }
+const mapStateToProps = ({ profile, app }) => {
+  return { profileImg: profile.img, loggedIn: app.loggedIn }
 }
 
 export default connect(mapStateToProps)(ProfileButton)

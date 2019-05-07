@@ -1,9 +1,41 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { Component } from 'react'
+import { View, FlatList } from 'react-native'
 import AppText from './shared/text/AppText'
+import { connect } from 'react-redux'
 
-export default AttendeesList = (props) => (
-  <View>
-    <AppText>AttendeesList</AppText>
-  </View>
-)
+import AttendeeCard from './AttendeeCard'
+import Loader from './shared/Loader'
+
+class AttendeesList extends Component {
+  state = {
+    attendeesLoaded: false
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if ( this.props.attendees !== nextProps.attendees && nextProps.attendees !== [] ) {
+      this.setState({ attendeesLoaded: true })
+    }
+  }
+
+  render() {
+    console.log("Attendees yo", this.props.attendees)
+    if ( !this.state.attendeesLoaded ) return <Loader />
+    return (
+      <FlatList
+        data={this.props.attendees.sort((a,b) => {
+          return a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 : 0
+        })}
+        renderItem={(attendee) => 
+          <AttendeeCard attendee={attendee} />
+        }
+        keyExtractor={(attendee) => String(attendee.email)}
+      />
+    )
+  }
+}
+
+const mapStateToProps = ({ attendees }) => {
+  return { attendees: Object.keys(attendees.data).map(i => attendees.data[i]) }
+}
+
+export default connect(mapStateToProps)(AttendeesList)

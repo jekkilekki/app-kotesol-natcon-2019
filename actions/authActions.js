@@ -98,18 +98,18 @@ export const inputPassword = (text) => {
   }
 }
 
-export const firebaseLoginUser = ({ email, password, navigation }) => {
+export const firebaseLoginUser = ({ email, password }) => {
   return async (dispatch) => {
     dispatch({ type: FIREBASE_LOGIN_USER })
 
     try {
       let user = await firebase.auth().signInWithEmailAndPassword( email, password )
-      firebaseLoginUserSuccess(dispatch, user, navigation)
+      firebaseLoginUserSuccess(dispatch, user)
     } catch(err) {
       console.log(err)
       try {
         let user = await firebase.auth().createUserWithEmailAndPassword( email, password )
-        firebaseLoginUserSuccess(dispatch, user, navigation)
+        firebaseLoginUserSuccess(dispatch, user)
       } catch(err) {
         firebaseLoginUserFail(dispatch, err)
       }
@@ -124,7 +124,7 @@ const firebaseLoginUserFail = (dispatch, err) => {
   })
 }
 
-const firebaseLoginUserSuccess = async (dispatch, user, navigation) => {
+const firebaseLoginUserSuccess = async (dispatch, user) => {
   dispatch({
     type: FIREBASE_LOGIN_SUCCESS,
     payload: user.user
