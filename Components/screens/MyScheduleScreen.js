@@ -85,7 +85,7 @@ class MyScheduleScreen extends Component {
           pageSub='Review the presentations you favorited'
         />
         <ScreenContent style={styles.speakerScreenStyle}>
-          {likedSpeakers === undefined 
+          {likedSpeakers.length === 0 
             ? <NoContent name={'presentations'} />  
             : <SpeakerList schedule speakers={likedSpeakers} filter={this._filterSpeakers} expanded={this.state.expanded} />
           }

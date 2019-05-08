@@ -31,10 +31,10 @@ class SpeakerList extends Component {
         speakerSectionList: this._createSpeakerSections(nextProps.speakers)
       })
     }
-    if ( this.state.needsUpdate && this.props.profile.mySchedule !== nextProps.profile.mySchedule ) {
-      this.props.profileSave(this.props.profile)
-      this.setState({ needsUpdate: false })
-    }
+    // if ( this.state.needsUpdate && this.props.profile.mySchedule !== nextProps.profile.mySchedule ) {
+    //   this.props.profileSave(this.props.profile)
+    //   this.setState({ needsUpdate: false })
+    // }
   }
 
   componentWillMount() {
@@ -106,9 +106,9 @@ class SpeakerList extends Component {
     }
   }
 
-  updateList() {
-    this.setState({ needsUpdate: true })
-  }
+  // updateList() {
+  //   this.setState({ needsUpdate: true })
+  // }
 
   renderList() {
     const { speakers, screen } = this.props

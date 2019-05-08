@@ -63,30 +63,40 @@ class DrawerComponent extends Component {
 
   renderMenuIcon(button) {
     switch(button) {
-      case 'Profile': return <MaterialCommunityIcon name='account-settings' size={20} style={styles.icon} />
-      case 'MySchedule': return <MaterialCommunityIcon name='table-settings' size={20} style={[styles.icon, {marginLeft: 15}]} />
       case 'Schedule': return <MaterialCommunityIcon name='calendar-clock' size={20} style={styles.icon} />
+      case 'MySchedule': return <MaterialCommunityIcon name='table' size={20} style={[styles.icon, {marginLeft: 20}]} />
       case 'Speakers': return <EntypoIcon name='modern-mic' size={20} style={styles.icon} />
       case 'Map': return <FoundationIcon name='map' size={20} style={styles.icon} />
-      case 'About': return <EntypoIcon name='info-with-circle' size={20} style={styles.icon} />
-      case 'More': return <EntypoIcon name='grid' size={20} style={styles.icon} />
-      case 'Welcome': return <MaterialCommunityIcon name='cellphone-settings' size={20} style={styles.icon} />
+      case 'MyPlaces': return <EntypoIcon name='location-pin' size={20} style={[styles.icon, {marginLeft: 20}]} />
       case 'Attendees': return <FoundationIcon name='torsos-female-male' size={20} style={styles.icon} />
+      case 'MyFriends': return <FoundationIcon name='torsos-all' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'About': return <EntypoIcon name='info-with-circle' size={20} style={styles.icon} />
+      case 'Profile': return <MaterialCommunityIcon name='settings' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'Welcome': return <MaterialCommunityIcon name='teach' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'More': return <EntypoIcon name='grid' size={20} style={[styles.icon, {marginLeft: 20}]} />
       default: return null
     }
   }
 
   renderMenuItems() {
     const MENU = [
-      { "screen": "Schedule", "title": "Schedule" },
+      { "screen": "Schedule", "title": "Schedule", "subscreen": {
+        "screen": "MySchedule", "title": "My Schedule"
+      }},
       { "screen": "MySchedule", "title": "My Schedule" },
       { "screen": "Speakers", "title": "Speakers" },
-      { "screen": "Map", "title": "Location" },
-      { "screen": "Attendees", "title": "Attendees" },
+      { "screen": "Map", "title": "Location", "subscreen": {
+        "screen": "MyPlaces", "title": "My Places"
+      }},
+      { "screen": "MyPlaces", "title": "My Places" },
+      { "screen": "People", "title": "Attendees", "subscreen": {
+        "screen": "MyFriends", "title": "My Friends"
+      }},
+      { "screen": "MyFriends", "title": "My Friends" },
       { "screen": "About", "title": "About" },
-      // { "screen": "More", "title": "More" },
       { "screen": "Profile", "title": "Update Profile" },
-      { "screen": "Welcome", "title": "App Tutorial" },
+      { "screen": "Welcome", "title": "How to use this App" },
+      { "screen": "More", "title": "More" },
     ]
 
     const { loggedIn } = this.props
@@ -118,14 +128,14 @@ class DrawerComponent extends Component {
 
           {this.renderMenuItems()}
 
-          {loggedIn
+          {/* {loggedIn
             ? <ContentButton style={styles.logoutButton}
                 title="Logout"
                 icon="logout"
                 onPress={() => this._onLogout()}
               />
             : null
-          }
+          } */}
           
         </SafeAreaView>
       </ScrollView>

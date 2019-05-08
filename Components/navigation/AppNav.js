@@ -137,31 +137,6 @@ const tabNavigation = createBottomTabNavigator({
   },
 })
 
-/* React Nav Transitions: https://medium.com/async-la/custom-transitions-in-react-navigation-2f759408a053 */
-// const transitionConfig = () => {
-//   return {
-//     transitionSpec: {
-//       duration: 750,
-//       easing: Easing.out(Easing.poly(4)),
-//       timing: Animated.timing,
-//       useNativeDriver: true,
-//     },
-//     screenInterpolator: sceneProps => {
-//       const { layout, position, scene } = sceneProps
-
-//       const thisSceneIndex = scene.index 
-//       const width = layout.initWidth 
-
-//       const translateX = position.interpolate({
-//         inputRange: [thisSceneIndex - 1, thisSceneIndex],
-//         outputRange: [width, 0],
-//       })
-
-//       return { transform: [ { translateX } ] }
-//     }
-//   }
-// }
-
 /* Stack Nav for "Back" button functionality on different Screens */
 const stackNav = createStackNavigator({
   Home: tabNavigation,
@@ -177,19 +152,18 @@ const stackNav = createStackNavigator({
     color: '#00dddd'
   },
   navigationOptions: {
-    // headerVisible: false
+    headerVisible: false
   } 
 })
 
 const drawerNav = createDrawerNavigator({
   Profile: ProfileScreen,
-  Home: tabNavigation,
-  Schedule: ScheduleScreen,
-  Speakers: SpeakersScreen,
-  Location: MapScreen,
-  About: AboutScreen,
+  Schedule: tabNavigation,
+  Speakers: tabNavigation,
+  Location: tabNavigation,
+  People: tabNavigation,
+  About: tabNavigation,
   Tutorial: WelcomeScreen,
-  Attendees: AttendeesScreen,
   // MyFriends: MyFriendScreen,
   MySchedule: MyScheduleScreen,
   // MyPlaces: MyPlacesScreen,
@@ -210,17 +184,10 @@ const drawerNav = createDrawerNavigator({
 /* Switch Nav to prevent "Back" button functionality on these pages */
 export const RootNavigation = createSwitchNavigator({
   Welcome: WelcomeScreen,
-  // Auth: this.state.loggedIn ? ProfileScreen : AuthScreen,
   Auth: AuthScreen,
-  App: drawerNav
+  App: drawerNav,
 }, {
   initialRouteName: 'Welcome',
-  // defaultNavigationOptions: {
-  //   headerStyle: {
-  //     backgroundColor: '#151537',
-  //     color: '#ffffff'
-  //   }
-  // }
 })
 
 export const AppNavigation = createAppContainer(RootNavigation)

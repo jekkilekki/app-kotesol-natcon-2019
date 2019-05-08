@@ -4,6 +4,9 @@ import {
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
   SPEAKER_SEARCH, SPEAKER_FILTER, PROFILE_SAVE
 } from './types'
+import { checkAuthStatus } from './authActions'
+import { getAttendees } from './attendeeActions'
+import { getProfile } from './profileActions'
 
 // export const loadUser = () => async (dispatch) => {
 //   // Very first Redux function that runs
@@ -35,8 +38,11 @@ import {
  * Next step is checking User Firebase authentication (authActions.js)
  */
 export const appReady = () => {
-  return {
-    type: ASSETS_LOADED,
+  return async (dispatch, getState) => {
+    await dispatch({ type: ASSETS_LOADED })
+    await dispatch( getAttendees() )
+    await dispatch( checkAuthStatus() )
+    if ( getState().app.loggedIn ) await dispatch( getProfile() )
   }
 }
 

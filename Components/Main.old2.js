@@ -57,8 +57,8 @@ class App extends Component {
     })
     this.setState({ fontLoaded: true })
 
-    let token = await AsyncStorage.getItem('fb_token')
-    if (token) this.setState({ loggedIn: true })
+    // let token = await AsyncStorage.getItem('fb_token')
+    // if (token) this.setState({ loggedIn: true })
   }
 
   render() {

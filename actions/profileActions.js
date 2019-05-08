@@ -11,15 +11,12 @@ export const profileFieldUpdate = ({ prop, value }) => {
   }
 }
 
-export const getProfile = ( user = '' ) => {
+export const getProfile = () => {
   const { currentUser } = firebase.auth()
-  console.log('user', user)
-  console.log('currentUser', currentUser)
 
   return async (dispatch) => {
     await firebase.database().ref(`users/${currentUser.uid}`)
       .once('value').then((snapshot) => {
-        console.log('snapshot', snapshot.val())
         if ( snapshot.val() ) {
           dispatch({
             type: PROFILE_SAVE,
@@ -109,21 +106,21 @@ export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, e
 // }
 
 export const likeSpeaker = (id) => {
-  return (dispatch) => {
-
-    // dispatch({
-    //   type: UPDATE_PROFILE,
-    // })
-    dispatch({
+  return async (dispatch, getState) => {
+    await dispatch({
       type: SPEAKER_LIKE,
       payload: id
     })
+    await dispatch( profileSave( getState().profile ) )
   }
 }
 
 export const dislikeSpeaker = (id) => {
-  return {
-    type: SPEAKER_DISLIKE,
-    payload: id
+  return async (dispatch, getState) => {
+    await dispatch({
+      type: SPEAKER_DISLIKE,
+      payload: id
+    })
+    await dispatch( profileSave( getState().profile ) )
   }
 }

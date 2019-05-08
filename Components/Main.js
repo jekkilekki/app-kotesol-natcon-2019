@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 import { appReady, checkAuthStatus, getProfile, getAttendees } from '../actions'
 
 class Main extends Component {
-  componentWillReceiveProps(nextProps) {
-    const { loggedIn } = this.props
+  // componentWillReceiveProps(nextProps) {
+  //   const { loggedIn } = this.props
 
-    if (this.props.loggedIn !== nextProps.loggedIn && nextProps.loggedIn && !this.props.profileLoaded) {
-      this.props.getProfile()
-    } 
-  }
+  //   if (this.props.loggedIn !== nextProps.loggedIn && nextProps.loggedIn && !this.props.profileLoaded) {
+  //     this.props.getProfile()
+  //   } 
+  // }
 
   _loadAssetsAsync = async () => {
     return Promise.all([
@@ -37,9 +37,9 @@ class Main extends Component {
     // dispatch appReady action
     this.props.appReady()
     // dispatch loginUser action
-    this.props.checkAuthStatus()
+    // this.props.checkAuthStatus()
     // get list of attendees
-    this.props.getAttendees() // not quite yet
+    // this.props.getAttendees() // not quite yet
   }
 
   render() {
