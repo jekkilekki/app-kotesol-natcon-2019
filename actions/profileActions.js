@@ -11,26 +11,30 @@ export const profileFieldUpdate = ({ prop, value }) => {
   }
 }
 
-export const getProfile = () => {
+export const getProfile = ( user = '' ) => {
   const { currentUser } = firebase.auth()
+  console.log('user', user)
+  console.log('currentUser', currentUser)
 
   return async (dispatch) => {
     await firebase.database().ref(`users/${currentUser.uid}`)
       .once('value').then((snapshot) => {
-        dispatch({
-          type: PROFILE_SAVE,
-          payload: { 
-            token: snapshot.val() && snapshot.val().token || '', 
-            img: snapshot.val() && snapshot.val().img || '', 
-            firstName: snapshot.val() && snapshot.val().firstName || '', 
-            lastName: snapshot.val() && snapshot.val().lastName || '', 
-            affiliation: snapshot.val() && snapshot.val().affiliation || '', 
-            shortBio: snapshot.val() && snapshot.val().shortBio || '', 
-            email: snapshot.val() && snapshot.val().email || '', 
-            myFriends: snapshot.val() && snapshot.val().myFriends || [], 
-            mySchedule: snapshot.val() && snapshot.val().mySchedule || ['plenary'] 
-          }
-        })
+        console.log('snapshot', snapshot.val())
+        if ( snapshot.val() ) {
+          dispatch({
+            type: PROFILE_SAVE,
+            payload: { 
+              img: snapshot.val().img || currentUser.photoURL || '', 
+              firstName: snapshot.val().firstName || currentUser.displayName || '', 
+              lastName: snapshot.val().lastName || '', 
+              affiliation: snapshot.val().affiliation || '', 
+              shortBio: snapshot.val().shortBio || '', 
+              email: snapshot.val().email || currentUser.email || '', 
+              myFriends: snapshot.val().myFriends || [], 
+              mySchedule: snapshot.val().mySchedule || ['plenary'] 
+            }
+          })
+        }
       })
   }
 }

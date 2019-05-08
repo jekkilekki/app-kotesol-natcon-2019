@@ -22,11 +22,11 @@ class MyScheduleScreen extends Component {
     input: ''
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("this time", this.props.likedSpeakers)
-    console.log("next time", nextProps.likedSpeakers)
-    return this.props.likedSpeakers === nextProps.likedSpeakers
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("this time", this.props.likedSpeakers)
+  //   console.log("next time", nextProps.likedSpeakers)
+  //   return this.props.likedSpeakers !== nextProps.likedSpeakers
+  // }
 
   _searchSpeakers = (query) => {
     this.props.speakerSearch(query)

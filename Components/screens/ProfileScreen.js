@@ -77,6 +77,8 @@ class ProfileScreen extends Component {
             placeholder='john@doe.com'
             value={email}
             onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'email', value })}
+            autoCorrect={false}
+            autoCapitalize={'none'}
           />
           {/* <Picker
             style={{ flex: 1 }}
@@ -92,7 +94,7 @@ class ProfileScreen extends Component {
           </Picker> */}
           <ContentButton
             title="Save"
-            onPress={this._onSave}
+            onPress={() => this._onSave()}
             disabled={firstName === '' || lastName === ''}
           />
           <Button

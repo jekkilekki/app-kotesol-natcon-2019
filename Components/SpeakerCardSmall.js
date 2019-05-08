@@ -61,15 +61,17 @@ class SpeakerCardSmall extends Component {
     }
   }
 
+  updateList() {
+    console.log('SpeakerCardSmall')
+    this.props.updateList()
+    console.log('SpeakerCardSmall after')
+  }
+
   render() {
     const { id, title, name, nickname, shortname, 
             affiliation, other, time, room, summary, 
             abstract, bio, img, media, email, phone, track, coPresenter
           } = this.props.speaker.item
-
-    // const speakerImg = img.charAt(0) === 'h' ? uri(img) : require(img)
-
-          // console.log("IMAGE!!", img.charAt(0))
 
     if ( this.props.screen === 'Speakers' && 
       (id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration')
@@ -94,7 +96,7 @@ class SpeakerCardSmall extends Component {
     }
 
     if ( id === 'plenary' ) {
-      return <PlenaryCard speaker={this.props.speaker.item} navigation={this.props.navigation} expanded={this.state.expanded} />
+      return <PlenaryCard speaker={this.props.speaker.item} navigation={this.props.navigation} expanded={this.state.expanded} updateList={this.updateList} />
     }
 
     return (
@@ -156,7 +158,7 @@ class SpeakerCardSmall extends Component {
               <SpeakerTrackButton track={track} style={{marginTop: -2, marginLeft: 7, padding: 2}} onPress={() => this._filter(track)} />
             </View>
             }
-            <SpeakerLikeButton id={id} />
+            <SpeakerLikeButton id={id} updateList={() => this.updateList()} />
           </View>
           {this.renderImg()}
         </LinearGradient>

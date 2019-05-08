@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   shortBio: '',
   email: '',
   myFriends: [],
-  mySchedule: ['plenary']
+  mySchedule: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -28,7 +28,6 @@ export default (state = INITIAL_STATE, action) => {
       // could probably just load 'profile' as an Object and not have to deal with all these keys
       return { 
         ...state, 
-          token: action.payload.token,
           img: action.payload.img,
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,

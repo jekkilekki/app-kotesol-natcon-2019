@@ -68,7 +68,7 @@ export const fbLogin = () => async (dispatch) => {
     // Sign into Firebase with the Facebook credential
     let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
 
-    if ( user ) getProfile()
+    if ( user ) getProfile( user )
   }
 }
 

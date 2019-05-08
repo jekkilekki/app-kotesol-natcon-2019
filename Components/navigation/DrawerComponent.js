@@ -63,15 +63,15 @@ class DrawerComponent extends Component {
 
   renderMenuIcon(button) {
     switch(button) {
-      case 'Profile': return null
-      case 'MySchedule': return null
+      case 'Profile': return <MaterialCommunityIcon name='account-settings' size={20} style={styles.icon} />
+      case 'MySchedule': return <MaterialCommunityIcon name='table-settings' size={20} style={[styles.icon, {marginLeft: 15}]} />
       case 'Schedule': return <MaterialCommunityIcon name='calendar-clock' size={20} style={styles.icon} />
       case 'Speakers': return <EntypoIcon name='modern-mic' size={20} style={styles.icon} />
       case 'Map': return <FoundationIcon name='map' size={20} style={styles.icon} />
       case 'About': return <EntypoIcon name='info-with-circle' size={20} style={styles.icon} />
       case 'More': return <EntypoIcon name='grid' size={20} style={styles.icon} />
-      case 'Welcome': return null
-      case 'Attendees': return null
+      case 'Welcome': return <MaterialCommunityIcon name='cellphone-settings' size={20} style={styles.icon} />
+      case 'Attendees': return <FoundationIcon name='torsos-female-male' size={20} style={styles.icon} />
       default: return null
     }
   }
@@ -79,13 +79,13 @@ class DrawerComponent extends Component {
   renderMenuItems() {
     const MENU = [
       { "screen": "Schedule", "title": "Schedule" },
-      { "screen": "MySchedule", "title": "Your Schedule" },
+      { "screen": "MySchedule", "title": "My Schedule" },
       { "screen": "Speakers", "title": "Speakers" },
       { "screen": "Map", "title": "Location" },
-      { "screen": "About", "title": "About" },
-      { "screen": "More", "title": "More" },
       { "screen": "Attendees", "title": "Attendees" },
-      { "screen": "Profile", "title": "Your Profile" },
+      { "screen": "About", "title": "About" },
+      // { "screen": "More", "title": "More" },
+      { "screen": "Profile", "title": "Update Profile" },
       { "screen": "Welcome", "title": "App Tutorial" },
     ]
 

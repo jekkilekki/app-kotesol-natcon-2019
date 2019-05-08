@@ -84,16 +84,19 @@ const styles = StyleSheet.create({
   cardStyle: {
     flexDirection: 'row',
     borderRadius: 15,
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: 'transparent',
     marginTop: 0,
     marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    width: width - 20,
-    shadowColor: black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    elevation: 1,
+    paddingBottom: 15,
+    // marginLeft: 10,
+    // marginRight: 10,
+    width: width,
+    // shadowColor: black,
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
+    // elevation: 1,
+    borderBottomColor: 'rgba(35,35,119,0.5)',
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   cardStyleNormal: {
     flexDirection: 'row',
@@ -112,9 +115,9 @@ const styles = StyleSheet.create({
     right: 20
   },
   thumbnailImg: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
   talkMeta: {
     flex: 1,

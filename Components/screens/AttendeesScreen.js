@@ -47,7 +47,8 @@ class AttendeesScreen extends Component {
 
   render() {
     return (
-      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
+      // <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
+      <AppScreen>
         <AppHeader 
           pageName='Attendees' 
           pageSub='Find a friend to connect with'

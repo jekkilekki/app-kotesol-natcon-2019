@@ -1,4 +1,5 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { 
   createAppContainer, 
   createDrawerNavigator,
@@ -9,6 +10,7 @@ import {
 } from 'react-navigation'
 
 import EntypoIcon from 'react-native-vector-icons/Entypo'
+import IoniconIcon from 'react-native-vector-icons/Ionicons'
 import FoundationIcon from 'react-native-vector-icons/Foundation'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
@@ -88,6 +90,14 @@ const tabNavigation = createBottomTabNavigator({
         <FoundationIcon name='map' size={20} color={tintColor} focused={focused} />
     },
   },
+  People: {
+    screen: AttendeesScreen,
+    navigationOptions: {
+      tabBarLabel: 'Attendees',
+      tabBarIcon: ({ focused, tintColor }) => 
+        <FoundationIcon name='torsos-female-male' size={20} color={tintColor} focused={focused} />,
+    },
+  },
   About: {
     screen: AboutScreen,
     navigationOptions: {
@@ -96,14 +106,14 @@ const tabNavigation = createBottomTabNavigator({
         <EntypoIcon name='info-with-circle' size={20} color={tintColor} focused={focused} />,
     },
   },
-  More: {
-    screen: MoreScreen,
-    navigationOptions: {
-      tabBarLabel: 'More',
-      tabBarIcon: ({ focused, tintColor }) => 
-        <EntypoIcon name='grid' size={26} color={tintColor} focused={focused} />
-    }
-  }
+  // More: {
+  //   screen: MoreScreen,
+  //   navigationOptions: {
+  //     tabBarLabel: 'More',
+  //     tabBarIcon: ({ focused, tintColor }) => 
+  //       <EntypoIcon name='grid' size={26} color={tintColor} focused={focused} />
+  //   }
+  // }
 }, { 
   // initialRouteName: 'Map',
   tabBarComponent: (props) => 

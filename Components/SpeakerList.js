@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, View, FlatList, SectionList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { profileSave } from '../actions'
 
 // import SpeakerCard from './SpeakerCard.old'
 import SpeakerCardSmall from './SpeakerCardSmall'
@@ -19,7 +20,8 @@ class SpeakerList extends Component {
     speakerList: [],
     speakerSectionList: [],
     sectionClass: {height: 0},
-    loading: true
+    loading: true,
+    needsUpdate: false
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,6 +30,10 @@ class SpeakerList extends Component {
       this.setState({
         speakerSectionList: this._createSpeakerSections(nextProps.speakers)
       })
+    }
+    if ( this.state.needsUpdate && this.props.profile.mySchedule !== nextProps.profile.mySchedule ) {
+      this.props.profileSave(this.props.profile)
+      this.setState({ needsUpdate: false })
     }
   }
 
@@ -100,6 +106,10 @@ class SpeakerList extends Component {
     }
   }
 
+  updateList() {
+    this.setState({ needsUpdate: true })
+  }
+
   renderList() {
     const { speakers, screen } = this.props
     return (
@@ -108,7 +118,7 @@ class SpeakerList extends Component {
           return a.lastname < b.lastname ? -1 : a.lastname > b.lastname ? 1 : 0
         })}
         renderItem={(speaker) => 
-          <SpeakerCardSmall screen={screen} speaker={speaker} filter={this.props.filter} expanded={this.props.speakersExpanded} />
+          <SpeakerCardSmall screen={screen} speaker={speaker} updateList={() => this.updateList()} filter={this.props.filter} expanded={this.props.speakersExpanded} />
         }
         keyExtractor={(speaker) => String(speaker.id)}
       />
@@ -120,7 +130,7 @@ class SpeakerList extends Component {
       <SectionList
         sections={this.state.speakerSectionList}
         renderItem={(speaker) => 
-          <SpeakerCardSmall speaker={speaker} filter={this.props.filter} expanded={this.props.scheduleExpanded} />
+          <SpeakerCardSmall speaker={speaker} updateList={() => this.updateList()} filter={this.props.filter} expanded={this.props.scheduleExpanded} />
         }
         renderSectionHeader={({section}) => (
             <View style={styles.sectionBox}>
@@ -132,6 +142,7 @@ class SpeakerList extends Component {
           )
         }
         keyExtractor={item => item.id}
+        updateList={this.updateList}
       />
     )
   }
@@ -185,11 +196,12 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ app }) => {
+const mapStateToProps = ({ app, profile }) => {
   return {
     speakersExpanded: app.speakersExpanded,
-    scheduleExpanded: app.scheduleExpanded
+    scheduleExpanded: app.scheduleExpanded,
+    profile
   }
 }
 
-export default connect(mapStateToProps)(SpeakerList)
+export default connect(mapStateToProps, { profileSave })(SpeakerList)
