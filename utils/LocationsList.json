@@ -451,6 +451,26 @@
     }
   },
   {
+    "id": "knc2019-cafe23",
+    "title": "Vincent Van Gogh Café",
+    "type": "café",
+    "description": "Old fashioned coffee",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 전주객사5길 22-6", "(지번) 고사동 66-5"],
+    "phone": "063-288-2189",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 35.819196,
+      "longitude": 127.145852
+    }
+  },
+  {
     "id": "jju-food",
     "type": "divider"
   },
@@ -1107,6 +1127,26 @@
     }
   },
   {
+    "id": "knc2019-food32",
+    "title": "가족회관 (Bibimbap)",
+    "type": "food",
+    "description": "Conference Dinner",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 전라감영5길 17", "(우) 55038(지번) 중앙동3가 80"],
+    "phone": "063-284-0982",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 35.817095,
+      "longitude": 127.145954
+    }
+  },
+  {
     "id": "shisikaji-drinks",
     "type": "divider"
   },
@@ -1272,6 +1312,26 @@
     "coordinate": {
       "latitude": 35.818727,
       "longitude": 127.142069
+    }
+  },
+  {
+    "id": "knc2019-drinks06",
+    "title": "Only Hands",
+    "type": "drinks",
+    "description": "Korean craft beer",
+    "location": "Gaeksa",
+    "area": "Gaeksa",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 전주객사1길 100", "(지번) 다가동4가 10-7"],
+    "phone": "070-4038-5023",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 35.820671,
+      "longitude": 127.138168
     }
   },
   {
