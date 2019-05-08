@@ -471,6 +471,166 @@
     }
   },
   {
+    "id": "knc2019-cafe24",
+    "title": "T. Moment",
+    "type": "café",
+    "description": "Cafe overlooking the river by Hanok Village.",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 천경로 41", "(우) 55100(지번) 동서학동 77"],
+    "phone": "063-232-3003",
+    "website": "https://www.facebook.com/TMoment-1691943247712928/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe25",
+    "title": "Dessert Market",
+    "type": "café",
+    "description": "Cafe overlooking Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 은행로 12", "(우) 55039(지번) 풍남동1가 34-1"],
+    "phone": "070-4067-3338",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe26",
+    "title": "전주한옥마을숙박 전망",
+    "type": "café",
+    "description": "A highly rated Cafe overlooking Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 한지길 89", "(우) 55041(지번) 풍남동3가 24-1"],
+    "phone": "063-231-6106",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe27",
+    "title": "Starbucks",
+    "type": "café",
+    "description": "Starbucks in Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 팔달로 123", "(우) 55043(지번) 전동 187-9"],
+    "phone": "063-282-9882",
+    "website": "http://www.istarbucks.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe28",
+    "title": "Tomorrow Café",
+    "type": "café",
+    "description": "A Café overlooking Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 기린대로 71", "(우) 55041(지번) 풍남동3가 19-6"],
+    "phone": "063-288-6455",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe29",
+    "title": "외할머니솜씨 (팟빙수) Dessert Café",
+    "type": "café",
+    "description": "A famous patbingsu dessert café in Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 오목대길 81-8", "(우) 55044(지번) 교동 97-1"],
+    "phone": "063-232-5804",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe30",
+    "title": "The Story Café",
+    "type": "café",
+    "description": "A café next to Gyeonggi-jeon in Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 경기전길 87", "(우) 55042(지번) 풍남동3가 67-18"],
+    "phone": "063-282-9247",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
+    "id": "knc2019-cafe31",
+    "title": "꼬지따뽕 Café",
+    "type": "café",
+    "description": "A Café in the mural village near Hanok Village",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 자만동1길 1-8", "(우) 55037(지번) 교동 50-86"],
+    "phone": "063-288-2277",
+    "website": "",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  },
+  {
     "id": "jju-food",
     "type": "divider"
   },
@@ -1147,6 +1307,26 @@
     }
   },
   {
+    "id": "knc2019-food33",
+    "title": "Jinmi Jip",
+    "type": "food",
+    "description": "Great kongguksu",
+    "location": "Hanok",
+    "area": "Hanok",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 전주천동로 94", "(우) 55044(지번) 전동 237"],
+    "phone": "063-288-4020",
+    "website": "https://ko-kr.facebook.com/jinmijip/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 35.817095,
+      "longitude": 127.145954
+    }
+  },
+  {
     "id": "shisikaji-drinks",
     "type": "divider"
   },
@@ -1504,7 +1684,7 @@
   },
   {
     "id": "knc2019-hotel09",
-    "title": "Laon Hanok Stay",
+    "title": "Laon Hanok Stay & Café",
     "type": "stay",
     "description": "Hotel",
     "location": "Hanok Village",
