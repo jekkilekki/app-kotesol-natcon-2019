@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, Image } from 'react-native'
 
-class Profile extends Component {
+class ProfileForm extends Component {
   state = {
 
   }
@@ -14,4 +14,4 @@ class Profile extends Component {
   }
 }
 
-export default connect()(Profile)
+export default ProfileForm

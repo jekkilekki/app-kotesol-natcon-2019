@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import AppText from '../shared/text/AppText'
 import AppScreen from '../shared/layout/AppScreen'
@@ -7,6 +7,7 @@ import AppHeader from '../shared/layout/AppHeader'
 import ScreenContent from '../shared/layout/ScreenContent'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import NoContent from '../NoContent'
+import { purpler } from '../../utils/colors';
 
 class MyFriendsScreen extends Component {
   render() {
@@ -17,7 +18,7 @@ class MyFriendsScreen extends Component {
           pageSub='Review conference attendees you favorited'
           pageBackButton
         />
-        <ScreenContent style={screenStyle}>
+        <ScreenContent style={styles.screenStyle}>
           {true
             ? <NoContent name={'friends'} />  
             : <AppText>My Friends</AppText>
@@ -29,11 +30,32 @@ class MyFriendsScreen extends Component {
   }
 }
 
-const screenStyle = {
-  paddingTop: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
-  paddingRight: 0,
-}
+const styles = StyleSheet.create({
+  screenStyle: {
+    padding: 0,
+  },
+  userImg: {
+    backgroundColor: 'white',
+    height: 100,
+    width: 100,
+    borderRadius: 50
+  },
+  profileTop: {
+    backgroundColor: purpler,
+    alignItems: 'center',
+    margin: -15,
+    marginBottom: 15,
+    paddingTop: 15,
+  },
+  infoBox: {
+    marginTop: 10,
+    marginBottom: 15
+  },
+  profileInput: {
+    borderWidth: 0,
+    backgroundColor: 'transparent',
+    color: '#151537'
+  }
+})
 
 export default MyFriendsScreen

@@ -31,6 +31,7 @@ import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
 import MyTabBar from './MyTabBar'
 import DrawerComponent from './DrawerComponent'
+import { purpler } from '../../utils/colors';
 
 const myScheduleNav = createStackNavigator({
   Schedule: {
@@ -135,7 +136,10 @@ const stackNav = createStackNavigator({
     color: '#00dddd'
   },
   navigationOptions: {
-    headerVisible: false
+    // headerVisible: false,
+    // headerBackground: {
+    //   backgroundColor: purpler
+    // }
   } 
 })
 

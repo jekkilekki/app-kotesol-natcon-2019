@@ -8,7 +8,8 @@ const H3 = (props) => {
       size={25} 
       fontFamily={'nunito-black'}
       style={[{
-        fontSize: props.small ? 10 : 14,
+        color: props.dark ? '#151537' : '#fff',
+        fontSize: props.small ? 10 : 16,
         textTransform: props.small ? 'uppercase' : 'capitalize',
         paddingTop: 20,
         paddingBottom: 5

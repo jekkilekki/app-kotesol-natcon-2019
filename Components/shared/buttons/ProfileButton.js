@@ -62,7 +62,7 @@ class ProfileButton extends Component {
 const styles = StyleSheet.create({
   profileButton: {
     position: 'absolute',
-    right: 10,
+    right: 15,
     top: 0,
     // top: isIphoneX() ? 42 : 7,
     width: 30,
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   userImg: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     backgroundColor: 'white',
     zIndex: 10
   }

@@ -18,6 +18,20 @@ export function isIphoneX() {
     && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812)
 }
 
+export function getTime(time) {
+  switch(time) {
+    case '10:00': return '10:00am'
+    case '11:00': return '11:00am'
+    case '12:00': return '12:00pm'
+    case '13:00': return '1:00pm'
+    case '14:00': return '2:00pm'
+    case '15:00': return '3:00pm'
+    case '16:00': return '4:00pm'
+    case '17:00': return '5:00pm'
+    default: return time
+  }
+}
+
 export function getTrackColor(track) {
   switch (track.toLowerCase()) {
     case 'plenary': return '#151537'

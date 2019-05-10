@@ -45,7 +45,7 @@ class DrawerComponent extends Component {
         <Image style={styles.profileImg} source={{uri: profileImg}} />
         <View>
           <AppText>{userName}</AppText>
-          {email
+          {this.props.loggedIn
             ? <View style={{flexDirection: 'row'}}>
                 <ContentButton small 
                   style={{marginRight: 5}}

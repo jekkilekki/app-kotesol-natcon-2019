@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('window')
 
 const ScreenContent = (props) => {
   return (
-    <ScrollView style={[screenContent, props.style]}>
+    <ScrollView style={[screenContent, props.style]} bounces={props.bounces}>
       {props.children}
     </ScrollView>
   )

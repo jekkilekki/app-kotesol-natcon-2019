@@ -10,7 +10,7 @@ import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import PlenaryCard from './PlenaryCard'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { getTrackColor } from '../utils/helpers';
+import { getTrackColor, getTime } from '../utils/helpers';
 
 const { width } = Dimensions.get('window')
 
@@ -26,20 +26,6 @@ class SpeakerCardSmall extends Component {
 
   _filter(query) {
     this.props.filter(query)
-  }
-
-  _getTime(time) {
-    switch(time) {
-      case '10:00': return '10:00am'
-      case '11:00': return '11:00am'
-      case '12:00': return '12:00pm'
-      case '13:00': return '1:00pm'
-      case '14:00': return '2:00pm'
-      case '15:00': return '3:00pm'
-      case '16:00': return '4:00pm'
-      case '17:00': return '5:00pm'
-      default: return time
-    }
   }
 
   renderImg() {
@@ -156,11 +142,7 @@ class SpeakerCardSmall extends Component {
             ]}>{title}</H2>
             {this.state.expanded && 
             <View style={{flex: 1, opacity: 0.7, flexDirection: 'row', alignContent: 'flex-start', borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(35,35,119,0.5)', paddingTop: 10}}>
-              {/* {this.renderTrack(track)} */}
-              {coPresenter !== '' &&
-                <AppText style={styles.talkLocation}>Co-presenter</AppText>
-              }
-              <AppText style={styles.talkTime}>{this._getTime(time)}
+              <AppText style={styles.talkTime}>{getTime(time)}
                 <AppText style={styles.talkLocation}> - {room}</AppText>
               </AppText>
               <SpeakerTrackButton track={track} style={{marginTop: -2, marginLeft: 7, padding: 2}} onPress={() => this._filter(track)} />

@@ -36,7 +36,7 @@ class WelcomeScreen extends Component {
   componentWillMount() {
     const { navigation, loggedIn } = this.props
 
-    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Home')
+    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Profile')
   }
 
   onLoginPress = () => {

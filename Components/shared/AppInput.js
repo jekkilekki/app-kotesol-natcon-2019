@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,221,221,0.3)',
     borderWidth: 1,
     borderRadius: 5,
+    height: 35
   },
   label: {
     marginBottom: 3,

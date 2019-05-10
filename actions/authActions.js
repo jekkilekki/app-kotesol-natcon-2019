@@ -69,7 +69,7 @@ export const fbLogin = () => async (dispatch) => {
     let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
 
     if ( user ) {
-      getProfile( user )
+      dispatch( getProfile( user ) )
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { Text, SafeAreaView, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { withNavigation, HeaderBackButton } from 'react-navigation'
-import { primary, black, white, purple, blueDark } from '../../../utils/colors'
+import { primary, black, white, purple, blueDark, purpler } from '../../../utils/colors'
 
 import { isIphoneX } from '../../../utils/helpers'
 
@@ -19,25 +19,33 @@ class HeaderBack extends Component {
     this.props.navigation.navigate('Auth')
   }
 
+  _goBack = () => {
+    this.props.navigation.goBack()
+  }
+
   render() {
     return (
-      <View 
+      <SafeAreaView 
         style={[styles.header, {
-          backgroundColor: this.props.background || 'transparent',
+          backgroundColor: this.props.background || purpler,
         }]}>
-        <HeaderBackButton tintColor={'#00dddd'} onPress={() => this.props.navigation.goBack()} />
-        <AppScreenTitle small>{this.props.pageName}</AppScreenTitle>
-        <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
-      </View>
+        <HeaderBackButton tintColor={'#00dddd'} onPress={() => this._goBack()} />
+        <TouchableOpacity onPress={() => this._goBack()} >
+          <AppText style={styles.headerText}>Back</AppText>
+        </TouchableOpacity>
+        {/* <AppScreenTitle small>{this.props.pageName}</AppScreenTitle>
+        <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle> */}
+      </SafeAreaView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   header: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingTop: isIphoneX() ? 30 : 0,
+    flexDirection: 'row',
+    zIndex: 100,
+    // justifyContent: 'flex-start',
+    // alignItems: 'flex-start',
     // paddingBottom: 10,
     // paddingLeft: 15,
     // paddingRight: 15,
@@ -46,6 +54,9 @@ const styles = StyleSheet.create({
     // shadowOpacity: 0.2,
     // elevation: 2,
   },
+  headerText: {
+    marginTop: 12
+  }
 })
 
 export default withNavigation(HeaderBack)
