@@ -86,7 +86,7 @@ class WelcomeScreen extends Component {
           data={SLIDE_DATA} 
           onLogin={this.onLoginPress}
           onComplete={this.onSlidesComplete} 
-          onNext={this.onSlidesNext}
+          // onNext={this.onSlidesNext}
           ref={'slides'}
         />
       </View>
