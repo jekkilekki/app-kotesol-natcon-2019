@@ -1,5 +1,25 @@
 [
   {
+    "id": "conference",
+    "title": "Star Center",
+    "type": "conference",
+    "description": "KOTESOL 2019 National Conference",
+    "location": "Jeonju University",
+    "area": "Campus",
+    "stars": 4.1,
+    "address": ["전북 전주시 완산구 효자동3가 1203", "전북 전주시 완산구 천잠로 303"],
+    "phone": "",
+    "website": "https://jj.ac.kr",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#00dddd",
+    "coordinate": {
+      "latitude": 35.814088,
+      "longitude": 127.088927
+    }
+  },
+  {
     "id": "jju-cafés",
     "type": "divider"
   },

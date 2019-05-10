@@ -43,7 +43,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = this.props
+    const { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces } = this.props
 
     if ( user === null ) return <Loader />
 
@@ -67,6 +67,22 @@ class ProfileScreen extends Component {
             </View>
           </View>
         }
+
+        <View style={styles.profileStats}>
+          <View>
+            <H3>{mySchedule.length}</H3>
+            <AppText>Favorited Talks</AppText>
+          </View>
+          <View>
+            <H3>{myFriends.length}</H3>
+            <AppText>Friends</AppText>
+          </View>
+          <View>
+            <H3>{myPlaces.length}</H3>
+            <AppText>Favorited Places</AppText>
+          </View>
+        </View>
+
         <AppInput style={styles.profileInput}
           label='First Name'
           placeholder='Aaron'
@@ -126,6 +142,10 @@ const styles = StyleSheet.create({
     margin: -15,
     marginBottom: 15,
     paddingTop: 15,
+  },
+  profileStats: {
+    flexDirection: 'row',
+    alignItems: 'space-between'
   },
   infoBox: {
     marginTop: 10,

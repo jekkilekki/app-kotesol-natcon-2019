@@ -11,6 +11,8 @@ import AttendeesList from '../AttendeesList'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppText from '../shared/text/AppText'
 
+import NoContent from '../NoContent'
+
 class AttendeesScreen extends Component {
   // state = {
   //   attendeeList: this.props.attendees || {},
@@ -64,13 +66,16 @@ class AttendeesScreen extends Component {
           schedule
         />
         <ScreenContent style={screenStyle}>
-          <AttendeesList 
-              // screen={'Speakers'} 
-              // attendees={this.state.attendeesList} 
-              // filter={this._filterSpeakers} 
-              // expanded={this.props.expanded} 
-              // display={this.state.display}
-            />
+          {!this.props.loggedIn
+            ? <NoContent login />
+            : <AttendeesList 
+                // screen={'Speakers'} 
+                // attendees={this.state.attendeesList} 
+                // filter={this._filterSpeakers} 
+                // expanded={this.props.expanded} 
+                // display={this.state.display}
+              />
+          }
         </ScreenContent>
       </AppScreen>
     )
@@ -84,8 +89,11 @@ const screenStyle = {
   paddingRight: 0,
 }
 
-const mapStateToProps = ({ attendees }) => {
-  return { attendees: Object.keys(attendees.data).map(i => attendees.data[i]) }
+const mapStateToProps = ({ attendees, app }) => {
+  return { 
+    attendees: Object.keys(attendees.data).map(i => attendees.data[i]),
+    loggedIn: app.loggedIn
+  }
 }
 
 export default connect(mapStateToProps, {

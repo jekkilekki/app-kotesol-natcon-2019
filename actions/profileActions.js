@@ -1,7 +1,9 @@
 import firebase from 'firebase'
 import {
   PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
-  SPEAKER_LIKE, SPEAKER_DISLIKE
+  SPEAKER_LIKE, SPEAKER_DISLIKE,
+  FRIEND_LIKE, FRIEND_DISLIKE,
+  PLACE_LIKE, PLACE_DISLIKE
 } from './types'
 
 export const profileFieldUpdate = ({ prop, value }) => {
@@ -33,7 +35,8 @@ export const getProfile = () => {
               shortBio: snapshot.val().shortBio || '', 
               email: snapshot.val().email || currentUser.email || '', 
               myFriends: snapshot.val().myFriends || [], 
-              mySchedule: snapshot.val().mySchedule || ['plenary'] 
+              mySchedule: snapshot.val().mySchedule || ['plenary'],
+              myPlaces: snapshot.val().myPlaces || ['conference']
             }
           })
         }
@@ -41,18 +44,18 @@ export const getProfile = () => {
   }
 }
 
-export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }) => {
+export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }) => {
   const { currentUser } = firebase.auth()
 
   return async (dispatch) => {
     await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
+      .set({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces })
 
     // await AsyncStorage.setItem('knc_user', { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
     
     dispatch({
       type: PROFILE_SAVE,
-      payload: { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
+      payload: { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }
     })
   }
 }
@@ -110,6 +113,10 @@ export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, e
 
 // }
 
+
+/**
+ * Like / dislike Speakers
+ */
 export const likeSpeaker = (id) => {
   return async (dispatch, getState) => {
     await dispatch({
@@ -124,6 +131,52 @@ export const dislikeSpeaker = (id) => {
   return async (dispatch, getState) => {
     await dispatch({
       type: SPEAKER_DISLIKE,
+      payload: id
+    })
+    await dispatch( profileSave( getState().profile ) )
+  }
+}
+
+/**
+ * Like / dislike Attendees (Friends)
+ */
+export const likeFriend = (id) => {
+  return async (dispatch, getState) => {
+    await dispatch({
+      type: FRIEND_LIKE,
+      payload: id
+    })
+    await dispatch( profileSave( getState().profile ) )
+  }
+}
+
+export const dislikeFriend = (id) => {
+  return async (dispatch, getState) => {
+    await dispatch({
+      type: FRIEND_DISLIKE,
+      payload: id
+    })
+    await dispatch( profileSave( getState().profile ) )
+  }
+}
+
+/**
+ * Like / dislike Places
+ */
+export const likePlace = (id) => {
+  return async (dispatch, getState) => {
+    await dispatch({
+      type: PLACE_LIKE,
+      payload: id
+    })
+    await dispatch( profileSave( getState().profile ) )
+  }
+}
+
+export const dislikePlace = (id) => {
+  return async (dispatch, getState) => {
+    await dispatch({
+      type: PLACE_DISLIKE,
       payload: id
     })
     await dispatch( profileSave( getState().profile ) )

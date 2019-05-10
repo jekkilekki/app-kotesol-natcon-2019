@@ -15,8 +15,16 @@ const { width, height } = Dimensions.get('window')
 
 const NoContent = (props) => (
   <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10, paddingLeft: 15, paddingRight: 15}}>
-    <H2 dark>No {props.name}</H2>
-    <AppText dark>You haven't favorited any {props.name} yet.</AppText>
+    {props.login 
+      ? <View>
+          <H2 dark>Login needed</H2>
+          <AppText dark>This content is restricted to logged in users only. Please login to continue.</AppText>
+        </View>
+      : <View>
+          <H2 dark>No {props.name}</H2>
+          <AppText dark>You haven't favorited any {props.name} yet.</AppText>
+        </View>
+    }
     <ScreenBottomPadding size={60} />
   </ScrollView>
 )

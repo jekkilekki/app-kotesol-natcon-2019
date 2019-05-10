@@ -7,11 +7,24 @@ import AppFooterButton from './layout/AppFooterButton'
 const { width, height } = Dimensions.get('window')
 
 class Slides extends Component {
+  state = {
+    slideNum: 0
+  }
+
   fbClick = () => {
     this.props.onLogin()
   }
 
-  _renderSlides() {
+  _nextSlide = () => {
+    if ( this.state.slideNum === this.props.data.length ) {
+      this.setState({ slideNum: 0 })
+    } else {
+      this.setState({ slideNum: this.state.slideNum + 1 })
+    }
+    this.refs._slider.scrollTo({x: this.state.slideNum * width, y: 0, duration: 500})
+  }
+
+  renderSlides() {
     return this.props.data.map((slide, i) => (
       <View key={i} style={{backgroundColor: slide.color}}>
         <View style={styles.container}>
@@ -54,8 +67,16 @@ class Slides extends Component {
         horizontal
         pagingEnabled
         style={{flex: 1}}
+        ref={'_slider'}
       >
-        {this._renderSlides()}
+        {this.renderSlides()}
+        <AppFooterButton backgroundColor='transparent'>
+          <Button title='Skip' onPress={this.props.onComplete} />
+          <View style={styles.indicator}>
+          
+          </View>
+          <Button title='Next' onPress={() => this._nextSlide()} />
+        </AppFooterButton>
       </ScrollView>
     )
   }

@@ -1,6 +1,9 @@
 import {
   PROFILE_LOAD, PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
-  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL, SPEAKER_LIKE, SPEAKER_DISLIKE,
+  PROFILE_FETCH_SUCCESS, PROFILE_FETCH_FAIL, 
+  SPEAKER_LIKE, SPEAKER_DISLIKE,
+  FRIEND_LIKE, FRIEND_DISLIKE,
+  PLACE_LIKE, PLACE_DISLIKE,
   FIREBASE_LOGOUT_USER
 } from '../actions/types'
 
@@ -13,7 +16,8 @@ const INITIAL_STATE = {
   shortBio: '',
   email: '',
   myFriends: [],
-  mySchedule: []
+  mySchedule: [],
+  myPlaces: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -35,7 +39,8 @@ export default (state = INITIAL_STATE, action) => {
           email: action.payload.email,
           shortBio: action.payload.shortBio,
           myFriends: action.payload.myFriends,
-          mySchedule: action.payload.mySchedule
+          mySchedule: action.payload.mySchedule,
+          myPlaces: action.payload.myPlaces
         }
     case PROFILE_FETCH_SUCCESS: 
       return state
@@ -53,6 +58,32 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state, 
         mySchedule: state.mySchedule.filter(id => id !== action.payload)
+      }
+    case FRIEND_LIKE:
+      return {
+        ...state,
+        myFriends: 
+          state.myFriends.includes(action.payload) 
+            ? state.myFriends 
+            : state.myFriends.concat( action.payload ) 
+      }
+    case FRIEND_DISLIKE: 
+      return {
+        ...state, 
+        myFriends: state.myFriends.filter(id => id !== action.payload)
+      }
+    case PLACE_LIKE:
+      return {
+        ...state,
+        myPlaces: 
+          state.myPlaces.includes(action.payload) 
+            ? state.myPlaces 
+            : state.myPlaces.concat( action.payload ) 
+      }
+    case PLACE_DISLIKE: 
+      return {
+        ...state, 
+        myPlaces: state.myPlaces.filter(id => id !== action.payload)
       }
     case FIREBASE_LOGOUT_USER: 
       return { ...state, ...INITIAL_STATE }

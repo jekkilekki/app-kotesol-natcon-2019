@@ -51,3 +51,8 @@ export const SPEAKER_LIKE = 'speaker_like'
 export const SPEAKER_DISLIKE = 'speaker_dislike'
 
 export const GET_ATTENDEES = 'get_attendees'
+export const FRIEND_LIKE = 'friend_like'
+export const FRIEND_DISLIKE = 'friend_dislike'
+
+export const PLACE_LIKE = 'place_like'
+export const PLACE_DISLIKE = 'place_dislike'
