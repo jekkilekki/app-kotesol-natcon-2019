@@ -92,7 +92,8 @@ class SpeakersScreen extends Component {
           expanded={this.props.expanded} 
           expandCollapse={this._expandCollapse}
           gridRow={this._gridRow} 
-          display={this.state.display}
+          // display={this.state.display}
+          schedule
         />
         <ScreenContent style={speakerScreenStyle}>
           <SpeakerList 

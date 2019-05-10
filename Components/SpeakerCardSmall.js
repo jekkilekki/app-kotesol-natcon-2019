@@ -70,7 +70,8 @@ class SpeakerCardSmall extends Component {
   render() {
     const { id, title, name, nickname, shortname, 
             affiliation, other, time, room, summary, 
-            abstract, bio, img, media, email, phone, track, coPresenter
+            abstract, bio, img, media, email, phone, track, 
+            coPresenter, coPresenterAff
           } = this.props.speaker.item
 
     if ( this.props.screen === 'Speakers' && 
@@ -136,6 +137,13 @@ class SpeakerCardSmall extends Component {
               <AppText style={styles.talkSpeaker}>{name}
               {affiliation !== '' &&
                 <AppText style={styles.talkAffiliation}> ({affiliation})</AppText>
+              }
+              </AppText>
+            }
+            {coPresenter !== '' && 
+              <AppText style={styles.talkSpeaker}>+ {coPresenter}
+              {coPresenterAff !== '' &&
+                <AppText style={styles.talkAffiliation}> ({coPresenterAff})</AppText>
               }
               </AppText>
             }

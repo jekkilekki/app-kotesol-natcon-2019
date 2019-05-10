@@ -18,10 +18,15 @@ export const getProfile = () => {
     await firebase.database().ref(`users/${currentUser.uid}`)
       .once('value').then((snapshot) => {
         if ( snapshot.val() ) {
+          const img = snapshot.val().img 
+            ? snapshot.val().img.replace('?height=300','') 
+            : currentUser.photoUrl 
+              ? currentUser.photoUrl
+              : 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'
           dispatch({
             type: PROFILE_SAVE,
             payload: { 
-              img: snapshot.val().img || currentUser.photoURL || '', 
+              img: img + '?height=300' || currentUser.photoURL || '', 
               firstName: snapshot.val().firstName || currentUser.displayName || '', 
               lastName: snapshot.val().lastName || '', 
               affiliation: snapshot.val().affiliation || '', 

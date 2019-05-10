@@ -14,8 +14,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 const { width, height } = Dimensions.get('window')
 
 const NoContent = (props) => (
-  <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
-    <H2 dark>You haven't favorited any {props.name} yet.</H2>
+  <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10, paddingLeft: 15, paddingRight: 15}}>
+    <H2 dark>No {props.name}</H2>
+    <AppText dark>You haven't favorited any {props.name} yet.</AppText>
     <ScreenBottomPadding size={60} />
   </ScrollView>
 )

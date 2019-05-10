@@ -22,7 +22,7 @@ class SessionSingleScreen extends Component {
     const { speaker } = this.props.navigation.state.params
 
     return (
-      <AppScreen background>
+      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
         <ScreenContent style={{height: height}}>
           <HeaderBack
             // pageName={speaker.title}
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   speakerImg: {
     width: width - 150,
     height: width - 150,
-    borderRadius: 10
+    borderRadius: width / 2
   },
   content: {
     flex: 1,

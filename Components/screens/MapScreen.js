@@ -229,81 +229,74 @@ class MapScreen extends Component {
   }
 
   render() {
-    if (!this.state.mapLoaded) {
-      return (
-        <AppScreen>
-          <AppHeader 
-            pageName='Location' 
-            pageSub='Discover Jeonju'
-          />
-          <Loader />
-        </AppScreen>
-      )
-    }
     return (
       <AppScreen>
         <AppHeader 
           pageName='Location' 
           pageSub='Discover Jeonju'
+          pageChild='My Places'
         />
-        <ScreenContent>
-        <MapView 
-            style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -15, marginLeft: -15, marginRight: -15 }} 
-            region={jjuStarCenterCoords}
-            // initialCamera={this.state.camera}
-            minZoomLevel={17}
-            provider={MapView.PROVIDER_GOOGLE}
-            onPanDrag={this._onRegionChange}
-          >
-            <Circle 
-              center={jjuStarCenterCoords}
-              radius={40}
-              fillColor={'rgba(0,221,221,0.2)'}
-              strokeColor={'rgba(0,0,0,0.2)'}
-            />
-            {this.renderMainMarker(true)}
-          </MapView>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <H2 dark center>Jeonju University</H2>
-            <TouchableOpacity onPress={() => this._centerMap()}>
-              <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
-            </TouchableOpacity>
-          </View>
-          <P dark small>(55069) 전라북도 전주시 완산구 천잠로 303 전주대학교</P>
-          {/* <Image resizeMode='contain' source={require('../../assets/img/star-center-map-doctored.jpg')} style={[styles.image, {height: 260}]} /> */}
-          {/* <H2 dark center>Star Center</H2> */}
-          <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
-          <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
-          <P dark>
-            Jeonju University is located at the west end of Jeonju. From the bus terminal, 
-            it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive there. 
-            Star Center is located in the center the university, and is the largest building on campus. 
-            It sits just in front of the large clock tower building, and has tennis courts below it.
-          </P><P dark>
-            The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
-            through one of three doors: (1) Floor B1: Onnuri Hall auditorium entrance (in front of the clock tower), 
-            (2) Floor 1: parking garage entrance, or (3) Floor 2: Food Court entrance (near the fountain).
-          </P>
-          <H2 dark>Rooms</H2>
-          <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image, {height: 540}]} />
-          <P dark>
-            The tallest building in the picture above is the Star Tower student dormitory 
-            building. It is located over the Old Gate entrance road. The New Gate entrance 
-            road is located to the left of the picture between the green golf netting and 
-            cluster of white Engineering buildings there.
-          </P>
-          <H2 dark>Around Campus</H2>
-          <P dark>
-            As with most universities in Korea, Jeonju University's entrances are 
-            surrounded with many different cafés and eateries ranging from Korean lunchboxes 
-            (도시락), to sit-down BBQ places, to Western and international foods. This page 
-            highlights only a few of these, but also points out the main areas where you might 
-            find something tasty: (1) on campus, (2) the Old gate, (3) the New gate, (4) the 
-            New development area (Shinsikaji).
-          </P>
-          {this.renderMapButtons()}
-          {this.renderMap()}
-        </ScreenContent>
+        {!this.state.mapLoaded && <Loader />}
+        {this.state.mapLoaded &&
+          <ScreenContent>
+            <MapView 
+              style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -15, marginLeft: -15, marginRight: -15 }} 
+              region={jjuStarCenterCoords}
+              // initialCamera={this.state.camera}
+              minZoomLevel={17}
+              provider={MapView.PROVIDER_GOOGLE}
+              onPanDrag={this._onRegionChange}
+            >
+              <Circle 
+                center={jjuStarCenterCoords}
+                radius={40}
+                fillColor={'rgba(0,221,221,0.2)'}
+                strokeColor={'rgba(0,0,0,0.2)'}
+              />
+              {this.renderMainMarker(true)}
+            </MapView>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <H2 dark center>Jeonju University</H2>
+              <TouchableOpacity onPress={() => this._centerMap()}>
+                <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
+              </TouchableOpacity>
+            </View>
+            <P dark small>(55069) 전라북도 전주시 완산구 천잠로 303 전주대학교</P>
+            {/* <Image resizeMode='contain' source={require('../../assets/img/star-center-map-doctored.jpg')} style={[styles.image, {height: 260}]} /> */}
+            {/* <H2 dark center>Star Center</H2> */}
+            <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
+            <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
+            <P dark>
+              Jeonju University is located at the west end of Jeonju. From the bus terminal, 
+              it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive there. 
+              Star Center is located in the center the university, and is the largest building on campus. 
+              It sits just in front of the large clock tower building, and has tennis courts below it.
+            </P><P dark>
+              The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
+              through one of three doors: (1) Floor B1: Onnuri Hall auditorium entrance (in front of the clock tower), 
+              (2) Floor 1: parking garage entrance, or (3) Floor 2: Food Court entrance (near the fountain).
+            </P>
+            <H2 dark>Rooms</H2>
+            <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image, {height: 540}]} />
+            <P dark>
+              The tallest building in the picture above is the Star Tower student dormitory 
+              building. It is located over the Old Gate entrance road. The New Gate entrance 
+              road is located to the left of the picture between the green golf netting and 
+              cluster of white Engineering buildings there.
+            </P>
+            <H2 dark>Around Campus</H2>
+            <P dark>
+              As with most universities in Korea, Jeonju University's entrances are 
+              surrounded with many different cafés and eateries ranging from Korean lunchboxes 
+              (도시락), to sit-down BBQ places, to Western and international foods. This page 
+              highlights only a few of these, but also points out the main areas where you might 
+              find something tasty: (1) on campus, (2) the Old gate, (3) the New gate, (4) the 
+              New development area (Shinsikaji).
+            </P>
+            {this.renderMapButtons()}
+            {this.renderMap()}
+          </ScreenContent>
+        }
       </AppScreen>
     )
   }

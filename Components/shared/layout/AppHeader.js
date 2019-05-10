@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
+import { connect } from 'react-redux'
 import { primary, black, white, purple, purpler, blueDark } from '../../../utils/colors'
 
 import { isIphoneX } from '../../../utils/helpers'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
 
 import AppScreenTitle from '../text/AppScreenTitle'
 import AppScreenSubtitle from '../text/AppScreenSubtitle'
 import ProfileButton from '../buttons/ProfileButton'
 import AppText from '../text/AppText'
+import ContentButton from '../buttons/ContentButton';
 
 class Header extends Component {
   _handleCancel = () => {
@@ -33,6 +36,8 @@ class Header extends Component {
   }
 
   render() {
+    const { loggedIn, pageBackButton, pageChild, pageName, pageSub, navigation } = this.props
+
     return (
       <SafeAreaView style={{backgroundColor: purpler}}>
         <View
@@ -43,8 +48,22 @@ class Header extends Component {
           ]}
         >
           {this.renderProfileButton()}
-          <AppScreenTitle>{this.props.pageName}</AppScreenTitle>
-          <AppScreenSubtitle>{this.props.pageSub}</AppScreenSubtitle>
+          <View style={{flexDirection: 'row'}}>
+            {loggedIn && pageBackButton &&
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <EntypoIcon name={'chevron-left'} size={30} color={'#00dddd'} />
+              </TouchableOpacity>
+            }
+            <AppScreenTitle>{pageName}</AppScreenTitle>
+            {loggedIn && pageChild &&
+              <ContentButton
+                small
+                title={pageChild}
+                onPress={() => navigation.navigate(pageChild.replace(/\s/g,''))}
+              />
+            }
+          </View>
+          <AppScreenSubtitle>{pageSub}</AppScreenSubtitle>
           {this.props.children &&
             <View style={{flex: 1}}>
               {this.props.children}
@@ -71,6 +90,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 2,
   },
+  pageChildButton: {
+    paddingTop: 3,
+    paddingBottom: 3,
+    paddingRight: 6,
+    paddingLeft: 6,
+    margin: -5
+  }
 })
 
-export default withNavigation(Header)
+const mapStateToProps = ({ app }) => {
+  return {
+    loggedIn: app.loggedIn
+  }
+}
+
+export default withNavigation(connect( mapStateToProps )(Header))

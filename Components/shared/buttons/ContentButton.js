@@ -13,15 +13,23 @@ const ContentButton = (props) => {
     >
       <View 
         style={[styles.contentButton,
-          { backgroundColor: props.opaque && !props.disabled ? '#00dddd' : 'rgba(0,221,221,0.3)',},
+          { backgroundColor: props.opaque && !props.disabled ? '#00dddd' : 'rgba(0,221,221,0.3)',
+            paddingTop: props.small ? 2 : 10,
+            paddingBottom: props.small ? 2 : 10,
+            paddingLeft: props.small ? 10 : 10,
+            paddingRight: props.small ? 10 : 10,
+            marginTop: props.small ? 10 : 0,
+            marginBottom: props.small ? -10 : 0,
+          },
           props.style
         ]}
       >
         {props.title 
         ? <AppText 
             style={[styles.buttonText,
-              { color: props.opaque ? '#fff' : '#00dddd' },
-              props.style
+              { color: props.opaque ? '#fff' : '#00dddd',
+                fontSize: props.small ? 11 : 12
+              }
             ]}
           >{props.title}</AppText>
         : props.children
@@ -37,7 +45,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingTop: 10,
     paddingBottom: 10,
-    borderRadius: 5
+    borderRadius: 15
   },
   buttonText: {
     fontSize: 12,

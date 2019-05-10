@@ -10,8 +10,8 @@ import ContentButton from '../shared/buttons/ContentButton'
 import SpeakerList from '../SpeakerList'
 import AppSearch from '../shared/layout/AppSearch'
 import MyTabBar from '../navigation/MyTabBar'
-import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding';
-import BubbleTab from '../shared/layout/BubbleTab';
+import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
+import BubbleTab from '../shared/layout/BubbleTab'
 
 class ScheduleScreen extends Component {
   state = {
@@ -76,6 +76,7 @@ class ScheduleScreen extends Component {
         <AppHeader 
           pageName='Schedule' 
           pageSub='Explore the presentation tracks'
+          pageChild='My Schedule'
         />
         {/* Maybe we don't put Search on the ScheduleScreen - or we have to rewrite / modify the search / filter functions. */}
         <AppSearch schedule
@@ -113,12 +114,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ speakers, app }) => {
   const sortedData = speakers.data
-  .sort((a,b) => {
-    if ( a.time === b.time ) {
-      return a.room < b.room ? -1 : a.room > b.room ? 1 : 0
-    }
-    return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
-  })
+    .sort((a,b) => {
+      if ( a.time === b.time ) {
+        return a.room < b.room ? -1 : a.room > b.room ? 1 : 0
+      }
+      return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
+    })
   return { 
     scheduledSpeakers: sortedData,
     expanded: app.scheduleExpanded

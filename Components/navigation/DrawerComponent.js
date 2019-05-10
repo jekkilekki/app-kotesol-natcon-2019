@@ -13,6 +13,7 @@ import AppText from '../shared/text/AppText'
 import H2 from '../shared/text/H2'
 import ProfileButton from '../shared/buttons/ProfileButton'
 import ContentButton from '../shared/buttons/ContentButton'
+import ScreenSection from '../shared/layout/ScreenSection';
 
 class DrawerComponent extends Component {
   navigateToScreen = (route) => {
@@ -45,12 +46,20 @@ class DrawerComponent extends Component {
         <View>
           <AppText>{userName}</AppText>
           {email
-            ? <ContentButton
-                title="Logout"
-                icon="logout"
-                onPress={() => this._onLogout()}
-              />
-            : <ContentButton
+            ? <View style={{flexDirection: 'row'}}>
+                <ContentButton small 
+                  style={{marginRight: 5}}
+                  title="Profile"
+                  icon="logout"
+                  onPress={() => this._menuPress('Profile')}
+                />
+                <ContentButton small
+                  title="Logout"
+                  icon="logout"
+                  onPress={() => this._onLogout()}
+                />
+              </View>
+            : <ContentButton small
                 title="Login"
                 icon="login"
                 onPress={() => this.props.navigation.navigate('Auth')}
@@ -64,16 +73,16 @@ class DrawerComponent extends Component {
   renderMenuIcon(button) {
     switch(button) {
       case 'Schedule': return <MaterialCommunityIcon name='calendar-clock' size={20} style={styles.icon} />
-      case 'MySchedule': return <MaterialCommunityIcon name='table' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      // case 'MySchedule': return <MaterialCommunityIcon name='table' size={20} style={[styles.icon, {marginLeft: 20}]} />
       case 'Speakers': return <EntypoIcon name='modern-mic' size={20} style={styles.icon} />
       case 'Map': return <FoundationIcon name='map' size={20} style={styles.icon} />
-      case 'MyPlaces': return <EntypoIcon name='location-pin' size={20} style={[styles.icon, {marginLeft: 20}]} />
-      case 'Attendees': return <FoundationIcon name='torsos-female-male' size={20} style={styles.icon} />
-      case 'MyFriends': return <FoundationIcon name='torsos-all' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      // case 'MyPlaces': return <EntypoIcon name='location-pin' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'People': return <FoundationIcon name='torsos-female-male' size={20} style={styles.icon} />
+      // case 'MyFriends': return <FoundationIcon name='torsos-all' size={20} style={[styles.icon, {marginLeft: 20}]} />
       case 'About': return <EntypoIcon name='info-with-circle' size={20} style={styles.icon} />
-      case 'Profile': return <MaterialCommunityIcon name='settings' size={20} style={[styles.icon, {marginLeft: 20}]} />
-      case 'Welcome': return <MaterialCommunityIcon name='teach' size={20} style={[styles.icon, {marginLeft: 20}]} />
-      case 'More': return <EntypoIcon name='grid' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      // case 'Profile': return <MaterialCommunityIcon name='settings' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'Welcome': return <MaterialCommunityIcon name='teach' size={20} style={[styles.icon]} />
+      case 'More': return <EntypoIcon name='grid' size={20} style={[styles.icon]} />
       default: return null
     }
   }
@@ -83,34 +92,66 @@ class DrawerComponent extends Component {
       { "screen": "Schedule", "title": "Schedule", "subscreen": {
         "screen": "MySchedule", "title": "My Schedule"
       }},
-      { "screen": "MySchedule", "title": "My Schedule" },
+      // { "screen": "MySchedule", "title": "My Schedule" },
       { "screen": "Speakers", "title": "Speakers" },
       { "screen": "Map", "title": "Location", "subscreen": {
         "screen": "MyPlaces", "title": "My Places"
       }},
-      { "screen": "MyPlaces", "title": "My Places" },
+      // { "screen": "MyPlaces", "title": "My Places" },
       { "screen": "People", "title": "Attendees", "subscreen": {
         "screen": "MyFriends", "title": "My Friends"
       }},
-      { "screen": "MyFriends", "title": "My Friends" },
-      { "screen": "About", "title": "About" },
-      { "screen": "Profile", "title": "Update Profile" },
-      { "screen": "Welcome", "title": "How to use this App" },
-      { "screen": "More", "title": "More" },
+      // { "screen": "MyFriends", "title": "My Friends" },
+      { "screen": "About", "title": "About", "submenu": [
+        { "screen": "Conduct", "title": "Code of Conduct" },
+        { "screen": "Privacy", "title": "Privacy Policy" },
+        { "screen": "Welcome", "title": "How to use this App" },
+        { "screen": "More", "title": "More" },
+      ]},
+      // { "screen": "Profile", "title": "Update Profile" },
     ]
 
     const { loggedIn } = this.props
 
     return (
       MENU.map((item, i) => (
-        ( !loggedIn && item.screen === 'Profile' || !loggedIn && item.screen === 'MySchedule' )
+        ( !loggedIn && item.screen === 'Profile' 
+        || !loggedIn && item.screen === 'MySchedule'
+        || !loggedIn && item.screen === 'MyPlaces'
+        || !loggedIn && item.screen === 'MyFriends' )
         ? null
-        : <TouchableOpacity key={i} style={styles.button} onPress={() => this._menuPress(item.screen)}>
-            {this.renderMenuIcon(item.screen)}
-            <AppText>{item.title}</AppText>
-          </TouchableOpacity>
+        : <View key={i} style={{flexDirection: item.submenu ? 'column' : 'row'}}>
+            <TouchableOpacity style={styles.button} onPress={() => this._menuPress(item.screen)}>
+              {this.renderMenuIcon(item.screen)}
+              <AppText>{item.title}</AppText>
+            </TouchableOpacity>
+            {loggedIn && item.subscreen && 
+              <ContentButton small
+                title={item.subscreen.title}
+                onPress={() => this._menuPress(item.subscreen.screen)}
+              />
+            }
+            {item.submenu && 
+              <ScreenSection
+                style={{marginTop: 10, paddingTop: 10}}
+              >
+                {this.renderSubMenu(item.submenu)}
+              </ScreenSection>
+            }
+          </View>
       ))
     )
+  }
+
+  renderSubMenu(submenu) {
+    return (
+      submenu.map((item, i) => (
+        <TouchableOpacity key={i} style={styles.button} onPress={() => this._menuPress(item.screen)}>
+          {this.renderMenuIcon(item.screen)}
+          <AppText>{item.title}</AppText>
+        </TouchableOpacity>
+      )
+    ))
   }
 
   render() {

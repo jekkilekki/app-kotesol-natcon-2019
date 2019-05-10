@@ -52,6 +52,7 @@ class AttendeesScreen extends Component {
         <AppHeader 
           pageName='Attendees' 
           pageSub='Find a friend to connect with'
+          pageChild='My Friends'
         />
         <AppSearch 
           // onChangeText={this._searchAttendees} 
@@ -60,8 +61,9 @@ class AttendeesScreen extends Component {
           // expandCollapse={this._expandCollapse}
           // gridRow={this._gridRow} 
           // display={this.state.display}
+          schedule
         />
-        <ScreenContent style={attendeesScreenStyle}>
+        <ScreenContent style={screenStyle}>
           <AttendeesList 
               // screen={'Speakers'} 
               // attendees={this.state.attendeesList} 
@@ -75,7 +77,7 @@ class AttendeesScreen extends Component {
   }
 }
 
-const attendeesScreenStyle = {
+const screenStyle = {
   paddingTop: 0,
   paddingBottom: 0,
   paddingLeft: 0,

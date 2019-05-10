@@ -1,12 +1,13 @@
 import React from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import AppText from '../text/AppText';
 
 const BubbleTab = (props) => {
   return (
     <View style={styles.bubbleTabBar} >
       {props.tabs.map((tab, i) => (
-        <TouchableOpacity key={i}>
+        <TouchableOpacity key={i} onPress={() => props.navigation.navigate(tab.replace(/\s/g,''))}>
           <AppText style={styles.bubbleTabButton}>{tab}</AppText>
         </TouchableOpacity>
       ))}
@@ -17,11 +18,12 @@ const BubbleTab = (props) => {
 const styles = StyleSheet.create({
   bubbleTabBar: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     fontSize: 12,
     marginTop: 5,
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: 60,
+    marginRight: 60,
     padding: 5,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#232377',
@@ -36,4 +38,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default BubbleTab
+export default withNavigation(BubbleTab)

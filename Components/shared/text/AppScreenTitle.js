@@ -5,7 +5,8 @@ const AppScreenTitle = (props) => {
   return (
     <Text style={
       [style, {
-        fontSize: props.small ? 22 : 26
+        fontSize: props.small ? 22 : 26,
+        marginRight: 10
       }
     ]}>
       {props.children}

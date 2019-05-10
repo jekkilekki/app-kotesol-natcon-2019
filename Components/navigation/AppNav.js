@@ -1,12 +1,10 @@
 import React from 'react'
-import { Platform } from 'react-native'
 import { 
   createAppContainer, 
   createDrawerNavigator,
   createSwitchNavigator, 
   createStackNavigator, 
   createBottomTabNavigator, 
-  createMaterialTopTabNavigator
 } from 'react-navigation'
 
 import EntypoIcon from 'react-native-vector-icons/Entypo'
@@ -18,13 +16,14 @@ import WelcomeScreen from '../screens/WelcomeScreen'
 import AuthScreen from '../screens/AuthScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 import AttendeesScreen from '../screens/AttendeesScreen'
-// import MyFriendsScreen from '../screens/MyFriendsScreen'
+import AttendeeSingleScreen from '../screens/AttendeeSingleScreen'
+import MyFriendsScreen from '../screens/MyFriendsScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
 import MyScheduleScreen from '../screens/MyScheduleScreen'
 import SpeakersScreen from '../screens/SpeakersScreen'
 import SessionSingleScreen from '../screens/SessionSingleScreen'
 import MapScreen from '../screens/MapScreen'
-// import MyPlacesScreen from '../screens/MyPlacesScreen'
+import MyPlacesScreen from '../screens/MyPlacesScreen'
 import AboutScreen from '../screens/AboutScreen'
 import MoreScreen from '../screens/MoreScreen'
 import ConductScreen from '../screens/ConductScreen'
@@ -32,9 +31,8 @@ import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
 import MyTabBar from './MyTabBar'
 import DrawerComponent from './DrawerComponent'
-import { black } from '../../utils/colors';
 
-const myScheduleNav = createMaterialTopTabNavigator({
+const myScheduleNav = createStackNavigator({
   Schedule: {
     screen: ScheduleScreen,
   },
@@ -43,31 +41,37 @@ const myScheduleNav = createMaterialTopTabNavigator({
   }
 }, { 
   initialRouteName: 'Schedule',
-  tabBarComponent: (props) => 
-    <MyTabBar {...props} />,
-  tabBarOptions: {
-    // style: {
-    //   backgroundColor: '#232377',
-    //   paddingTop: 10,
-    //   shadowColor: black,
-    // shadowOffset: { width: 0, height: -2 },
-    // shadowOpacity: 0.2,
-    // elevation: 2,
-    // },
-    // labelStyle: {
-    //   fontFamily: 'futura',
-    //   textTransform: 'uppercase',
-    //   color: '#fff'
-    // },
-    activeTintColor: '#fff',
-    inactiveTintColor: '#201b48'
+  headerMode: 'none',
+})
+
+const myPlacesNav = createStackNavigator({
+  Map: {
+    screen: MapScreen,
+  },
+  MyPlaces: {
+    screen: MyPlacesScreen
   }
+}, { 
+  initialRouteName: 'Map',
+  headerMode: 'none',
+})
+
+const myFriendsNav = createStackNavigator({
+  People: {
+    screen: AttendeesScreen,
+  },
+  MyFriends: {
+    screen: MyFriendsScreen
+  }
+}, { 
+  initialRouteName: 'People',
+  headerMode: 'none',
 })
 
 /* Main Tabbed Navigation in MAIN Screen Flow */
 const tabNavigation = createBottomTabNavigator({
   Schedule: {
-    screen: ScheduleScreen,
+    screen: myScheduleNav,
     navigationOptions: {
       tabBarLabel: 'Schedule',
       tabBarIcon: ({ focused, tintColor }) => 
@@ -83,7 +87,7 @@ const tabNavigation = createBottomTabNavigator({
     },
   },
   Map: {
-    screen: MapScreen,
+    screen: myPlacesNav,
     navigationOptions: {
       tabBarLabel: 'Venue',
       tabBarIcon: ({ focused, tintColor }) => 
@@ -91,7 +95,7 @@ const tabNavigation = createBottomTabNavigator({
     },
   },
   People: {
-    screen: AttendeesScreen,
+    screen: myFriendsNav,
     navigationOptions: {
       tabBarLabel: 'Attendees',
       tabBarIcon: ({ focused, tintColor }) => 
@@ -106,32 +110,11 @@ const tabNavigation = createBottomTabNavigator({
         <EntypoIcon name='info-with-circle' size={20} color={tintColor} focused={focused} />,
     },
   },
-  // More: {
-  //   screen: MoreScreen,
-  //   navigationOptions: {
-  //     tabBarLabel: 'More',
-  //     tabBarIcon: ({ focused, tintColor }) => 
-  //       <EntypoIcon name='grid' size={26} color={tintColor} focused={focused} />
-  //   }
-  // }
 }, { 
   // initialRouteName: 'Map',
   tabBarComponent: (props) => 
     <TabBar tabColors={["#f62626", "#ff8a14", "#e5ff0a", "#21ff30", "#196eff"]} {...props} />,
   tabBarOptions: {
-    // style: {
-    //   backgroundColor: '#232377',
-    //   paddingTop: 10,
-    //   shadowColor: black,
-    // shadowOffset: { width: 0, height: -2 },
-    // shadowOpacity: 0.2,
-    // elevation: 2,
-    // },
-    // labelStyle: {
-    //   fontFamily: 'futura',
-    //   textTransform: 'uppercase',
-    //   color: '#fff'
-    // },
     activeTintColor: '#fff',
     inactiveTintColor: '#201b48'
   },
@@ -141,7 +124,7 @@ const tabNavigation = createBottomTabNavigator({
 const stackNav = createStackNavigator({
   Home: tabNavigation,
   Session: SessionSingleScreen,
-  // Profile: ProfileScreen,
+  Person: AttendeeSingleScreen,
   Conduct: ConductScreen,
   Privacy: PrivacyScreen
 }, { 

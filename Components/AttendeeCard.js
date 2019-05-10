@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
-// import { withNavigation } from 'react-navigation'
+import { withNavigation } from 'react-navigation'
 // import { LinearGradient } from 'expo'
 
 import H2 from './shared/text/H2'
@@ -17,17 +17,19 @@ class AttendeeCard extends Component {
   //   expanded: true || this.props.expanded
   // }
 
+  _goToPerson = () => {
+    const { attendee, navigation } = this.props 
+    navigation.navigate( 'Person', { id: attendee.item.id, attendee: attendee.item })
+  }
+
   render() {
     const { 
       affiliation, email, firstName, img, lastName, mySchedule, myFriends, shortBio
     } = this.props.attendee.item
 
-    console.log("this attendee", this.props.attendee)
-    console.log("first name", firstName)
-
     return (
       <TouchableOpacity 
-        // onPress={this._goToSession}
+        onPress={this._goToPerson}
         style={styles.cardStyle}
       >
         <View style={[styles.cardBackground, {paddingTop: 15}]}>
@@ -163,4 +165,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AttendeeCard
+export default withNavigation(AttendeeCard)

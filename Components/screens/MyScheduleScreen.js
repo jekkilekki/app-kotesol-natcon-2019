@@ -31,8 +31,8 @@ class MyScheduleScreen extends Component {
   _searchSpeakers = (query) => {
     this.props.speakerSearch(query)
 
-    const { scheduledSpeakers } = this.props
-    const filteredList = scheduledSpeakers.filter((speaker) => {
+    const { likedSpeakers } = this.props
+    const filteredList = likedSpeakers.filter((speaker) => {
       const speakerData = `${speaker.title.toString().toLowerCase()}
                           ${speaker.name.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
@@ -48,8 +48,8 @@ class MyScheduleScreen extends Component {
   _filterSpeakers = (query) => {
     this.props.speakerFilter(query)
 
-    const { scheduledSpeakers } = this.props
-    const filteredList = scheduledSpeakers.filter((speaker) => {
+    const { likedSpeakers } = this.props
+    const filteredList = likedSpeakers.filter((speaker) => {
       const speakerData = `${speaker.track.toString().toLowerCase()}`
       const filterData = query.toLowerCase()
 
@@ -83,7 +83,17 @@ class MyScheduleScreen extends Component {
         <AppHeader 
           pageName='My Schedule' 
           pageSub='Review the presentations you favorited'
+          // pageChild='Schedule'
+          pageBackButton
         />
+        {/* <AppSearch schedule
+          onChangeText={this._searchSpeakers} 
+          filter={this._filterSpeakers} 
+          inputValue={this.state.input}
+          expanded={this.state.expanded} 
+          expandCollapse={this._expandCollapse} 
+        /> */}
+        {/* <BubbleTab tabs={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
           {likedSpeakers.length === 0 
             ? <NoContent name={'presentations'} />  

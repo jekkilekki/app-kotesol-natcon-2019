@@ -11,7 +11,8 @@ const style = {
   fontFamily: 'nunito',
   fontSize: 13,
   color: '#fff',
-  opacity: 0.75
+  opacity: 0.75,
+  marginTop: 2
 }
 
 export default AppScreenSubtitle
