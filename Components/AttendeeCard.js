@@ -37,7 +37,7 @@ class AttendeeCard extends Component {
             paddingRight: img ? 60 : 0
           }]}>
             <AppText dark style={styles.talkTitle}>{firstName} {lastName}</AppText>
-            {affiliation !== '' && 
+            {affiliation !== '' && affiliation !== undefined && 
               <AppText dark style={styles.talkSpeaker}>{affiliation}</AppText>
             }
           </View>

@@ -6,6 +6,7 @@ import { firebaseLogoutUser, profileFieldUpdate, profileSave } from '../../actio
 
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
+import H3 from '../shared/text/H3'
 import AppText from '../shared/text/AppText'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppInput from '../shared/AppInput'
@@ -14,7 +15,9 @@ import { purpler } from '../../utils/colors';
 import AppScreenTitle from '../shared/text/AppScreenTitle';
 import AppScreenSubtitle from '../shared/text/AppScreenSubtitle';
 import Loader from '../shared/Loader';
-import AppModal from '../shared/layout/AppModal';
+import ProfileModal from '../views/user/ProfileModal'
+import ProfilePhotoModal from '../views/user/ProfilePhotoModal'
+
 
 class ProfileScreen extends Component {
   state = {
@@ -69,17 +72,17 @@ class ProfileScreen extends Component {
         }
 
         <View style={styles.profileStats}>
-          <View>
-            <H3>{mySchedule.length}</H3>
-            <AppText>Favorited Talks</AppText>
+          <View style={styles.center}>
+            <H3 center>{mySchedule === [] || mySchedule === undefined ? '0' : mySchedule.length}</H3>
+            <AppText center>Favorited Talks</AppText>
           </View>
-          <View>
-            <H3>{myFriends.length}</H3>
-            <AppText>Friends</AppText>
+          <View style={styles.profileStatBox}>
+            <H3 center>{myFriends === [] || myFriends === undefined ? '0' : myFriends.length}</H3>
+            <AppText center>Friends</AppText>
           </View>
-          <View>
-            <H3>{myPlaces.length}</H3>
-            <AppText>Favorited Places</AppText>
+          <View style={styles.profileStatBox}>
+            <H3 center>{myPlaces === [] || myPlaces === undefined ? '0' : myPlaces.length}</H3>
+            <AppText center>Favorited Places</AppText>
           </View>
         </View>
 
@@ -117,7 +120,7 @@ class ProfileScreen extends Component {
           autoCorrect={false}
           autoCapitalize={'none'}
         />
-        <AppModal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
+        <ProfilePhotoModal visible={this.state.showModal} onClose={() => this.setState({ showModal: false })} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
         </ScreenContent>
       </AppScreen>
     )
@@ -145,7 +148,10 @@ const styles = StyleSheet.create({
   },
   profileStats: {
     flexDirection: 'row',
-    alignItems: 'space-between'
+    justifyContent: 'space-between'
+  },
+  center: {
+    textAlign: 'center'
   },
   infoBox: {
     marginTop: 10,

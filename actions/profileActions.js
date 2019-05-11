@@ -28,6 +28,7 @@ export const getProfile = () => {
           dispatch({
             type: PROFILE_SAVE,
             payload: { 
+              uid: currentUser.uid,
               img: img + '?height=300' || currentUser.photoURL || '', 
               firstName: snapshot.val().firstName || currentUser.displayName || '', 
               lastName: snapshot.val().lastName || '', 
@@ -44,18 +45,18 @@ export const getProfile = () => {
   }
 }
 
-export const profileSave = ({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }) => {
+export const profileSave = ({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }) => {
   const { currentUser } = firebase.auth()
 
   return async (dispatch) => {
     await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces })
+      .set({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces })
 
     // await AsyncStorage.setItem('knc_user', { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
     
     dispatch({
       type: PROFILE_SAVE,
-      payload: { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }
+      payload: { uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }
     })
   }
 }

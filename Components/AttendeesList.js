@@ -20,13 +20,14 @@ class AttendeesList extends Component {
   // }
 
   renderList() {
+    const { profile } = this.props
     return (
       <FlatList
         data={this.props.attendees.sort((a,b) => {
           return a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 : 0
         })}
         renderItem={(attendee) => 
-          <AttendeeCard attendee={attendee} />
+          profile.uid !== attendee.uid && <AttendeeCard attendee={attendee} />
         }
         keyExtractor={(attendee) => String(attendee.email)}
       />
@@ -34,10 +35,16 @@ class AttendeesList extends Component {
   }
 
   render() {
+    const { profile } = this.props
+    let thisUser = { "item": profile }
+    // console.log( 'this user', profile )
     // console.log("Attendees yo", this.props.attendees)
     // if ( !this.state.attendeesLoaded ) return <Loader />
     return (
       <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
+        {profile.uid !== undefined && profile.uid !== '' &&
+          <AttendeeCard attendee={thisUser} />
+        }
         { this.renderList() }
         {/* <ScreenBottomPadding size={60} /> */}
       </ScrollView>
@@ -45,8 +52,15 @@ class AttendeesList extends Component {
   }
 }
 
-const mapStateToProps = ({ attendees }) => {
-  return { attendees: Object.keys(attendees.data).map(i => attendees.data[i]) }
+const mapStateToProps = ({ attendees, profile }) => {
+  // const { uid } = profile.uid
+  const attendeeArray = Object.keys(attendees.data).map(i => attendees.data[i])
+  // console.log( 'attendee array', attendeeArray )
+
+  return { 
+    attendees: attendeeArray, 
+    profile
+  }
 }
 
 export default connect(mapStateToProps)(AttendeesList)

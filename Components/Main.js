@@ -4,6 +4,8 @@ import { AppNavigation } from './navigation/AppNav';
 import { connect } from 'react-redux'
 import { appReady, checkAuthStatus, getProfile, getAttendees } from '../actions'
 
+import Loader from './shared/Loader'
+
 class Main extends Component {
   // componentWillReceiveProps(nextProps) {
   //   const { loggedIn } = this.props
@@ -49,7 +51,9 @@ class Main extends Component {
           startAsync={this._loadAssetsAsync}
           onFinish={() => this._appLoaded()}
           onError={console.warn}
-        />
+        >
+          <Loader />
+        </AppLoading>
       )
     }
 

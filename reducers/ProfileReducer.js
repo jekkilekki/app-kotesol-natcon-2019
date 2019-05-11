@@ -8,7 +8,7 @@ import {
 } from '../actions/types'
 
 const INITIAL_STATE = {
-  token: '',
+  uid: '',
   img: '',
   firstName: '',
   lastName: '',
@@ -32,6 +32,7 @@ export default (state = INITIAL_STATE, action) => {
       // could probably just load 'profile' as an Object and not have to deal with all these keys
       return { 
         ...state, 
+          uid: action.payload.uid,
           img: action.payload.img,
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,

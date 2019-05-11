@@ -3,10 +3,10 @@ import { Text, View, SafeAreaView, Modal, StyleSheet, Dimensions } from 'react-n
 import { connect } from 'react-redux'
 import { profileFieldUpdate } from '../../../actions'
 
-import AppText from '../text/AppText'
-import AppInput from '../AppInput'
-import ContentButton from '../buttons/ContentButton'
-import ProfileButton from '../buttons/ProfileButton'
+import AppText from '../../shared/text/AppText'
+import AppInput from '../../shared/AppInput'
+import ContentButton from '../../shared/buttons/ContentButton'
+import ProfileButton from '../../shared/buttons/ProfileButton'
 
 const { width, height } = Dimensions.get('window')
 
@@ -72,7 +72,7 @@ const AppModal = ({ children, user, visible, onClose, onSave, onLogout, profile 
 
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: 'rgba(35,35,119,0.8)',
+    backgroundColor: 'rgba(255,255,255,0.9)',
     // flex: 1,
     position: 'absolute',
     bottom: 0,
