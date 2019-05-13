@@ -45,6 +45,7 @@ class SpeakerLikeButton extends Component {
   }
 
   render() {
+    if ( !this.props.loggedIn ) return null
     return (
       <TouchableOpacity style={[styles.likeMe, this.props.style]} onPress={() => this._changeHeart()}>
         {this.renderHeart()}
@@ -61,8 +62,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ profile }) => {
+const mapStateToProps = ({ profile, app }) => {
   return {
+    loggedIn: app.loggedIn,
     liked: profile.mySchedule,
     profile
   }

@@ -60,7 +60,9 @@ class SessionSingleScreen extends Component {
                 <AppScreenTitle small>{speaker.title}</AppScreenTitle>
                 <View style={{flexDirection: 'row'}}>
                   <AppText style={styles.talkSpeaker}>{speaker.name}
-                    <AppText style={styles.talkAffiliation}> ({speaker.affiliation})</AppText>
+                    {speaker.affiliation !== '' &&
+                      <AppText style={styles.talkAffiliation}> ({speaker.affiliation})</AppText>
+                    }
                   </AppText>
                 </View>
                 {speaker.coPresenter !== '' &&

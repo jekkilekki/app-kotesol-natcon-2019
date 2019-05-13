@@ -11,6 +11,7 @@ import AppText from './shared/text/AppText'
 import H2 from './shared/text/H2'
 import ScreenBottomPadding from './shared/layout/ScreenBottomPadding'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import NoContent from './NoContent'
 
 const { width, height } = Dimensions.get('window')
 
@@ -20,16 +21,16 @@ class SpeakerList extends Component {
     speakerList: [],
     speakerSectionList: [],
     sectionClass: {height: 0},
-    loading: true,
-    needsUpdate: false
+    loading: false,
+    hasData: this.props.speakers.length > 0
   }
 
   componentWillReceiveProps(nextProps) {
     // only create a new sectionList if filter / search turns up more than 0 results
     if ( nextProps.speakers.length > 0 ) {
-      this.setState({
-        speakerSectionList: this._createSpeakerSections(nextProps.speakers)
-      })
+      this.setState({ hasData: true })
+    } else {
+      this.setState({ hasData: false })
     }
     // if ( this.state.needsUpdate && this.props.profile.mySchedule !== nextProps.profile.mySchedule ) {
     //   this.props.profileSave(this.props.profile)
@@ -37,24 +38,24 @@ class SpeakerList extends Component {
     // }
   }
 
-  componentWillMount() {
-    if ( this.props.schedule ) {
-      this.setState({ 
-        speakerSectionList: this._createSpeakerSections(this.props.speakers), 
-        loading: false 
-      })
-    } else {
-      this.setState({
-        loading: false
-      })
-    }
-  }
+  // componentWillMount() {
+  //   if ( this.props.schedule ) {
+  //     this.setState({ 
+  //       speakerSectionList: this._createSpeakerSections(this.props.speakers), 
+  //       loading: false 
+  //     })
+  //   } else {
+  //     this.setState({
+  //       loading: false
+  //     })
+  //   }
+  // }
 
   _createSpeakerSections(speakersPropsData) {
     let speakerData = this._groupByTime(speakersPropsData)
     let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
-    // console.log("Speaker Data: ", speakerData)
-    // console.log("SpeakerArray: ", speakerArray)
+    console.log("Speaker Data: ", speakerData)
+    console.log("SpeakerArray: ", speakerArray)
     let speakerSections = []
 
     for ( var i = 0; i < speakerArray.length; i++ ) {
@@ -112,6 +113,11 @@ class SpeakerList extends Component {
 
   renderList() {
     const { speakers, screen } = this.props
+
+    if ( !this.state.hasData ) {
+      return <NoContent />
+    }
+
     return (
       <FlatList
         data={speakers.sort((a,b) => {
@@ -126,9 +132,13 @@ class SpeakerList extends Component {
   }
 
   renderSchedule() {
+    if ( !this.state.hasData ) {
+      return <NoContent />
+    }
+
     return (
       <SectionList
-        sections={this.state.speakerSectionList}
+        sections={this._createSpeakerSections(this.props.speakers)}
         renderItem={(speaker) => 
           <SpeakerCardSmall speaker={speaker} updateList={() => this.updateList()} filter={this.props.filter} expanded={this.props.scheduleExpanded} />
         }
@@ -157,12 +167,12 @@ class SpeakerList extends Component {
     return (
       // @TODO: Make a "full view" (like now) and a "compact view" for faster scanning - like Gmail
 
-      <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
+      <ScrollView style={{flex: 1, width: width, paddingTop: 10}}>
         { this.props.schedule ? 
-            this.renderSchedule() :
-            this.renderList()
+          this.renderSchedule() :
+          this.renderList()
         }
-        <ScreenBottomPadding size={250} />
+        <ScreenBottomPadding size={160} />
       </ScrollView>
     )
   }
