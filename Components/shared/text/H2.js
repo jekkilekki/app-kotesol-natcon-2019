@@ -9,7 +9,8 @@ const H2 = (props) => {
       fontFamily={ props.normal ? 'nunito' : 'nunito-black' }
       style={[{
         paddingBottom: 10,
-        color: props.dark ? '#232377' : '#fff'
+        color: props.dark ? '#232377' : '#fff',
+        textAlign: props.center ? 'center' : 'left'
       }, props.style]}
     >
       {props.children}

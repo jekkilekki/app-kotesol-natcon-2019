@@ -8,7 +8,12 @@ class SmallButton extends Component {
 
     return (
       <TouchableOpacity onPress={this.props.onPress}
-        style={[styles.smallButton, {color: color}, this.props.style]}
+        style={[styles.smallButton, {
+          color: color,
+          borderBottomColor: this.props.active === this.props.title.toLowerCase() ? color : 'transparent',
+          borderBottomWidth: this.props.active === this.props.title.toLowerCase() ? 3 : 0,
+          height: 25
+        }, this.props.style]}
       >
         <AppText center style={{fontSize: 12, color: color, fontFamily: 'nunito-bold', textTransform: 'uppercase'}}>{title}</AppText>
       </TouchableOpacity>

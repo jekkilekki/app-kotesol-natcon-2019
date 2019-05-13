@@ -3,7 +3,10 @@ import { Text } from 'react-native'
 
 const AppScreenSubtitle = (props) => {
   return (
-    <Text style={style}>{props.children}</Text>
+    <Text style={[style,
+      {textAlign: props.center ? 'center' : 'left'},
+      props.style
+    ]}>{props.children}</Text>
   )
 }
 

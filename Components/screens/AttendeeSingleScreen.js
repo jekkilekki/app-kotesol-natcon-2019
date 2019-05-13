@@ -74,7 +74,7 @@ class AttendeeSingleScreen extends Component {
           </View> */}
           <View>
             <H3 dark>About {attendee.firstName}</H3>
-            <P dark>{attendee.bio}</P>
+            <P dark>{attendee.shortBio}</P>
             <ContentButton
               opaque
               style={{marginTop: 25}}

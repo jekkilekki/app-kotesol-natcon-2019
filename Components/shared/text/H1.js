@@ -10,7 +10,8 @@ const H1 = (props) => {
       style={[{
         marginBottom: 10,
         color: props.dark ? '#232377' : '#fff',
-        // backgroundColor: props.dark ? 'transparent' : '#232377'
+        // backgroundColor: props.dark ? 'transparent' : '#232377',
+        textAlign: props.center ? 'center' : 'left'
       }, props.style]}
     >
       {props.children}

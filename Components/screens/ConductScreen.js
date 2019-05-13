@@ -10,16 +10,23 @@ import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
 import AppText from '../shared/text/AppText'
 import ContentButton from '../shared/buttons/ContentButton'
+import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
+import AppScreenTitle from '../shared/text/AppScreenTitle';
+import AppScreenSubtitle from '../shared/text/AppScreenSubtitle';
 
 class ConductScreen extends Component {
   render() {
     return (
       <AppScreen background>
         <HeaderBack
-          pageName='Code of Conduct' 
-          pageSub='We take our code of conduct very seriously &amp; you should too'
+          // pageName='Code of Conduct' 
+          // pageSub='We take our code of conduct very seriously &amp; you should too'
         />
         <ScreenContent>
+          <View style={{marginBottom: 25}}>
+            <AppScreenTitle>Code of Conduct</AppScreenTitle>
+            <AppScreenSubtitle>We take our code of conduct seriously &amp; you should too</AppScreenSubtitle>
+          </View>
           <ScreenSection>
             <P>
               All attendees, speakers, sponsors, and volunteers for KOTESOL are required 
@@ -84,10 +91,11 @@ class ConductScreen extends Component {
               This work is licensed under a Creative Commons Attribution 3.0 Unported License
             </P>
             <ContentButton
-              title='&larr; Back to Info'
+              title='Go Back'
               onPress={() => this.props.navigation.goBack()}
             />
           </ScreenSection>
+          <ScreenBottomPadding size={120} />
         </ScreenContent>
       </AppScreen>
     )

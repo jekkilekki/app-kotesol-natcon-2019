@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, View, FlatList, SectionList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
+import { withNavigation } from 'react-navigation'
 
 // import SpeakerCard from './SpeakerCard.old'
 import SpeakerCardSmall from './SpeakerCardSmall'
@@ -10,6 +10,7 @@ import AppText from './shared/text/AppText'
 import H2 from './shared/text/H2'
 import ScreenBottomPadding from './shared/layout/ScreenBottomPadding'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import ContentButton from './shared/buttons/ContentButton'
 
 const { width, height } = Dimensions.get('window')
 
@@ -19,6 +20,12 @@ const NoContent = (props) => (
       ? <View>
           <H2 dark>Login needed</H2>
           <AppText dark>This content is restricted to logged in users only. Please login to continue.</AppText>
+          <ContentButton
+              opaque
+              style={{marginTop: 25}}
+              title="Login"
+              onPress={() => props.navigation.navigate('Auth')}
+            />
         </View>
       : <View>
           <H2 dark>No {props.name}</H2>
@@ -29,4 +36,4 @@ const NoContent = (props) => (
   </ScrollView>
 )
 
-export default NoContent
+export default withNavigation(NoContent)

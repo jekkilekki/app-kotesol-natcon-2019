@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, SafeAreaView, Modal, StyleSheet, Dimensions } from 'react-native'
+import { Text, View, SafeAreaView, Modal, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { profileFieldUpdate } from '../../../actions'
 
@@ -15,11 +15,14 @@ const AppModal = ({ children, user, visible, onClose, onSave, onLogout, profile 
     <Modal
       animationType={'slide'}
       onRequestClose={() => {}}
+      onDismiss={onClose}
       transparent
       visible={visible}
     >
-      <SafeAreaView style={styles.modalContainer}>
-        <ProfileButton onPress={onClose} cancelButton/>
+      <SafeAreaView style={styles.modalBackground}>
+        <TouchableOpacity onPress={onClose} style={styles.modalBackground}>
+        <View style={styles.modalContainer}>
+        <ProfileButton onPress={onClose} color={'#232377'} cancelButton/>
         <View style={styles.modalInterior}>
           <AppInput 
             label='First Name'
@@ -60,29 +63,34 @@ const AppModal = ({ children, user, visible, onClose, onSave, onLogout, profile 
             onPress={onSave}
             disabled={profile.firstName === '' || profile.lastName === ''}
           />
-          <ContentButton
-            title="Logout"
-            onPress={onLogout}
-          />
         </View>
+        </View>
+        </TouchableOpacity>
       </SafeAreaView>
     </Modal>
   )
 }
 
 const styles = StyleSheet.create({
-  modalContainer: {
-    backgroundColor: 'rgba(255,255,255,0.9)',
+  modalBackground: {
+    backgroundColor: 'rgba(25,25,51,0.3)',
     // flex: 1,
     position: 'absolute',
     bottom: 0,
     right: 0,
     left: 0,
+    top: 0,
     justifyContent: 'center',
-    height: height / 2,
+    padding: 15
+    // height: height / 2,
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: 30,
+    borderRadius: 15
   },
   modalInterior: {
-    margin: 15
+    // margin: 15,
   }
 })
 

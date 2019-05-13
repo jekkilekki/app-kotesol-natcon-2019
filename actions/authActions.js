@@ -131,10 +131,7 @@ const firebaseLoginUserSuccess = async (dispatch, user) => {
     type: FIREBASE_LOGIN_SUCCESS,
     payload: user.user
   })
-
-  // let token = generateUID()
-
-  // setAuthedUser( dispatch, user.user, navigation )
+  dispatch( getProfile( user.user ) )
 }
 
 export const firebaseLogoutUser = () => {

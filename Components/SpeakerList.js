@@ -162,7 +162,7 @@ class SpeakerList extends Component {
             this.renderSchedule() :
             this.renderList()
         }
-        <ScreenBottomPadding size={60} />
+        <ScreenBottomPadding size={250} />
       </ScrollView>
     )
   }

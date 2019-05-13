@@ -20,7 +20,10 @@ class HeaderBack extends Component {
   }
 
   _goBack = () => {
-    this.props.navigation.goBack()
+    // this.props.toHome 
+    //   ? this.props.navigation.navigate('Home')
+    //   : this.props.navigation.goBack()
+    this.props.navigation.goBack() || this.props.navigation.navigate('Home')
   }
 
   render() {

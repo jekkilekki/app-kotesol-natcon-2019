@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 // import { profileGetWithToken } from '../../actions'
 
 import Slides from '../shared/Slides'
+import AppFooterButton from '../shared/layout/AppFooterButton'
 
 import { appBlack, appBlue, appDarkBlue, appDarkPurple, appOrange, appPink, appPurple, appTeal } from '../../utils/colors'
 
@@ -13,7 +14,7 @@ const SLIDE_DATA = [
     title: 'Welcome!',
     text: 'to the KOTESOL 2019 National Conference App',
     image: '',
-    color: appDarkPurple
+    color: appDarkBlue
   },
   {
     title: 'Conference Schedule',
@@ -55,7 +56,7 @@ class WelcomeScreen extends Component {
   componentWillMount() {
     const { navigation, loggedIn } = this.props
 
-    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Profile')
+    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Home')
   }
 
   onLoginPress = () => {
@@ -66,20 +67,10 @@ class WelcomeScreen extends Component {
     this.props.navigation.navigate('Home')
   }
 
-  onSlidesNext = () => {
-    alert('sliding!')
-    if ( this.state.slideNum === 2 ) {
-      this.setState({ slideNum: 0 })
-    } else {
-      this.setState({ slideNum: this.state.slideNum+1 })
-    }
-    this.slide.scrollTo( this.state.slideNum )
-  }
-
   render() {
-    if ( !this.props.loggedIn ) {
-      return <AppLoading />
-    }
+    // if ( !this.props.loggedIn ) {
+    //   return <AppLoading />
+    // }
     return (
       <View style={styles.container}>
         <Slides 

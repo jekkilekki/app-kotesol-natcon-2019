@@ -78,6 +78,7 @@ class AppModal extends Component {
       <Modal
         animationType={'slide'}
         onRequestClose={() => {}}
+        onDismiss={onClose}
         transparent
         visible={visible}
       >

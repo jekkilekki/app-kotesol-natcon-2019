@@ -12,7 +12,8 @@ const H3 = (props) => {
         fontSize: props.small ? 10 : 16,
         textTransform: props.small ? 'uppercase' : 'capitalize',
         paddingTop: 20,
-        paddingBottom: 5
+        paddingBottom: 5,
+        textAlign: props.center ? 'center' : 'left'
       }, props.style]}
     >
       {props.children}

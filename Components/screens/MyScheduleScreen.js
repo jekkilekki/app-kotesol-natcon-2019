@@ -99,7 +99,7 @@ class MyScheduleScreen extends Component {
             ? <NoContent name={'presentations'} />  
             : <SpeakerList schedule speakers={likedSpeakers} filter={this._filterSpeakers} expanded={this.state.expanded} />
           }
-          <ScreenBottomPadding size={100} />
+          {/* <ScreenBottomPadding size={100} /> */}
         </ScreenContent>
       </AppScreen>
     )

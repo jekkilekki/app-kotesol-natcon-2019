@@ -73,16 +73,16 @@ class DrawerComponent extends Component {
   renderMenuIcon(button) {
     switch(button) {
       case 'Schedule': return <MaterialCommunityIcon name='calendar-clock' size={20} style={styles.icon} />
-      // case 'MySchedule': return <MaterialCommunityIcon name='table' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'Privacy': return <MaterialCommunityIcon name='cellphone-lock' size={20} style={[styles.icon]} />
       case 'Speakers': return <EntypoIcon name='modern-mic' size={20} style={styles.icon} />
       case 'Map': return <FoundationIcon name='map' size={20} style={styles.icon} />
       // case 'MyPlaces': return <EntypoIcon name='location-pin' size={20} style={[styles.icon, {marginLeft: 20}]} />
       case 'People': return <FoundationIcon name='torsos-female-male' size={20} style={styles.icon} />
-      // case 'MyFriends': return <FoundationIcon name='torsos-all' size={20} style={[styles.icon, {marginLeft: 20}]} />
+      case 'Conduct': return <FoundationIcon name='clipboard-notes' size={20} style={[styles.icon, {paddingLeft: 3}]} />
       case 'About': return <EntypoIcon name='info-with-circle' size={20} style={styles.icon} />
       // case 'Profile': return <MaterialCommunityIcon name='settings' size={20} style={[styles.icon, {marginLeft: 20}]} />
       case 'Welcome': return <MaterialCommunityIcon name='teach' size={20} style={[styles.icon]} />
-      case 'More': return <EntypoIcon name='grid' size={20} style={[styles.icon]} />
+      // case 'More': return <EntypoIcon name='grid' size={20} style={[styles.icon]} />
       default: return null
     }
   }
@@ -106,7 +106,7 @@ class DrawerComponent extends Component {
         { "screen": "Conduct", "title": "Code of Conduct" },
         { "screen": "Privacy", "title": "Privacy Policy" },
         { "screen": "Welcome", "title": "How to use this App" },
-        { "screen": "More", "title": "More" },
+        // { "screen": "More", "title": "More" },
       ]},
       // { "screen": "Profile", "title": "Update Profile" },
     ]

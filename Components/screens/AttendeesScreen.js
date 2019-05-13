@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { getAttendees } from '../../actions'
+import { getAttendees, profileFieldUpdate } from '../../actions'
 
 import Loader from '../shared/Loader'
 import AppScreen from '../shared/layout/AppScreen'
@@ -89,9 +89,11 @@ const screenStyle = {
   paddingRight: 0,
 }
 
-const mapStateToProps = ({ attendees, app }) => {
+const mapStateToProps = ({ attendees, app, profile }) => {
   return { 
-    attendees: Object.keys(attendees.data).map(i => attendees.data[i]),
+    attendees: Object.keys(attendees.data)
+      .map(i => attendees.data[i])
+      .filter(attendee => attendee.email !== profile.email),
     loggedIn: app.loggedIn
   }
 }

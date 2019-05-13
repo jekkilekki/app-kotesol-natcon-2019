@@ -10,16 +10,23 @@ import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
 import AppText from '../shared/text/AppText'
 import ContentButton from '../shared/buttons/ContentButton'
+import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
+import AppScreenTitle from '../shared/text/AppScreenTitle';
+import AppScreenSubtitle from '../shared/text/AppScreenSubtitle';
 
 class PrivacyScreen extends Component {
   render() {
     return (
       <AppScreen background>
         <HeaderBack
-          pageName='Privacy Policy' 
-          pageSub='We take your personal information seriously'
+          // pageName='Privacy Policy' 
+          // pageSub='We take your personal information seriously'
         />
         <ScreenContent>
+          <View style={{marginBottom: 25}}>
+            <AppScreenTitle>Privacy Policy</AppScreenTitle>
+            <AppScreenSubtitle>We take your personal information seriously</AppScreenSubtitle>
+          </View>
           <ScreenSection>
             <H1>Information Collection &amp; Use</H1>
             <P>
@@ -73,6 +80,7 @@ class PrivacyScreen extends Component {
               onPress={() => this.props.navigation.goBack()}
             />
           </ScreenSection>
+          <ScreenBottomPadding size={120} />
         </ScreenContent>
       </AppScreen>
     )

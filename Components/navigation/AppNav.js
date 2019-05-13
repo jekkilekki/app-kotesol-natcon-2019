@@ -25,7 +25,7 @@ import SessionSingleScreen from '../screens/SessionSingleScreen'
 import MapScreen from '../screens/MapScreen'
 import MyPlacesScreen from '../screens/MyPlacesScreen'
 import AboutScreen from '../screens/AboutScreen'
-import MoreScreen from '../screens/MoreScreen'
+// import MoreScreen from '../screens/MoreScreen.old'
 import ConductScreen from '../screens/ConductScreen'
 import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
@@ -151,11 +151,12 @@ const drawerNav = createDrawerNavigator({
   People: tabNavigation,
   About: tabNavigation,
   Tutorial: WelcomeScreen,
-  // MyFriends: MyFriendScreen,
+  MyFriends: MyFriendsScreen,
   MySchedule: MyScheduleScreen,
-  // MyPlaces: MyPlacesScreen,
+  MyPlaces: MyPlacesScreen,
   Settings: ProfileScreen,
-  Session: stackNav
+  Session: stackNav,
+  Welcome: WelcomeScreen
 }, {
   drawerPosition: 'right',
   overlayColor: '#151537',

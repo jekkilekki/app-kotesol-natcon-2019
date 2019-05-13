@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   },
   expandCollapse: {
     color: 'rgba(255,255,255,0.5)',
+    color: purpler,
     marginTop: 4,
     marginRight: 10
   },

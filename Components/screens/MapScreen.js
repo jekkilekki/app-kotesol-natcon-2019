@@ -14,11 +14,13 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import Dropdown from '../shared/layout/Dropdown'
 import SmallButton from '../shared/buttons/SmallButton'
 import ContentButton from '../shared/buttons/ContentButton'
+import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 
 import { getPinColor } from '../../utils/helpers'
 import { 
   appBlack, appDarkBlue, appOrange, appBlue, appPink, appPurple, appDarkPurple, appTeal,
   appBlack70, appDarkBlue70, appOrange70, appBlue70, appPink70, appPurple70, appDarkPurple70, appTeal70,
+  appGrey50, appGrey30, appGrey70, black
 } from '../../utils/colors'
 
 const { width } = Dimensions.get('window')
@@ -71,7 +73,7 @@ class MapScreen extends Component {
     map: jjuStarCenterCoords,
     mapLoaded: false,
     markerArea: 'Campus',
-    markerType: 'café',
+    markerType: 'all',
     region: jjuStarCenterCoords,
     mainMarker: jjuMarker,
     camera: {
@@ -178,7 +180,7 @@ class MapScreen extends Component {
 
   renderMapButtons() {
     return (
-      <View style={{borderTopWidth: StyleSheet.hairlineWidth, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15 }}>
+      <View style={styles.mapMenu}>
         <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 10}}>
           <ContentButton color={'#232377'} 
             style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
@@ -195,7 +197,7 @@ class MapScreen extends Component {
             >
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <P dark center>Shinsikaji</P>
-              <P dark center small>New Downtown</P>
+              <P dark center small>New Area</P>
             </View>
           </ContentButton>
           <ContentButton color={'#151537'} 
@@ -204,7 +206,7 @@ class MapScreen extends Component {
             >
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <P dark center>Gaeksa</P>
-              <P dark center small>Old Downtown</P>
+              <P dark center small>Downtown</P>
             </View>
           </ContentButton>
           <ContentButton color={'#60f'} 
@@ -218,11 +220,11 @@ class MapScreen extends Component {
           </ContentButton>
         </View>
         <View style={{flex: 1, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(0,0,0,0.3)', justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
-          <SmallButton title={'All'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'all' })} />
-          <SmallButton title={'Coffee'} color={appTeal70} onPress={() => this.setState({ markerType: 'café' })} />
-          <SmallButton title={'Food'} color={appPink70} onPress={() => this.setState({ markerType: 'food' })} />
-          <SmallButton title={'Drinks'} color={appOrange70} onPress={() => this.setState({ markerType: 'drinks' })} />
-          <SmallButton title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerType: 'stay' })} />
+          <SmallButton active={this.state.markerType} title={'All'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'all' })} />
+          <SmallButton active={this.state.markerType} title={'Café'} color={appTeal70} onPress={() => this.setState({ markerType: 'café' })} />
+          <SmallButton active={this.state.markerType} title={'Food'} color={appPink70} onPress={() => this.setState({ markerType: 'food' })} />
+          <SmallButton active={this.state.markerType} title={'Drinks'} color={appOrange70} onPress={() => this.setState({ markerType: 'drinks' })} />
+          <SmallButton active={this.state.markerType} title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerType: 'stay' })} />
         </View>
       </View>
     )
@@ -255,7 +257,7 @@ class MapScreen extends Component {
               />
               {this.renderMainMarker(true)}
             </MapView>
-            <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{flex: 1, flexDirection: 'row', marginTop: 15}}>
               <H2 dark center>Jeonju University</H2>
               <TouchableOpacity onPress={() => this._centerMap()}>
                 <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
@@ -295,6 +297,7 @@ class MapScreen extends Component {
             </P>
             {this.renderMapButtons()}
             {this.renderMap()}
+            <ScreenBottomPadding size={120} />
           </ScreenContent>
         }
       </AppScreen>
@@ -325,6 +328,23 @@ const styles = StyleSheet.create({
   map: {
     alignSelf: 'stretch',
     height: 300
+  },
+  mapMenu: {
+    borderTopWidth: StyleSheet.hairlineWidth, 
+    borderBottomWidth: StyleSheet.hairlineWidth, 
+    borderTopColor: appBlack70,
+    borderBottomColor: appBlack70,
+    backgroundColor: appGrey30, 
+    marginTop: 20,
+    marginLeft: -15, 
+    marginRight: -15, 
+    paddingLeft: 15, 
+    paddingRight: 15, 
+    marginBottom: -10,
+    shadowColor: black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    elevation: 1,
   }
 })
 

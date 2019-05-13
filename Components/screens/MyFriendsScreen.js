@@ -23,7 +23,7 @@ class MyFriendsScreen extends Component {
             ? <NoContent name={'friends'} />  
             : <AppText>My Friends</AppText>
           }
-          <ScreenBottomPadding size={100} />
+          {/* <ScreenBottomPadding size={100} /> */}
         </ScreenContent>
       </AppScreen>
     )

@@ -39,7 +39,7 @@ class Header extends Component {
     const { loggedIn, pageBackButton, pageChild, pageName, pageSub, navigation } = this.props
 
     return (
-      <SafeAreaView style={{backgroundColor: purpler}}>
+      <SafeAreaView style={{backgroundColor: this.props.transparent ? 'transparent' : purpler}}>
         <View
           // onLayout={(event) => { this._findDimensions(event.nativeEvent.layout) }}
           style={[styles.header, 

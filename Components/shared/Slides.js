@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get('window')
 
 class Slides extends Component {
   state = {
-    slideNum: 0
+    slideNum: 1
   }
 
   fbClick = () => {
@@ -17,7 +17,8 @@ class Slides extends Component {
 
   _nextSlide = () => {
     if ( this.state.slideNum === this.props.data.length ) {
-      this.setState({ slideNum: 0 })
+      this.props.navigation.navigate('Auth')
+      this.setState({ slideNum: 1 })
     } else {
       this.setState({ slideNum: this.state.slideNum + 1 })
     }
@@ -63,21 +64,23 @@ class Slides extends Component {
 
   render() {
     return (
+      <View>
       <ScrollView
         horizontal
         pagingEnabled
         style={{flex: 1}}
         ref={'_slider'}
       >
-        {this.renderSlides()}
-        <AppFooterButton backgroundColor='transparent'>
-          <Button title='Skip' onPress={this.props.onComplete} />
-          <View style={styles.indicator}>
-          
-          </View>
-          <Button title='Next' onPress={() => this._nextSlide()} />
-        </AppFooterButton>
+        {this.renderSlides()}      
       </ScrollView>
+      <AppFooterButton backgroundColor='transparent'>
+        <Button title='Skip' onPress={this.props.onComplete} />
+        <View style={styles.indicator}>
+        
+        </View>
+        <Button title='Next' onPress={() => this._nextSlide()} />
+      </AppFooterButton>
+    </View>
     )
   }
 }

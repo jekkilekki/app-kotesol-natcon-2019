@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import AttendeeCard from './AttendeeCard'
 import Loader from './shared/Loader'
+import ScreenBottomPadding from './shared/layout/ScreenBottomPadding'
 
 const { width, height } = Dimensions.get('window')
 
@@ -46,7 +47,7 @@ class AttendeesList extends Component {
           <AttendeeCard attendee={thisUser} />
         }
         { this.renderList() }
-        {/* <ScreenBottomPadding size={60} /> */}
+        <ScreenBottomPadding size={250} />
       </ScrollView>
     )
   }

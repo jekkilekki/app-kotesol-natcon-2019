@@ -8,7 +8,7 @@ import AppHeader from '../shared/layout/AppHeader'
 import SpeakerList from '../SpeakerList'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppSearch from '../shared/layout/AppSearch'
-import { app } from 'firebase';
+import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 
 class SpeakersScreen extends Component {
   state = {
@@ -104,6 +104,7 @@ class SpeakersScreen extends Component {
             display={this.state.display}
           />
         </ScreenContent>
+        {/* <ScreenBottomPadding size={140} /> */}
       </AppScreen>
     )
   }

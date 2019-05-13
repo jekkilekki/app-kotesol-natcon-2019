@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Dimensions } from 'react-native'
 import { LinearGradient } from 'expo'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+const { width } = Dimensions.get('window')
 
 class AppFooterButton extends Component {
   render() {
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     height: 70,
     paddingTop: 20,
     paddingBottom: 20,
-    width: '100%',
+    width: width,
     justifyContent: 'space-around',
     alignItems: 'center',
     color: '#fff'

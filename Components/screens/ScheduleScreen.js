@@ -90,8 +90,8 @@ class ScheduleScreen extends Component {
         {/* <MyTabBar routes={['Schedule', 'My Schedule']} /> */}
         <ScreenContent style={styles.speakerScreenStyle}>
           <SpeakerList schedule speakers={speakerList} filter={this._filterSpeakers} expanded={this.state.expanded} />
-          <ScreenBottomPadding size={100} />
         </ScreenContent>
+        {/* <ScreenBottomPadding size={140} /> */}
       </AppScreen>
     )
   }

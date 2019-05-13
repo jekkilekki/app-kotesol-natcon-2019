@@ -10,7 +10,8 @@ const P = (props) => {
         opacity: 0.9,
         fontSize: props.note || props.small ? 12 : 15,
         color: props.dark ? props.note || props.small ? 'rgba(0,0,0,0.7)' : '#232377' : '#fff',
-        marginTop: props.note || props.small ? -10 : 0
+        marginTop: props.note || props.small ? -10 : 0,
+        textAlign: props.center ? 'center' : 'left'
       }, props.style]}
     >
       {props.children}

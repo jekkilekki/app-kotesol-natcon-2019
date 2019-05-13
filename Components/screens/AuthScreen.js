@@ -71,6 +71,7 @@ class AuthScreen extends Component {
           pageName='Login'
           pageSub='Unlock the hidden features'
           cancelButton
+          transparent
         />
         <ScreenContent>
           <LoginRedux 

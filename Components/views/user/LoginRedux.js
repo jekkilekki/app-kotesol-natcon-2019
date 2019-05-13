@@ -9,7 +9,7 @@ import Loader from '../../shared/Loader'
 
 class LoginRedux extends Component {
   componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps && nextProps.profileLoaded) {
+    if (this.props !== nextProps && nextProps.user !== null) {
       this.props._onLoginSuccess()
     }
   }
