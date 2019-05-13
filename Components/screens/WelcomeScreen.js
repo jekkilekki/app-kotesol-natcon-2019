@@ -12,7 +12,7 @@ import { appBlack, appBlue, appDarkBlue, appDarkPurple, appOrange, appPink, appP
 const SLIDE_DATA = [
   {
     title: 'Welcome!',
-    text: 'to the KOTESOL 2019 National Conference App',
+    text: 'to the KOTESOL 2019 National Conference App. Follow this short tutorial to learn what you can do here, or "Skip" it to go straight to the Conference Shedule.',
     image: '',
     color: appDarkBlue
   },
@@ -49,10 +49,6 @@ const SLIDE_DATA = [
 ]
 
 class WelcomeScreen extends Component {
-  state = { 
-    slideNum: 0
-  }
-
   componentWillMount() {
     const { navigation, loggedIn } = this.props
 

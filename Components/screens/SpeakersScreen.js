@@ -120,7 +120,7 @@ const speakerScreenStyle = {
 const mapStateToProps = ({ speakers, app }) => {
   // const speakerArray = Object.keys(speakers).map(i => speakers[i])
   return { 
-    speakers: speakers.data,
+    speakers: speakers.data.filter(item => item.status !== 'canceled'),
     expanded: app.speakersExpanded
   }
 }

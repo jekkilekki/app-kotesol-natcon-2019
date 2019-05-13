@@ -22,7 +22,17 @@ class Slides extends Component {
     } else {
       this.setState({ slideNum: this.state.slideNum + 1 })
     }
-    this.refs._slider.scrollTo({x: this.state.slideNum * width, y: 0, duration: 500})
+    if ( this.state.slideNum >= 0 ) {
+      this.refs._slider.scrollTo({x: this.state.slideNum * width, y: 0, duration: 500})
+    }
+  }
+
+  _previousSlide = () => {
+    // this.setState({ slideNum: this.state.slideNum - 1 })
+    if ( this.state.slideNum > 1 ) {
+      this.setState({ slideNum: this.state.slideNum - 1 })
+      this.refs._slider.scrollTo({x: (this.state.slideNum - 2) * width, y: 0, duration: 500})
+    } 
   }
 
   renderSlides() {
@@ -31,7 +41,7 @@ class Slides extends Component {
         <View style={styles.container}>
           <Text style={styles.title}>{slide.title}</Text>
           <Text style={styles.text}>{slide.text}</Text>
-          {( this.props.data.length - 1 === i ) && 
+          {/* {( this.props.data.length - 1 === i ) && 
             <View>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('Auth')}>
                 <MyButton 
@@ -48,8 +58,8 @@ class Slides extends Component {
                   text='Login with Facebook'
                 />
               </TouchableOpacity>
-            </View>
-          }
+            </View> 
+          } */}
         </View>
         {(this.props.data.length - 1 === i ) &&
           <TouchableOpacity onPress={this.props.onComplete}>
@@ -74,9 +84,9 @@ class Slides extends Component {
         {this.renderSlides()}      
       </ScrollView>
       <AppFooterButton backgroundColor='transparent'>
-        <Button title='Skip' onPress={this.props.onComplete} />
+        <Button title='Back' onPress={() => this._previousSlide()} />
         <View style={styles.indicator}>
-        
+        <Button title='Skip' onPress={this.props.onComplete} />
         </View>
         <Button title='Next' onPress={() => this._nextSlide()} />
       </AppFooterButton>

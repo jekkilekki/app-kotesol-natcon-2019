@@ -530,7 +530,8 @@
     "img": "https://2019.conference.jnjkotesol.com/img/speakers/York_Weatherford.jpg",
     "media": ["", ""],
     "email": "york@notredame.ac.jp",
-    "phone": ""
+    "phone": "",
+    "status": "canceled"
   },
   {
     "id": "knc2019-28",
@@ -729,7 +730,9 @@
     "media": ["", ""],
     "email": "michaelfree63@gmail.com",
     "phone": "",
-    "notes": "This would (obviously) be a panel session. The topic can be altered to something more suitable if you wish. I emailed the committee at the jnj.presenters@gmail.com address, but received no reply. I'm guessing you are a bit backed up? We might need to fiddle with the title / content a bit, but I wanted to get something to you 'officially' before the deadline. Should the committee approve of this panel, I'll need to make sure my co-panelists' information is correct. So, let's keep in touch! Thanks for your work on this conference!"
+    "notes": "This would (obviously) be a panel session. The topic can be altered to something more suitable if you wish. I emailed the committee at the jnj.presenters@gmail.com address, but received no reply. I'm guessing you are a bit backed up? We might need to fiddle with the title / content a bit, but I wanted to get something to you 'officially' before the deadline. Should the committee approve of this panel, I'll need to make sure my co-panelists' information is correct. So, let's keep in touch! Thanks for your work on this conference!",
+    "status": "canceled"
+  
   },
   {
     "id": "knc2019-47",
@@ -1101,9 +1104,9 @@
   },
   {
     "id": "knc2019-68",
-    "title": "Exploring the Effects of Drama Techniques on Korean Middle School English Learners’ Motivation",
-    "abstract": "This presentation looks at the impact of drama-based instruction on EFL Secondary English learners. In this presentation, attendees will be guided through what drama-based instruction is and how drama can be integrated into English class. Attendees will also be introduced to its influences on EFL Secondary English learners’ motivation. The presenter will introduce the methods she used to collect data and discuss results from student reflections, teacher journals, and interviews. The implications of the collected data will then be discussed including how drama can be integrated into English teaching. Through this presentation attendees will gain understanding of drama integrated English teaching and its impacts on English learning motivation in EFL Secondary context; furthermore attendees will have a new insight of teaching English in a more enjoyable and engaging way.",
-    "summary": "This presentation looks at the impact of drama-based instruction on EFL Secondary English learners. In this presentation, attendees will be guided through what drama-based instruction is and how drama can be integrated into English class. Attendees will also be introduced to its influences on EFL Secondary English learners’ motivation. The presenter will introduce the methods she used to collect data and discuss results from student reflections, teacher journals, and interviews. The implications of the collected data will then be discussed including how drama can be integrated into English teaching. Through this presentation attendees will gain understanding of drama integrated English teaching and its impacts on English learning motivation in EFL Secondary context; furthermore attendees will have a new insight of teaching English in a more enjoyable and engaging way.",
+    "title": "Exploring the Effects of Drama Techniques on English Learners’ Motivation",
+    "abstract": "This presentation looks at the impact of drama-based instruction on Korean middle school students. In this presentation, attendees will be guided through what drama-based instruction is and how drama can be integrated into English class. Attendees will also be introduced to its influences on EFL Secondary English learners’ motivation. The presenter will introduce the methods she used to collect data and discuss results from student reflections, teacher journals, and interviews. Through this presentation attendees will gain understanding of drama integrated English teaching and its impacts on English learning motivation in EFL Secondary context; furthermore attendees will have a new insight of teaching English in a more enjoyable and engaging way.",
+    "summary": "This presentation looks at the impact of drama-based instruction on Korean middle school students. In this presentation, attendees will be guided through what drama-based instruction is and how drama can be integrated into English class. Attendees will also be introduced to its influences on EFL Secondary English learners’ motivation. The presenter will introduce the methods she used to collect data and discuss results from student reflections, teacher journals, and interviews. Through this presentation attendees will gain understanding of drama integrated English teaching and its impacts on English learning motivation in EFL Secondary context; furthermore attendees will have a new insight of teaching English in a more enjoyable and engaging way.",
     "topic": "Learner motivation / creativity",
     "subtopic": "",
     "track": "Poster",
@@ -1121,6 +1124,54 @@
     "img": "https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png",
     "media": ["", ""],
     "email": "sunheeko01@gmail.com",
+    "phone": ""
+  },
+  {
+    "id": "knc2019-69",
+    "title": "KOTESOL’s International Conference 2020: The Early Stages",
+    "abstract": "KOTESOL’s International Conference is a major undertaking, fueled by the volunteer efforts of the International Conference Committee. This poster session provides National Conference attendees a chance to take a peek inside IC 2020, and see how things are shaping up. The visual display will include how the conference committee is structured and operates, as well as some of the preliminary plans for the 2020 conference. The session will also be an opportunity to meet the 2020 Conference Chair, give feedback on past conferences, and share ideas on how KOTESOL can deliver an outstanding event. Finally, for those interested in helping out, this would be a great chance to get in on the ground floor!",
+    "summary": "KOTESOL’s International Conference is a major undertaking, fueled by the volunteer efforts of the International Conference Committee. This poster session provides National Conference attendees a chance to take a peek inside IC 2020, and see how things are shaping up. The visual display will include how the conference committee is structured and operates, as well as some of the preliminary plans for the 2020 conference. The session will also be an opportunity to meet the 2020 Conference Chair, give feedback on past conferences, and share ideas on how KOTESOL can deliver an outstanding event. Finally, for those interested in helping out, this would be a great chance to get in on the ground floor!",
+    "topic": "Organisational + Conference Planning",
+    "subtopic": "",
+    "track": "Poster",
+    "type": "Poster",
+    "time": "All day",
+    "room": "Hallway",
+    "name": "Michael Free",
+    "nickname": "Michael",
+    "lastname": "Free",
+    "shortname": "Michael_Free",
+    "affiliation": "Kangwon National University",
+    "bio": "Michael Free holds Masters degrees in TEFL (University of Birmingham) and Arts (McMaster University). His professional interests include leadership, content-based language teaching and English as a lingua franca. He is very active in professional development, presently serving as the Chair of KOTESOL’s 2020 International Conference, Chair of the Teacher of the Year Committee, and Treasurer of the Gangwon chapter. He is currently a Visiting Professor at Kangwon National University in Chuncheon.",
+    "other": "",
+    "coPresenter": "",
+    "img": "https://2019.conference.jnjkotesol.com/img/speakers/Michael_Free.jpg",
+    "media": ["", ""],
+    "email": "michaelfree63@gmail.com",
+    "phone": ""
+  },
+  {
+    "id": "knc2019-70",
+    "title": "KOTESOL’s “Teacher of the Year” Award",
+    "abstract": "KOTESOL has a new award! The Teacher of the Year award will go to a KOTESOL member who demonstrates an outstanding commitment to our field. Are you such a teacher? Do you know such a teacher? Then, perhaps you know KOTESOL’s first Teacher of the Year! This poster session will include: an overview of the award, including an introduction to the committee members and advisory board; an overview of the application procedure and timeline; and details on required materials and evaluation procedure. It will also be an opportunity for KOTESOL members to provide some feedback and make suggestions for how the award can be improved in the future.",
+    "summary": "KOTESOL has a new award! The Teacher of the Year award will go to a KOTESOL member who demonstrates an outstanding commitment to our field. Are you such a teacher? Do you know such a teacher? Then, perhaps you know KOTESOL’s first Teacher of the Year! This poster session will include: an overview of the award, including an introduction to the committee members and advisory board; an overview of the application procedure and timeline; and details on required materials and evaluation procedure. It will also be an opportunity for KOTESOL members to provide some feedback and make suggestions for how the award can be improved in the future.",
+    "topic": "KOTESOL Awards",
+    "subtopic": "",
+    "track": "Poster",
+    "type": "Poster",
+    "time": "All day",
+    "room": "Hallway",
+    "name": "Michael Free",
+    "nickname": "Michael",
+    "lastname": "Free",
+    "shortname": "Michael_Free",
+    "affiliation": "Kangwon National University",
+    "bio": "Michael Free holds Masters degrees in TEFL (University of Birmingham) and Arts (McMaster University). His professional interests include leadership, content-based language teaching and English as a lingua franca. He is very active in professional development, presently serving as the Chair of KOTESOL’s 2020 International Conference, Chair of the Teacher of the Year Committee, and Treasurer of the Gangwon chapter. He is currently a Visiting Professor at Kangwon National University in Chuncheon.",
+    "other": "",
+    "coPresenter": "",
+    "img": "https://2019.conference.jnjkotesol.com/img/speakers/Michael_Free.jpg",
+    "media": ["", ""],
+    "email": "michaelfree63@gmail.com",
     "phone": ""
   }
 ]

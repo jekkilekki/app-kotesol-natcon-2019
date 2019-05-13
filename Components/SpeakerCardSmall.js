@@ -57,12 +57,12 @@ class SpeakerCardSmall extends Component {
     const { id, title, name, nickname, shortname, 
             affiliation, other, time, room, summary, 
             abstract, bio, img, media, email, phone, track, 
-            coPresenter, coPresenterAff
+            coPresenter, coPresenterAff, status
           } = this.props.speaker.item
 
     if ( this.props.screen === 'Speakers' && 
       (id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration')
-      || id === 'plenary-old' || name === 'Ehean Kim' ) 
+      || id === 'plenary-old' ) 
       return null 
 
     if ( id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration' ) {

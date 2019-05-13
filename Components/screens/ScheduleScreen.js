@@ -121,7 +121,7 @@ const mapStateToProps = ({ speakers, app }) => {
       return (a.time < b.time) ? -1 : (a.time > b.time) ? 1 : 0
     })
   return { 
-    scheduledSpeakers: sortedData,
+    scheduledSpeakers: sortedData.filter(item => item.status !== 'canceled'),
     expanded: app.scheduleExpanded
   }
 }
