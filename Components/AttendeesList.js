@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, FlatList, ScrollView, Dimensions } from 'react-native'
+import { View, FlatList, ScrollView, Dimensions, StyleSheet } from 'react-native'
 import AppText from './shared/text/AppText'
 import { connect } from 'react-redux'
 
@@ -21,37 +21,53 @@ class AttendeesList extends Component {
   // }
 
   renderList() {
-    const { profile } = this.props
+    const { profile, attendees, pageId } = this.props
+    let listData = pageId === 'friends'
+      ? attendees.filter(i => profile.myFriends.includes(i.uid))
+      : attendees
+
     return (
       <FlatList
-        data={this.props.attendees.sort((a,b) => {
+        data={listData.filter(i => i.uid !== profile.uid).sort((a,b) => {
           return a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 : 0
         })}
         renderItem={(attendee) => 
-          profile.uid !== attendee.uid && <AttendeeCard attendee={attendee} />
+          <AttendeeCard attendee={attendee} />
         }
         keyExtractor={(attendee) => String(attendee.email)}
+        style={styles.listLine}
       />
     )
   }
 
   render() {
-    const { profile } = this.props
+    const { profile, pageId } = this.props
     let thisUser = { "item": profile }
     // console.log( 'this user', profile )
     // console.log("Attendees yo", this.props.attendees)
     // if ( !this.state.attendeesLoaded ) return <Loader />
     return (
       <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
-        {profile.uid !== undefined && profile.uid !== '' &&
-          <AttendeeCard attendee={thisUser} />
+        {pageId !== 'friends' && profile.uid !== undefined && profile.uid !== '' &&
+          <View style={styles.listLine}>
+            <AttendeeCard attendee={thisUser} />
+          </View>
         }
-        { this.renderList() }
+        { this.renderList(thisUser) }
         <ScreenBottomPadding size={250} />
       </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  listLine: {
+    borderTopColor: 'rgba(35,35,119,0.5)',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(35,35,119,0.5)',
+    borderBottomWidth: StyleSheet.hairlineWidth
+  }
+})
 
 const mapStateToProps = ({ attendees, profile }) => {
   // const { uid } = profile.uid

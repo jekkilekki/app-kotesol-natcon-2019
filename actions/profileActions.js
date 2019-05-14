@@ -141,21 +141,21 @@ export const dislikeSpeaker = (id) => {
 /**
  * Like / dislike Attendees (Friends)
  */
-export const likeFriend = (id) => {
+export const likeFriend = (uid) => {
   return async (dispatch, getState) => {
     await dispatch({
       type: FRIEND_LIKE,
-      payload: id
+      payload: uid
     })
     await dispatch( profileSave( getState().profile ) )
   }
 }
 
-export const dislikeFriend = (id) => {
+export const dislikeFriend = (uid) => {
   return async (dispatch, getState) => {
     await dispatch({
       type: FRIEND_DISLIKE,
-      payload: id
+      payload: uid
     })
     await dispatch( profileSave( getState().profile ) )
   }

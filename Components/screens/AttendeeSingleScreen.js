@@ -11,7 +11,7 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import AppScreen from '../shared/layout/AppScreen'
 import HeaderBack from '../shared/layout/HeaderBack'
 import ScreenSection from '../shared/layout/ScreenSection';
-import SpeakerLikeButton from '../SpeakerLikeButton'
+import FriendLikeButton from '../FriendLikeButton'
 import ContentButton from '../shared/buttons/ContentButton'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import { purpler } from '../../utils/colors';
@@ -52,7 +52,7 @@ class AttendeeSingleScreen extends Component {
               // end={{x: 0.75, y: 1}}
               // locations={[0,1]}
             >
-              <SpeakerLikeButton large buttonId={'friends'} id={attendee.uid} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
+              <FriendLikeButton large id={attendee.uid} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
               <View style={styles.speakerMeta}>
                 <AppScreenTitle small>{attendee.firstName} {attendee.lastName}</AppScreenTitle>
                 <View style={{flexDirection: 'row'}}>

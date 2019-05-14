@@ -23,7 +23,7 @@ class MyFriendsScreen extends Component {
         <ScreenContent style={styles.screenStyle}>
           {this.props.friends.length < 1
             ? <NoContent name={'friends'} />  
-            : <AttendeesList />
+            : <AttendeesList pageId={'friends'} />
           }
           {/* <ScreenBottomPadding size={100} /> */}
         </ScreenContent>
