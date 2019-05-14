@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
-import { likeSpeaker, dislikeSpeaker } from '../actions'
+import { 
+  likeSpeaker, dislikeSpeaker,
+  likeFriend, dislikeFriend,
+} from '../actions'
 
 class SpeakerLikeButton extends Component {
   updateList() {
@@ -11,16 +14,28 @@ class SpeakerLikeButton extends Component {
   }
 
   isLiked() {
-    return this.props.liked.includes(this.props.id)
+    return this.props.liked.includes(this.props.id) 
+      || this.props.friends.includes(this.props.uid)
   }
 
   _changeHeart = () => {
-    const { likeSpeaker, dislikeSpeaker, profile, id } = this.props 
-    
-    if ( this.isLiked() ) {
-      dislikeSpeaker(id)
+    const { 
+      likeSpeaker, dislikeSpeaker, 
+      likeFriend, dislikeFriend, profile, id 
+    } = this.props 
+
+    if ( this.props.buttonId === 'friends' ) {
+      if ( this.isLiked() ) {
+        dislikeFriend(id)
+      } else {
+        likeFriend(id)
+      }
     } else {
-      likeSpeaker(id)
+      if ( this.isLiked() ) {
+        dislikeSpeaker(id)
+      } else {
+        likeSpeaker(id)
+      }
     }
 
     // this.updateList()
@@ -66,8 +81,12 @@ const mapStateToProps = ({ profile, app }) => {
   return {
     loggedIn: app.loggedIn,
     liked: profile.mySchedule,
+    friends: profile.myFriends,
     profile
   }
 }
 
-export default connect(mapStateToProps, { likeSpeaker, dislikeSpeaker })(SpeakerLikeButton)
+export default connect(mapStateToProps, { 
+  likeSpeaker, dislikeSpeaker,
+  likeFriend, dislikeFriend,
+})(SpeakerLikeButton)

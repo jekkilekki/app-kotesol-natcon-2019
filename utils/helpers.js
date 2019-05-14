@@ -1,5 +1,6 @@
 import React from 'react'
 import { Platform, Dimensions } from 'react-native'
+import { appBlue, appBlue70 } from './colors'
 
 const { width, height } = Dimensions.get('window')
 
@@ -50,7 +51,7 @@ export function getPinColor(pinType) {
   switch (pinType.toLowerCase()) {
     case 'drinks': return 'rgba(245,151,168,0.7)'
     case 'food': return '#ed0972'
-    case 'stay': return '#60f'
+    case 'stay': return appBlue
     case 'café': return '#00dddd'
     default: return '#232377' 
   }

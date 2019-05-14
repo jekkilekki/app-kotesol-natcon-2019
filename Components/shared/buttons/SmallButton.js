@@ -15,7 +15,10 @@ class SmallButton extends Component {
           height: 25
         }, this.props.style]}
       >
-        <AppText center style={{fontSize: 12, color: color, fontFamily: 'nunito-bold', textTransform: 'uppercase'}}>{title}</AppText>
+        <AppText center style={[styles.menuText, {color: color}]}>
+          {title}
+          {this.props.count && <AppText style={[styles.menuText, {color: color, fontSize: 10, opacity: 0.7}]}> ({this.props.count})</AppText>}
+        </AppText>
       </TouchableOpacity>
     )
   }
@@ -33,6 +36,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 18
   },
+  menuText: {
+    fontSize: 12, 
+    fontFamily: 'nunito-bold', 
+    textTransform: 'uppercase'
+  }
 })
 
 export default SmallButton

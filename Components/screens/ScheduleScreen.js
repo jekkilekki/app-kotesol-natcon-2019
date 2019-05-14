@@ -46,7 +46,7 @@ class ScheduleScreen extends Component {
       const filterData = query.toLowerCase()
 
       if ( filterData === 'all' ) {
-        return speakerData
+        return scheduledSpeakers
       }
       return speakerData.indexOf(filterData) > -1
     })

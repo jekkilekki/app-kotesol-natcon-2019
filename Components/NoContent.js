@@ -28,8 +28,11 @@ const NoContent = (props) => (
             />
         </View>
       : <View>
-          <H2 dark>No {props.name}</H2>
-          <AppText dark>You haven't favorited any {props.name} yet.</AppText>
+          <H2 dark>No {props.name} found</H2>
+          {props.query 
+            ? <AppText dark>No {props.name} found for that search query. Please try again.</AppText>
+            : <AppText dark>You haven't favorited any {props.name} yet.</AppText>
+          }
         </View>
     }
     <ScreenBottomPadding size={60} />

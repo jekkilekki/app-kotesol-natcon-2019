@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 
 import AppText from '../shared/text/AppText'
 import AppScreen from '../shared/layout/AppScreen'
@@ -8,20 +9,21 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import NoContent from '../NoContent'
 import { purpler } from '../../utils/colors';
+import PlacesList from '../PlacesList';
 
 class MyPlacesScreen extends Component {
   render() {
     return (
-      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
+      <AppScreen>
         <AppHeader 
           pageName='My Places' 
           pageSub='Review Jeonju locations you favorited'
           pageBackButton
         />
         <ScreenContent style={styles.screenStyle}>
-          {true
+          {this.props.likedPlaces.length < 1
             ? <NoContent name={'places'} />  
-            : <AppText>My Places</AppText>
+            : <PlacesList />
           }
           <ScreenBottomPadding size={100} />
         </ScreenContent>
@@ -32,7 +34,10 @@ class MyPlacesScreen extends Component {
 
 const styles = StyleSheet.create({
   screenStyle: {
-    padding: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingLeft: 0,
+    paddingBottom: 0
   },
   userImg: {
     backgroundColor: 'white',
@@ -58,4 +63,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MyPlacesScreen
+const mapStateToProps = ({ profile }) => {
+  return { likedPlaces: profile.myPlaces }
+}
+
+export default connect(mapStateToProps)(MyPlacesScreen)

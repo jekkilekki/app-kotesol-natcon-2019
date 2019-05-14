@@ -15,17 +15,23 @@ import Dropdown from '../shared/layout/Dropdown'
 import SmallButton from '../shared/buttons/SmallButton'
 import ContentButton from '../shared/buttons/ContentButton'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
+import AppList from '../shared/layout/AppList'
 
 import { getPinColor } from '../../utils/helpers'
 import { 
   appBlack, appDarkBlue, appOrange, appBlue, appPink, appPurple, appDarkPurple, appTeal,
   appBlack70, appDarkBlue70, appOrange70, appBlue70, appPink70, appPurple70, appDarkPurple70, appTeal70,
-  appGrey50, appGrey30, appGrey70, black
+  appGrey50, appGrey30, appGrey70, black, purpler, white, appTeal30
 } from '../../utils/colors'
+import ScreenSection from '../shared/layout/ScreenSection';
+import SpeakerLikeButton from '../SpeakerLikeButton';
+
+import { likePlace, dislikePlace } from '../../actions'
 
 const { width } = Dimensions.get('window')
 const Marker = MapView.Marker
 const Circle = MapView.Circle
+const Callout = MapView.Callout
 
 const jjuStarCenterCoords = {
   latitude: 35.814088,
@@ -35,7 +41,8 @@ const jjuStarCenterCoords = {
 }
 const jjuMarker = {
   title: 'Star Center',
-  description: 'KOTESOL 2019 National Conference'
+  description: 'KOTESOL 2019 National Conference',
+  address: '전라북도 전주시 완산구 천잠로 303'
 }
 const shinsikajiCoords = {
   latitude: 35.817314,
@@ -91,6 +98,20 @@ class MapScreen extends Component {
   componentDidMount() {
     this.setState({ mapLoaded: true })
     // this.refs.starCenterMarker.showCallout()
+  }
+
+  _changeHeart = (id, title, callout) => {
+    const { likePlace, dislikePlace } = this.props 
+
+    if ( this.props.likedPlaces.includes(id) ) {
+      dislikePlace(id)
+    } else {
+      likePlace(id)
+    }
+
+    alert(`Added ${title} to your Favorite places!`)
+
+    // callout.hideCallout()
   }
 
   _onRegionChange = (region) => {
@@ -153,8 +174,13 @@ class MapScreen extends Component {
         description={starCenter ? jjuMarker.description : mainMarker.description}
         pinColor={'#d63aff'}
         ref={ref => this.starCenterMarker = ref}
-        // image={carImage}
-      />
+      >
+        <Callout>
+          <P dark>{starCenter ? jjuMarker.title : mainMarker.title}</P>
+          <P dark note>{starCenter ? jjuMarker.description : mainMarker.description}</P>
+          {starCenter && <P dark note style={{marginBottom: 0, paddingBottom: 0}}>{jjuMarker.address}</P>}
+        </Callout>
+      </Marker>
     )
   }
 
@@ -172,7 +198,20 @@ class MapScreen extends Component {
             description={place.description}
             coordinate={place.coordinate}
             pinColor={getPinColor(place.type)}
-          />
+          >
+            <Callout
+              ref={_callout => this.callout = _callout}
+              onPress={() => this._changeHeart(place.id, place.title, this.callout)}
+            >
+              {this.props.likedPlaces.includes(place.id)
+                ? <MaterialCommunityIcon name='heart' color={'coral'} size={16} style={styles.likeMe} />
+                : <MaterialCommunityIcon name='heart-outline' color={'rgba(21,21,21,0.5)'} size={12} style={styles.likeMe} />
+              }
+              <P dark>{place.title}</P>
+              <P dark note>{place.description}</P>
+              {place.address !== '' && <P dark note style={{marginBottom: 0, paddingBottom: 0}}>{place.address[0]}</P>}
+            </Callout>
+          </Marker>
         )
       }
     })
@@ -181,50 +220,58 @@ class MapScreen extends Component {
   renderMapButtons() {
     return (
       <View style={styles.mapMenu}>
-        <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 10}}>
+        <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 5, paddingTop: 10, paddingBottom: 10}}>
           <ContentButton color={'#232377'} 
-            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
-            onPress={() => this.setState({ map: jjuStarCenterCoords, mainMarker: jjuMarker })} 
+            style={[{marginBottom: -5, paddingBottom: 0,
+              backgroundColor: this.state.markerArea.toLowerCase() === 'campus' ? appTeal30 : 'transparent',
+            }]}
+            onPress={() => this.setState({ map: jjuStarCenterCoords, mainMarker: jjuMarker, markerArea: 'campus' })} 
           >
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              <P dark center>Jeonju</P>
-              <P dark center small>University</P>
+              <P center>Jeonju</P>
+              <P center small>University</P>
             </View>
           </ContentButton>
           <ContentButton color={'#00dddd'} 
-            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
-            onPress={() => this.setState({ map: shinsikajiCoords, mainMarker: shinsikajiMarker })} 
+            style={[{marginBottom: -5, paddingBottom: 0, 
+              backgroundColor: this.state.markerArea.toLowerCase() === 'shinsikaji' ? appTeal30 : 'transparent',
+            }]}
+            onPress={() => this.setState({ map: shinsikajiCoords, mainMarker: shinsikajiMarker, markerArea: 'shinsikaji' })} 
             >
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              <P dark center>Shinsikaji</P>
-              <P dark center small>New Area</P>
+              <P center>Shinsikaji</P>
+              <P center small>New Area</P>
             </View>
           </ContentButton>
           <ContentButton color={'#151537'} 
-            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
-            onPress={() => this.setState({ map: gaeksaCoords, mainMarker: gaeksaMarker })} 
+            style={[{marginBottom: -5, paddingBottom: 0, 
+              backgroundColor: this.state.markerArea.toLowerCase() === 'gaeksa' ? appTeal30 : 'transparent',
+            }]}
+            onPress={() => this.setState({ map: gaeksaCoords, mainMarker: gaeksaMarker, markerArea: 'gaeksa' })} 
             >
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              <P dark center>Gaeksa</P>
-              <P dark center small>Downtown</P>
+              <P center>Gaeksa</P>
+              <P center small>Downtown</P>
             </View>
           </ContentButton>
           <ContentButton color={'#60f'} 
-            style={{backgroundColor: 'transparent', marginBottom: -5, paddingBottom: 0}}
-            onPress={() => this.setState({ map: hanokVillageCoords, mainMarker: hanokMarker })} 
+            style={[{marginBottom: -5, paddingBottom: 0, 
+              backgroundColor: this.state.markerArea.toLowerCase() === 'hanok' ? appTeal30 : 'transparent',
+            }]}
+            onPress={() => this.setState({ map: hanokVillageCoords, mainMarker: hanokMarker, markerArea: 'hanok' })} 
             >
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              <P dark center>Hanok</P>
-              <P dark center small>Village</P>
+              <P center>Hanok</P>
+              <P center small>Village</P>
             </View>
           </ContentButton>
         </View>
-        <View style={{flex: 1, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(0,0,0,0.3)', justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
-          <SmallButton active={this.state.markerType} title={'All'} color={appDarkBlue70} onPress={() => this.setState({ markerType: 'all' })} />
-          <SmallButton active={this.state.markerType} title={'Café'} color={appTeal70} onPress={() => this.setState({ markerType: 'café' })} />
-          <SmallButton active={this.state.markerType} title={'Food'} color={appPink70} onPress={() => this.setState({ markerType: 'food' })} />
-          <SmallButton active={this.state.markerType} title={'Drinks'} color={appOrange70} onPress={() => this.setState({ markerType: 'drinks' })} />
-          <SmallButton active={this.state.markerType} title={'Stay'} color={appDarkPurple70} onPress={() => this.setState({ markerType: 'stay' })} />
+        <View style={{flex: 1, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: appBlack, justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
+          <SmallButton active={this.state.markerType} title={'All'} color={white} count={this.props.countAll} onPress={() => this.setState({ markerType: 'all' })} />
+          <SmallButton active={this.state.markerType} title={'Café'} color={appTeal} count={this.props.countCafes} onPress={() => this.setState({ markerType: 'café' })} />
+          <SmallButton active={this.state.markerType} title={'Food'} color={appPink} count={this.props.countFood} onPress={() => this.setState({ markerType: 'food' })} />
+          <SmallButton active={this.state.markerType} title={'Drinks'} color={appOrange} count={this.props.countDrinks} onPress={() => this.setState({ markerType: 'drinks' })} />
+          <SmallButton active={this.state.markerType} title={'Stay'} color={appBlue} count={this.props.countStay} onPress={() => this.setState({ markerType: 'stay' })} />
         </View>
       </View>
     )
@@ -260,41 +307,78 @@ class MapScreen extends Component {
             <View style={{flex: 1, flexDirection: 'row', marginTop: 15}}>
               <H2 dark center>Jeonju University</H2>
               <TouchableOpacity onPress={() => this._centerMap()}>
-                <MaterialCommunityIcon name={'crosshairs-gps'} size={18} />
+                <MaterialCommunityIcon name={'crosshairs-gps'} size={18} color={appPurple} style={{marginTop: 6, marginLeft: 8}} />
               </TouchableOpacity>
             </View>
-            <P dark small>(55069) 전라북도 전주시 완산구 천잠로 303 전주대학교</P>
+            <P dark small>전라북도 전주시 완산구 천잠로 303 전주대학교 (55069)</P>
             {/* <Image resizeMode='contain' source={require('../../assets/img/star-center-map-doctored.jpg')} style={[styles.image, {height: 260}]} /> */}
             {/* <H2 dark center>Star Center</H2> */}
             <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
             <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
             <P dark>
               Jeonju University is located at the west end of Jeonju. From the bus terminal, 
-              it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive there. 
+              it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive. 
               Star Center is located in the center the university, and is the largest building on campus. 
               It sits just in front of the large clock tower building, and has tennis courts below it.
-            </P><P dark>
-              The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
-              through one of three doors: (1) Floor B1: Onnuri Hall auditorium entrance (in front of the clock tower), 
-              (2) Floor 1: parking garage entrance, or (3) Floor 2: Food Court entrance (near the fountain).
             </P>
-            <H2 dark>Rooms</H2>
-            <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image, {height: 540}]} />
             <P dark>
-              The tallest building in the picture above is the Star Tower student dormitory 
-              building. It is located over the Old Gate entrance road. The New Gate entrance 
-              road is located to the left of the picture between the green golf netting and 
-              cluster of white Engineering buildings there.
+              The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
+              through one of three doors (see floor map below): 
             </P>
+            <AppList
+              data={[
+                {strong: "Floor B1: ", content: "Onnuri Hall auditorium entrance (in front of the clock tower)" },
+                {strong: "Floor 1: ", content: "Parking garage entrance" },
+                {strong: "Floor 2: ", content: "Food Court entrance (by the fountain)" }
+              ]}
+              type={'numbered'}
+            />
+            <ScreenSection
+              style={{
+                borderTopColor: appTeal,
+                borderBottomColor: appTeal,
+                borderTopWidth: StyleSheet.hairlineWidth,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                marginTop: 20,
+                marginBottom: 30
+              }}
+            >
+              <H2 dark>Rooms</H2>
+              <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image, {height: 540}]} />
+              <P dark>
+                The Conference will feature six 50-minute workshops and two
+                25-minute research presentations at a time, with the 
+                Plenary and Highlighted sessions in Onnuri Hall (see below):
+              </P>
+              <AppList
+                data={[
+                  {strong: "Featured: ", content: "Onnuri Hall (Plenary @ 1:00)" },
+                  {strong: "Motivation: ", content: "101" },
+                  {strong: "Skills: ", content: "107" },
+                  {strong: "Technology: ", content: "201" },
+                  {strong: "Mixed: ", content: "204" },
+                  {strong: "New: ", content: "202" },
+                  {strong: "Research: ", content: "203 (2 sessions / hr)" }
+                ]}
+                type={'numbered'}
+              />
+            </ScreenSection>
             <H2 dark>Around Campus</H2>
             <P dark>
               As with most universities in Korea, Jeonju University's entrances are 
-              surrounded with many different cafés and eateries ranging from Korean lunchboxes 
-              (도시락), to sit-down BBQ places, to Western and international foods. This page 
-              highlights only a few of these, but also points out the main areas where you might 
-              find something tasty: (1) on campus, (2) the Old gate, (3) the New gate, (4) the 
-              New development area (Shinsikaji).
+              surrounded with many different cafés and eateries. This page 
+              highlights a few of these, but also points out the main areas in town where you might 
+              find something tasty: 
             </P>
+            <AppList
+              type={'numbered'}
+              data={[
+                "on and around JJU's campus",
+                "in the new area of town (Shinsikaji)",
+                "in Jeonju's downtown (Gaeksa)",
+                "in Hanok Village"
+              ]}
+            />
             {this.renderMapButtons()}
             {this.renderMap()}
             <ScreenBottomPadding size={120} />
@@ -334,7 +418,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth, 
     borderTopColor: appBlack70,
     borderBottomColor: appBlack70,
-    backgroundColor: appGrey30, 
+    backgroundColor: purpler, 
     marginTop: 20,
     marginLeft: -15, 
     marginRight: -15, 
@@ -342,299 +426,34 @@ const styles = StyleSheet.create({
     paddingRight: 15, 
     marginBottom: -10,
     shadowColor: black,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.2,
     elevation: 1,
+  }, 
+  callout: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderRadius: 10,
+  },
+  likeMe: {
+    position: 'absolute',
+    top: 3,
+    right: 0
   }
 })
 
-// const mapStyle = [
-//   {
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#1d2c4d"
-//       }
-//     ]
-//   },
-//   {
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#8ec3b9"
-//       }
-//     ]
-//   },
-//   {
-//     "elementType": "labels.text.stroke",
-//     "stylers": [
-//       {
-//         "color": "#1a3646"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "administrative.country",
-//     "elementType": "geometry.stroke",
-//     "stylers": [
-//       {
-//         "color": "#4b6878"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "administrative.land_parcel",
-//     "stylers": [
-//       {
-//         "visibility": "off"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "administrative.land_parcel",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#64779e"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "administrative.neighborhood",
-//     "stylers": [
-//       {
-//         "visibility": "off"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "administrative.province",
-//     "elementType": "geometry.stroke",
-//     "stylers": [
-//       {
-//         "color": "#4b6878"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "landscape.man_made",
-//     "elementType": "geometry.stroke",
-//     "stylers": [
-//       {
-//         "color": "#334e87"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "landscape.natural",
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#023e58"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi",
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#283d6a"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#6f9ba5"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi",
-//     "elementType": "labels.text.stroke",
-//     "stylers": [
-//       {
-//         "color": "#1d2c4d"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi.business",
-//     "stylers": [
-//       {
-//         "visibility": "off"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi.park",
-//     "elementType": "geometry.fill",
-//     "stylers": [
-//       {
-//         "color": "#023e58"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi.park",
-//     "elementType": "labels.text",
-//     "stylers": [
-//       {
-//         "visibility": "off"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "poi.park",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#3C7680"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road",
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#304a7d"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road",
-//     "elementType": "labels",
-//     "stylers": [
-//       {
-//         "visibility": "off"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#98a5be"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road",
-//     "elementType": "labels.text.stroke",
-//     "stylers": [
-//       {
-//         "color": "#1d2c4d"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road.highway",
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#2c6675"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road.highway",
-//     "elementType": "geometry.stroke",
-//     "stylers": [
-//       {
-//         "color": "#255763"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road.highway",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#b0d5ce"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "road.highway",
-//     "elementType": "labels.text.stroke",
-//     "stylers": [
-//       {
-//         "color": "#023e58"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "transit",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#98a5be"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "transit",
-//     "elementType": "labels.text.stroke",
-//     "stylers": [
-//       {
-//         "color": "#1d2c4d"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "transit.line",
-//     "elementType": "geometry.fill",
-//     "stylers": [
-//       {
-//         "color": "#283d6a"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "transit.station",
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#3a4762"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "water",
-//     "elementType": "geometry",
-//     "stylers": [
-//       {
-//         "color": "#0e1626"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "water",
-//     "elementType": "labels.text",
-//     "stylers": [
-//       {
-//         "visibility": "off"
-//       }
-//     ]
-//   },
-//   {
-//     "featureType": "water",
-//     "elementType": "labels.text.fill",
-//     "stylers": [
-//       {
-//         "color": "#4e6d70"
-//       }
-//     ]
-//   }
-// ]
-
-const mapStateToProps = ({ locations }) => {
-  return { locations }
+const mapStateToProps = ({ locations, profile }) => {
+  return { 
+    locations,
+    countAll: locations.data.filter(i => i.type !== 'divider').length,
+    countCafes: locations.data.filter(i => i.type === 'café').length,
+    countFood: locations.data.filter(i => i.type === 'food').length,
+    countDrinks: locations.data.filter(i => i.type === 'drinks').length,
+    countStay: locations.data.filter(i => i.type === 'stay').length,
+    likedPlaces: profile.myPlaces
+  }
 }
 
-export default connect(mapStateToProps)(MapScreen)
+export default connect(mapStateToProps, {likePlace, dislikePlace})(MapScreen)

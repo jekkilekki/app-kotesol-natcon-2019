@@ -115,7 +115,7 @@ class SpeakerList extends Component {
     const { speakers, screen } = this.props
 
     if ( !this.state.hasData ) {
-      return <NoContent />
+      return <NoContent query name={'speakers'} />
     }
 
     return (
@@ -133,7 +133,7 @@ class SpeakerList extends Component {
 
   renderSchedule() {
     if ( !this.state.hasData ) {
-      return <NoContent />
+      return <NoContent query name={'schedule'} />
     }
 
     return (

@@ -52,7 +52,7 @@ class AttendeeSingleScreen extends Component {
               // end={{x: 0.75, y: 1}}
               // locations={[0,1]}
             >
-              <SpeakerLikeButton large id={attendee.id} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
+              <SpeakerLikeButton large buttonId={'friends'} id={attendee.uid} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
               <View style={styles.speakerMeta}>
                 <AppScreenTitle small>{attendee.firstName} {attendee.lastName}</AppScreenTitle>
                 <View style={{flexDirection: 'row'}}>

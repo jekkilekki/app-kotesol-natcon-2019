@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 
 import AppText from '../shared/text/AppText'
 import AppScreen from '../shared/layout/AppScreen'
@@ -8,20 +9,21 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import NoContent from '../NoContent'
 import { purpler } from '../../utils/colors';
+import AttendeesList from '../AttendeesList'
 
 class MyFriendsScreen extends Component {
   render() {
     return (
-      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
+      <AppScreen>
         <AppHeader 
           pageName='My Friends' 
           pageSub='Review conference attendees you favorited'
           pageBackButton
         />
         <ScreenContent style={styles.screenStyle}>
-          {true
+          {this.props.friends.length < 1
             ? <NoContent name={'friends'} />  
-            : <AppText>My Friends</AppText>
+            : <AttendeesList />
           }
           {/* <ScreenBottomPadding size={100} /> */}
         </ScreenContent>
@@ -32,7 +34,10 @@ class MyFriendsScreen extends Component {
 
 const styles = StyleSheet.create({
   screenStyle: {
-    padding: 0,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingLeft: 0,
+    paddingBottom: 0
   },
   userImg: {
     backgroundColor: 'white',
@@ -58,4 +63,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MyFriendsScreen
+const mapStateToProps = ({ profile }) => {
+  return { friends: profile.myFriends }
+}
+
+export default connect(mapStateToProps)(MyFriendsScreen)
