@@ -1347,6 +1347,26 @@
     }
   },
   {
+    "id": "knc2019-food34",
+    "title": "Sandria",
+    "type": "food",
+    "description": "Sandwich shop chain similar to Subway",
+    "location": "Shinsikaji",
+    "area": "Shinsikaji",
+    "stars": 4,
+    "address": ["전북 전주시 완산구 홍산북로 13 수정빌딩 1층", "(우) 54966(지번) 효자동2가 1229-6"],
+    "phone": "063-222-2289",
+    "website": "http://www.sandria.co.kr/",
+    "menu": [],
+    "img": "",
+    "comment": "",
+    "pinColor": "#ed0972",
+    "coordinate": {
+      "latitude": 35.817577,
+      "longitude": 127.103301
+    }
+  },
+  {
     "id": "shisikaji-drinks",
     "type": "divider"
   },
