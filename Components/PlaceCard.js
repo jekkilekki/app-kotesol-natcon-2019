@@ -9,6 +9,7 @@ import { white, black, purpler, blue, blueDark, blueDarker, purple } from '../ut
 import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
 
 const { width } = Dimensions.get('window')
 
@@ -32,7 +33,7 @@ class PlaceCard extends Component {
         onPress={this._goToPlace}
         style={styles.cardStyle}
       >
-        <View style={[styles.cardBackground, {paddingTop: 15}]}>
+        <View style={[styles.cardBackground]}>
           <View style={[styles.talkMeta, {
             paddingRight: img ? 60 : 0
           }]}>
@@ -51,6 +52,7 @@ class PlaceCard extends Component {
             />
           </View>
         }
+        <EntypoIcon name={'chevron-right'} color={'#00dddd'} size={30} style={{marginRight: 5}} />
       </TouchableOpacity>
     )
   }
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
-    paddingBottom: 10,
+    // paddingBottom: 10,
     borderRadius: 15,
     // flexDirection: 'row',
     // flexWrap: 'wrap',
@@ -88,8 +90,11 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: 'transparent',
     marginTop: 0,
-    marginBottom: 10,
-    paddingBottom: 15,
+    // marginBottom: 10,
+    // paddingBottom: 15,
+    paddingTop: 20,
+    paddingBottom: 20,
+    alignItems: 'center',
     // marginLeft: 10,
     // marginRight: 10,
     width: width,
@@ -111,10 +116,10 @@ const styles = StyleSheet.create({
     width: width - 20,
   },
   thumbnailStyle: {
-    // marginRight: 10,
-    position: 'absolute',
-    top: 10,
-    right: 20
+    marginRight: 5,
+    // position: 'absolute',
+    // top: 10,
+    // right: 20
   },
   thumbnailImg: {
     width: 40,

@@ -9,12 +9,12 @@ const { width, height } = Dimensions.get('window')
 class AppList extends Component {
   render() {
     return (
-      <View style={styles.listStyle}>
+      <View style={[styles.listStyle, {marginLeft: this.props.type === 'numbered' ? 15 : 5}]}>
         {this.props.data.map((item, i) => (
           <View key={i} style={{flexDirection: 'row'}}>
             {this.props.type === 'numbered'
               ? <AppText dark style={styles.listMarker}>{i + 1})</AppText>
-              : <View style={{height: 6, width: 6, borderRadius: 3, color: appBlack70}}> </View>
+              : <View style={{marginTop: 8, marginRight: 8, height: 6, width: 6, borderRadius: 3, backgroundColor: this.props.lightColor ? 'rgba(255,255,255,0.7)' : appBlack70}} />
             }
             {item.strong 
               ? <View style={{flexDirection: 'row'}}>
@@ -22,9 +22,8 @@ class AppList extends Component {
                     <AppText dark fontFamily={'nunito'}>{item.content}</AppText>
                   </AppText>
                 </View>
-              : <AppText dark>{item}</AppText>
+              : <AppText style={{color: this.props.lightColor ? 'white' : '#232377'}}>{item}</AppText>
             }
-            
           </View>
         ))}
       </View>

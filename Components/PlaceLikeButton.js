@@ -2,25 +2,25 @@ import React, { Component } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
-import { likeFriend, dislikeFriend } from '../actions'
+import { likePlace, dislikePlace } from '../actions'
 
-class FriendLikeButton extends Component {
+class PlaceLikeButton extends Component {
   updateList() {
     // console.log('SpeakerLikeButton')
     this.props.updateList()
   }
 
   isLiked() {
-    return this.props.friends.includes(this.props.id) 
+    return this.props.places.includes(this.props.id) 
   }
 
   _changeHeart = () => {
-    const { likeFriend, dislikeFriend, profile, id } = this.props 
+    const { likePlace, dislikePlace, profile, id } = this.props 
 
     if ( this.isLiked() ) {
-      dislikeFriend(id)
+      dislikePlace(id)
     } else {
-      likeFriend(id)
+      likePlace(id)
     }
 
     // this.updateList()
@@ -45,7 +45,6 @@ class FriendLikeButton extends Component {
   }
 
   render() {
-    console.log('friend like', this.props)
     if ( !this.props.loggedIn ) return null
     return (
       <TouchableOpacity style={[styles.likeMe, this.props.style]} onPress={() => this._changeHeart()}>
@@ -66,11 +65,11 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ profile, app }) => {
   return {
     loggedIn: app.loggedIn,
-    friends: profile.myFriends,
+    places: profile.myPlaces,
     profile
   }
 }
 
 export default connect(mapStateToProps, { 
-  likeFriend, dislikeFriend
-})(FriendLikeButton)
+  likePlace, dislikePlace
+})(PlaceLikeButton)

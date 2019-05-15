@@ -25,7 +25,7 @@ import SessionSingleScreen from '../screens/SessionSingleScreen'
 import MapScreen from '../screens/MapScreen'
 import MyPlacesScreen from '../screens/MyPlacesScreen'
 import AboutScreen from '../screens/AboutScreen'
-// import MoreScreen from '../screens/MoreScreen.old'
+import PlaceSingleScreen from '../screens/PlaceSingleScreen'
 import ConductScreen from '../screens/ConductScreen'
 import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
@@ -126,6 +126,7 @@ const stackNav = createStackNavigator({
   Home: tabNavigation,
   Session: SessionSingleScreen,
   Person: AttendeeSingleScreen,
+  Place: PlaceSingleScreen,
   Conduct: ConductScreen,
   Privacy: PrivacyScreen
 }, { 

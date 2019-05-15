@@ -18,7 +18,8 @@ import ScreenSection from '../shared/layout/ScreenSection';
 class DrawerComponent extends Component {
   navigateToScreen = (route) => {
     const navigateAction = NavigationActions.navigate({
-      routeName: route
+      routeName: route,
+      params: route === 'Welcome' ? { overrideRedirect: true } : ''
     })
     this.props.navigation.dispatch(navigateAction)
   }

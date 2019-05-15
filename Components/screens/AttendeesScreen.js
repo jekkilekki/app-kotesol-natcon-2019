@@ -56,7 +56,7 @@ class AttendeesScreen extends Component {
           pageSub='Find a friend to connect with'
           pageChild='My Friends'
         />
-        <AppSearch 
+        {/* <AppSearch 
           // onChangeText={this._searchAttendees} 
           // filter={this._filterSpeakers} 
           // expanded={this.props.expanded} 
@@ -64,7 +64,7 @@ class AttendeesScreen extends Component {
           // gridRow={this._gridRow} 
           // display={this.state.display}
           schedule
-        />
+        /> */}
         <ScreenContent style={screenStyle}>
           {!this.props.loggedIn
             ? <NoContent login />

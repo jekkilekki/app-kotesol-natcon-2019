@@ -84,7 +84,7 @@ class Slides extends Component {
         {this.renderSlides()}      
       </ScrollView>
       <AppFooterButton backgroundColor='transparent'>
-        <Button title='Back' onPress={() => this._previousSlide()} />
+        <Button title={this.state.slideNum === 1 ? '' : 'Back'} onPress={() => this._previousSlide()} />
         <View style={styles.indicator}>
         <Button title='Skip' onPress={this.props.onComplete} />
         </View>

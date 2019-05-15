@@ -16,6 +16,7 @@ import SmallButton from '../shared/buttons/SmallButton'
 import ContentButton from '../shared/buttons/ContentButton'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import AppList from '../shared/layout/AppList'
+import PlaceLikeButton from '../PlaceLikeButton'
 
 import { getPinColor } from '../../utils/helpers'
 import { 
@@ -52,7 +53,8 @@ const shinsikajiCoords = {
 }
 const shinsikajiMarker = {
   title: 'Shinsikaji',
-  description: 'The New Downtown'
+  description: 'The New Downtown',
+  address: ''
 }
 const gaeksaCoords = {
   latitude: 35.817700,
@@ -62,7 +64,8 @@ const gaeksaCoords = {
 }
 const gaeksaMarker = {
   title: 'Gaeksa',
-  description: 'The Old Downtown'
+  description: 'The Old Downtown',
+  address: ''
 }
 const hanokVillageCoords = {
   latitude: 35.814269,
@@ -72,7 +75,8 @@ const hanokVillageCoords = {
 }
 const hanokMarker = {
   title: 'Hanok Village',
-  description: 'Tourism District'
+  description: 'Tourism District',
+  address: ''
 }
 
 class MapScreen extends Component {
@@ -98,6 +102,10 @@ class MapScreen extends Component {
   componentDidMount() {
     this.setState({ mapLoaded: true })
     // this.refs.starCenterMarker.showCallout()
+  }
+
+  _goToPlace = (place) => {
+    this.props.navigation.navigate( 'Place', { id: place.id, place })
   }
 
   _changeHeart = (id, title, callout) => {
@@ -175,10 +183,12 @@ class MapScreen extends Component {
         pinColor={'#d63aff'}
         ref={ref => this.starCenterMarker = ref}
       >
-        <Callout>
+        <Callout
+          // onPress={() => this._goToPlace(place)}
+        >
           <P dark>{starCenter ? jjuMarker.title : mainMarker.title}</P>
           <P dark note>{starCenter ? jjuMarker.description : mainMarker.description}</P>
-          {starCenter && <P dark note style={{marginBottom: 0, paddingBottom: 0}}>{jjuMarker.address}</P>}
+          <P dark note style={{marginBottom: 0, paddingBottom: 0}}>{jjuMarker.address}</P>
         </Callout>
       </Marker>
     )
@@ -188,7 +198,7 @@ class MapScreen extends Component {
     const { locations } = this.props
 
     return locations.data.map((place, i) => {
-      if ( place.type === 'divider' ) return 
+      if ( place.type === 'divider' || place.id === 'conference' ) return 
       if ( this.state.markerType === 'all' || place.type.toLowerCase() === this.state.markerType.toLowerCase() ) {
         return (
           <Marker
@@ -201,15 +211,18 @@ class MapScreen extends Component {
           >
             <Callout
               ref={_callout => this.callout = _callout}
-              onPress={() => this._changeHeart(place.id, place.title, this.callout)}
+              // onPress={() => this._changeHeart(place.id, place.title, this.callout)}
+              onPress={() => this._goToPlace(place)}
             >
-              {this.props.likedPlaces.includes(place.id)
+              {/* {this.props.likedPlaces.includes(place.id)
                 ? <MaterialCommunityIcon name='heart' color={'coral'} size={16} style={styles.likeMe} />
                 : <MaterialCommunityIcon name='heart-outline' color={'rgba(21,21,21,0.5)'} size={12} style={styles.likeMe} />
-              }
+              } */}
+              <PlaceLikeButton style={styles.likeMe} id={place.id} />
               <P dark>{place.title}</P>
               <P dark note>{place.description}</P>
               {place.address !== '' && <P dark note style={{marginBottom: 0, paddingBottom: 0}}>{place.address[0]}</P>}
+              <P note style={{color: '#00dddd', marginTop: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0}}>Click card to view</P>
             </Callout>
           </Marker>
         )
@@ -361,6 +374,11 @@ class MapScreen extends Component {
                   {strong: "Research: ", content: "203 (2 sessions / hr)" }
                 ]}
                 type={'numbered'}
+              />
+              <ContentButton
+                opaque
+                title={'View Schedule'}
+                onPress={() => this.props.navigation.navigate('Schedule')}
               />
             </ScreenSection>
             <H2 dark>Around Campus</H2>

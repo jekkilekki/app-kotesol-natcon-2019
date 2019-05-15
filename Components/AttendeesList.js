@@ -4,7 +4,7 @@ import AppText from './shared/text/AppText'
 import { connect } from 'react-redux'
 
 import AttendeeCard from './AttendeeCard'
-import Loader from './shared/Loader'
+import H3 from './shared/text/H3'
 import ScreenBottomPadding from './shared/layout/ScreenBottomPadding'
 
 const { width, height } = Dimensions.get('window')
@@ -35,7 +35,6 @@ class AttendeesList extends Component {
           <AttendeeCard attendee={attendee} />
         }
         keyExtractor={(attendee) => String(attendee.email)}
-        style={styles.listLine}
       />
     )
   }
@@ -49,10 +48,15 @@ class AttendeesList extends Component {
     return (
       <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
         {pageId !== 'friends' && profile.uid !== undefined && profile.uid !== '' &&
-          <View style={styles.listLine}>
-            <AttendeeCard attendee={thisUser} />
+          <View>
+            <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me</H3>
+            <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth }} />
+            <AttendeeCard me attendee={thisUser} />
+            <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth, height: 20 }} />
           </View>
         }
+        <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Attendees ({this.props.profile.myFriends.length})</H3>
+        <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth }} />
         { this.renderList(thisUser) }
         <ScreenBottomPadding size={250} />
       </ScrollView>

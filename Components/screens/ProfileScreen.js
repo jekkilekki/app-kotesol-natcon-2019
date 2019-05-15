@@ -70,11 +70,11 @@ class ProfileScreen extends Component {
 
     return (
       <AppScreen>
-        <HeaderBack
-          toHome
-          // pageName={speaker.title}
-          // pageSub={speaker.name}
-        />
+        {this.props.navigation.params 
+          ? <HeaderBack backPage={this.props.navigation.params.backPage} />
+          : <HeaderBack />
+        }
+        
         {/* <ScreenContent style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
           <View style={[styles.speakerImgContainer, 
             // { height: speaker.img !== '' ? width - 130 : 130 }
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ auth, profile }) => {
   const { user } = auth
-  const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule } = profile
+  const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces } = profile
   
   if ( user !== null ) {
     return { user,  
@@ -309,11 +309,11 @@ const mapStateToProps = ({ auth, profile }) => {
       firstName,
       lastName, affiliation, shortBio, 
       email, 
-      myFriends, mySchedule 
+      myFriends, mySchedule, myPlaces
     }
   }
 
-  return { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule }
+  return { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }
 }
 
 export default connect(mapStateToProps, { 

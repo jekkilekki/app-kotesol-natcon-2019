@@ -52,7 +52,7 @@ class WelcomeScreen extends Component {
   componentWillMount() {
     const { navigation, loggedIn } = this.props
 
-    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Map')
+    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('About')
   }
 
   onLoginPress = () => {

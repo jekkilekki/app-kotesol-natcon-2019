@@ -53,7 +53,7 @@ export function getPinColor(pinType) {
     case 'food': return '#ed0972'
     case 'stay': return appBlue
     case 'café': return '#00dddd'
-    default: return '#232377' 
+    default: return '#d63aff' 
   }
 }
 

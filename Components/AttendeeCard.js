@@ -9,6 +9,7 @@ import { white, black, purpler, blue, blueDark, blueDarker, purple } from '../ut
 import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
 
 const { width } = Dimensions.get('window')
 
@@ -19,7 +20,9 @@ class AttendeeCard extends Component {
 
   _goToPerson = () => {
     const { attendee, navigation } = this.props 
-    navigation.navigate( 'Person', { id: attendee.item.id, attendee: attendee.item })
+    this.props.me
+      ? navigation.navigate( 'Profile', { goBack: 'Attendees' } )
+      : navigation.navigate( 'Person', { id: attendee.item.id, attendee: attendee.item })
   }
 
   render() {
@@ -30,9 +33,12 @@ class AttendeeCard extends Component {
     return (
       <TouchableOpacity 
         onPress={this._goToPerson}
-        style={styles.cardStyle}
+        style={[styles.cardStyle, {
+          borderBottomColor: this.props.me ? 'transparent' : 'rgba(35,35,119,0.5)',
+          borderBottomWidth: this.props.me ? 0 : StyleSheet.hairlineWidth
+        }]}
       >
-        <View style={[styles.cardBackground, {paddingTop: 15}]}>
+        <View style={[styles.cardBackground]}>
           <View style={[styles.talkMeta, {
             paddingRight: img ? 60 : 0
           }]}>
@@ -51,6 +57,7 @@ class AttendeeCard extends Component {
             />
           </View>
         }
+        <EntypoIcon name={'chevron-right'} color={'#00dddd'} size={30} style={{marginRight: 5}} />
       </TouchableOpacity>
     )
   }
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
-    paddingBottom: 10,
+    // paddingBottom: 10,
     borderRadius: 15,
     // flexDirection: 'row',
     // flexWrap: 'wrap',
@@ -87,9 +94,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 15,
     backgroundColor: 'transparent',
-    marginTop: 0,
-    marginBottom: 10,
-    paddingBottom: 15,
+    // marginTop: 0,
+    // marginBottom: 10,
+    // paddingBottom: 15,
+    paddingTop: 20,
+    paddingBottom: 20,
     // marginLeft: 10,
     // marginRight: 10,
     width: width,
@@ -97,8 +106,6 @@ const styles = StyleSheet.create({
     // shadowOffset: { width: 0, height: 2 },
     // shadowOpacity: 0.2,
     // elevation: 1,
-    borderBottomColor: 'rgba(35,35,119,0.5)',
-    borderBottomWidth: StyleSheet.hairlineWidth
   },
   cardStyleNormal: {
     flexDirection: 'row',
@@ -111,10 +118,10 @@ const styles = StyleSheet.create({
     width: width - 20,
   },
   thumbnailStyle: {
-    // marginRight: 10,
-    position: 'absolute',
-    top: 10,
-    right: 20
+    marginRight: 5,
+    // position: 'absolute',
+    // top: 10,
+    // right: 20
   },
   thumbnailImg: {
     width: 40,
