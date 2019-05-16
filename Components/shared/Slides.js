@@ -1,14 +1,28 @@
 import React, { Component } from 'react'
 import { StyleSheet, Button, FlatList, ScrollView, View, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
 import { withNavigation } from 'react-navigation'
+import { connect } from 'react-redux'
 import MyButton from './buttons/MyButton'
 import AppFooterButton from './layout/AppFooterButton'
+import { appGrey, appPink } from '../../utils/colors';
+import ContentButton from './buttons/ContentButton';
+
+import EntypoIcon from 'react-native-vector-icons/Entypo'
+import AppText from './text/AppText';
 
 const { width, height } = Dimensions.get('window')
 
 class Slides extends Component {
   state = {
-    slideNum: 1
+    slideNum: 1,
+    startX: null,
+    endX: null
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if ( this.props !== nextProps ) {
+      this._firstSlide()
+    }
   }
 
   fbClick = () => {
@@ -17,8 +31,7 @@ class Slides extends Component {
 
   _nextSlide = () => {
     if ( this.state.slideNum === this.props.data.length ) {
-      this.props.navigation.navigate('Auth')
-      this.setState({ slideNum: 1 })
+      this._handleRedirect()
     } else {
       this.setState({ slideNum: this.state.slideNum + 1 })
     }
@@ -35,44 +48,52 @@ class Slides extends Component {
     } 
   }
 
+  _firstSlide = () => {
+    this.refs._slider.scrollWithoutAnimationTo(0,0)
+  }
+
+  _setSlideNum = async (e) => {
+    await this.setState({ endX: e.nativeEvent.contentOffset.x })
+
+    if ( this.state.endX >= 0 ) {
+      if ( this.state.endX > this.state.startX ) {
+        this.setState({ slideNum: this.state.slideNum + 1 })
+      } else {
+        this.setState({ slideNum: this.state.slideNum - 1 })
+      }
+    }
+
+    if ( this.state.slideNum > this.props.data.length ) {
+      this._handleRedirect()
+    }
+  }
+
+  _handleRedirect = () => {
+    this._firstSlide()
+    this.setState({ slideNum: 1 })
+    
+    if ( !this.props.loggedIn ) {
+      this.props.navigation.navigate('Auth')
+    } else {
+      this.props.navigation.navigate('Home')
+    }
+  }
+
   renderSlides() {
     return this.props.data.map((slide, i) => (
       <View key={i} style={{backgroundColor: slide.color}}>
         <View style={styles.container}>
           <Text style={styles.title}>{slide.title}</Text>
           <Text style={styles.text}>{slide.text}</Text>
-          {/* {( this.props.data.length - 1 === i ) && 
-            <View>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Auth')}>
-                <MyButton 
-                  icon='login'
-                  title='Login with Email &amp; Password'
-                  color1='#60f'
-                  color2='#60f'
-                  color3='#60f'
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.props.onLogin}>
-                <MyButton 
-                  icon='facebook-square'
-                  text='Login with Facebook'
-                />
-              </TouchableOpacity>
-            </View> 
-          } */}
         </View>
-        {(this.props.data.length - 1 === i ) &&
-          <TouchableOpacity onPress={this.props.onComplete}>
-            <AppFooterButton 
-              title='See the Schedule'
-            />
-          </TouchableOpacity>
-        }
       </View>
     ))
   }
 
   render() {
+    console.log('Slides props', this.props)
+    console.log('Slids state', this.state)
+
     return (
       <View>
       <ScrollView
@@ -80,16 +101,35 @@ class Slides extends Component {
         pagingEnabled
         style={{flex: 1}}
         ref={'_slider'}
+        onScrollBeginDrag={(e) => this.setState({ startX: e.nativeEvent.contentOffset.x })}
+        onScrollEndDrag={(e) => this._setSlideNum(e)}
       >
         {this.renderSlides()}      
       </ScrollView>
       <AppFooterButton backgroundColor='transparent'>
-        <Button title={this.state.slideNum === 1 ? '' : 'Back'} onPress={() => this._previousSlide()} />
-        <View style={styles.indicator}>
-        <Button title='Skip' onPress={this.props.onComplete} />
+        <View style={[styles.buttonBox, {width: width / 4}]}>
+          <ContentButton style={[styles.arrows, {left: 0}]} color={'white'} 
+            onPress={() => this._previousSlide()}
+          >
+            {this.state.slideNum > 1 && <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'chevron-left'} />}
+          </ContentButton>
         </View>
-        <Button title='Next' onPress={() => this._nextSlide()} />
+        <View style={styles.buttonBox}>
+          <ContentButton style={styles.buttonText} color={'white'} title='Skip Tutorial' onPress={this.props.onComplete} />
+        </View>
+        <View style={[styles.buttonBox, {width: width / 4}]}>
+          <ContentButton style={[styles.arrows, {right: 0}]} color={'white'} 
+            onPress={() => this._nextSlide()}
+          >
+            {this.state.slideNum > this.props.data.length - 1
+              ? <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'login'} />
+              : <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'chevron-right'} />
+            }
+          </ContentButton>
+        </View>
       </AppFooterButton>
+      
+      
     </View>
     )
   }
@@ -115,7 +155,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '300',
     paddingHorizontal: 16
+  },
+  buttonBox: {
+    width: width / 2,
+    height: 60,
+    paddingTop: 10,
+    // backgroundColor: 'rgba(35,35,119,0.3)',
+    // paddingBottom: 10
+  },
+  arrows: {
+    backgroundColor: 'transparent',
+    position: 'absolute', 
+    bottom: height / 2.5,
   }
 })
 
-export default withNavigation(Slides)
+const mapStateToProps = ({ app }) => {
+  return { loggedIn: app.loggedIn }
+}
+
+export default withNavigation(connect(mapStateToProps)(Slides))

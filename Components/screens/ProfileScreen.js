@@ -75,62 +75,6 @@ class ProfileScreen extends Component {
           : <HeaderBack />
         }
         
-        {/* <ScreenContent style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
-          <View style={[styles.speakerImgContainer, 
-            // { height: speaker.img !== '' ? width - 130 : 130 }
-          ]}>
-            {img !== '' 
-              ? <Image 
-                  style={styles.speakerImg}
-                  source={{ uri: img }} 
-                />
-              : <Image 
-                  style={styles.speakerImg}
-                  source={{ uri: 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png' }} 
-                />
-            }
-            <LinearGradient 
-              style={[styles.speakerImgOverlay]}
-              colors={[
-                'transparent', 
-                purpler
-              ]}
-              // start={{x: 0.0, y: 0.25}} 
-              // end={{x: 0.75, y: 1}}
-              // locations={[0,1]}
-            >
-              {/* <SpeakerLikeButton large id={id} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
-              <View style={styles.speakerMeta}>
-                <AppScreenTitle small>{firstName} {lastName}</AppScreenTitle>
-                <View style={{flexDirection: 'row'}}>
-                  <AppText style={styles.talkSpeaker}>{affiliation}
-                    {/* <AppText style={styles.talkAffiliation}> ({speaker.affiliation})</AppText>
-                  </AppText>
-                </View>
-              </View>
-            </LinearGradient>
-          </View>
-
-          {/* <View style={{flex: 1, opacity: 0.7, flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(35,35,119,0.5)', paddingTop: 10, paddingBottom: 5}}>
-            <AppText style={styles.talkTime}>{getTime(speaker.time)}
-              <AppText style={styles.talkLocation}> - {speaker.room}</AppText>
-            </AppText>
-            <AppText style={styles.talkTopic}>{speaker.topic}
-              {/* {speaker.subtopic !== '' && <AppText> • {speaker.subtopic}</AppText>}
-            </AppText>
-          </View>
-          <View>
-            <H3 dark>About {firstName}</H3>
-            <P dark>{shortBio}</P>
-            <ContentButton
-              opaque
-              style={{marginTop: 25}}
-              title="Go back"
-              onPress={() => this.props.navigation.goBack()}
-            />
-          </View>
-        </ScreenContent> */}
-        
         <ScreenContent>
         {user && 
           <View style={styles.profileTop}>

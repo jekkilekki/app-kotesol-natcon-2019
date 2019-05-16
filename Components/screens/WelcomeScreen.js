@@ -44,7 +44,7 @@ const SLIDE_DATA = [
     title: 'Sign in',
     text: 'Login with an email or connect with Facebook to get started. Or click "Skip" to view the unprotected content first. You can login later from the Drawer menu.',
     image: '',
-    color: appTeal
+    color: '#00bbbb'
   }
 ]
 
@@ -52,18 +52,19 @@ class WelcomeScreen extends Component {
   componentWillMount() {
     const { navigation, loggedIn } = this.props
 
-    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('About')
+    if ( loggedIn && !navigation.state.params ) this.props.navigation.navigate('Home')
   }
 
   onLoginPress = () => {
     this.props.navigation.navigate('Auth')
   }
 
-  onSlidesComplete = () => {
-    this.props.navigation.navigate('Home')
-  }
+  // onSlidesComplete = () => {
+  //   this.props.navigation.navigate('Home')
+  // }
 
   render() {
+    console.log('Welcome props', this.props)
     // if ( !this.props.loggedIn ) {
     //   return <AppLoading />
     // }
@@ -72,9 +73,9 @@ class WelcomeScreen extends Component {
         <Slides 
           data={SLIDE_DATA} 
           onLogin={this.onLoginPress}
-          onComplete={this.onSlidesComplete} 
+          // onComplete={this.onSlidesComplete} 
           // onNext={this.onSlidesNext}
-          ref={'slides'}
+          // ref={'slides'}
         />
       </View>
     )

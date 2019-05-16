@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     marginBottom: 10,
-    fontSize: 18,
+    fontSize: 15,
     flex: 1,
     backgroundColor: '#232377',
     borderColor: 'rgba(0,221,221,0.3)',
     borderWidth: 1,
     borderRadius: 5,
-    height: 35
+    // height: 35
   },
   label: {
     marginBottom: 3,

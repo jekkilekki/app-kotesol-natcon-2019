@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Dimensions, AsyncStorage } from 'react-native'
+import { StyleSheet, Dimensions, AsyncStorage, View } from 'react-native'
 import { connect } from 'react-redux'
 import { inputEmail, inputPassword, firebaseLoginUser, fbLogin } from '../../actions'
 
@@ -12,6 +12,8 @@ import MyButton from '../shared/buttons/MyButton'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppText from '../shared/text/AppText'
 import { app } from 'firebase';
+
+const { height } = Dimensions.get('window')
 
 class AuthScreen extends Component {
   // componentDidMount() {
@@ -74,6 +76,7 @@ class AuthScreen extends Component {
           transparent
         />
         <ScreenContent>
+          <View>
           <LoginRedux 
             email={email}
             password={password}
@@ -88,6 +91,7 @@ class AuthScreen extends Component {
           />
           <AppText center bold padding>&mdash; OR &mdash;</AppText>
           <MyButton onPress={() => this.props.fbLogin(navigation)}/>
+          </View>
         </ScreenContent>
       </AppScreen>
     )

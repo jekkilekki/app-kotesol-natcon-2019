@@ -27,7 +27,7 @@ const ContentButton = (props) => {
         {props.title 
         ? <AppText 
             style={[styles.buttonText,
-              { color: props.opaque ? '#fff' : '#00dddd',
+              { color: props.opaque ? '#fff' : props.color ? props.color : '#00dddd',
                 fontSize: props.small ? 11 : 12
               }
             ]}

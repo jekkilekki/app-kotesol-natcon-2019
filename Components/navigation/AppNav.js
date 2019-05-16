@@ -39,7 +39,8 @@ const myScheduleNav = createStackNavigator({
   },
   MySchedule: {
     screen: MyScheduleScreen
-  }
+  },
+  Session: SessionSingleScreen,
 }, { 
   initialRouteName: 'Schedule',
   headerMode: 'none',
@@ -51,7 +52,8 @@ const myPlacesNav = createStackNavigator({
   },
   MyPlaces: {
     screen: MyPlacesScreen
-  }
+  },
+  Place: PlaceSingleScreen,
 }, { 
   initialRouteName: 'Map',
   headerMode: 'none',
@@ -63,7 +65,8 @@ const myFriendsNav = createStackNavigator({
   },
   MyFriends: {
     screen: MyFriendsScreen
-  }
+  },
+  Person: AttendeeSingleScreen,
 }, { 
   initialRouteName: 'People',
   headerMode: 'none',
@@ -124,9 +127,6 @@ const tabNavigation = createBottomTabNavigator({
 /* Stack Nav for "Back" button functionality on different Screens */
 const stackNav = createStackNavigator({
   Home: tabNavigation,
-  Session: SessionSingleScreen,
-  Person: AttendeeSingleScreen,
-  Place: PlaceSingleScreen,
   Conduct: ConductScreen,
   Privacy: PrivacyScreen
 }, { 
@@ -157,7 +157,12 @@ const drawerNav = createDrawerNavigator({
   MyPlaces: MyPlacesScreen,
   Settings: ProfileScreen,
   Session: stackNav,
-  Welcome: WelcomeScreen
+  Welcome: { 
+    screen: WelcomeScreen,
+    navigationOptions: {
+      drawerLockMode: 'locked-closed'
+    }
+  }
 }, {
   drawerPosition: 'right',
   overlayColor: '#151537',

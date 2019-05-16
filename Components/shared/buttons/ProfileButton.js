@@ -11,7 +11,7 @@ class ProfileButton extends Component {
     const { profileImg, text, name, cancelButton } = this.props
     
     if ( cancelButton ) {
-      return <FontAwesomeIcon name={name ? name : 'times'} size={16} style={{color: '#fff'}}/>
+      return <FontAwesomeIcon name={name ? name : 'times'} size={16} color={this.props.color ? this.props.color : '#fff'}/>
     } else if ( profileImg !== '' ) {
       return <Image source={{uri: profileImg}} style={styles.userImg} />
     } else if ( text ) {
@@ -36,8 +36,8 @@ class ProfileButton extends Component {
           onPress={this.props.onPress}
         >
           {cancelButton 
-            ? <FontAwesomeIcon name={name ? name : 'times'} size={16} style={{color: '#fff'}}/>
-            : <FontAwesomeIcon name={name ? name : 'bars'} size={16} style={{color: '#fff'}}/>
+            ? <FontAwesomeIcon name={name ? name : 'times'} size={16} color={this.props.color ? this.props.color : '#fff'}/>
+            : <FontAwesomeIcon name={name ? name : 'bars'} size={16} color={this.props.color ? this.props.color : '#fff'}/>
           }
         </TouchableOpacity>
       )
