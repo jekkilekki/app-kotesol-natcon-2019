@@ -1,20 +1,30 @@
 import React from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
 import AppText from './text/AppText'
-import { blueGray100 } from '../../utils/colors'
+import { blueGray100, purpler } from '../../utils/colors'
 
 const AppInput = ({ 
   label, value, placeholder, onChangeText, secureTextEntry,
-  multiline, numberOfLines, autoCorrect, autoCapitalize, styleZ
+  multiline, numberOfLines, autoCorrect, autoCapitalize, styleZ, 
+  darkLabel, containerStyle, inputStyle, subLabel
 }) => {
   return (
-    <View style={styles.container}>
-      {label && <AppText style={styles.label}>{label}</AppText>}
+    <View style={[styles.container, containerStyle]}>
+      {label && 
+        <AppText style={[styles.label, {color: darkLabel ? purpler : 'white'}]}>
+          {label}
+          {subLabel &&
+            <AppText note style={[styles.label, {color: darkLabel ? purpler : 'white', opacity: 0.6}]}>
+              {` ${subLabel}`}
+            </AppText>
+          }
+        </AppText>
+      }
       <TextInput 
         style={[styles.input, {
-          height: multiline ? 100 : 40,
+          minHeight: multiline ? 100 : 40,
           fontSize: multiline ? 15 : 18
-        }]} 
+        }, inputStyle]} 
         value={value}
         placeholder={placeholder || label}
         placeholderTextColor={'rgba(255,255,255,0.3)'}
@@ -42,9 +52,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#232377',
     borderColor: 'rgba(0,221,221,0.3)',
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
-    // height: 35
+    minHeight: 35
   },
   label: {
     marginBottom: 3,
@@ -54,7 +64,8 @@ const styles = StyleSheet.create({
     // left: 5
   },
   container: {
-    // height: 60,
+    minHeight: 60,
+    marginBottom: 5
     // flexDirection: 'row',
     // alignItems: 'center'
   }

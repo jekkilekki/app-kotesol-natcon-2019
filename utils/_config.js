@@ -8,3 +8,6 @@ export const messagingSenderId = '876842833747'
 
 /* Mapbox access token */
 export const mapboxToken = 'pk.eyJ1IjoiamVra2lsZWtraSIsImEiOiJjanYyMHUwejIxYmZnM3lyb2szdG44cjJqIn0.Y2DR4e1u3nRVcNSmbfYiCQ'
+
+/* KOTESOL Secret key */
+export const kotesolKey = '(zrEsRwk)Dq$D2nW-<AEEcM)9R*P@5]tMF!oDvUBUM*E?LlRW-p2`|(ffNBY+5):'

@@ -12,6 +12,7 @@
 # firebase
 # Safe to expose Firebase: https://github.com/zooniverse/vox/issues/32
 /utils/_config.js
+*/_config.js
 
 # misc
 .env.local

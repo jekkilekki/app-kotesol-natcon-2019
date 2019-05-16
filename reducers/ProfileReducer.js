@@ -17,7 +17,9 @@ const INITIAL_STATE = {
   email: '',
   myFriends: [],
   mySchedule: [],
-  myPlaces: []
+  myPlaces: [],
+  displayInfo: true,
+  secretKey: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -41,7 +43,9 @@ export default (state = INITIAL_STATE, action) => {
           shortBio: action.payload.shortBio,
           myFriends: action.payload.myFriends,
           mySchedule: action.payload.mySchedule,
-          myPlaces: action.payload.myPlaces
+          myPlaces: action.payload.myPlaces,
+          displayInfo: action.payload.displayInfo,
+          secretKey: action.payload.secretKey
         }
     case PROFILE_FETCH_SUCCESS: 
       return state

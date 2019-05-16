@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, Modal, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import { Text, View, SafeAreaView, Modal, StyleSheet, Dimensions, TouchableOpacity, Switch } from 'react-native'
 import { connect } from 'react-redux'
 import { profileFieldUpdate, profileSave } from '../../../actions'
 
@@ -7,6 +7,7 @@ import AppText from '../../shared/text/AppText'
 import AppInput from '../../shared/AppInput'
 import ContentButton from '../../shared/buttons/ContentButton'
 import ProfileButton from '../../shared/buttons/ProfileButton'
+import { purpler } from '../../../utils/colors';
 
 const { width, height } = Dimensions.get('window')
 
@@ -34,46 +35,74 @@ class ProfileModal extends Component {
         <SafeAreaView style={styles.modalBackground}>
           <TouchableOpacity onPressIn={onClose} style={styles.modalBackground}>
             <View style={styles.modalContainer}>
-              <ProfileButton onPress={onClose} color={'#232377'} cancelButton/>
+              <ProfileButton onPress={onClose} color={purpler} cancelButton/>
               <View style={styles.modalInterior}>
                 <AppInput 
+                  darkLabel
                   label='First Name'
                   placeholder='Aaron'
                   value={profile.firstName}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'firstName', value })}
                 />
                 <AppInput 
+                  darkLabel
                   label='Last Name'
                   placeholder='Snowberger'
                   value={profile.lastName}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'lastName', value })}
                 />
                 <AppInput 
+                  darkLabel
                   label='Affiliation'
                   placeholder='Jeonju University'
                   value={profile.affiliation}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'affiliation', value })}
                 />
                 <AppInput 
+                  darkLabel
                   label='Short Bio'
                   placeholder="I'm a teacher at..."
                   value={profile.shortBio}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'shortBio', value })}
                   multiline
                   numberOfLines={6}
+                  containerStyle={{height: 100, marginBottom: 25}}
                 />
                 <AppInput 
+                  darkLabel
                   label='Email'
+                  subLabel='(not displayed publicly)'
                   placeholder='john@doe.com'
                   value={profile.email}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'email', value })}
                   autoCorrect={false}
                   autoCapitalize={'none'}
                 />
+                <View style={{flexDirection: 'row', marginTop: 5, marginBottom: 5}}>
+                  <Switch 
+                    value={profile.displayInfo}
+                    trackColor={{true: '#00dddd'}}
+                    style={{transform: [{scaleX: 0.7}, {scaleY: 0.7}]}}
+                    onValueChange={() => this.props.profileFieldUpdate({ prop: 'displayInfo', value: !profile.displayInfo })}
+                  />
+                  <AppText dark note style={{marginTop: 5}}>Include my info in Attendees List</AppText>
+                </View>
+                <AppInput
+                    darkLabel
+                    label='KOTESOL key'
+                    subLabel='(required to display info)'
+                    placeholder='Found online'
+                    value={profile.secretKey}
+                    onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'secretKey', value })}
+                    autoCorrect={false}
+                    autoCapitalize={'none'}
+                  />
                 <ContentButton
                   title="Save"
+                  opaque
                   onPress={this._onSave}
                   disabled={profile.firstName === '' || profile.lastName === ''}
+                  style={{marginTop: 20}}
                 />
               </View>
             </View>
@@ -103,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   modalInterior: {
-    // margin: 15,
+    flexDirection: 'column',
   }
 })
 

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import AttendeeCard from './AttendeeCard'
 import H3 from './shared/text/H3'
 import ScreenBottomPadding from './shared/layout/ScreenBottomPadding'
+import { kotesolKey } from '../utils/_config';
 
 const { width, height } = Dimensions.get('window')
 
@@ -23,19 +24,25 @@ class AttendeesList extends Component {
   renderList() {
     const { profile, attendees, pageId } = this.props
     let listData = pageId === 'friends'
-      ? attendees.filter(i => profile.myFriends.includes(i.uid))
-      : attendees
+      ? attendees.filter(person => profile.myFriends.includes(person.uid))
+      : attendees.filter(person => person.uid !== profile.uid && person.displayInfo && person.secretKey === kotesolKey)
 
     return (
-      <FlatList
-        data={listData.filter(i => i.uid !== profile.uid).sort((a,b) => {
-          return a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 : 0
-        })}
-        renderItem={(attendee) => 
-          <AttendeeCard attendee={attendee} />
-        }
-        keyExtractor={(attendee) => String(attendee.email)}
-      />
+      <View>
+        <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>
+          { pageId === 'friends' ? 'Friends' : 'Other Attendees' } ({listData.length})
+        </H3>
+        <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth }} />
+        <FlatList
+          data={listData.filter(i => i.uid !== profile.uid).sort((a,b) => {
+            return a.lastName < b.lastName ? -1 : a.lastName > b.lastName ? 1 : 0
+          })}
+          renderItem={(attendee) => 
+            <AttendeeCard attendee={attendee} />
+          }
+          keyExtractor={(attendee) => String(attendee.email)}
+        />
+      </View>
     )
   }
 
@@ -49,14 +56,18 @@ class AttendeesList extends Component {
       <ScrollView style={{flex: 1, width: width, height: height, paddingTop: 10}}>
         {pageId !== 'friends' && profile.uid !== undefined && profile.uid !== '' &&
           <View>
-            <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me</H3>
+            {profile.displayInfo && profile.secretKey === kotesolKey
+              ? <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me</H3> 
+              : <View style={{flexDirection: 'row'}}>
+                  <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me </H3>
+                  <H3 small dark normal style={{marginTop: 0, paddingTop: 0, textTransform: 'lowercase', opacity: 0.6}}>(not displayed publicly)</H3>
+                </View>
+            }
             <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth }} />
             <AttendeeCard me attendee={thisUser} />
             <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth, height: 20 }} />
           </View>
         }
-        <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Attendees ({this.props.profile.myFriends.length})</H3>
-        <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth }} />
         { this.renderList(thisUser) }
         <ScreenBottomPadding size={250} />
       </ScrollView>

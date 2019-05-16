@@ -37,7 +37,9 @@ export const getProfile = () => {
               email: snapshot.val().email || currentUser.email || '', 
               myFriends: snapshot.val().myFriends || [], 
               mySchedule: snapshot.val().mySchedule || ['plenary'],
-              myPlaces: snapshot.val().myPlaces || ['conference']
+              myPlaces: snapshot.val().myPlaces || ['conference'],
+              displayInfo: snapshot.val().displayInfo || '',
+              secretKey: snapshot.val().secretKey || ''
             }
           })
         }
@@ -45,18 +47,18 @@ export const getProfile = () => {
   }
 }
 
-export const profileSave = ({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }) => {
+export const profileSave = ({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey }) => {
   const { currentUser } = firebase.auth()
 
   return async (dispatch) => {
     await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces })
+      .set({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey })
 
     // await AsyncStorage.setItem('knc_user', { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
     
     dispatch({
       type: PROFILE_SAVE,
-      payload: { uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }
+      payload: { uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey }
     })
   }
 }

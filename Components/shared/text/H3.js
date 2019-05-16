@@ -6,7 +6,7 @@ const H3 = (props) => {
   return (
     <AppText 
       size={25} 
-      fontFamily={'nunito-black'}
+      fontFamily={props.normal ? 'nunito': 'nunito-black'}
       style={[{
         color: props.dark ? '#151537' : '#fff',
         fontSize: props.small ? 10 : 16,

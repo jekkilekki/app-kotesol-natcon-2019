@@ -29,7 +29,8 @@ const { width, height } = Dimensions.get('window')
 class ProfileScreen extends Component {
   state = {
     showImgModal: false,
-    showProfileModal: false
+    showProfileModal: false,
+    tempProfile: this.props.profile
   }
 
   componentDidMount() {
@@ -49,13 +50,27 @@ class ProfileScreen extends Component {
     }
   }
 
-  _onSave = () => {
-    // Need to save this data to Firebase - to recall it all later
-    // const { profile, navigation } = this.props // maybe we don't need to destructure it
-    const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
-    this.props.profileSave({ img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation })
-    this.setState({ showModal: false })
-    // this.props.navigation.navigate('Home')
+  // _onSave = () => {
+  //   // Need to save this data to Firebase - to recall it all later
+  //   // const { profile, navigation } = this.props // maybe we don't need to destructure it
+  //   const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
+  //   this.props.profileSave({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey })
+  //   this.setState({ showModal: false })
+  //   // this.props.navigation.navigate('Home')
+  // }
+
+  _onClose = (modal) => {
+    const { tempProfile } = this.state
+
+    if ( modal === 'profile' ) {
+      this.setState({ showProfileModal: false })
+    } else if ( modal === 'photo' ) {
+      this.setState({ showImgModal: false })
+    } else {
+      this.setState({ showProfileModal: false, showImgModal: false })
+    }
+
+    this.props.profileSave( tempProfile )
   }
 
   _onLogout = () => {
@@ -64,9 +79,10 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    const { uid, user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces } = this.props
+    const { profile } = this.props
+    const { uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey } = profile
 
-    if ( user === null ) return <Loader />
+    // if ( user === null ) return <Loader />
 
     return (
       <AppScreen>
@@ -76,7 +92,7 @@ class ProfileScreen extends Component {
         }
         
         <ScreenContent>
-        {user && 
+        {/* {user &&  */}
           <View style={styles.profileTop}>
             <TouchableOpacity onPress={() => this._openModal('image')} >
               <Image source={{uri: img || 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'}} style={styles.userImg} />
@@ -87,7 +103,7 @@ class ProfileScreen extends Component {
               <AppScreenSubtitle center>{affiliation}</AppScreenSubtitle>
             </View>
           </View>
-        }
+        {/* } */}
 
         <View style={styles.profileStats}>
           <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MySchedule')}>
@@ -120,8 +136,8 @@ class ProfileScreen extends Component {
         </View>
 
         <ProfileModal 
-          visible={this.state.showProfileModal} onClose={() => this.setState({ showProfileModal: false })} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
-        <ProfilePhotoModal visible={this.state.showImgModal} onClose={() => this.setState({ showImgModal: false })} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
+          visible={this.state.showProfileModal} onClose={() => this._onClose('profile')} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
+        <ProfilePhotoModal visible={this.state.showImgModal} onClose={() => this._onClose('photo')} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
         </ScreenContent>
       </AppScreen>
     )
@@ -243,21 +259,15 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ auth, profile }) => {
-  const { user } = auth
-  const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces } = profile
+const mapStateToProps = ({ profile }) => {
+  // const { user } = auth
+  // const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces } = profile
   
-  if ( user !== null ) {
-    return { user,  
-      img,
-      firstName,
-      lastName, affiliation, shortBio, 
-      email, 
-      myFriends, mySchedule, myPlaces
-    }
-  }
+  // if ( user !== null ) {
+  //   return { profile }
+  // }
 
-  return { user, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces }
+  return { profile }
 }
 
 export default connect(mapStateToProps, { 
