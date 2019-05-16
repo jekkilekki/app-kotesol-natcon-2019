@@ -58,10 +58,15 @@ class AttendeesList extends Component {
           <View>
             {profile.displayInfo && profile.secretKey === kotesolKey
               ? <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me</H3> 
-              : <View style={{flexDirection: 'row'}}>
-                  <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me </H3>
-                  <H3 small dark normal style={{marginTop: 0, paddingTop: 0, textTransform: 'lowercase', opacity: 0.6}}>(not displayed publicly)</H3>
-                </View>
+              : profile.secretKey !== kotesolKey
+                ? <View style={{flexDirection: 'row'}}>
+                    <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me </H3>
+                    <H3 small dark normal style={{marginTop: 0, paddingTop: 0, textTransform: 'lowercase', opacity: 0.6}}>(check secret key)</H3>
+                  </View>
+                : <View style={{flexDirection: 'row'}}>
+                    <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me </H3>
+                    <H3 small dark normal style={{marginTop: 0, paddingTop: 0, textTransform: 'lowercase', opacity: 0.6}}>(not displayed publicly)</H3>
+                  </View>
             }
             <View style={{borderTopColor: 'rgba(35,35,119,0.5)', borderTopWidth: StyleSheet.hairlineWidth }} />
             <AttendeeCard me attendee={thisUser} />

@@ -6,7 +6,7 @@ import { withNavigation } from 'react-navigation'
 import H2 from './shared/text/H2'
 import AppText from './shared/text/AppText'
 import { white, black, purpler, blue, blueDark, blueDarker, purple } from '../utils/colors'
-import SpeakerLikeButton from './SpeakerLikeButton';
+import FriendLikeButton from './FriendLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EntypoIcon from 'react-native-vector-icons/Entypo'
@@ -27,7 +27,7 @@ class AttendeeCard extends Component {
 
   render() {
     const { 
-      affiliation, email, firstName, img, lastName, mySchedule, myFriends, shortBio
+      uid, affiliation, email, firstName, img, lastName, mySchedule, myFriends, shortBio
     } = this.props.attendee.item
 
     return (
@@ -38,6 +38,9 @@ class AttendeeCard extends Component {
           borderBottomWidth: this.props.me ? 0 : StyleSheet.hairlineWidth
         }]}
       >
+        {!this.props.me &&
+          <FriendLikeButton id={uid} color1={'lightcoral'} style={{right: 15, bottom: 5}} />
+        }
         <View style={[styles.cardBackground]}>
           <View style={[styles.talkMeta, {
             paddingRight: img ? 60 : 0
