@@ -39,7 +39,7 @@ class AttendeeCard extends Component {
         }]}
       >
         {!this.props.me &&
-          <FriendLikeButton id={uid} color1={'lightcoral'} style={{right: 15, bottom: 5}} />
+          <FriendLikeButton id={uid} color1={'lightcoral'} style={{right: 32, bottom: 16, zIndex: 10}} />
         }
         <View style={[styles.cardBackground]}>
           <View style={[styles.talkMeta, {

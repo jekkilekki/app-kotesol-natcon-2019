@@ -61,7 +61,7 @@ class AttendeesList extends Component {
               : profile.secretKey !== kotesolKey
                 ? <View style={{flexDirection: 'row'}}>
                     <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me </H3>
-                    <H3 small dark normal style={{marginTop: 0, paddingTop: 0, textTransform: 'lowercase', opacity: 0.6}}>(check secret key)</H3>
+                    <H3 small dark normal style={{marginTop: 0, paddingTop: 0, textTransform: 'lowercase', opacity: 0.6}}>(not displayed publicly: check secret key)</H3>
                   </View>
                 : <View style={{flexDirection: 'row'}}>
                     <H3 small dark style={{marginTop: 0, marginLeft: 15, paddingTop: 0}}>Me </H3>

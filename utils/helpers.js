@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform, Dimensions } from 'react-native'
-import { appBlue, appBlue70 } from './colors'
+import { appBlue, appBlue70, appBlack, appDarkBlue, appPink, appPurple, appDarkPurple, appTeal, appOrange } from './colors'
 
 const { width, height } = Dimensions.get('window')
 
@@ -35,25 +35,26 @@ export function getTime(time) {
 
 export function getTrackColor(track) {
   switch (track.toLowerCase()) {
-    case 'plenary': return '#151537'
-    case 'highlighted': return '#232377'
-    case 'motivation': return '#F597A8'
-    case 'skills': return '#00b9f1'
-    case 'technology': return '#ed0972'
-    case 'mixed': return '#d63aff'
-    case 'research': return '#60f'
-    case 'poster': return '#00dddd'
-    default: return '#232377' 
+    case 'plenary': return appBlack
+    case 'onnuri': return appBlack
+    case 'highlighted': return appDarkBlue
+    case 'motivation': return appOrange
+    case 'skills': return appBlue
+    case 'technology': return appPink
+    case 'mixed': return appPurple
+    case 'research': return appDarkPurple
+    case 'poster': return appTeal
+    default: return appDarkBlue 
   }
 }
 
 export function getPinColor(pinType) {
   switch (pinType.toLowerCase()) {
-    case 'drinks': return 'rgba(245,151,168,0.7)'
-    case 'food': return '#ed0972'
+    case 'drinks': return appOrange
+    case 'food': return appPink
     case 'stay': return appBlue
-    case 'café': return '#00dddd'
-    default: return '#d63aff' 
+    case 'café': return appTeal
+    default: return appPurple 
   }
 }
 
