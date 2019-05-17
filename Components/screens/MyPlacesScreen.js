@@ -25,7 +25,7 @@ class MyPlacesScreen extends Component {
             ? <NoContent name={'places'} />  
             : <PlacesList />
           }
-          <ScreenBottomPadding size={100} />
+          {/* <ScreenBottomPadding size={160} /> */}
         </ScreenContent>
       </AppScreen>
     )

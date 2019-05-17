@@ -79,6 +79,12 @@ class Slides extends Component {
     }
   }
 
+  _onSkip = () => {
+    this._firstSlide()
+    this.setState({ slideNum: 1 })
+    this.props.navigation.navigate('Home')
+  }
+
   renderSlides() {
     return this.props.data.map((slide, i) => (
       <View key={i} style={{backgroundColor: slide.color}}>
@@ -91,8 +97,8 @@ class Slides extends Component {
   }
 
   render() {
-    console.log('Slides props', this.props)
-    console.log('Slids state', this.state)
+    // console.log('Slides props', this.props)
+    // console.log('Slides state', this.state)
 
     return (
       <View>
@@ -115,7 +121,7 @@ class Slides extends Component {
           </ContentButton>
         </View>
         <View style={styles.buttonBox}>
-          <ContentButton style={styles.buttonText} color={'white'} title='Skip Tutorial' onPress={this.props.onComplete} />
+          <ContentButton style={styles.buttonText} color={'white'} title='Skip Tutorial' onPress={() => this._onSkip()} />
         </View>
         <View style={[styles.buttonBox, {width: width / 4}]}>
           <ContentButton style={[styles.arrows, {right: 0}]} color={'white'} 

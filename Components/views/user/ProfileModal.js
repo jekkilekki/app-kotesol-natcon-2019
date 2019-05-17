@@ -1,34 +1,29 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, Modal, StyleSheet, Dimensions, TouchableOpacity, Switch } from 'react-native'
 import { connect } from 'react-redux'
-import { profileFieldUpdate, profileSave } from '../../../actions'
+import { profileFieldUpdate } from '../../../actions'
 
 import AppText from '../../shared/text/AppText'
 import AppInput from '../../shared/AppInput'
 import ContentButton from '../../shared/buttons/ContentButton'
 import ProfileButton from '../../shared/buttons/ProfileButton'
-import { purpler } from '../../../utils/colors';
+import { purpler, appGrey, appGreyLight30, appPurple, appDarkBlue } from '../../../utils/colors';
 
 const { width, height } = Dimensions.get('window')
 
 class ProfileModal extends Component {
-  _onSave = () => {
-    // Need to save this data to Firebase - to recall it all later
-    // const { profile, navigation } = this.props // maybe we don't need to destructure it
-    const { profile, navigation } = this.props
-    this.props.profileSave( profile )
-    this.props.onClose()
-    // this.props.navigation.navigate('Home')
-  }
+  // componentDidMount() {
+  //   this.props.profileTemp()
+  // }
 
   render() {
-    const { onClose, visible, profile } = this.props
+    const { onClose, onSave, visible, profile } = this.props
 
     return (
       <Modal
         animationType={'slide'}
         onRequestClose={() => {}}
-        onDismiss={onClose}
+        // onDismiss={onClose}
         transparent
         visible={visible}
       >
@@ -39,24 +34,33 @@ class ProfileModal extends Component {
               <View style={styles.modalInterior}>
                 <AppInput 
                   darkLabel
-                  label='First Name'
-                  placeholder='Aaron'
+                  label='First name'
+                  placeholder='First name'
                   value={profile.firstName}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'firstName', value })}
+                  containerStyle={styles.inputBox}
+                  inputStyle={styles.inputText}
+                  placeholderTextColor={appGrey}
                 />
                 <AppInput 
                   darkLabel
-                  label='Last Name'
-                  placeholder='Snowberger'
+                  label='Last name'
+                  placeholder='Last name'
                   value={profile.lastName}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'lastName', value })}
+                  containerStyle={styles.inputBox}
+                  inputStyle={styles.inputText}
+                  placeholderTextColor={appGrey}
                 />
                 <AppInput 
                   darkLabel
                   label='Affiliation'
-                  placeholder='Jeonju University'
+                  placeholder='School / Company'
                   value={profile.affiliation}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'affiliation', value })}
+                  containerStyle={styles.inputBox}
+                  inputStyle={styles.inputText}
+                  placeholderTextColor={appGrey}
                 />
                 <AppInput 
                   darkLabel
@@ -65,18 +69,23 @@ class ProfileModal extends Component {
                   value={profile.shortBio}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'shortBio', value })}
                   multiline
-                  numberOfLines={6}
-                  containerStyle={{height: 100, marginBottom: 25}}
+                  numberOfLines={8}
+                  containerStyle={[styles.inputBox, {height: 140}]}
+                  inputStyle={styles.inputText}
+                  placeholderTextColor={appGrey}
                 />
                 <AppInput 
                   darkLabel
                   label='Email'
                   subLabel='(not displayed publicly)'
-                  placeholder='john@doe.com'
+                  placeholder='me@email.com'
                   value={profile.email}
                   onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'email', value })}
                   autoCorrect={false}
                   autoCapitalize={'none'}
+                  containerStyle={styles.inputBox}
+                  inputStyle={styles.inputText}
+                  placeholderTextColor={appGrey}
                 />
                 <View style={{flexDirection: 'row', marginTop: 5, marginBottom: 5}}>
                   <Switch 
@@ -88,20 +97,23 @@ class ProfileModal extends Component {
                   <AppText dark note style={{marginTop: 5}}>Include my info in Attendees List</AppText>
                 </View>
                 <AppInput
-                    darkLabel
-                    label='KOTESOL key'
-                    subLabel='(required to display info)'
-                    placeholder='Found online'
-                    value={profile.secretKey}
-                    onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'secretKey', value })}
-                    autoCorrect={false}
-                    autoCapitalize={'none'}
-                  />
+                  darkLabel
+                  label='KOTESOL key'
+                  subLabel='(required to display info)'
+                  placeholder='secret'
+                  value={profile.secretKey}
+                  onChangeText={(value) => this.props.profileFieldUpdate({ prop: 'secretKey', value })}
+                  autoCorrect={false}
+                  autoCapitalize={'none'}
+                  containerStyle={styles.inputBox}
+                  inputStyle={styles.inputText}
+                  placeholderTextColor={appGrey}
+                />
                 <ContentButton
                   title="Save"
                   opaque
-                  onPress={this._onSave}
-                  disabled={profile.firstName === '' || profile.lastName === ''}
+                  onPress={onSave}
+                  // disabled={profile.firstName === '' || profile.lastName === ''}
                   style={{marginTop: 20}}
                 />
               </View>
@@ -133,6 +145,16 @@ const styles = StyleSheet.create({
   },
   modalInterior: {
     flexDirection: 'column',
+  }, 
+  inputBox: {
+    
+  },
+  inputText: {
+    fontSize: 15,
+    color: purpler,
+    borderColor: appGrey,
+    backgroundColor: appGreyLight30,
+    minHeight: 33
   }
 })
 
@@ -140,4 +162,4 @@ const mapStateToProps = ({ profile }) => {
   return { profile }
 }
 
-export default connect(mapStateToProps, { profileFieldUpdate, profileSave })(ProfileModal)
+export default connect(mapStateToProps, { profileFieldUpdate })(ProfileModal)

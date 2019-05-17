@@ -5,8 +5,8 @@ import { withNavigation } from 'react-navigation'
 
 import H2 from './shared/text/H2'
 import AppText from './shared/text/AppText'
-import { white, black, purpler, blue, blueDark, blueDarker, purple } from '../utils/colors'
-import SpeakerLikeButton from './SpeakerLikeButton';
+import { white, black, purpler, blue, blueDark, blueDarker, purple, appGrey30 } from '../utils/colors'
+import PlaceLikeButton from './PlaceLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import EntypoIcon from 'react-native-vector-icons/Entypo'
@@ -25,7 +25,7 @@ class PlaceCard extends Component {
 
   render() {
     const { 
-      title, description, address, phone, website, img
+      id, title, description, address, phone, website, img
     } = this.props.place.item
 
     return (
@@ -33,6 +33,7 @@ class PlaceCard extends Component {
         onPress={this._goToPlace}
         style={styles.cardStyle}
       >
+        <PlaceLikeButton id={id} color1={'lightcoral'} style={{right: 32, bottom: 16, zIndex: 10}} />
         <View style={[styles.cardBackground]}>
           <View style={[styles.talkMeta, {
             paddingRight: img ? 60 : 0
@@ -117,6 +118,8 @@ const styles = StyleSheet.create({
   },
   thumbnailStyle: {
     marginRight: 5,
+    backgroundColor: appGrey30,
+    borderRadius: 20
     // position: 'absolute',
     // top: 10,
     // right: 20

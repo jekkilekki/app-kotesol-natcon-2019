@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, Image, Picker, TouchableOpacity, Dimens
 import { LinearGradient } from 'expo'
 import firebase from 'firebase'
 import { connect } from 'react-redux'
-import { firebaseLogoutUser, profileFieldUpdate, profileSave } from '../../actions'
+import { firebaseLogoutUser, profileFieldUpdate, profileSave, profileTemp, profileReset } from '../../actions'
 
 import AppScreen from '../shared/layout/AppScreen'
 import AppHeader from '../shared/layout/AppHeader'
@@ -14,7 +14,7 @@ import AppText from '../shared/text/AppText'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppInput from '../shared/AppInput'
 import ContentButton from '../shared/buttons/ContentButton'
-import { purpler, appTeal, appPurple } from '../../utils/colors';
+import { purpler, appTeal, appPurple, appGrey30 } from '../../utils/colors';
 import AppScreenTitle from '../shared/text/AppScreenTitle';
 import AppScreenSubtitle from '../shared/text/AppScreenSubtitle';
 import Loader from '../shared/Loader';
@@ -30,10 +30,11 @@ class ProfileScreen extends Component {
   state = {
     showImgModal: false,
     showProfileModal: false,
-    tempProfile: this.props.profile
+    // tempProfile: this.props.profile
   }
 
   componentDidMount() {
+    this.props.profileTemp()
     this.props.navigation.closeDrawer()
   }
 
@@ -50,27 +51,23 @@ class ProfileScreen extends Component {
     }
   }
 
-  // _onSave = () => {
-  //   // Need to save this data to Firebase - to recall it all later
-  //   // const { profile, navigation } = this.props // maybe we don't need to destructure it
-  //   const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, navigation } = this.props
-  //   this.props.profileSave({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey })
-  //   this.setState({ showModal: false })
-  //   // this.props.navigation.navigate('Home')
-  // }
+  _onSave = () => {
+    const { profile } = this.props // maybe we don't need to destructure it
+    const { uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey } = profile
+    // Close the modals
+    this.setState({ showProfileModal: false, showImgModal: false })
+    // Save our profile
+    this.props.profileSave({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey })
+    // Get a new temp profile
+    this.props.profileTemp()
+  }
 
-  _onClose = (modal) => {
-    const { tempProfile } = this.state
-
-    if ( modal === 'profile' ) {
-      this.setState({ showProfileModal: false })
-    } else if ( modal === 'photo' ) {
-      this.setState({ showImgModal: false })
-    } else {
-      this.setState({ showProfileModal: false, showImgModal: false })
-    }
-
-    this.props.profileSave( tempProfile )
+  _onClose = () => {
+    const { profileTemp } = this.props
+    // Close the modals
+    this.setState({ showProfileModal: false, showImgModal: false })
+    // Save our profile back to the original
+    this.props.profileReset()
   }
 
   _onLogout = () => {
@@ -95,7 +92,11 @@ class ProfileScreen extends Component {
         {/* {user &&  */}
           <View style={styles.profileTop}>
             <TouchableOpacity onPress={() => this._openModal('image')} >
+              
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this._openModal('image')} style={styles.userImgContainer}>
               <Image source={{uri: img || 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'}} style={styles.userImg} />
+              <ProfileEditButton large style={{right: 0, bottom: 0, zIndex: 0}} onPress={() => this._openModal('image')} />
             </TouchableOpacity>
             <ProfileEditButton large style={{right: 15, bottom: 20, zIndex: 20}} onPress={() => this._openModal('profile')} />
             <View style={styles.infoBox}>
@@ -126,8 +127,8 @@ class ProfileScreen extends Component {
           <ContentButton
             opaque
             style={{marginTop: 25, marginBottom: 10}}
-            title="Go back"
-            onPress={() => this.props.navigation.goBack() || this.props.navigation.navigate('Home')}
+            title="View Schedule"
+            onPress={() => this.props.navigation.navigate('Home')}
           />
           <ContentButton
             title="Logout"
@@ -136,8 +137,17 @@ class ProfileScreen extends Component {
         </View>
 
         <ProfileModal 
-          visible={this.state.showProfileModal} onClose={() => this._onClose('profile')} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
-        <ProfilePhotoModal visible={this.state.showImgModal} onClose={() => this._onClose('photo')} onSave={() => this._onSave()} onLogout={() => this._onLogout()} />
+          visible={this.state.showProfileModal} 
+          onClose={() => this._onClose()} 
+          onSave={() => this._onSave()}
+          onLogout={() => this._onLogout()} 
+        />
+        <ProfilePhotoModal visible={this.state.showImgModal} 
+          onClose={() => this._onClose()} 
+          onSave={() => this._onSave()} 
+          onLogout={() => this._onLogout()} 
+        />
+        <ScreenBottomPadding size={140} /> 
         </ScreenContent>
       </AppScreen>
     )
@@ -150,11 +160,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  userImgContainer: {
+    backgroundColor: appGrey30,
+    height: 150,
+    width: 150,
+    borderRadius: 75
+  },
   userImg: {
     backgroundColor: 'white',
     height: 150,
     width: 150,
     borderRadius: 75
+  },
+  userImgText: {
+
   },
   profileTop: {
     backgroundColor: purpler,
@@ -259,7 +278,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ profile }) => {
+const mapStateToProps = ({ profile, app }) => {
   // const { user } = auth
   // const { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces } = profile
   
@@ -267,9 +286,12 @@ const mapStateToProps = ({ profile }) => {
   //   return { profile }
   // }
 
-  return { profile }
+  return { 
+    profile,
+    profileTemp: app.profileTemp
+  }
 }
 
 export default connect(mapStateToProps, { 
-  firebaseLogoutUser, profileFieldUpdate, profileSave
+  firebaseLogoutUser, profileFieldUpdate, profileSave, profileTemp, profileReset
 })(ProfileScreen)

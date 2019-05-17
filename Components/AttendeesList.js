@@ -74,7 +74,7 @@ class AttendeesList extends Component {
           </View>
         }
         { this.renderList(thisUser) }
-        <ScreenBottomPadding size={250} />
+        <ScreenBottomPadding size={200} />
       </ScrollView>
     )
   }

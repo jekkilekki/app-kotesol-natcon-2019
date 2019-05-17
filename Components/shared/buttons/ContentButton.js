@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo'
 import Icon from 'react-native-vector-icons/AntDesign'
 
 import AppText from '../text/AppText'
+import { appGrey, appTeal70 } from '../../../utils/colors';
 
 const ContentButton = (props) => {
   return (
@@ -45,7 +46,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingTop: 10,
     paddingBottom: 10,
-    borderRadius: 15
+    borderRadius: 15,
+    borderRightColor: appTeal70,
+    borderBottomColor: appTeal70,
+    borderRightWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   buttonText: {
     fontSize: 12,

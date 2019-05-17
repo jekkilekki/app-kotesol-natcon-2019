@@ -42,6 +42,7 @@ export const appTeal30 = 'rgba(0,221,221,0.3)'
 export const appGrey70 = 'rgba(169,186,201,0.7)'
 export const appGrey50 = 'rgba(169,186,201,0.5)'
 export const appGrey30 = 'rgba(169,186,201,0.3)'
+export const appGreyLight30 = 'rgb(227, 232, 238)'
 
 /* Base Colors */
 export const black = '#000000'

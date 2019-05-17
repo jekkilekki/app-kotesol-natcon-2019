@@ -3,12 +3,14 @@ import {
   SPEAKERS_LIST_COLLAPSE, SPEAKERS_LIST_EXPAND,
   SCHEDULE_LIST_COLLAPSE, SCHEDULE_LIST_EXPAND,
   ATTENDEES_FETCH_SUCCESS, LOGOUT_SUCCESS, PROFILE_SAVE,
+  PROFILE_TEMP
 } from '../actions/types'
 
 const INITIAL_STATE = {
   assetsLoaded: false,
   loggedIn: null,
   profileLoaded: false,
+  profileTemp: {},
   error: '',
   speakersExpanded: true,
   scheduleExpanded: false 
@@ -26,6 +28,8 @@ export default ( state = INITIAL_STATE, action ) => {
       return { ...state, loggedIn: false, profileLoaded: false }
     case PROFILE_SAVE: 
       return { ...state, profileLoaded: true }
+    case PROFILE_TEMP: 
+      return { ...state, profileTemp: action.payload }
     case SPEAKERS_LIST_COLLAPSE:
       return { ...state, speakersExpanded: false }
     case SPEAKERS_LIST_EXPAND:

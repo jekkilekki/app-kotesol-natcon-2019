@@ -40,6 +40,8 @@ export const SET_AUTHED_USER = 'set_authed_user'
 
 export const PROFILE_FIELD_UPDATE = 'profile_field_update'
 export const PROFILE_SAVE = 'profile_save'
+export const PROFILE_TEMP = 'profile_temp'
+export const PROFILE_RESET = 'profile_reset'
 export const PROFILE_FETCH_SUCCESS = 'profile_fetch_success'
 export const PROFILE_FETCH_FAIL = 'profile_fetch_fail'
 export const USER_CREATE = 'user_create'

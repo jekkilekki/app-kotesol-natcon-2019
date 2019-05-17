@@ -4,7 +4,7 @@ import {
   SPEAKER_LIKE, SPEAKER_DISLIKE,
   FRIEND_LIKE, FRIEND_DISLIKE,
   PLACE_LIKE, PLACE_DISLIKE,
-  FIREBASE_LOGOUT_USER
+  FIREBASE_LOGOUT_USER, PROFILE_RESET
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -29,6 +29,22 @@ export default (state = INITIAL_STATE, action) => {
     case PROFILE_FIELD_UPDATE: 
       // action.payload === { prop: 'name', value: 'aaron' }
       return { ...state, [action.payload.prop]: action.payload.value || '' } // key interpolation
+    case PROFILE_RESET:
+      return {
+        ...state, 
+          uid: action.payload.uid,
+          img: action.payload.img,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          affiliation: action.payload.affiliation,
+          email: action.payload.email,
+          shortBio: action.payload.shortBio,
+          myFriends: action.payload.myFriends,
+          mySchedule: action.payload.mySchedule,
+          myPlaces: action.payload.myPlaces,
+          displayInfo: action.payload.displayInfo,
+          secretKey: action.payload.secretKey
+        }
     case PROFILE_SAVE: 
       // return INITIAL_STATE if you want to empty all the input fields
       // could probably just load 'profile' as an Object and not have to deal with all these keys

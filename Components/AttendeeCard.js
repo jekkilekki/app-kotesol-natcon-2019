@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation'
 
 import H2 from './shared/text/H2'
 import AppText from './shared/text/AppText'
-import { white, black, purpler, blue, blueDark, blueDarker, purple } from '../utils/colors'
+import { white, black, purpler, blue, blueDark, blueDarker, purple, appGrey30 } from '../utils/colors'
 import FriendLikeButton from './FriendLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -122,6 +122,8 @@ const styles = StyleSheet.create({
   },
   thumbnailStyle: {
     marginRight: 5,
+    backgroundColor: appGrey30,
+    borderRadius: 20
     // position: 'absolute',
     // top: 10,
     // right: 20

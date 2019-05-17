@@ -54,8 +54,8 @@ class SpeakerList extends Component {
   _createSpeakerSections(speakersPropsData) {
     let speakerData = this._groupByTime(speakersPropsData)
     let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
-    console.log("Speaker Data: ", speakerData)
-    console.log("SpeakerArray: ", speakerArray)
+    // console.log("Speaker Data: ", speakerData)
+    // console.log("SpeakerArray: ", speakerArray)
     let speakerSections = []
 
     for ( var i = 0; i < speakerArray.length; i++ ) {
@@ -145,9 +145,9 @@ class SpeakerList extends Component {
         renderSectionHeader={({section}) => (
             <View style={styles.sectionBox}>
               <H2 style={styles.sectionTitle}>{section.title}</H2>
-              <TouchableOpacity style={styles.sectionButton} onPress={(section) => this._expandSection(section)}>
+              {/* <TouchableOpacity style={styles.sectionButton} onPress={(section) => this._expandSection(section)}>
                 <MaterialIcon name={'arrow-drop-up'} size={24} style={styles.sectionArrow} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           )
         }

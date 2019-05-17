@@ -6,7 +6,7 @@ import { blueGray100, purpler } from '../../utils/colors'
 const AppInput = ({ 
   label, value, placeholder, onChangeText, secureTextEntry,
   multiline, numberOfLines, autoCorrect, autoCapitalize, styleZ, 
-  darkLabel, containerStyle, inputStyle, subLabel
+  darkLabel, containerStyle, inputStyle, subLabel, placeholderTextColor
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -27,7 +27,7 @@ const AppInput = ({
         }, inputStyle]} 
         value={value}
         placeholder={placeholder || label}
-        placeholderTextColor={'rgba(255,255,255,0.3)'}
+        placeholderTextColor={placeholderTextColor || 'rgba(255,255,255,0.3)'}
         onChangeText={onChangeText}
         autoCorrect={autoCorrect}
         autoCapitalize={autoCapitalize}

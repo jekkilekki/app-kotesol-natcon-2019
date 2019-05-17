@@ -4,12 +4,14 @@ import { withNavigation } from 'react-navigation'
 import { LinearGradient } from 'expo'
 
 import H2 from './shared/text/H2'
+import P from './shared/text/P'
 import AppText from './shared/text/AppText'
 import { white, black, purpler, blue, blueDark } from '../utils/colors'
 import SpeakerLikeButton from './SpeakerLikeButton';
 import SpeakerTrackButton from './SpeakerTrackButton';
 import PlenaryCard from './PlenaryCard'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
 import { getTrackColor, getTime } from '../utils/helpers';
 
 const { width } = Dimensions.get('window')
@@ -76,7 +78,11 @@ class SpeakerCardSmall extends Component {
             end={{x: 1, y: 1}}
             locations={[0,1]}
           >
-            <H2 small normal>{title}</H2>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <H2 small normal>{title}</H2>
+              <P note style={{marginTop: 0}}> ({room})</P>
+              <EntypoIcon name={'chevron-right'} color={'#00dddd'} size={30} style={{position: 'absolute', right: -15, top: -3}} />
+            </View>
           </LinearGradient>
         </TouchableOpacity>
       )

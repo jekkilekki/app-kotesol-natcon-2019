@@ -3,7 +3,7 @@ import {
   PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
   SPEAKER_LIKE, SPEAKER_DISLIKE,
   FRIEND_LIKE, FRIEND_DISLIKE,
-  PLACE_LIKE, PLACE_DISLIKE
+  PLACE_LIKE, PLACE_DISLIKE, PROFILE_TEMP, PROFILE_RESET
 } from './types'
 
 export const profileFieldUpdate = ({ prop, value }) => {
@@ -50,15 +50,59 @@ export const getProfile = () => {
 export const profileSave = ({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey }) => {
   const { currentUser } = firebase.auth()
 
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey })
+      .set({ 
+        uid: currentUser.uid, 
+        img, 
+        firstName, 
+        lastName, 
+        affiliation, 
+        shortBio, 
+        email, 
+        myFriends, 
+        mySchedule, 
+        myPlaces, 
+        displayInfo, 
+        secretKey 
+      })
 
     // await AsyncStorage.setItem('knc_user', { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
     
     dispatch({
       type: PROFILE_SAVE,
-      payload: { uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey }
+      payload: {
+        uid: currentUser.uid, 
+        img, 
+        firstName, 
+        lastName, 
+        affiliation, 
+        shortBio, 
+        email, 
+        myFriends, 
+        mySchedule, 
+        myPlaces, 
+        displayInfo, 
+        secretKey 
+      }
+    })
+  }
+}
+
+export const profileTemp = () => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: PROFILE_TEMP,
+      payload: getState().profile
+    })
+  }
+}
+
+export const profileReset = () => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: PROFILE_RESET,
+      payload: getState().app.profileTemp
     })
   }
 }
