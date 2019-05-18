@@ -77,7 +77,8 @@ class AppModal extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [1, 1],
-      quality: 0
+      quality: 0, 
+      base64: true
     })
     // If not cancelled, upload
     if ( !result.cancelled ) {
