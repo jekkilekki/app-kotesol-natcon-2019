@@ -9,7 +9,7 @@ import ScreenContent from '../shared/layout/ScreenContent'
 import ContentButton from '../shared/buttons/ContentButton'
 import SpeakerList from '../SpeakerList'
 import AppSearch from '../shared/layout/AppSearch'
-import MyTabBar from '../navigation/MyTabBar'
+import MyTabBar from '../navigation/MyTabBar.old'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import BubbleTab from '../shared/layout/BubbleTab'
 

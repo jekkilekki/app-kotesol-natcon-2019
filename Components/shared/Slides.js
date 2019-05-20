@@ -25,13 +25,14 @@ class Slides extends Component {
     }
   }
 
-  fbClick = () => {
-    this.props.onLogin()
-  }
+  // fbClick = () => {
+  //   this.props.onLogin()
+  // }
 
   _nextSlide = () => {
     if ( this.state.slideNum === this.props.data.length ) {
-      this._handleRedirect()
+      // this._handleRedirect()
+      this._onSkip()
     } else {
       this.setState({ slideNum: this.state.slideNum + 1 })
     }
@@ -64,20 +65,20 @@ class Slides extends Component {
     }
 
     if ( this.state.slideNum > this.props.data.length ) {
-      this._handleRedirect()
+      this._onSkip()
     }
   }
 
-  _handleRedirect = () => {
-    this._firstSlide()
-    this.setState({ slideNum: 1 })
+  // _handleRedirect = () => {
+  //   this._firstSlide()
+  //   this.setState({ slideNum: 1 })
     
-    if ( !this.props.loggedIn ) {
-      this.props.navigation.navigate('Auth')
-    } else {
-      this.props.navigation.navigate('Home')
-    }
-  }
+  //   if ( !this.props.loggedIn ) {
+  //     this.props.navigation.navigate('Auth')
+  //   } else {
+  //     this.props.navigation.navigate('Home')
+  //   }
+  // }
 
   _onSkip = () => {
     this._firstSlide()

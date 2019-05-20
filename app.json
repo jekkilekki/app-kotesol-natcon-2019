@@ -9,13 +9,14 @@
       "ios",
       "android"
     ],
+    "githubUrl": "https://github.com/jekkilekki/app-kotesol-natcon-2019",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/img/icon.png",
     "splash": {
       "image": "./assets/img/kotesol-natcon-2019-app-splash-title.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#392D80"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,12 +24,16 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#392D80"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.jnjkotesol.conference.2019"
+    },
+    "android": {
+      "package": "com.jnjkotesol.conference.2019"
     }
   }
 }

@@ -145,7 +145,6 @@ class SpeakerList extends Component {
           <SpeakerCardSmall screen={screen} speaker={speaker} updateList={() => this.updateList()} filter={this.props.filter} expanded={this.props.speakersExpanded} />
         }
         keyExtractor={(speaker) => String(speaker.id)}
-        legacyImplementation={true}
       />
     )
   }

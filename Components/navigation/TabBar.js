@@ -7,13 +7,13 @@ import posed from 'react-native-pose'
 import { black } from '../../utils/colors';
 
 const windowWidth = Dimensions.get('window').width
-const tabWidth = windowWidth / 5
+const tabWidth = windowWidth / 4
 const SpotLight = posed.View({
   route0: { x: 0 },
   route1: { x: tabWidth },
   route2: { x: tabWidth * 2 },
   route3: { x: tabWidth * 3 },
-  route4: { x: tabWidth * 4 }
+  // route4: { x: tabWidth * 4 }
 })
 
 const Inner = posed.View({
@@ -21,10 +21,10 @@ const Inner = posed.View({
     backgroundColor: [
       'x',
       {
-        inputRange: Array.from({ length: 5 }).map(
+        inputRange: Array.from({ length: 4 }).map(
           (_, i) => i * tabWidth
         ),
-        outputRange: ["#00dddd", "#00b9f1", "#6600ff", "#d63aff", "#ed0972"]
+        outputRange: ["#00dddd", "#00b9f1", "#6600ff", "#d63aff"] /** Five items, "#ed0972" */
       },
       true
     ],

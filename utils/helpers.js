@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform, Dimensions } from 'react-native'
-import { appBlue, appBlue70, appBlack, appDarkBlue, appPink, appPurple, appDarkPurple, appTeal, appOrange } from './colors'
+import { appBlue, appBlue70, appBlack, appDarkBlue, appPink, appPurple, appDarkPurple, appTeal, appOrange, appGrey } from './colors'
 
 const { width, height } = Dimensions.get('window')
 
@@ -40,7 +40,7 @@ export function getTime(time) {
 export function getTrackColor(track) {
   switch (track.toLowerCase()) {
     case 'plenary': return appBlack
-    case 'onnuri': return appBlack
+    case 'onnuri': return appGrey
     case 'highlighted': return appDarkBlue
     case 'motivation': return appOrange
     case 'skills': return appBlue

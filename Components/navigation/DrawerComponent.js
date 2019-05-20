@@ -37,16 +37,22 @@ class DrawerComponent extends Component {
 
   renderId() {
     const { firstName, lastName, email, img } = this.props.profile 
-    let profileImg = img !== '' ? img : 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'
-    let userName = firstName !== '' && lastName !== '' ? `${firstName} ${lastName}` : firstName !== '' ? firstName : 'Welcome, Guest'
+    // let profileImg = img !== '' ? img : 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'
+    // let userName = firstName !== '' && lastName !== '' ? `${firstName} ${lastName}` : firstName !== '' ? firstName : 'Welcome, Guest'
     // let userEmail = email !== '' ? email : 'Login below for full access'
+
+    let profileImg = 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'
+
 
     return (
       <View style={{flexDirection: 'row', marginTop: 15}}>
         <Image style={styles.profileImg} source={{uri: profileImg}} />
         <View>
-          <AppText>{userName}</AppText>
-          {this.props.loggedIn
+          <AppText>Welcome to</AppText>
+          <AppText>the KOTESOL</AppText>
+          <AppText>2019 National</AppText>
+          <AppText>Conference!</AppText>
+          {/* {this.props.loggedIn
             ? <View style={{flexDirection: 'row'}}>
                 <ContentButton small 
                   style={{marginRight: 5}}
@@ -65,7 +71,7 @@ class DrawerComponent extends Component {
                 icon="login"
                 onPress={() => this.props.navigation.navigate('Auth')}
               />
-          }
+          } */}
         </View>
       </View>
     )
@@ -99,9 +105,9 @@ class DrawerComponent extends Component {
         "screen": "MyPlaces", "title": "My Places"
       }},
       // { "screen": "MyPlaces", "title": "My Places" },
-      { "screen": "People", "title": "Attendees", "subscreen": {
-        "screen": "MyFriends", "title": "My Friends"
-      }},
+      // { "screen": "People", "title": "Attendees", "subscreen": {
+      //   "screen": "MyFriends", "title": "My Friends"
+      // }},
       // { "screen": "MyFriends", "title": "My Friends" },
       { "screen": "About", "title": "About", "submenu": [
         { "screen": "Conduct", "title": "Code of Conduct" },

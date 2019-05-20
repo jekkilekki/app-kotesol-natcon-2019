@@ -29,7 +29,7 @@ import PlaceSingleScreen from '../screens/PlaceSingleScreen'
 import ConductScreen from '../screens/ConductScreen'
 import PrivacyScreen from '../screens/PrivacyScreen'
 import TabBar from './TabBar'
-import MyTabBar from './MyTabBar'
+// import MyTabBar from './MyTabBar.old'
 import DrawerComponent from './DrawerComponent'
 import { purpler } from '../../utils/colors';
 
@@ -59,18 +59,18 @@ const myPlacesNav = createStackNavigator({
   headerMode: 'none',
 })
 
-const myFriendsNav = createStackNavigator({
-  People: {
-    screen: AttendeesScreen,
-  },
-  MyFriends: {
-    screen: MyFriendsScreen
-  },
-  Person: AttendeeSingleScreen,
-}, { 
-  initialRouteName: 'People',
-  headerMode: 'none',
-})
+// const myFriendsNav = createStackNavigator({
+//   People: {
+//     screen: AttendeesScreen,
+//   },
+//   MyFriends: {
+//     screen: MyFriendsScreen
+//   },
+//   Person: AttendeeSingleScreen,
+// }, { 
+//   initialRouteName: 'People',
+//   headerMode: 'none',
+// })
 
 /* Main Tabbed Navigation in MAIN Screen Flow */
 const tabNavigation = createBottomTabNavigator({
@@ -98,14 +98,14 @@ const tabNavigation = createBottomTabNavigator({
         <FoundationIcon name='map' size={20} color={tintColor} focused={focused} />
     },
   },
-  People: {
-    screen: myFriendsNav,
-    navigationOptions: {
-      tabBarLabel: 'Attendees',
-      tabBarIcon: ({ focused, tintColor }) => 
-        <FoundationIcon name='torsos-female-male' size={20} color={tintColor} focused={focused} />,
-    },
-  },
+  // People: {
+  //   screen: myFriendsNav,
+  //   navigationOptions: {
+  //     tabBarLabel: 'Attendees',
+  //     tabBarIcon: ({ focused, tintColor }) => 
+  //       <FoundationIcon name='torsos-female-male' size={20} color={tintColor} focused={focused} />,
+  //   },
+  // },
   About: {
     screen: AboutScreen,
     navigationOptions: {
@@ -117,7 +117,7 @@ const tabNavigation = createBottomTabNavigator({
 }, { 
   // initialRouteName: 'Map',
   tabBarComponent: (props) => 
-    <TabBar tabColors={["#f62626", "#ff8a14", "#e5ff0a", "#21ff30", "#196eff"]} {...props} />,
+    <TabBar tabColors={["#f62626", "#ff8a14", "#e5ff0a", "#21ff30"]} {...props} />,
   tabBarOptions: {
     activeTintColor: '#fff',
     inactiveTintColor: '#201b48'
@@ -145,17 +145,17 @@ const stackNav = createStackNavigator({
 })
 
 const drawerNav = createDrawerNavigator({
-  Profile: ProfileScreen,
+  // Profile: ProfileScreen,
   Schedule: tabNavigation,
   Speakers: tabNavigation,
   Location: tabNavigation,
-  People: tabNavigation,
+  // People: tabNavigation,
   About: tabNavigation,
   Tutorial: WelcomeScreen,
-  MyFriends: MyFriendsScreen,
+  // MyFriends: MyFriendsScreen,
   MySchedule: MyScheduleScreen,
   MyPlaces: MyPlacesScreen,
-  Settings: ProfileScreen,
+  // Settings: ProfileScreen,
   Session: stackNav,
   Welcome: { 
     screen: WelcomeScreen,
@@ -178,10 +178,10 @@ const drawerNav = createDrawerNavigator({
 /* Switch Nav to prevent "Back" button functionality on these pages */
 export const RootNavigation = createSwitchNavigator({
   Welcome: WelcomeScreen,
-  Auth: AuthScreen,
+  // Auth: AuthScreen,
   App: drawerNav,
 }, {
-  initialRouteName: 'Welcome',
+  initialRouteName: 'App',
 })
 
 export const AppNavigation = createAppContainer(RootNavigation)
