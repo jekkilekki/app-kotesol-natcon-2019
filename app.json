@@ -30,10 +30,10 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.jnjkotesol.conference.2019"
+      "bundleIdentifier": "com.jnjkotesol.conference"
     },
     "android": {
-      "package": "com.jnjkotesol.conference.2019"
+      "package": "com.jnjkotesol.conference"
     }
   }
 }
