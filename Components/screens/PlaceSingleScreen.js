@@ -123,7 +123,7 @@ class PlaceSingleScreen extends Component {
           // pageSub={speaker.name}
           backPage={'Map'}
         />
-        <ScreenContent style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
+        <ScreenContent noPadding style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
           <View style={[styles.speakerImgContainer, 
             // { height: speaker.img !== '' ? width - 130 : 130 }
           ]}>
@@ -171,7 +171,7 @@ class PlaceSingleScreen extends Component {
               {/* {speaker.subtopic !== '' && <AppText> • {speaker.subtopic}</AppText>}
             </AppText>
           </View> */}
-          <View>
+          <View style={{paddingLeft: 15, paddingRight: 15}}>
             <H3 dark>About {place.title}</H3>
             <P dark>{place.description}</P>
             <ContentButton

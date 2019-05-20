@@ -31,8 +31,10 @@ class SessionSingleScreen extends Component {
           // pageName={speaker.title}
           // pageSub={speaker.name}
         />
-        <View style={styles.backgroundCover}></View>
-        <ScreenContent style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
+        {/* <View style={styles.backgroundCover}></View> */}
+        <ScreenContent 
+          noPadding
+          style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
           <View style={[styles.speakerImgContainer, 
             // { height: speaker.img !== '' ? width - 130 : 130 }
           ]}>
@@ -76,7 +78,7 @@ class SessionSingleScreen extends Component {
             </LinearGradient>
           </View>
 
-          <View style={{flex: 1, opacity: 0.7, flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(35,35,119,0.5)', paddingTop: 10, paddingBottom: 5}}>
+          <View style={styles.speakerMetaContent}>
             <AppText style={styles.talkTime}>{getTime(speaker.time)}
               <AppText style={styles.talkLocation}> - {speaker.room}</AppText>
             </AppText>
@@ -84,7 +86,7 @@ class SessionSingleScreen extends Component {
               {/* {speaker.subtopic !== '' && <AppText> • {speaker.subtopic}</AppText>} */}
             </AppText>
           </View>
-          <View>
+          <View style={styles.speakerContent}>
             <H3 dark>Talk Abstract</H3>
             <P dark>{speaker.abstract}</P>
             <H3 dark>About {speaker.nickname}</H3>
@@ -113,13 +115,13 @@ class SessionSingleScreen extends Component {
 
 const styles = StyleSheet.create({
   speakerImgContainer: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center', 
     alignItems: 'center',
     backgroundColor: purpler,
     marginLeft: -15,
     marginRight: -15,
-    padding: 15,
+    // padding: 15,
     paddingTop: 30,
     paddingBottom: 45,
   },
@@ -144,19 +146,28 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100
   },
-  content: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    alignItems: 'stretch',
-    backgroundColor: '#f00'
+  speakerMetaContent: {
+    // flex: 1, 
+    opacity: 0.7, 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    borderBottomWidth: StyleSheet.hairlineWidth, 
+    borderBottomColor: 'rgba(35,35,119,0.5)', 
+    paddingTop: 10, 
+    paddingBottom: 5,
+    paddingRight: 15,
+    paddingLeft: 15
+  },
+  speakerContent: {
+    paddingRight: 15,
+    paddingLeft: 15
   },
   talkTime: {
     fontFamily: 'nunito-bold',
     color: '#232377',
     fontSize: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#232377'
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#232377'
   },
   talkLocation: {
     fontFamily: 'nunito',

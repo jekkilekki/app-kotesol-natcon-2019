@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   profileButton: {
     position: 'absolute',
     right: 15,
-    top: 0,
+    top: 15,
     // top: isIphoneX() ? 42 : 7,
     width: 30,
     height: 30,
@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#d63aff',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#151537',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    elevation: 2,
+    // shadowColor: '#151537',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
+    // elevation: 2,
   },
   userImg: {
     width: 34,

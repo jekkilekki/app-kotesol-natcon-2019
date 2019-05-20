@@ -115,6 +115,7 @@ const speakerScreenStyle = {
   paddingBottom: 0,
   paddingLeft: 0,
   paddingRight: 0,
+  zIndex: -1
 }
 
 const mapStateToProps = ({ speakers, app }) => {

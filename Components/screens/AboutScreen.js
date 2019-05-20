@@ -37,7 +37,7 @@ class AboutScreen extends Component {
             <AppText>jjuniv_smartphone</AppText>
             <H3 small>Password</H3>
             <AppText>kotesol_2019</AppText> */}
-            <H1 style={{color: appPurple70}}>Motiva(c)tion: <H1 style={{color: appPurple70}}>Sparking Learner Motivation in our Evolving Context</H1></H1>
+            <H1 style={{color: appPurple70}}>Motiva(c)tion: Sparking Learner Motivation in our Evolving Context</H1>
             <H3 small>May 25, 2019</H3>
             <H3 style={{paddingTop: 0, marginTop: -5, marginBottom: 10}}>Star Center, Jeonju University, Jeonju</H3>
             <P>

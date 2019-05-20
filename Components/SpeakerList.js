@@ -51,6 +51,22 @@ class SpeakerList extends Component {
   //   }
   // }
 
+  // _createSpeakerList(speakersPropsData) {
+  //   let speakerArray = Object.keys(speakersPropsData).map(i => speakersPropsData[i])
+  //   let speakerSections = []
+    
+
+  //   for ( var i = 0; i < speakerArray.length; i++ ) {
+  //     let sectionObj = {}
+  //   sectionObj.title = 'All Speakers'
+  //     sectionObj.data = speakerArray[i] || []
+  //     sectionObj.key = sectionObj.title
+  //     speakerSections.push(sectionObj)
+  //   }
+
+  //   return speakerSections
+  // }
+
   _createSpeakerSections(speakersPropsData) {
     let speakerData = this._groupByTime(speakersPropsData)
     let speakerArray = Object.keys(speakerData).map(i => speakerData[i])
@@ -120,13 +136,16 @@ class SpeakerList extends Component {
 
     return (
       <FlatList
+        style={{zIndex: -1, elevation: 1}}
         data={speakers.sort((a,b) => {
           return a.lastname < b.lastname ? -1 : a.lastname > b.lastname ? 1 : 0
         })}
+        extraData={this.state}
         renderItem={(speaker) => 
           <SpeakerCardSmall screen={screen} speaker={speaker} updateList={() => this.updateList()} filter={this.props.filter} expanded={this.props.speakersExpanded} />
         }
         keyExtractor={(speaker) => String(speaker.id)}
+        legacyImplementation={true}
       />
     )
   }
@@ -165,9 +184,7 @@ class SpeakerList extends Component {
     }
 
     return (
-      // @TODO: Make a "full view" (like now) and a "compact view" for faster scanning - like Gmail
-
-      <ScrollView style={{flex: 1, width: width, paddingTop: 10}}>
+      <ScrollView style={{flex: 1, width: width, paddingTop: 10, zIndex: -1}}>
         { this.props.schedule ? 
           this.renderSchedule() :
           this.renderList()

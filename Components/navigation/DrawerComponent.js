@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { DrawerItems, SafeAreaView } from 'react-navigation'
-import { View, ScrollView, StyleSheet, Image, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, ScrollView, StyleSheet, Image, ImageBackground, TouchableOpacity, Platform } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { firebaseLogoutUser } from '../../actions'

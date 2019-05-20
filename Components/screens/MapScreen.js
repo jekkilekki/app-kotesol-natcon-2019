@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Button } from 'react-native'
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Button, Platform } from 'react-native'
 import { MapView } from 'expo'
 import { connect } from 'react-redux'
 
@@ -235,7 +235,7 @@ class MapScreen extends Component {
       <View style={styles.mapMenu}>
         <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 5, paddingTop: 10, paddingBottom: 10}}>
           <ContentButton color={'#232377'} 
-            style={[{marginBottom: -5, paddingBottom: 0,
+            style={[{marginBottom: -5, paddingBottom: 0, borderRightWidth: 0, borderBottomWidth: 0,
               backgroundColor: this.state.markerArea.toLowerCase() === 'campus' ? appTeal30 : 'transparent',
             }]}
             onPress={() => this.setState({ map: jjuStarCenterCoords, mainMarker: jjuMarker, markerArea: 'campus' })} 
@@ -246,7 +246,7 @@ class MapScreen extends Component {
             </View>
           </ContentButton>
           <ContentButton color={'#00dddd'} 
-            style={[{marginBottom: -5, paddingBottom: 0, 
+            style={[{marginBottom: -5, paddingBottom: 0, borderRightWidth: 0, borderBottomWidth: 0,
               backgroundColor: this.state.markerArea.toLowerCase() === 'shinsikaji' ? appTeal30 : 'transparent',
             }]}
             onPress={() => this.setState({ map: shinsikajiCoords, mainMarker: shinsikajiMarker, markerArea: 'shinsikaji' })} 
@@ -257,7 +257,7 @@ class MapScreen extends Component {
             </View>
           </ContentButton>
           <ContentButton color={'#151537'} 
-            style={[{marginBottom: -5, paddingBottom: 0, 
+            style={[{marginBottom: -5, paddingBottom: 0, borderRightWidth: 0, borderBottomWidth: 0,
               backgroundColor: this.state.markerArea.toLowerCase() === 'gaeksa' ? appTeal30 : 'transparent',
             }]}
             onPress={() => this.setState({ map: gaeksaCoords, mainMarker: gaeksaMarker, markerArea: 'gaeksa' })} 
@@ -268,7 +268,7 @@ class MapScreen extends Component {
             </View>
           </ContentButton>
           <ContentButton color={'#60f'} 
-            style={[{marginBottom: -5, paddingBottom: 0, 
+            style={[{marginBottom: -5, paddingBottom: 0, borderRightWidth: 0, borderBottomWidth: 0,
               backgroundColor: this.state.markerArea.toLowerCase() === 'hanok' ? appTeal30 : 'transparent',
             }]}
             onPress={() => this.setState({ map: hanokVillageCoords, mainMarker: hanokMarker, markerArea: 'hanok' })} 
@@ -279,7 +279,10 @@ class MapScreen extends Component {
             </View>
           </ContentButton>
         </View>
-        <View style={{flex: 1, marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: appBlack, justifyContent: 'space-around', flexDirection: 'row', marginBottom: 10}}>
+        <View style={{flex: 1, 
+          // marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, 
+          borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: appBlack, justifyContent: 'space-around', flexDirection: 'row', 
+          marginBottom: Platform.OS === 'ios' ? 10 : 0}}>
           <SmallButton active={this.state.markerType} title={'All'} color={white} count={this.props.countAll} onPress={() => this.setState({ markerType: 'all' })} />
           <SmallButton active={this.state.markerType} title={'Café'} color={appTeal} count={this.props.countCafes} onPress={() => this.setState({ markerType: 'café' })} />
           <SmallButton active={this.state.markerType} title={'Food'} color={appPink} count={this.props.countFood} onPress={() => this.setState({ markerType: 'food' })} />
@@ -300,9 +303,9 @@ class MapScreen extends Component {
         />
         {!this.state.mapLoaded && <Loader />}
         {this.state.mapLoaded &&
-          <ScreenContent>
+          <ScreenContent style={{marginTop: 0}} noPadding>
             <MapView 
-              style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -15, marginLeft: -15, marginRight: -15 }} 
+              style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -10}} 
               region={jjuStarCenterCoords}
               // initialCamera={this.state.camera}
               minZoomLevel={17}
@@ -317,35 +320,37 @@ class MapScreen extends Component {
               />
               {this.renderMainMarker(true)}
             </MapView>
-            <View style={{flex: 1, flexDirection: 'row', marginTop: 15}}>
+            <View style={{flex: 1, flexDirection: 'row', marginTop: 15, paddingLeft: 15, paddingRight: 15}}>
               <H2 dark center>Jeonju University</H2>
               <TouchableOpacity onPress={() => this._centerMap()}>
                 <MaterialCommunityIcon name={'crosshairs-gps'} size={18} color={appPurple} style={{marginTop: 6, marginLeft: 8}} />
               </TouchableOpacity>
             </View>
-            <P dark small>전라북도 전주시 완산구 천잠로 303 전주대학교 (55069)</P>
-            {/* <Image resizeMode='contain' source={require('../../assets/img/star-center-map-doctored.jpg')} style={[styles.image, {height: 260}]} /> */}
-            {/* <H2 dark center>Star Center</H2> */}
-            <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
-            <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
-            <P dark>
-              Jeonju University is located at the west end of Jeonju. From the bus terminal, 
-              it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive. 
-              Star Center is located in the center the university, and is the largest building on campus. 
-              It sits just in front of the large clock tower building, and has tennis courts below it.
-            </P>
-            <P dark>
-              The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
-              through one of three doors (see floor map below): 
-            </P>
-            <AppList
-              data={[
-                {strong: "Floor B1: ", content: "Onnuri Hall auditorium entrance (in front of the clock tower)" },
-                {strong: "Floor 1: ", content: "Parking garage entrance" },
-                {strong: "Floor 2: ", content: "Food Court entrance (by the fountain)" }
-              ]}
-              type={'numbered'}
-            />
+            <View style={{paddingLeft: 15, paddingRight: 15}}>
+              <P dark small>전라북도 전주시 완산구 천잠로 303 전주대학교 (55069)</P>
+              {/* <Image resizeMode='contain' source={require('../../assets/img/star-center-map-doctored.jpg')} style={[styles.image, {height: 260}]} /> */}
+              {/* <H2 dark center>Star Center</H2> */}
+              <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
+              <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
+              <P dark>
+                Jeonju University is located at the west end of Jeonju. From the bus terminal, 
+                it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive. 
+                Star Center is located in the center the university, and is the largest building on campus. 
+                It sits just in front of the large clock tower building, and has tennis courts below it.
+              </P>
+              <P dark>
+                The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
+                through one of three doors (see floor map below): 
+              </P>
+              <AppList
+                data={[
+                  {strong: "Floor B1: ", content: "Onnuri Hall auditorium entrance (in front of the clock tower)" },
+                  {strong: "Floor 1: ", content: "Parking garage entrance" },
+                  {strong: "Floor 2: ", content: "Food Court entrance (by the fountain)" }
+                ]}
+                type={'numbered'}
+              />
+            </View>
             <ScreenSection
               style={{
                 borderTopColor: appTeal,
@@ -353,7 +358,9 @@ class MapScreen extends Component {
                 borderTopWidth: StyleSheet.hairlineWidth,
                 borderBottomWidth: StyleSheet.hairlineWidth,
                 marginTop: 20,
-                marginBottom: 30
+                marginBottom: 30,
+                paddingLeft: 15, 
+                paddingRight: 15
               }}
             >
               <H2 dark>Rooms</H2>
@@ -381,22 +388,24 @@ class MapScreen extends Component {
                 onPress={() => this.props.navigation.navigate('Schedule')}
               />
             </ScreenSection>
-            <H2 dark>Around Campus</H2>
-            <P dark>
-              As with most universities in Korea, Jeonju University's entrances are 
-              surrounded with many different cafés and eateries. This page 
-              highlights a few of these, but also points out the main areas in town where you might 
-              find something tasty: 
-            </P>
-            <AppList
-              type={'numbered'}
-              data={[
-                "on and around JJU's campus",
-                "in the new area of town (Shinsikaji)",
-                "in Jeonju's downtown (Gaeksa)",
-                "in Hanok Village"
-              ]}
-            />
+            <View style={{paddingLeft: 15, paddingRight: 15}}>
+              <H2 dark>Around Campus</H2>
+              <P dark>
+                As with most universities in Korea, Jeonju University's entrances are 
+                surrounded with many different cafés and eateries. This page 
+                highlights a few of these, but also points out the main areas in town where you might 
+                find something tasty: 
+              </P>
+              <AppList
+                type={'numbered'}
+                data={[
+                  "on and around JJU's campus",
+                  "in the new area of town (Shinsikaji)",
+                  "in Jeonju's downtown (Gaeksa)",
+                  "in Hanok Village"
+                ]}
+              />
+            </View>
             {this.renderMapButtons()}
             {this.renderMap()}
             <ScreenBottomPadding size={120} />

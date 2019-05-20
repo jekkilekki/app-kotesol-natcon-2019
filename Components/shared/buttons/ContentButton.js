@@ -8,9 +8,12 @@ import { appGrey, appTeal70 } from '../../../utils/colors';
 
 const ContentButton = (props) => {
   return (
+    <View>
     <TouchableOpacity 
       onPress={props.onPress}
-      disabled={props.disabled}  
+      onPressIn={props.onPressIn}
+      disabled={props.disabled} 
+      delayPressIn={0} 
     >
       <View 
         style={[styles.contentButton,
@@ -37,6 +40,7 @@ const ContentButton = (props) => {
         }
       </View>
     </TouchableOpacity>
+    </View>
   )
 }
 

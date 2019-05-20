@@ -3,6 +3,7 @@ import { View, Button, TouchableOpacity, StyleSheet } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import AppText from '../text/AppText'
 import P from '../text/P';
+import { appGrey70, appGrey30 } from '../../../utils/colors';
 
 class Dropdown extends Component {
   state = {
@@ -23,7 +24,7 @@ class Dropdown extends Component {
     const { list, title } = this.props 
 
     return (
-      <View>
+      <View style={{zIndex: 10, elevation: 10}}>
         <TouchableOpacity onPress={this._openFilterMenu}>
           {title 
             ? <P dark small>{title}</P>
@@ -32,11 +33,11 @@ class Dropdown extends Component {
         </TouchableOpacity>
         {this.state.filterOpen &&
           <View style={styles.filterPicker}>
-            <TouchableOpacity onPress={() => this._filter('all')}>
+            <TouchableOpacity onPressIn={() => this._filter('all')}>
               <AppText style={styles.listItem}>View All</AppText>
             </TouchableOpacity>
             {list.map((track, i) => 
-              <TouchableOpacity key={i} onPress={() => this._filter(track)}>
+              <TouchableOpacity key={i} onPressIn={() => this._filter(track)}>
                 <AppText style={styles.listItem}>{track}</AppText>
               </TouchableOpacity>
             )}
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   filterPicker: {
     position: 'absolute',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(239, 242, 245, 1)',
     borderColor: 'rgba(35, 35, 119, 0.3)',
     borderWidth: StyleSheet.hairlineWidth,
     right: 0,
@@ -64,15 +65,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 10,
-    elevation: 1,
+    elevation: 5,
     zIndex: 10
   },
   listItem: {
     color: '#232377',
     fontSize: 12,
     padding: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(21,21,21,0.3)'
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: appGrey30
   }
 })
 

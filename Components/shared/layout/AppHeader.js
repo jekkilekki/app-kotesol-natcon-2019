@@ -39,7 +39,7 @@ class Header extends Component {
     const { loggedIn, pageBackButton, pageChild, pageName, pageSub, navigation } = this.props
 
     return (
-      <SafeAreaView style={{backgroundColor: this.props.transparent ? 'transparent' : purpler}}>
+      <SafeAreaView style={{backgroundColor: this.props.transparent ? 'transparent' : purpler, marginBottom: 0}}>
         <View
           // onLayout={(event) => { this._findDimensions(event.nativeEvent.layout) }}
           style={[styles.header, 
@@ -77,18 +77,20 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    height: 65,
+    height: 80,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingTop: 0,
+    paddingTop: 20,
     paddingBottom: 10,
     paddingLeft: 15,
     paddingRight: 15,
+    marginBottom: 0,
     backgroundColor: purpler,
     shadowColor: black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 2,
+    zIndex: 10
   },
   pageChildButton: {
     paddingTop: 3,

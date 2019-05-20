@@ -185,8 +185,8 @@ const styles = StyleSheet.create({
     fontFamily: 'nunito-bold',
     color: '#fff',
     fontSize: 10,
-    borderTopWidth: 1,
-    borderTopColor: '#fff'
+    // borderTopWidth: 1,
+    // borderTopColor: '#fff'
   },
   talkLocation: {
     fontFamily: 'nunito',

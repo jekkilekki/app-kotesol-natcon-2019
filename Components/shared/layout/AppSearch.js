@@ -1,5 +1,5 @@
 import React, { Component } from 'react' 
-import { View, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity, Picker } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity, Picker, Platform } from 'react-native'
 import { connect } from 'react-redux'
 
 import AppInput from '../AppInput'
@@ -37,7 +37,7 @@ class AppSearch extends Component {
         <TextInput 
           placeholder={'Search'}
           placeholderTextColor={'rgba(255,255,255,0.3)'}
-          style={[styles.searchInput, {width: this.props.schedule ? width - 90 : width - 118}]}
+          style={[styles.searchInput, {width: width - 90}]}
           onChangeText={(value) => this._search(value)}
           value={this.props.inputValue}
         />
@@ -59,7 +59,7 @@ class AppSearch extends Component {
             <MaterialCommunityIcon name={'view-grid'} size={18} style={styles.expandCollapse} />
           </TouchableOpacity>
         }
-        <Dropdown list={tracks} onChange={(value) => this._filter(value)} />
+        {Platform.OS !== 'android' && <Dropdown list={tracks} onChange={(value) => this._filter(value)} /> }
       </View>
     )
   }

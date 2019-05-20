@@ -64,9 +64,26 @@ class AppModal extends Component {
 
   captureImg = async () => {
     this.checkCameraPermissions()
-    let result = await ImagePicker.launchCameraAsync()
+    let result = await ImagePicker.launchCameraAsync({
+      quality: 0,
+      height: '200px',
+      width: '200px',
+      base64: true
+    })
     if ( !result.cancelled ) {
-      this.uploadImg(result.uri)
+      this.uploadImg(result.uri, generateImgID())
+        .then((res, rej) => {
+          console.log('Image upload SUCCESS! Better check~')
+          console.log('res', res)
+          console.log('rej', rej)
+
+          const imgPath = res
+          this.props.profileFieldUpdate({ prop: 'img', value: imgPath })
+          this.setState({ img: imgPath })
+        })
+        .catch((e) => {
+          console.log('Failure', e)
+        })
     }
   }
 
@@ -75,9 +92,12 @@ class AppModal extends Component {
     this.checkCameraRollPermissions()
     // Get the image
     let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0
+      // allowsEditing: true,
+      // aspect: [1, 1],
+      quality: 0,
+      height: '200px',
+      width: '200px',
+      base64: true
     })
     // If not cancelled, upload
     if ( !result.cancelled ) {

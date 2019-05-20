@@ -49,7 +49,7 @@ class Slides extends Component {
   }
 
   _firstSlide = () => {
-    this.refs._slider.scrollWithoutAnimationTo(0,0)
+    this.refs._slider.scrollTo({x: 0, y: 0})
   }
 
   _setSlideNum = async (e) => {
@@ -109,13 +109,15 @@ class Slides extends Component {
         ref={'_slider'}
         onScrollBeginDrag={(e) => this.setState({ startX: e.nativeEvent.contentOffset.x })}
         onScrollEndDrag={(e) => this._setSlideNum(e)}
+        nestedScrollEnabled={true}
+        keyboardShouldPersistTaps={'always'}
       >
         {this.renderSlides()}      
       </ScrollView>
       <AppFooterButton backgroundColor='transparent'>
         <View style={[styles.buttonBox, {width: width / 4}]}>
-          <ContentButton style={[styles.arrows, {left: 0}]} color={'white'} 
-            onPress={() => this._previousSlide()}
+          <ContentButton style={[styles.arrows, {left: 0, borderRightWidth: 0, borderBottomWidth: 0}]} color={'white'} 
+            onPressIn={() => this._previousSlide()}
           >
             {this.state.slideNum > 1 && <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'chevron-left'} />}
           </ContentButton>
@@ -124,8 +126,8 @@ class Slides extends Component {
           <ContentButton style={styles.buttonText} color={'white'} title='Skip Tutorial' onPress={() => this._onSkip()} />
         </View>
         <View style={[styles.buttonBox, {width: width / 4}]}>
-          <ContentButton style={[styles.arrows, {right: 0}]} color={'white'} 
-            onPress={() => this._nextSlide()}
+          <ContentButton style={[styles.arrows, {right: 0, borderRightWidth: 0, borderBottomWidth: 0}]} color={'white'} 
+            onPressIn={() => this._nextSlide()}
           >
             {this.state.slideNum > this.props.data.length - 1
               ? <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'login'} />
@@ -166,6 +168,7 @@ const styles = StyleSheet.create({
     width: width / 2,
     height: 60,
     paddingTop: 10,
+    marginBottom: 15
     // backgroundColor: 'rgba(35,35,119,0.3)',
     // paddingBottom: 10
   },

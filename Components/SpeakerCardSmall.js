@@ -69,19 +69,19 @@ class SpeakerCardSmall extends Component {
 
     if ( id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration' ) {
       return (
-        <TouchableOpacity style={[styles.cardStyleNormal]} onPress={() => this.props.navigation.navigate('Map', {referer: id})}>
+        <TouchableOpacity style={[styles.cardBackground]} onPress={() => this.props.navigation.navigate('Map', {referer: id})}>
           <LinearGradient 
-            style={[styles.cardBackground, {paddingTop: 15}]} 
+            style={[styles.cardStyleNormal, {paddingTop: 15}]} 
             // colors={[white, white]}
             colors={[blueDark, blue]}
             start={{x: 0.0, y: 0}} 
             end={{x: 1, y: 1}}
             locations={[0,1]}
           >
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center', width: width - 30}}>
               <H2 small normal>{title}</H2>
               <P note style={{marginTop: 0}}> ({room})</P>
-              <EntypoIcon name={'chevron-right'} color={'#00dddd'} size={30} style={{position: 'absolute', right: -15, top: -3}} />
+              <EntypoIcon name={'chevron-right'} color={'#00dddd'} size={30} style={{position: 'absolute', right: 10, top: -3}} />
             </View>
           </LinearGradient>
         </TouchableOpacity>
@@ -95,10 +95,10 @@ class SpeakerCardSmall extends Component {
     return (
       <TouchableOpacity 
         onPress={this._goToSession}
-        style={styles.cardStyle}
+        style={styles.cardBackground}
       >
         <LinearGradient 
-          style={[styles.cardBackground, {paddingTop: 15}]} 
+          style={[styles.cardStyle, {paddingTop: 15}]} 
           // colors={[white, white]}
           colors={id === 'plenary' 
                     ? ['rgba(233,150,255,0.5)', 'rgba(233,150,255,1)']
@@ -173,23 +173,30 @@ const styles = StyleSheet.create({
   },
   trackColor: {
     position: 'absolute',
+    height: '100%',
+    borderTopLeftRadius: 15,
+    borderBottomLeftRadius: 15,
     width: 7,
     height: 200,
     left: 0,
     top: 0, 
     opacity: 0.7
   },
-  cardBackground: {
+  cardStyle: {
     flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
     paddingBottom: 10,
     borderRadius: 15,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'transparent',
+    overflow: 'hidden',
+    zIndex: -1
     // flexDirection: 'row',
     // flexWrap: 'wrap',
     // justifyContent: 'center'
   },
-  cardStyle: {
+  cardBackground: {
     flexDirection: 'row',
     borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,1)',
@@ -205,12 +212,12 @@ const styles = StyleSheet.create({
   },
   cardStyleNormal: {
     flexDirection: 'row',
-    borderRadius: 20,
+    borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10,
+    paddingBottom: 8,
+    paddingLeft: 15,
+    paddingRight: 15,
     width: width - 20,
   },
   thumbnailStyle: {
@@ -231,8 +238,8 @@ const styles = StyleSheet.create({
     fontFamily: 'nunito-bold',
     color: '#232377',
     fontSize: 10,
-    borderTopWidth: 1,
-    borderTopColor: '#232377'
+    // borderTopWidth: 1,
+    // borderTopColor: '#232377'
   },
   talkLocation: {
     fontFamily: 'nunito',

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     // elevation: 2,
   },
   headerText: {
-    marginTop: 12
+    marginTop: Platform.OS === 'ios' ? 12 : 17
   }
 })
 

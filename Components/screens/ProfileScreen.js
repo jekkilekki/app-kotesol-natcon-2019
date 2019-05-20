@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, Image, Picker, TouchableOpacity, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Button, Image, Picker, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import { LinearGradient } from 'expo'
 import firebase from 'firebase'
 import { connect } from 'react-redux'
@@ -88,17 +88,14 @@ class ProfileScreen extends Component {
           : <HeaderBack />
         }
         
-        <ScreenContent>
+        <ScreenContent noPadding style={{marginTop: Platform.OS === 'android' ? -10 : 0}}>
         {/* {user &&  */}
           <View style={styles.profileTop}>
-            <TouchableOpacity onPress={() => this._openModal('image')} >
-              
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => this._openModal('image')} style={styles.userImgContainer}>
               <Image source={{uri: img || 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'}} style={styles.userImg} />
               <ProfileEditButton large style={{right: 0, bottom: 0, zIndex: 0}} onPress={() => this._openModal('image')} />
             </TouchableOpacity>
-            <ProfileEditButton large style={{right: 15, bottom: 20, zIndex: 20}} onPress={() => this._openModal('profile')} />
+            <ProfileEditButton large style={{right: 30, bottom: 20, zIndex: 20}} onPress={() => this._openModal('profile')} />
             <View style={styles.infoBox}>
               <AppScreenTitle center>{firstName || ''} {lastName || ''}</AppScreenTitle>
               <AppScreenSubtitle center>{affiliation}</AppScreenSubtitle>
@@ -121,7 +118,7 @@ class ProfileScreen extends Component {
           </TouchableOpacity>
         </View>
 
-        <View>
+        <View style={{paddingRight: 15, paddingLeft: 15}}>
           <H3 dark>My Profile</H3>
           <P dark>{shortBio}</P>
           <ContentButton
@@ -181,6 +178,8 @@ const styles = StyleSheet.create({
     margin: -15,
     marginBottom: 15,
     paddingTop: 15,
+    paddingRight: 15,
+    paddingLeft: 15
   },
   profileStats: {
     flexDirection: 'row',
@@ -189,6 +188,8 @@ const styles = StyleSheet.create({
     marginLeft: -15,
     marginRight: -15,
     marginTop: -15,
+    paddingRight: 15,
+    paddingLeft: 15
     
   },
   profileStatBox: {

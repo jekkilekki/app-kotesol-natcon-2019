@@ -28,7 +28,7 @@ class AttendeeSingleScreen extends Component {
           // pageName={speaker.title}
           // pageSub={speaker.name}
         />
-        <ScreenContent style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
+        <ScreenContent noPadding style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
           <View style={[styles.speakerImgContainer, 
             // { height: speaker.img !== '' ? width - 130 : 130 }
           ]}>
@@ -53,7 +53,7 @@ class AttendeeSingleScreen extends Component {
               // locations={[0,1]}
             >
               <FriendLikeButton large id={attendee.uid} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
-              <View style={styles.speakerMeta}>
+              <View>
                 <AppScreenTitle small>{attendee.firstName} {attendee.lastName}</AppScreenTitle>
                 <View style={{flexDirection: 'row'}}>
                   <AppText style={styles.talkSpeaker}>{attendee.affiliation}
@@ -72,7 +72,7 @@ class AttendeeSingleScreen extends Component {
               {/* {speaker.subtopic !== '' && <AppText> • {speaker.subtopic}</AppText>}
             </AppText>
           </View> */}
-          <View>
+          <View style={{paddingLeft: 15, paddingRight: 15}}>
             <H3 dark>About {attendee.firstName}</H3>
             <P dark>{attendee.shortBio}</P>
             <ContentButton
