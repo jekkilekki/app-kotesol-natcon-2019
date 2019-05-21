@@ -81,6 +81,7 @@ const hanokMarker = {
 
 class MapScreen extends Component {
   state = {
+    topMapRegion: jjuStarCenterCoords,
     map: jjuStarCenterCoords,
     mapLoaded: false,
     markerArea: 'Campus',
@@ -122,6 +123,10 @@ class MapScreen extends Component {
     // callout.hideCallout()
   }
 
+  _onTopRegionChange = (region) => {
+    this.setState({ topMapRegion: region })
+  }
+
   _onRegionChange = (region) => {
     this.setState({ region })
   }
@@ -152,23 +157,83 @@ class MapScreen extends Component {
     this.map.animateToRegion({ jjuStarCenterCoords }, 1000)
   }
 
+  renderTopMap() {
+    if (Platform.OS === 'ios') {
+      return (
+        <MapView 
+          style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -10}} 
+          region={jjuStarCenterCoords}
+          // initialCamera={this.state.camera}
+          minZoomLevel={17}
+          provider={MapView.PROVIDER_GOOGLE}
+          onPanDrag={this._onRegionChange}
+        >
+          <Circle 
+            center={jjuStarCenterCoords}
+            radius={40}
+            fillColor={'rgba(0,221,221,0.2)'}
+            strokeColor={'rgba(0,0,0,0.2)'}
+          />
+          {this.renderMainMarker(true)}
+        </MapView>
+      )
+    } else {
+      return (
+        <MapView 
+          style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -10}} 
+          initialRegion={jjuStarCenterCoords}
+          region={this.state.topMapRegion}
+          // initialCamera={this.state.camera}
+          minZoomLevel={17}
+          provider={MapView.PROVIDER_GOOGLE}
+          onRegionChangeComplete={this._onRegionChange}
+        >
+          <Circle 
+            center={jjuStarCenterCoords}
+            radius={40}
+            fillColor={'rgba(0,221,221,0.2)'}
+            strokeColor={'rgba(0,0,0,0.2)'}
+          />
+          {this.renderMainMarker(true)}
+        </MapView>
+      )
+    }
+  }
+
   renderMap() {
     const { map } = this.state
 
-    return (
-      <MapView 
-        style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
-        region={map} 
-        // initialCamera={this.state.camera}
-        minZoomLevel={15}
-        provider={MapView.PROVIDER_GOOGLE}
-        ref={ref => this.map = ref}
-        onPanDrag={this._onRegionChange}
-      >
-        {this.renderMainMarker()}
-        {this.renderMarkers()}
-      </MapView>
-    )
+    if (Platform.OS === 'ios') {
+      return (
+        <MapView 
+          style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
+          region={map} 
+          // initialCamera={this.state.camera}
+          minZoomLevel={15}
+          provider={MapView.PROVIDER_GOOGLE}
+          ref={ref => this.map = ref}
+          onPanDrag={this._onRegionChange}
+        >
+          {this.renderMainMarker()}
+          {this.renderMarkers()}
+        </MapView>
+      )
+    } else {
+      return (
+        <MapView 
+          style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
+          initialRegion={map} 
+          // initialCamera={this.state.camera}
+          minZoomLevel={15}
+          provider={MapView.PROVIDER_GOOGLE}
+          ref={ref => this.map = ref}
+          // onPanDrag={this._onRegionChange}
+        >
+          {this.renderMainMarker()}
+          {this.renderMarkers()}
+        </MapView>
+      )
+    }
   }
 
   renderMainMarker(starCenter = false) {
@@ -304,22 +369,9 @@ class MapScreen extends Component {
         {!this.state.mapLoaded && <Loader />}
         {this.state.mapLoaded &&
           <ScreenContent style={{marginTop: 0}} noPadding>
-            <MapView 
-              style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -10}} 
-              region={jjuStarCenterCoords}
-              // initialCamera={this.state.camera}
-              minZoomLevel={17}
-              provider={MapView.PROVIDER_GOOGLE}
-              onPanDrag={this._onRegionChange}
-            >
-              <Circle 
-                center={jjuStarCenterCoords}
-                radius={40}
-                fillColor={'rgba(0,221,221,0.2)'}
-                strokeColor={'rgba(0,0,0,0.2)'}
-              />
-              {this.renderMainMarker(true)}
-            </MapView>
+            
+            {this.renderTopMap()}
+
             <View style={{flex: 1, flexDirection: 'row', marginTop: 15, paddingLeft: 15, paddingRight: 15}}>
               <H2 dark center>Jeonju University</H2>
               <TouchableOpacity onPress={() => this._centerMap()}>
