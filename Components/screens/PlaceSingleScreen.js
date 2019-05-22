@@ -1,92 +1,73 @@
 import React, { Component } from 'react'
-import { View, Dimensions, StyleSheet, Image } from 'react-native'
+import { View, Dimensions, StyleSheet, Image, Platform } from 'react-native'
 import { LinearGradient, MapView } from 'expo'
 
 import AppText from '../shared/text/AppText'
 import AppScreenTitle from '../shared/text/AppScreenTitle'
-import AppScreenSubtitle from '../shared/text/AppScreenSubtitle'
 import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
 import ScreenContent from '../shared/layout/ScreenContent'
 import AppScreen from '../shared/layout/AppScreen'
 import HeaderBack from '../shared/layout/HeaderBack'
-import ScreenSection from '../shared/layout/ScreenSection';
 import PlaceLikeButton from '../PlaceLikeButton'
 import ContentButton from '../shared/buttons/ContentButton'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
 import { purpler } from '../../utils/colors';
 
 import EntypoIcon from 'react-native-vector-icons/Entypo'
+import { NavigationEvents } from 'react-navigation';
 
 const { width, height } = Dimensions.get('window')
 const Marker = MapView.Marker
 const Callout = MapView.Callout
 
-const jjuStarCenterCoords = {
-  latitude: 35.814088,
-  longitude: 127.088927,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
-// const jjuMarker = {
-//   title: 'Star Center',
-//   description: 'KOTESOL 2019 National Conference',
-//   address: '전라북도 전주시 완산구 천잠로 303'
-// }
-const shinsikajiCoords = {
-  latitude: 35.817314,
-  longitude: 127.109360,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
-// const shinsikajiMarker = {
-//   title: 'Shinsikaji',
-//   description: 'The New Downtown',
-//   address: ''
-// }
-const gaeksaCoords = {
-  latitude: 35.817700,
-  longitude: 127.143968,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
-// const gaeksaMarker = {
-//   title: 'Gaeksa',
-//   description: 'The Old Downtown',
-//   address: ''
-// }
-const hanokVillageCoords = {
-  latitude: 35.814269,
-  longitude: 127.151225,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
-// const hanokMarker = {
-//   title: 'Hanok Village',
-//   description: 'Tourism District',
-//   address: ''
-// }
-
 class PlaceSingleScreen extends Component {
   state = {
-    map: {
+    mapRegion: {
       latitude: this.props.navigation.state.params.place.coordinate.latitude,
       longitude: this.props.navigation.state.params.place.coordinate.longitude,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
+    }, 
+    mapLoaded: false
+  }
+
+  _onRegionChange = (region) => {
+    this.setState({ mapRegion: region })
+  }
+
+  renderMap() {
+    if ( !this.state.mapLoaded ) return null
+    if (Platform.OS === 'ios') {
+      return (
+        <MapView 
+          style={{ alignSelf: 'stretch', height: 300, marginLeft: -15, marginRight: -15, marginTop: 30 }} 
+          region={this.state.mapRegion} 
+          minZoomLevel={17}
+          provider={MapView.PROVIDER_GOOGLE}
+          ref={ref => this.map = ref}
+          onPanDrag={() => this._onRegionChange()}
+        >
+          {this.renderMarker()}
+        </MapView>
+      )
+    } else {
+      return (
+        <MapView 
+          style={{ alignSelf: 'stretch', height: 300, marginLeft: -15, marginRight: -15, marginTop: 30 }} 
+          region={this.state.mapRegion} 
+          minZoomLevel={17}
+          provider={MapView.PROVIDER_GOOGLE}
+          ref={ref => this.map = ref}
+          onRegionChangeComplete={() => this._onRegionChange()}
+        >
+          {this.renderMarker()}
+        </MapView>
+      )
     }
   }
 
-  // getMap = () => {
-  //   switch(this.props.navigation.state.params.place.location)
-  // }
-
-  _onRegionChange = (region) => {
-    this.setState({ region })
-  }
-
   renderMarker() {
-    const { map } = this.state
     const { place } = this.props.navigation.state.params
 
     console.log( 'area', this.props.navigation.state.params.place.area )
@@ -101,9 +82,7 @@ class PlaceSingleScreen extends Component {
         pinColor={'#d63aff'}
         ref={ref => this.marker = ref}
       >
-        <Callout
-          // onPress={() => this._goToPlace(place)}
-        >
+        <Callout>
           <PlaceLikeButton style={[styles.likeMe, {top: 3}]} id={place.id} />
           <P dark>{place.title}</P>
           <P dark note>{place.description}</P>
@@ -119,10 +98,17 @@ class PlaceSingleScreen extends Component {
     return (
       <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
         <HeaderBack
-          // pageName={speaker.title}
-          // pageSub={speaker.name}
           backPage={'Map'}
         />
+
+        <NavigationEvents
+          // This SHOULD tell the app to load MapView when it comes to this screen, 
+          // and NOT to when leaving this screen.
+          // Should (hopefully) fix a memory leak in iOS - that might have caused this to crash
+          onWillBlur={payload => { this.setState({ mapLoaded: false })}}
+          onWillFocus={payload => { this.setState({ mapLoaded: true })}}
+        />
+
         <ScreenContent noPadding style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
           <View style={[styles.speakerImgContainer, 
             // { height: speaker.img !== '' ? width - 130 : 130 }
@@ -143,9 +129,6 @@ class PlaceSingleScreen extends Component {
                 'transparent', 
                 purpler
               ]}
-              // start={{x: 0.0, y: 0.25}} 
-              // end={{x: 0.75, y: 1}}
-              // locations={[0,1]}
             >
               <PlaceLikeButton large id={place.id} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
               <View style={styles.speakerMeta}>
@@ -163,14 +146,6 @@ class PlaceSingleScreen extends Component {
             </LinearGradient>
           </View>
 
-          {/* <View style={{flex: 1, opacity: 0.7, flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(35,35,119,0.5)', paddingTop: 10, paddingBottom: 5}}>
-            <AppText style={styles.talkTime}>{getTime(speaker.time)}
-              <AppText style={styles.talkLocation}> - {speaker.room}</AppText>
-            </AppText>
-            <AppText style={styles.talkTopic}>{speaker.topic}
-              {/* {speaker.subtopic !== '' && <AppText> • {speaker.subtopic}</AppText>}
-            </AppText>
-          </View> */}
           <View style={{paddingLeft: 15, paddingRight: 15}}>
             <H3 dark>About {place.title}</H3>
             <P dark>{place.description}</P>
@@ -181,17 +156,9 @@ class PlaceSingleScreen extends Component {
               onPress={() => this.props.navigation.goBack()}
             />
           </View>
-          <MapView 
-            style={{ alignSelf: 'stretch', height: 300, marginLeft: -15, marginRight: -15, marginTop: 30 }} 
-            region={this.state.map} 
-            // initialCamera={this.state.camera}
-            minZoomLevel={17}
-            provider={MapView.PROVIDER_GOOGLE}
-            ref={ref => this.map = ref}
-            onPanDrag={this._onRegionChange}
-          >
-            {this.renderMarker()}
-          </MapView>
+          
+          {this.renderMap()}
+
           <ScreenBottomPadding size={140} />
         </ScreenContent>
       </AppScreen>

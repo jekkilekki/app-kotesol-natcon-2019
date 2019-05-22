@@ -10,7 +10,7 @@
       "android"
     ],
     "githubUrl": "https://github.com/jekkilekki/app-kotesol-natcon-2019",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/img/icon.png",
     "splash": {
@@ -33,7 +33,8 @@
       "bundleIdentifier": "com.jnjkotesol.conference"
     },
     "android": {
-      "package": "com.jnjkotesol.conference"
+      "package": "com.jnjkotesol.conference",
+      "versionCode": 2
     }
   }
 }
