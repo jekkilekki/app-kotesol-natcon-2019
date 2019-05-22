@@ -20,7 +20,7 @@ class Main extends Component {
       Asset.loadAsync([
         require('../assets/img/star-center-logo.jpg'),
         require('../assets/img/star-center-floors.png'),
-        require('../assets/img/star-center-map.png')
+        require('../assets/img/star-center-map.png'),
       ]),
       Font.loadAsync({
         ...Icon.Entypo.font,

@@ -1,4 +1,4 @@
-// import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { Facebook } from 'expo'
 import firebase from 'firebase'
 import { 
@@ -19,10 +19,19 @@ export const checkAuthStatus = () => {
   return async (dispatch) => {
     dispatch({ type: CHECK_AUTH_STATUS })
 
-    await firebase.auth().onAuthStateChanged((user) => {
-      if (user) { userLoggedIn(dispatch, user) }
-      else { userLoggedOut(dispatch) }
-    })
+    // await firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) { userLoggedIn(dispatch, user) }
+    //   else { userLoggedOut(dispatch) }
+    // })
+
+    let user = await AsyncStorage.getItem('knc-profile')
+    if (user) { 
+      userLoggedIn(dispatch, user) 
+    }
+    else { 
+      userLoggedOut(dispatch) 
+      // await dispatch( getProfile() )
+    }
   }
 }
 
@@ -43,36 +52,36 @@ const userLoggedOut = (dispatch) => {
  * Facebook Login logic
  */
 // Good example with some refactoring: https://medium.com/datadriveninvestor/facebook-login-with-react-native-expo-firebase-and-typescript-56df4ed6099a
-export const fbLogin = () => async (dispatch) => {
-  let { type, token } = await Facebook.logInWithReadPermissionsAsync(
-    '2279054512415452', {
-      permissions: ['public_profile']
-    });
+// export const fbLogin = () => async (dispatch) => {
+//   let { type, token } = await Facebook.logInWithReadPermissionsAsync(
+//     '2279054512415452', {
+//       permissions: ['public_profile']
+//     });
   
-  if ( type === 'cancel' ) {
-    return dispatch({ 
-      type: FB_LOGIN_FAIL,
-      payload: 'Facebook login canceled.'
-    })
-  }
+//   if ( type === 'cancel' ) {
+//     return dispatch({ 
+//       type: FB_LOGIN_FAIL,
+//       payload: 'Facebook login canceled.'
+//     })
+//   }
 
-  if ( type === 'success' && token ) {
-    dispatch({
-      type: FB_LOGIN_SUCCESS,
-      payload: token
-    })
+//   if ( type === 'success' && token ) {
+//     dispatch({
+//       type: FB_LOGIN_SUCCESS,
+//       payload: token
+//     })
 
-    // Build Firebase credential with the Facebook access token
-    const credential = firebase.auth.FacebookAuthProvider.credential(token)
+//     // Build Firebase credential with the Facebook access token
+//     const credential = firebase.auth.FacebookAuthProvider.credential(token)
 
-    // Sign into Firebase with the Facebook credential
-    let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
+//     // Sign into Firebase with the Facebook credential
+//     let user = await firebase.auth().signInAndRetrieveDataWithCredential(credential)
 
-    if ( user ) {
-      dispatch( getProfile( user ) )
-    }
-  }
-}
+//     if ( user ) {
+//       dispatch( getProfile( user ) )
+//     }
+//   }
+// }
 
 // const setAuthedUser = async ( dispatch, user, navigation ) => {
 //   // await AsyncStorage.setItem('knc_token', token)
@@ -86,58 +95,58 @@ export const fbLogin = () => async (dispatch) => {
 //   navigation.navigate('Home')
 // }
 
-export const inputEmail = (text) => {
-  return {
-    type: INPUT_EMAIL,
-    payload: text
-  }
-}
+// export const inputEmail = (text) => {
+//   return {
+//     type: INPUT_EMAIL,
+//     payload: text
+//   }
+// }
 
-export const inputPassword = (text) => {
-  return {
-    type: INPUT_PASSWORD,
-    payload: text
-  }
-}
+// export const inputPassword = (text) => {
+//   return {
+//     type: INPUT_PASSWORD,
+//     payload: text
+//   }
+// }
 
-export const firebaseLoginUser = ({ email, password }) => {
-  return async (dispatch) => {
-    dispatch({ type: FIREBASE_LOGIN_USER })
+// export const firebaseLoginUser = ({ email, password }) => {
+//   return async (dispatch) => {
+//     dispatch({ type: FIREBASE_LOGIN_USER })
 
-    try {
-      let user = await firebase.auth().signInWithEmailAndPassword( email, password )
-      firebaseLoginUserSuccess(dispatch, user)
-    } catch(err) {
-      console.log(err)
-      try {
-        let user = await firebase.auth().createUserWithEmailAndPassword( email, password )
-        firebaseLoginUserSuccess(dispatch, user)
-      } catch(err) {
-        firebaseLoginUserFail(dispatch, err)
-      }
-    }
-  }
-}
+//     try {
+//       let user = await firebase.auth().signInWithEmailAndPassword( email, password )
+//       firebaseLoginUserSuccess(dispatch, user)
+//     } catch(err) {
+//       console.log(err)
+//       try {
+//         let user = await firebase.auth().createUserWithEmailAndPassword( email, password )
+//         firebaseLoginUserSuccess(dispatch, user)
+//       } catch(err) {
+//         firebaseLoginUserFail(dispatch, err)
+//       }
+//     }
+//   }
+// }
 
-const firebaseLoginUserFail = (dispatch, err) => {
-  dispatch({ 
-    type: FIREBASE_LOGIN_FAIL,
-    payload: err
-  })
-}
+// const firebaseLoginUserFail = (dispatch, err) => {
+//   dispatch({ 
+//     type: FIREBASE_LOGIN_FAIL,
+//     payload: err
+//   })
+// }
 
-const firebaseLoginUserSuccess = async (dispatch, user) => {
-  dispatch({
-    type: FIREBASE_LOGIN_SUCCESS,
-    payload: user.user
-  })
-  dispatch( getProfile( user.user ) )
-}
+// const firebaseLoginUserSuccess = async (dispatch, user) => {
+//   dispatch({
+//     type: FIREBASE_LOGIN_SUCCESS,
+//     payload: user.user
+//   })
+//   dispatch( getProfile( user.user ) )
+// }
 
-export const firebaseLogoutUser = () => {
-  return (dispatch) => {
-    dispatch({ type: FIREBASE_LOGOUT_USER })
-    firebase.auth().signOut()
-    dispatch({ type: LOGOUT_SUCCESS })
-  }
-}
+// export const firebaseLogoutUser = () => {
+//   return (dispatch) => {
+//     dispatch({ type: FIREBASE_LOGOUT_USER })
+//     firebase.auth().signOut()
+//     dispatch({ type: LOGOUT_SUCCESS })
+//   }
+// }

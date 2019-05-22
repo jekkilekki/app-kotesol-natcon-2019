@@ -23,4 +23,4 @@ export * from './authActions'
  */
 export * from './profileActions'
 
-export * from './attendeeActions'
+// export * from './attendeeActions'

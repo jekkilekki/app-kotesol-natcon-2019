@@ -16,21 +16,21 @@ class App extends Component {
   }
 
   componentWillMount() {
-    firebase.initializeApp({
-      apiKey,
-      authDomain,
-      databaseURL,
-      storageBucket,
-      messagingSenderId
-    })
+    // firebase.initializeApp({
+    //   apiKey,
+    //   authDomain,
+    //   databaseURL,
+    //   storageBucket,
+    //   messagingSenderId
+    // })
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user: user })
-      } else {
-        this.setState({ user: null })
-      }
-    })
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.setState({ user: user })
+    //   } else {
+    //     this.setState({ user: null })
+    //   }
+    // })
   }
 
   render() {

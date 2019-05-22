@@ -1,10 +1,12 @@
-import firebase from 'firebase'
+// import firebase from 'firebase'
+import { AsyncStorage } from 'react-native'
 import {
   PROFILE_FIELD_UPDATE, PROFILE_SAVE, 
   SPEAKER_LIKE, SPEAKER_DISLIKE,
   FRIEND_LIKE, FRIEND_DISLIKE,
   PLACE_LIKE, PLACE_DISLIKE, PROFILE_TEMP, PROFILE_RESET
 } from './types'
+import { generateUID } from '../utils/helpers';
 
 export const profileFieldUpdate = ({ prop, value }) => {
   return {
@@ -13,66 +15,97 @@ export const profileFieldUpdate = ({ prop, value }) => {
   }
 }
 
-export const getProfile = () => {
-  const { currentUser } = firebase.auth()
-
-  return async (dispatch) => {
-    await firebase.database().ref(`users/${currentUser.uid}`)
-      .once('value').then((snapshot) => {
-        if ( snapshot.val() ) {
-          const img = snapshot.val().img 
-            ? snapshot.val().img.replace('?height=300','') 
-            : currentUser.photoUrl 
-              ? currentUser.photoUrl
-              : 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'
-          dispatch({
-            type: PROFILE_SAVE,
-            payload: { 
-              uid: currentUser.uid,
-              img: img + '?height=300' || currentUser.photoURL || '', 
-              firstName: snapshot.val().firstName || currentUser.displayName || '', 
-              lastName: snapshot.val().lastName || '', 
-              affiliation: snapshot.val().affiliation || '', 
-              shortBio: snapshot.val().shortBio || '', 
-              email: snapshot.val().email || currentUser.email || '', 
-              myFriends: snapshot.val().myFriends || [], 
-              mySchedule: snapshot.val().mySchedule || ['plenary'],
-              myPlaces: snapshot.val().myPlaces || ['conference'],
-              displayInfo: snapshot.val().displayInfo || '',
-              secretKey: snapshot.val().secretKey || ''
-            }
-          })
+/** Get Profile for AsyncStorage */
+export const getProfile = async () => {
+  const currentUser = await AsyncStorage.getItem('knc-profile')
+  // if (user) {
+    return (dispatch) => {
+      dispatch({
+        type: PROFILE_SAVE,
+        payload: { 
+          uid: currentUser.uid || generateUID(),
+          img: currentUser.photoURL || '', 
+          firstName: currentUser.displayName || '', 
+          lastName: currentUser.lastName || '', 
+          affiliation: currentUser.affiliation || '', 
+          shortBio: currentUser.shortBio || '', 
+          email: currentUser.email || '', 
+          myFriends: currentUser.myFriends || [], 
+          mySchedule: currentUser.mySchedule || ['plenary'],
+          myPlaces: currentUser.myPlaces || ['conference'],
+          displayInfo: currentUser.displayInfo || '',
+          secretKey: currentUser.secretKey || ''
         }
       })
+    // }
   }
 }
 
+/** Get Profile for Firebase user */
+// export const getProfile = () => {
+//   const { currentUser } = firebase.auth()
+
+//   return async (dispatch) => {
+//     await firebase.database().ref(`users/${currentUser.uid}`)
+//       .once('value').then((snapshot) => {
+//         if ( snapshot.val() ) {
+//           const img = snapshot.val().img 
+//             ? snapshot.val().img.replace('?height=300','') 
+//             : currentUser.photoUrl 
+//               ? currentUser.photoUrl
+//               : 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'
+//           dispatch({
+//             type: PROFILE_SAVE,
+//             payload: { 
+//               uid: currentUser.uid,
+//               img: img + '?height=300' || currentUser.photoURL || '', 
+//               firstName: snapshot.val().firstName || currentUser.displayName || '', 
+//               lastName: snapshot.val().lastName || '', 
+//               affiliation: snapshot.val().affiliation || '', 
+//               shortBio: snapshot.val().shortBio || '', 
+//               email: snapshot.val().email || currentUser.email || '', 
+//               myFriends: snapshot.val().myFriends || [], 
+//               mySchedule: snapshot.val().mySchedule || ['plenary'],
+//               myPlaces: snapshot.val().myPlaces || ['conference'],
+//               displayInfo: snapshot.val().displayInfo || '',
+//               secretKey: snapshot.val().secretKey || ''
+//             }
+//           })
+//         }
+//       })
+//   }
+// }
+
 export const profileSave = ({ uid, img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule, myPlaces, displayInfo, secretKey }) => {
-  const { currentUser } = firebase.auth()
+  // const { currentUser } = firebase.auth()
 
   return async (dispatch, getState) => {
-    await firebase.database().ref(`/users/${currentUser.uid}`)
-      .set({ 
-        uid: currentUser.uid, 
-        img, 
-        firstName, 
-        lastName, 
-        affiliation, 
-        shortBio, 
-        email, 
-        myFriends, 
-        mySchedule, 
-        myPlaces, 
-        displayInfo, 
-        secretKey 
-      })
+  //   await firebase.database().ref(`/users/${currentUser.uid}`)
+  //     .set({ 
+  //       uid: currentUser.uid, 
+  //       img, 
+  //       firstName, 
+  //       lastName, 
+  //       affiliation, 
+  //       shortBio, 
+  //       email, 
+  //       myFriends, 
+  //       mySchedule, 
+  //       myPlaces, 
+  //       displayInfo, 
+  //       secretKey 
+  //     })
 
-    // await AsyncStorage.setItem('knc_user', { img, firstName, lastName, affiliation, shortBio, email, myFriends, mySchedule })
+    await AsyncStorage.setItem('knc-profile', { 
+      uid, img, firstName, lastName, affiliation, shortBio, email, 
+      myFriends, mySchedule, myPlaces, displayInfo, secretKey 
+    })
     
     dispatch({
       type: PROFILE_SAVE,
       payload: {
-        uid: currentUser.uid, 
+        // uid: currentUser.uid, 
+        uid,
         img, 
         firstName, 
         lastName, 

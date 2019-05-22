@@ -40,7 +40,7 @@ import { getProfile } from './profileActions'
 export const appReady = () => {
   return async (dispatch, getState) => {
     await dispatch({ type: ASSETS_LOADED })
-    await dispatch( getAttendees() )
+    // await dispatch( getAttendees() )
     await dispatch( checkAuthStatus() )
     if ( getState().app.loggedIn ) await dispatch( getProfile() )
   }

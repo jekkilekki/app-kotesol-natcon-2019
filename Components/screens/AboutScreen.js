@@ -56,7 +56,7 @@ class AboutScreen extends Component {
               />
               <ContentButton
                 title='Download PDF'
-                onPress={() => this.props.navigation.navigate('Conduct')}
+                onPress={() => Linking.openURL('https://koreatesol.org/sites/default/files/knc-2019-booklet-final.pdf')}
               />
             </View>
             
@@ -92,8 +92,11 @@ class AboutScreen extends Component {
                 'KOTESOL',
                 'University of Birmingham',
                 'E*Public (Oxford)',
+                'SungAngDang (Cambridge)',
+                'Language World (Scholastic + Cengage)',
                 'Kidari English bookstore',
                 'Yega Restaurant',
+                '¡Ay Mamita!',
                 'Mo Fac Story',
                 'Jinmi & Jinmi',
                 'and more...',

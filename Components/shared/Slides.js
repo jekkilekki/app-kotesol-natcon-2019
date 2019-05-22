@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Button, FlatList, ScrollView, View, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
+import { StyleSheet, Button, FlatList, ScrollView, View, Image, Dimensions, Text, TouchableOpacity, Platform, StatusBar, I18nManager } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
 import MyButton from './buttons/MyButton'
@@ -74,7 +74,7 @@ class Slides extends Component {
   //   this.setState({ slideNum: 1 })
     
   //   if ( !this.props.loggedIn ) {
-  //     this.props.navigation.navigate('Auth')
+  //     this.props.navigation.navigate('Home')
   //   } else {
   //     this.props.navigation.navigate('Home')
   //   }
@@ -91,6 +91,7 @@ class Slides extends Component {
       <View key={i} style={{backgroundColor: slide.color}}>
         <View style={styles.container}>
           <Text style={styles.title}>{slide.title}</Text>
+          {slide.image !== '' && <Image source={{uri: slide.image}} style={styles.tutorialImage} />}
           <Text style={styles.text}>{slide.text}</Text>
         </View>
       </View>
@@ -132,13 +133,16 @@ class Slides extends Component {
           >
             {this.state.slideNum > this.props.data.length - 1
               ? <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'login'} />
-              : <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'chevron-right'} />
+              : this.state.slideNum === 1
+                ? <View>
+                    <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'chevron-right'} />
+                    <AppText note style={{position: 'absolute', fontSize: 10, textTransform: 'uppercase', top: 35, width: 32, right: 0}}>Slide</AppText>
+                  </View>
+                : <EntypoIcon color={'rgba(255,255,255,0.7)'} size={36} name={'chevron-right'} />
             }
           </ContentButton>
         </View>
       </AppFooterButton>
-      
-      
     </View>
     )
   }
@@ -177,6 +181,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     position: 'absolute', 
     bottom: height / 2.5,
+  },
+  tutorialImage: {
+    width: 300,
+    height: 300
   }
 })
 
