@@ -94,7 +94,11 @@ class MapScreen extends Component {
         mapRegion: jjuStarCenterCoords
       })
     } else {
-      this.setState({ mapLoaded: false })
+      this.setState({ 
+        mapLoaded: false,
+        topMapRegion: jjuStarCenterCoords,
+        mapRegion: jjuStarCenterCoords 
+      })
     }
   }
 
@@ -416,7 +420,7 @@ class MapScreen extends Component {
           // and NOT to when leaving this screen.
           // Should (hopefully) fix a memory leak in iOS - that might have caused this to crash
           onWillBlur={payload => { this.setState({ mapLoaded: false })}}
-          onWillFocus={payload => { this.setState({ mapLoaded: true })}}
+          onWillFocus={payload => { this.setState({ mapLoaded: true, topMapRegion: jjuStarCenterCoords, mapRegion: jjuStarCenterCoords })}}
         />
 
         <ScreenContent style={{marginTop: 0}} noPadding>
@@ -473,10 +477,11 @@ class MapScreen extends Component {
                   paddingLeft: 15, 
                   paddingRight: 15,
                   paddingBottom: 40,
-                  paddingTop: 30
+                  paddingTop: 30,
+                  width: width, maxWidth: 500, alignSelf: 'center'
                 }}
               >
-                <View style={{width: width, maxWidth: 500, alignSelf: 'center'}}>
+                <View>
                   <H2 dark>Rooms</H2>
                   <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image]} />
                   <P dark>

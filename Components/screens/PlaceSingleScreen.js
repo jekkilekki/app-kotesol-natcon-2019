@@ -117,7 +117,7 @@ class PlaceSingleScreen extends Component {
             {place.img !== '' 
               ? <Image 
                   style={styles.speakerImg}
-                  source={{ uri: place.img }} 
+                  source={{ uri: place.img || 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png' }} 
                 />
               : <Image 
                   style={styles.speakerImg}

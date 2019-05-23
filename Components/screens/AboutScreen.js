@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, StyleSheet, Linking, TouchableOpacity, Platform } from 'react-native'
+import { View, Image, StyleSheet, Linking, TouchableOpacity, Platform, Dimensions } from 'react-native'
 
 import AppScreen from '../shared/layout/AppScreen'
 import ScreenContent from '../shared/layout/ScreenContent'
@@ -19,6 +19,8 @@ import ProfileStats from '../shared/layout/ProfileStats'
 
 import IoniconIcon from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+const { width } = Dimensions.get('window')
 
 class AboutScreen extends Component {
   render() {
@@ -175,6 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   ipadStyle: {
+    width: width - 30,
     maxWidth: 500,
     alignSelf: 'center',
   },
