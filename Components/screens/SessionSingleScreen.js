@@ -26,7 +26,7 @@ class SessionSingleScreen extends Component {
     const { speaker } = this.props.navigation.state.params
 
     return (
-      <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
+      <AppScreen>
         <HeaderBack
           // pageName={speaker.title}
           // pageSub={speaker.name}
@@ -34,7 +34,8 @@ class SessionSingleScreen extends Component {
         {/* <View style={styles.backgroundCover}></View> */}
         <ScreenContent 
           noPadding
-          style={{height: height, marginTop: -30, backgroundColor: 'white'}}>
+          style={{height: height, marginTop: -30}}
+        >
           <View style={[styles.speakerImgContainer, 
             // { height: speaker.img !== '' ? width - 130 : 130 }
           ]}>
@@ -55,7 +56,7 @@ class SessionSingleScreen extends Component {
               // locations={[0,1]}
             >
               <SpeakerLikeButton large id={speaker.id} color1={'lightcoral'} style={{right: 15, bottom: 20, zIndex: 20}} />
-              <View style={styles.speakerMeta}>
+              <View style={[styles.speakerMeta]}>
                 <View style={{flexDirection: 'row'}}>
                   <SpeakerTrackButton track={speaker.track} style={{marginTop: -2, marginBottom: 5, padding: 2}} />
                 </View>
@@ -78,7 +79,7 @@ class SessionSingleScreen extends Component {
             </LinearGradient>
           </View>
 
-          <View style={styles.speakerMetaContent}>
+          <View style={[styles.speakerMetaContent]}>
             <AppText style={styles.talkTime}>{getTime(speaker.time)}
               <AppText style={styles.talkLocation}> - {speaker.room}</AppText>
             </AppText>
@@ -86,7 +87,8 @@ class SessionSingleScreen extends Component {
               {/* {speaker.subtopic !== '' && <AppText> • {speaker.subtopic}</AppText>} */}
             </AppText>
           </View>
-          <View style={styles.speakerContent}>
+
+          <View style={[styles.speakerContent, styles.ipadStyle]}>
             <H3 dark>Talk Abstract</H3>
             <P dark>{speaker.abstract}</P>
             <H3 dark>About {speaker.nickname}</H3>
@@ -160,7 +162,13 @@ const styles = StyleSheet.create({
   },
   speakerContent: {
     paddingRight: 15,
-    paddingLeft: 15
+    paddingLeft: 15,
+  },
+  ipadStyle: {
+    width: width,
+    maxWidth: 500, 
+    justifyContent: 'center',
+    alignSelf: 'center'
   },
   talkTime: {
     fontFamily: 'nunito-bold',

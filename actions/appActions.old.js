@@ -8,20 +8,40 @@ import { checkAuthStatus } from './authActions'
 import { getAttendees } from './attendeeActions'
 import { getProfile } from './profileActions'
 
+// export const loadUser = () => async (dispatch) => {
+//   // Very first Redux function that runs
+//   // 1. Load Fonts and Icons
+//   // 2. Load User from AsyncStorage (or Firebase) if one exists
+//   // 3. Dispatch actions to indicate new app state
+
+//   let user = await AsyncStorage.getItem('knc_user')
+//   if ( user ) {
+//     console.log('User!!!', user)
+//     dispatch({
+//       type: PROFILE_SAVE,
+//       payload: user
+//     })
+//   } else {
+//     console.log('no user...')
+//   }
+
+//   let token = await AsyncStorage.getItem('knc_token')
+//   if ( token ) {
+//     console.log('Token!!!', token)
+//   } else {
+//     console.log('no token...')
+//   }
+// }
+
 /**
  * Called from Main.js after Font & Icon assets are pre-loaded
  * Next step is checking User Firebase authentication (authActions.js)
  */
 export const appReady = () => {
   return async (dispatch, getState) => {
-    // Load assets (fonts and images first)
     await dispatch({ type: ASSETS_LOADED })
-
-    // Check AsyncStorage for a key - indicates user has used the app before
-    // UserID is created on the first run of the app - can be used to display WelcomeScreen only on first run if desired
+    // await dispatch( getAttendees() )
     await dispatch( checkAuthStatus() )
-
-    // User SHOULD be "loggedIn" automatically after first run, so load the profile stored (set) in AsyncStorage
     if ( getState().app.loggedIn ) await dispatch( getProfile() )
   }
 }

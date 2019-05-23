@@ -145,7 +145,7 @@ const stackNav = createStackNavigator({
 })
 
 const drawerNav = createDrawerNavigator({
-  // Profile: ProfileScreen,
+  Profile: ProfileScreen,
   Schedule: tabNavigation,
   Speakers: tabNavigation,
   Location: tabNavigation,
@@ -155,7 +155,6 @@ const drawerNav = createDrawerNavigator({
   // MyFriends: MyFriendsScreen,
   MySchedule: MyScheduleScreen,
   MyPlaces: MyPlacesScreen,
-  // Settings: ProfileScreen,
   Session: stackNav,
   Welcome: { 
     screen: WelcomeScreen,
@@ -164,6 +163,7 @@ const drawerNav = createDrawerNavigator({
     }
   }
 }, {
+  initialRouteName: 'Welcome',
   drawerPosition: 'right',
   overlayColor: '#151537',
   drawerBackgroundColor: '#353577',

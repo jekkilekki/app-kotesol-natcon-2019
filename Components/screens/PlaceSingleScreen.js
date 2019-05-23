@@ -12,7 +12,7 @@ import HeaderBack from '../shared/layout/HeaderBack'
 import PlaceLikeButton from '../PlaceLikeButton'
 import ContentButton from '../shared/buttons/ContentButton'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
-import { purpler } from '../../utils/colors';
+import { purpler } from '../../utils/colors'
 
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import { NavigationEvents } from 'react-navigation';
@@ -41,7 +41,7 @@ class PlaceSingleScreen extends Component {
     if (Platform.OS === 'ios') {
       return (
         <MapView 
-          style={{ alignSelf: 'stretch', height: 300, marginLeft: -15, marginRight: -15, marginTop: 30 }} 
+          style={{ alignSelf: 'stretch', height: 400, marginLeft: -15, marginRight: -15 }} 
           region={this.state.mapRegion} 
           minZoomLevel={17}
           provider={MapView.PROVIDER_GOOGLE}
@@ -54,7 +54,7 @@ class PlaceSingleScreen extends Component {
     } else {
       return (
         <MapView 
-          style={{ alignSelf: 'stretch', height: 300, marginLeft: -15, marginRight: -15, marginTop: 30 }} 
+          style={{ alignSelf: 'stretch', height: 400, marginLeft: -15, marginRight: -15 }} 
           region={this.state.mapRegion} 
           minZoomLevel={17}
           provider={MapView.PROVIDER_GOOGLE}
@@ -94,6 +94,7 @@ class PlaceSingleScreen extends Component {
 
   render() {
     const { place } = this.props.navigation.state.params
+    console.log('Navigation', this.props.navigation.state)
 
     return (
       <AppScreen color1={'#fff'} color2={'rgba(233,150,255,0.5)'}>
@@ -146,9 +147,14 @@ class PlaceSingleScreen extends Component {
             </LinearGradient>
           </View>
 
-          <View style={{paddingLeft: 15, paddingRight: 15}}>
-            <H3 dark>About {place.title}</H3>
+          {/* <View style={[{paddingLeft: 15, paddingRight: 15}, styles.ipadStyle]}>
+            <H3 dark>{place.title} Location</H3>
             <P dark>{place.description}</P>
+          </View> */}
+          
+          {this.renderMap()}
+
+          <View style={[{paddingLeft: 15, paddingRight: 15}, styles.ipadStyle]}>
             <ContentButton
               opaque
               style={{marginTop: 25}}
@@ -156,8 +162,6 @@ class PlaceSingleScreen extends Component {
               onPress={() => this.props.navigation.goBack()}
             />
           </View>
-          
-          {this.renderMap()}
 
           <ScreenBottomPadding size={140} />
         </ScreenContent>
@@ -167,6 +171,11 @@ class PlaceSingleScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  ipadStyle: {
+    width: width,
+    maxWidth: 500,
+    alignSelf: 'center'
+  },
   speakerImgContainer: {
     flex: 1,
     justifyContent: 'center', 

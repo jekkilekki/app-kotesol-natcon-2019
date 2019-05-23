@@ -16,29 +16,28 @@ export const profileFieldUpdate = ({ prop, value }) => {
 }
 
 /** Get Profile for AsyncStorage */
-export const getProfile = () => {
-  
-  return async (dispatch) => {
-    let currentUser = await AsyncStorage.getItem('knc-profile')
-    currentUser = JSON.parse(currentUser)
-
-    dispatch({
-      type: PROFILE_SAVE,
-      payload: { 
-        uid: currentUser.uid || generateUID(),
-        img: currentUser.img || 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png', 
-        firstName: currentUser.displayName || '2019 KOTESOL', 
-        lastName: currentUser.lastName || 'National Conference', 
-        affiliation: currentUser.affiliation || 'Motiva(c)tion: Sparking Learner Motivation in our Evolving Context', 
-        shortBio: currentUser.shortBio || "The English language teaching context is in constant flux, with our students' focus on technology seemingly reducing their attention span, the rapid change in student number with the low birth rate in Korea, and other factors within and beyond our control. How can we as teachers, administrators, parents, and members of the public take action to improve learner motivation to learn English?", 
-        email: currentUser.email || '', 
-        myFriends: currentUser.myFriends || [], 
-        mySchedule: currentUser.mySchedule || ['plenary'],
-        myPlaces: currentUser.myPlaces || ['conference'],
-        displayInfo: currentUser.displayInfo || '',
-        secretKey: currentUser.secretKey || ''
-      }
-    })
+export const getProfile = async () => {
+  const currentUser = await JSON.parse(AsyncStorage.getItem('knc-profile'))
+  // if (user) {
+    return (dispatch) => {
+      dispatch({
+        type: PROFILE_SAVE,
+        payload: { 
+          uid: currentUser.uid || generateUID(),
+          img: currentUser.photoURL || '', 
+          firstName: currentUser.displayName || '', 
+          lastName: currentUser.lastName || '', 
+          affiliation: currentUser.affiliation || '', 
+          shortBio: currentUser.shortBio || '', 
+          email: currentUser.email || '', 
+          myFriends: currentUser.myFriends || [], 
+          mySchedule: currentUser.mySchedule || ['plenary'],
+          myPlaces: currentUser.myPlaces || ['conference'],
+          displayInfo: currentUser.displayInfo || '',
+          secretKey: currentUser.secretKey || ''
+        }
+      })
+    // }
   }
 }
 

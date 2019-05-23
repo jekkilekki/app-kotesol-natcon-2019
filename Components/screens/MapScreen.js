@@ -102,6 +102,7 @@ class MapScreen extends Component {
   _goToPlace = (place) => {
     // Android is throwing an error when hitting the "Back" button 
     // if ( Platform.OS === 'ios' ) {
+      console.log('Regular place', place)
       this.props.navigation.navigate( 'Place', { id: place.id, place })
     // }
   }
@@ -300,7 +301,7 @@ class MapScreen extends Component {
   renderMapButtons() {
     return (
       <View style={styles.mapMenu}>
-        <View style={{flex: 1, justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 5, paddingTop: 10, paddingBottom: 10}}>
+        <View style={{flex: 1, width: width, maxWidth: 500, alignSelf: 'center', justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 5, paddingTop: 10, paddingBottom: 10}}>
           
           <ContentButton color={'#232377'} 
             style={[{marginBottom: -5, paddingBottom: 0, borderRightWidth: 0, borderBottomWidth: 0,
@@ -367,9 +368,11 @@ class MapScreen extends Component {
           </ContentButton>
         </View>
 
-        <View style={{flex: 1, 
+        <View style={{borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: appBlack, height: 1, width: width}}></View>
+
+        <View style={{flex: 1, width: width, maxWidth: 500, alignSelf: 'center',
           // marginLeft: -15, marginRight: -15, paddingLeft: 15, paddingRight: 15, 
-          borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: appBlack, justifyContent: 'space-around', flexDirection: 'row', 
+          justifyContent: 'space-around', flexDirection: 'row', 
           marginBottom: Platform.OS === 'ios' ? 10 : 0}}>
           <SmallButton active={this.state.markerType} title={'All'} color={white} 
             count={this.props.countAll} 
@@ -423,38 +426,43 @@ class MapScreen extends Component {
           {this.state.mapLoaded &&
 
             <View>
-              {this.renderTopMap()}
+              <View>
+                {this.renderTopMap()}
+              </View>
               
-              <View style={{flex: 1, flexDirection: 'row', marginTop: 15, paddingLeft: 15, paddingRight: 15}}>
-                <H2 dark center>Jeonju University</H2>
-                <TouchableOpacity onPress={() => this._centerMap()}>
-                  <MaterialCommunityIcon name={'crosshairs-gps'} size={18} color={appPurple} style={{marginTop: 6, marginLeft: 8}} />
-                </TouchableOpacity>
+              <View style={{width: width, maxWidth: 500, alignSelf: 'center'}}>
+                <View style={{flex: 1, flexDirection: 'row', marginTop: 15, paddingLeft: 15, paddingRight: 15}}>
+                  <H2 dark center>Jeonju University</H2>
+                  <TouchableOpacity onPress={() => this._centerMap()}>
+                    <MaterialCommunityIcon name={'crosshairs-gps'} size={18} color={appPurple} style={{marginTop: 6, marginLeft: 8}} />
+                  </TouchableOpacity>
+                </View>
+
+                <View style={{paddingLeft: 15, paddingRight: 15}}>
+                  <P dark small>전라북도 전주시 완산구 천잠로 303 전주대학교 (55069)</P>
+                  <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
+                  <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
+                  <P dark>
+                    Jeonju University is located at the west end of Jeonju. From the bus terminal, 
+                    it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive. 
+                    Star Center is located in the center the university, and is the largest building on campus. 
+                    It sits just in front of the large clock tower building, and has tennis courts below it.
+                  </P>
+                  <P dark>
+                    The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
+                    through one of three doors (see floor map below): 
+                  </P>
+                  <AppList
+                    data={[
+                      {strong: "Floor B1: ", content: "Onnuri Hall auditorium entrance (in front of the clock tower)" },
+                      {strong: "Floor 1: ", content: "Parking garage entrance" },
+                      {strong: "Floor 2: ", content: "Food Court entrance (by the fountain)" }
+                    ]}
+                    type={'numbered'}
+                  />
+                </View>
               </View>
-              <View style={{paddingLeft: 15, paddingRight: 15}}>
-                <P dark small>전라북도 전주시 완산구 천잠로 303 전주대학교 (55069)</P>
-                <Image resizeMode='contain' source={require('../../assets/img/star-center-logo.jpg')} style={[styles.image, {height: 100}]} />
-                <Image resizeMode='contain' source={require('../../assets/img/star-center-map.png')} style={[styles.image]} />
-                <P dark>
-                  Jeonju University is located at the west end of Jeonju. From the bus terminal, 
-                  it will take approximately 15 minutes by taxi (a little more than ₩5,000) to arrive. 
-                  Star Center is located in the center the university, and is the largest building on campus. 
-                  It sits just in front of the large clock tower building, and has tennis courts below it.
-                </P>
-                <P dark>
-                  The Conference will take place on the 1st & 2nd floors of Star Center. You may enter 
-                  through one of three doors (see floor map below): 
-                </P>
-                <AppList
-                  data={[
-                    {strong: "Floor B1: ", content: "Onnuri Hall auditorium entrance (in front of the clock tower)" },
-                    {strong: "Floor 1: ", content: "Parking garage entrance" },
-                    {strong: "Floor 2: ", content: "Food Court entrance (by the fountain)" }
-                  ]}
-                  type={'numbered'}
-                />
-              </View>
-              <ScreenSection
+              <ScreenContent
                 style={{
                   borderTopColor: appTeal,
                   borderBottomColor: appTeal,
@@ -463,35 +471,40 @@ class MapScreen extends Component {
                   marginTop: 20,
                   marginBottom: 30,
                   paddingLeft: 15, 
-                  paddingRight: 15
+                  paddingRight: 15,
+                  paddingBottom: 40,
+                  paddingTop: 30
                 }}
               >
-                <H2 dark>Rooms</H2>
-                <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image]} />
-                <P dark>
-                  The Conference will feature six 50-minute workshops and two
-                  25-minute research presentations at a time, with the 
-                  Plenary and Highlighted sessions in Onnuri Hall (see below):
-                </P>
-                <AppList
-                  data={[
-                    {strong: "Featured: ", content: "Onnuri Hall (Plenary @ 1:00)" },
-                    {strong: "Motivation: ", content: "101" },
-                    {strong: "Skills: ", content: "107" },
-                    {strong: "Technology: ", content: "201" },
-                    {strong: "Mixed: ", content: "204" },
-                    {strong: "New: ", content: "202" },
-                    {strong: "Research: ", content: "203 (2 sessions / hr)" }
-                  ]}
-                  type={'numbered'}
-                />
-                <ContentButton
-                  opaque
-                  title={'View Schedule'}
-                  onPress={() => this.props.navigation.navigate('Schedule')}
-                />
-              </ScreenSection>
-              <View style={{paddingLeft: 15, paddingRight: 15}}>
+                <View style={{width: width, maxWidth: 500, alignSelf: 'center'}}>
+                  <H2 dark>Rooms</H2>
+                  <Image resizeMode='contain' source={require('../../assets/img/star-center-floors.png')} style={[styles.image]} />
+                  <P dark>
+                    The Conference will feature six 50-minute workshops and two
+                    25-minute research presentations at a time, with the 
+                    Plenary and Highlighted sessions in Onnuri Hall (see below):
+                  </P>
+                  <AppList
+                    data={[
+                      {strong: "Featured: ", content: "Onnuri Hall (Plenary @ 1:00)" },
+                      {strong: "Motivation: ", content: "101" },
+                      {strong: "Skills: ", content: "107" },
+                      {strong: "Technology: ", content: "201" },
+                      {strong: "Mixed: ", content: "204" },
+                      {strong: "New: ", content: "202" },
+                      {strong: "Research: ", content: "203 (2 sessions / hr)" }
+                    ]}
+                    type={'numbered'}
+                  />
+                  <ContentButton
+                    opaque
+                    title={'View Schedule'}
+                    onPress={() => this.props.navigation.navigate('Schedule')}
+                  />
+                </View>
+              </ScreenContent>
+
+              <View style={{paddingLeft: 15, paddingRight: 15, width: width, maxWidth: 500, alignSelf: 'center'}}>
                 <H2 dark>Around Campus</H2>
                 <P dark>
                   As with most universities in Korea, Jeonju University's entrances are 
@@ -510,8 +523,10 @@ class MapScreen extends Component {
                 />
               </View>
 
-              {this.renderMapButtons()}
-              {this.renderMap()}
+              <View>
+                {this.renderMapButtons()}
+                {this.renderMap()}
+              </View>
 
               <ScreenBottomPadding size={120} />
             </View>

@@ -12,11 +12,12 @@ const ScreenSection = (props) => {
 }
 
 const screenSection = {
+  width: width,
   borderTopWidth: 1,
   borderColor: 'rgba(0,221,221,0.1)',
   paddingTop: 30,
   paddingBottom: 20,
-  marginBottom: 20
+  marginBottom: 20,
 }
 
 export default ScreenSection

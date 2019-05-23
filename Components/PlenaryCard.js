@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
   },
   cardStyle: {
     flexDirection: 'row',
+    maxWidth: 500,
     borderRadius: 20,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
@@ -159,6 +160,7 @@ const styles = StyleSheet.create({
   },
   cardStyleNormal: {
     flexDirection: 'row',
+    maxWidth: 500,
     borderRadius: 20,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
@@ -171,12 +173,13 @@ const styles = StyleSheet.create({
     // marginRight: 10,
     position: 'absolute',
     top: 20,
-    right: 20
+    right: 20,
+    zIndex: 1
   },
   thumbnailImg: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
   talkMeta: {
     flex: 1,

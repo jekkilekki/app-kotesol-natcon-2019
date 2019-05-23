@@ -43,6 +43,10 @@ export const appGrey70 = 'rgba(169,186,201,0.7)'
 export const appGrey50 = 'rgba(169,186,201,0.5)'
 export const appGrey30 = 'rgba(169,186,201,0.3)'
 export const appGreyLight30 = 'rgb(227, 232, 238)'
+export const appPurpler = 'rgba(57,45,128,1)'
+export const appPurpler70 = 'rgba(57,45,128,0.7)'
+export const appPurpler50 = 'rgba(57,45,128,0.5)'
+export const appPurpler30 = 'rgba(57,45,128,0.3)'
 
 /* Base Colors */
 export const black = '#000000'

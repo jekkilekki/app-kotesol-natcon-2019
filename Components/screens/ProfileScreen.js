@@ -93,9 +93,9 @@ class ProfileScreen extends Component {
           <View style={styles.profileTop}>
             <TouchableOpacity onPress={() => this._openModal('image')} style={styles.userImgContainer}>
               <Image source={{uri: img || 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'}} style={styles.userImg} />
-              <ProfileEditButton large style={{right: 0, bottom: 0, zIndex: 0}} onPress={() => this._openModal('image')} />
+              {/* <ProfileEditButton large style={{right: 0, bottom: 0, zIndex: 0}} onPress={() => this._openModal('image')} /> */}
             </TouchableOpacity>
-            <ProfileEditButton large style={{right: 30, bottom: 20, zIndex: 20}} onPress={() => this._openModal('profile')} />
+            {/* <ProfileEditButton large style={{right: 30, bottom: 20, zIndex: 20}} onPress={() => this._openModal('profile')} /> */}
             <View style={styles.infoBox}>
               <AppScreenTitle center>{firstName || ''} {lastName || ''}</AppScreenTitle>
               <AppScreenSubtitle center>{affiliation}</AppScreenSubtitle>
@@ -104,22 +104,24 @@ class ProfileScreen extends Component {
         {/* } */}
 
         <View style={styles.profileStats}>
-          <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MySchedule')}>
-            <H2 normal center style={{paddingBottom: 0, color: appPurple}}>{mySchedule === [] || mySchedule === undefined ? '0' : mySchedule.length}</H2>
-            <P dark center style={{paddingBottom: 0}}>Talks</P>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MyFriends')}>
-            <H2 normal center style={{paddingBottom: 0, color: appPurple}}>{myFriends === [] || myFriends === undefined ? '0' : myFriends.length}</H2>
-            <P dark center style={{paddingBottom: 0}}>Friends</P>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MyPlaces')}>
-            <H2 normal center style={{paddingBottom: 0, color: appPurple}}>{myPlaces === [] || myPlaces === undefined ? '0' : myPlaces.length}</H2>
-            <P dark center style={{paddingBottom: 0}}>Places</P>
-          </TouchableOpacity>
+          <View style={{maxWidth: 500, flexDirection: 'row', alignSelf: 'center'}}>
+            <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MySchedule')}>
+              <H2 normal center style={{paddingBottom: 0, color: appPurple}}>{mySchedule === [] || mySchedule === undefined ? '0' : mySchedule.length}</H2>
+              <P dark center style={{paddingBottom: 0}}>My Talks</P>
+            </TouchableOpacity>
+            {/* <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MyFriends')}>
+              <H2 normal center style={{paddingBottom: 0, color: appPurple}}>{myFriends === [] || myFriends === undefined ? '0' : myFriends.length}</H2>
+              <P dark center style={{paddingBottom: 0}}>Friends</P>
+            </TouchableOpacity> */}
+            <TouchableOpacity style={styles.profileStatBox} onPress={() => this.props.navigation.navigate('MyPlaces')}>
+              <H2 normal center style={{paddingBottom: 0, color: appPurple}}>{myPlaces === [] || myPlaces === undefined ? '0' : myPlaces.length}</H2>
+              <P dark center style={{paddingBottom: 0}}>My Places</P>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <View style={{paddingRight: 15, paddingLeft: 15}}>
-          <H3 dark>My Profile</H3>
+        <View style={[{paddingRight: 15, paddingLeft: 15, maxWidth: 500, alignSelf: 'center'}]}>
+          <H3 dark>About the Conference</H3>
           <P dark>{shortBio}</P>
           <ContentButton
             opaque
@@ -128,12 +130,16 @@ class ProfileScreen extends Component {
             onPress={() => this.props.navigation.navigate('Home')}
           />
           <ContentButton
+            title="Conference Details"
+            onPress={() => this.props.navigation.navigate('About')}
+          />
+          {/* <ContentButton
             title="Logout"
             onPress={() => this._onLogout()}
-          />
+          /> */}
         </View>
 
-        <ProfileModal 
+        {/* <ProfileModal 
           visible={this.state.showProfileModal} 
           onClose={() => this._onClose()} 
           onSave={() => this._onSave()}
@@ -143,7 +149,7 @@ class ProfileScreen extends Component {
           onClose={() => this._onClose()} 
           onSave={() => this._onSave()} 
           onLogout={() => this._onLogout()} 
-        />
+        /> */}
         <ScreenBottomPadding size={140} /> 
         </ScreenContent>
       </AppScreen>
@@ -156,6 +162,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  iPadStyle: {
+    justifyContent: 'center',
+    maxWidth: 500
   },
   userImgContainer: {
     backgroundColor: appGrey30,
@@ -182,8 +192,8 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   profileStats: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
     backgroundColor: 'rgba(169,186,201,0.5)',
     marginLeft: -15,
     marginRight: -15,

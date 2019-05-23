@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 import { LinearGradient } from 'expo'
 
@@ -24,6 +25,16 @@ class SpeakerCardSmall extends Component {
   _goToSession = () => {
     const { speaker, navigation } = this.props 
     navigation.navigate( 'Session', { id: speaker.item.id, speaker: speaker.item })
+  }
+
+  _goToMap = (id) => {
+    if ( id === 'after' ) {
+      const { afterParty } = this.props
+      console.log('afterParty', afterParty)
+      this.props.navigation.navigate( 'Place', { id: 'knc2019-food32', place: afterParty })
+    } else {
+      this.props.navigation.navigate('Map', {referer: id})
+    }
   }
 
   _filter(query) {
@@ -69,7 +80,7 @@ class SpeakerCardSmall extends Component {
 
     if ( id === 'lunch' || id === 'after' || id === 'closing' || id === 'registration' ) {
       return (
-        <TouchableOpacity style={[styles.cardBackground]} onPress={() => this.props.navigation.navigate('Map', {referer: id})}>
+        <TouchableOpacity style={[styles.cardBackground]} onPress={() => this._goToMap(id)}>
           <LinearGradient 
             style={[styles.cardStyleNormal, {paddingTop: 15}]} 
             // colors={[white, white]}
@@ -198,6 +209,7 @@ const styles = StyleSheet.create({
   },
   cardBackground: {
     flexDirection: 'row',
+    maxWidth: 500,
     borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
@@ -212,6 +224,7 @@ const styles = StyleSheet.create({
   },
   cardStyleNormal: {
     flexDirection: 'row',
+    maxWidth: 500,
     borderRadius: 15,
     backgroundColor: 'rgba(255,255,255,1)',
     marginTop: 0,
@@ -275,4 +288,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(SpeakerCardSmall)
+const mapStateToProps = ({ locations }) => {
+  return { afterParty: locations.data.filter(place => (place.id === 'knc2019-food32'))[0]}
+}
+
+export default connect(mapStateToProps)(withNavigation(SpeakerCardSmall))

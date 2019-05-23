@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Linking, TouchableOpacity } from 'react-native'
+import { View, Image, StyleSheet, Linking, TouchableOpacity, Platform } from 'react-native'
 
 import AppScreen from '../shared/layout/AppScreen'
 import ScreenContent from '../shared/layout/ScreenContent'
 import ScreenSection from '../shared/layout/ScreenSection'
 import AppHeader from '../shared/layout/AppHeader'
 import H1 from '../shared/text/H1'
-import H2 from '../shared/text/H2'
 import H3 from '../shared/text/H3'
 import P from '../shared/text/P'
+import AppScreenTitle from '../shared/text/AppScreenTitle';
+import AppScreenSubtitle from '../shared/text/AppScreenSubtitle';
 import AppText from '../shared/text/AppText'
 import ContentButton from '../shared/buttons/ContentButton'
 import ScreenBottomPadding from '../shared/layout/ScreenBottomPadding'
-import { purpler, appPurple, appPurple70, appTeal, appTeal70, appOrange, appOrange70, appPink, appPink70, appBlue, appBlue70, appGrey, appGrey70 } from '../../utils/colors'
+import { purpler, appPurple70, appGrey30 } from '../../utils/colors'
 import AppList from '../shared/layout/AppList';
+import ProfileStats from '../shared/layout/ProfileStats'
 
 import IoniconIcon from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -27,19 +29,22 @@ class AboutScreen extends Component {
           pageSub='Sponsors, Team, Fine Print'
           noShadow
         />
-        <ScreenContent>
-          <ScreenSection style={{borderTopWidth: 0}}>
-            {/* <H1>Wifi Network</H1>
-            <AppText>
-              Thanks to Jeonju University's cooperation to ensure wifi connectivity for our attendees.
-            </AppText>
-            <H3 small>Wifi Network</H3>
-            <AppText>jjuniv_smartphone</AppText>
-            <H3 small>Password</H3>
-            <AppText>kotesol_2019</AppText> */}
+        <ScreenContent noPadding style={{marginTop: Platform.OS === 'android' ? -10 : 0}}>
+
+          <View style={styles.profileTop}>
+            <View style={styles.userImgContainer}>
+              <Image source={{uri: 'https://2019.conference.jnjkotesol.com/img/speakers/knc-2019-default-square.png'}} style={styles.userImg} />
+            </View>
+            <View style={styles.infoBox}>
+              <AppScreenTitle center>2019 KOTESOL National Conference</AppScreenTitle>
+              <AppScreenSubtitle center>May 25, 2019 • Jeonju University, Jeonju</AppScreenSubtitle>
+            </View>
+          </View>
+
+          <ProfileStats />
+
+          <ScreenSection style={[{borderTopWidth: 0}, styles.ipadStyle]}>
             <H1 style={{color: appPurple70}}>Motiva(c)tion: Sparking Learner Motivation in our Evolving Context</H1>
-            <H3 small>May 25, 2019</H3>
-            <H3 style={{paddingTop: 0, marginTop: -5, marginBottom: 10}}>Star Center, Jeonju University, Jeonju</H3>
             <P>
               The English language teaching context is in constant flux, with our students' 
               focus on technology seemingly reducing their attention span, the rapid change 
@@ -56,16 +61,12 @@ class AboutScreen extends Component {
               />
               <ContentButton
                 title='Download PDF'
-                onPress={() => Linking.openURL('https://koreatesol.org/sites/default/files/knc-2019-booklet-final.pdf')}
+                onPress={() => Linking.openURL('https://jnjkotesol.com/files/knc-2019-booklet.pdf')}
               />
             </View>
-            
-            {/* <H3 small>Wifi Network</H3>
-            <AppText>jjuniv_smartphone</AppText>
-            <H3 small>Password</H3>
-            <AppText>kotesol_2019</AppText> */}
           </ScreenSection>
-          <ScreenSection>
+
+          <ScreenSection style={styles.ipadStyle}>
             <H1>Conference Code of Conduct</H1>
             <P>
               All attendees, speakers, sponsors, and volunteers at our conference 
@@ -73,19 +74,22 @@ class AboutScreen extends Component {
               will enforce this code throughout the event. We expect cooperation 
               from all participants to help ensure a safe environment for everyone.
             </P>
-            <ContentButton
-              title='View Code of Conduct'
-              onPress={() => this.props.navigation.navigate('Conduct')}
-            />
+            <View style={{flexDirection: 'row'}}>
+              <ContentButton
+                title='View Code of Conduct'
+                onPress={() => this.props.navigation.navigate('Conduct')}
+              />
+            </View>
           </ScreenSection>
-          <ScreenSection>
-            <H1>Thanks to this year's Sponsors</H1>
-            <P>
+
+          <ScreenSection style={styles.ipadStyle}>
+            <H1 >Thanks to this year's Sponsors</H1>
+            <P >
               Support from our amazing sponsors makes the KOTESOL National Conference possible!
             </P>
-            <H3 small>Host</H3>
-            <P>Jeonju University</P>
-            <H3 small>Sponsors</H3>
+            <H3  small>Host</H3>
+            <P >Jeonju University</P>
+            <H3  small>Sponsors</H3>
             <AppList
               lightColor
               data={[
@@ -104,28 +108,30 @@ class AboutScreen extends Component {
               ]}
             />
           </ScreenSection>
-          <ScreenSection>
-            <H1>Privacy Policy</H1>
-            <P>
+          <ScreenSection style={styles.ipadStyle}>
+            <H1 >Privacy Policy</H1>
+            <P >
               At KOTESOL, we take your personal information seriously. Here's the outline 
               of our guidlines and practices around privacy.
             </P>
-            <ContentButton
-              title='View Privacy Policy'
-              onPress={() => this.props.navigation.navigate('Privacy')}
-            />
+            <View style={{flexDirection: 'row'}}>
+              <ContentButton
+                title='View Privacy Policy'
+                onPress={() => this.props.navigation.navigate('Privacy')}
+              />
+            </View>
           </ScreenSection>
-          <ScreenSection>
-            <H1>About this App</H1>
-            <P>
-              This app was developed by <AppText fontFamily={'nunito-bold'}>Aaron Snowberger </AppText> 
+          <ScreenSection style={styles.ipadStyle}>
+            <H1 >About this App</H1>
+            <P >
+              This app was developed by <AppText  fontFamily={'nunito-bold'}>Aaron Snowberger </AppText> 
               over the course of 2 months. 
             </P>
-            <P>
-              The project was built in React Native using Expo, Redux, and Firebase
+            <P >
+              The project was built in React Native with Expo and Redux
               and was inspired by the Chain React Conference app.
             </P>
-            <P>
+            <P >
               Thank you for downloading this app!
             </P>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -167,7 +173,39 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  ipadStyle: {
+    maxWidth: 500,
+    alignSelf: 'center',
+  },
+  userImgContainer: {
+    backgroundColor: appGrey30,
+    height: 150,
+    width: 150,
+    borderRadius: 75
+  },
+  userImg: {
+    backgroundColor: 'white',
+    height: 150,
+    width: 150,
+    borderRadius: 75
+  },
+  userImgText: {
+
+  },
+  infoBox: {
+    marginTop: 20,
+    marginBottom: 20
+  },
+  profileTop: {
+    backgroundColor: purpler,
+    alignItems: 'center',
+    margin: -15,
+    marginBottom: 15,
+    paddingTop: 15,
+    paddingRight: 15,
+    paddingLeft: 15
+  },
 })
 
 export default AboutScreen

@@ -96,6 +96,30 @@
     "phone": ""
   },
   {
+    "id": "knc-ic-lunch",
+    "title": "International Conference Lunch",
+    "abstract": "If you have ever considered getting more involved in KOTESOL, join the International Conference Committee(ICC) for lunch at the National Conference.  The ICC is a group of amazing KOTESOL members who are responsible for planning, organizing and executing the Korea TESOL International Conference. The ICC is looking for new members and volunteers to help us prepare for the upcoming International Conference in October. At the ICC lunch, you will learn more about the International Conference, talk to committee members, find out how you can get involved, and of course eat lunch. All ICC members are invited to join us as well as anyone who is interested in learning more about the International Conference or the ICC.  The lunch will be held during the lunch break at KOTESOL National conference May 25th, the room number and additional details will be announced at a later date. The 27th Annual Korea TESOL International Conference theme is, Advancing ELT: Blending Disciplines, Approaches, and Technologies. The conference will be held October 12-13, 2019, at Sookmyung Women’s University, Seoul.",
+    "summary": "If you have ever considered getting more involved in KOTESOL, join the International Conference Committee(ICC) for lunch at the National Conference.  The ICC is a group of amazing KOTESOL members who are responsible for planning, organizing and executing the Korea TESOL International Conference. The ICC is looking for new members and volunteers to help us prepare for the upcoming International Conference in October. At the ICC lunch, you will learn more about the International Conference, talk to committee members, find out how you can get involved, and of course eat lunch. All ICC members are invited to join us as well as anyone who is interested in learning more about the International Conference or the ICC.  The lunch will be held during the lunch break at KOTESOL National conference May 25th, the room number and additional details will be announced at a later date. The 27th Annual Korea TESOL International Conference theme is, Advancing ELT: Blending Disciplines, Approaches, and Technologies. The conference will be held October 12-13, 2019, at Sookmyung Women’s University, Seoul.",
+    "topic": "",
+    "subtopic": "",
+    "track": "Mixed",
+    "type": "Workshop",
+    "time": "12:00",
+    "room": "Room 204",
+    "name": "Grace H. Wang",
+    "nickname": "Grace",
+    "lastname": "Wang",
+    "shortname": "Grace_H_Wang",
+    "affiliation": "University of Birmingham, UK",
+    "bio": "Grace Wang is an Associate of the Department of English Language and Applied Linguistics, University of Birmingham, UK, for the MA TESOL/Applied Linguistics program. She has more than 20 years of experience teaching English at top universities in Korea and Thailand. She is also Chair of the 2019 Korea TESOL International Conference and currently serves on the Korea TESOL Research Committee.",
+    "coPresenter": "",
+    "other": "",
+    "img": "https://2019.conference.jnjkotesol.com/img/speakers/Grace_Wang.jpg",
+    "media": ["", ""],
+    "email": "ghwang97@gmail.com",
+    "phone": ""
+  },
+  {
     "id": "plenary",
     "title": "Seven Myths in Language Teaching",
     "name": "Jack C. Richards",
@@ -360,8 +384,7 @@
     "media": ["", ""],
     "email": "randleereddy@woosong.org",
     "phone": "",
-    "notes": "1. Learning outcome One: By developing a basic working understanding of how to implement and apply active engagement with students in the classroom, as basis for discussion. In other words, by developing a basic working understanding of what entails active student engagement and how it can be used in the classroom setting, would help both instructors & students 2. Learning outcome two: Identify and apply some of the practical engagement strategies for usage and application in classroom.",
-    "status": "canceled"
+    "notes": "1. Learning outcome One: By developing a basic working understanding of how to implement and apply active engagement with students in the classroom, as basis for discussion. In other words, by developing a basic working understanding of what entails active student engagement and how it can be used in the classroom setting, would help both instructors & students 2. Learning outcome two: Identify and apply some of the practical engagement strategies for usage and application in classroom."
   },
   {
     "id": "knc2019-14",
@@ -620,7 +643,7 @@
     "subtopic": "Data collection",
     "track": "Technology",
     "type": "Research",
-    "time": "10:00",
+    "time": "10:00 Research",
     "room": "Room 201",
     "name": "Angela Jeannette",
     "nickname": "Angela",

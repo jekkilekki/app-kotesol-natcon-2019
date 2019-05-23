@@ -1,7 +1,12 @@
 import { AsyncStorage } from 'react-native'
+import { Facebook } from 'expo'
+import firebase from 'firebase'
 import { 
   CHECK_AUTH_STATUS, USER_LOGGED_IN, USER_LOGGED_OUT,
-  LOGOUT_SUCCESS, PROFILE_SAVE
+  FB_LOGIN_SUCCESS, FB_LOGIN_FAIL, FB_LOGIN_USER,
+  INPUT_EMAIL, INPUT_PASSWORD, SET_AUTHED_USER, 
+  FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, 
+  FIREBASE_LOGIN_USER, FIREBASE_LOGOUT_USER, LOGOUT_SUCCESS, PROFILE_SAVE
 } from './types'
 import { generateUID } from '../utils/helpers'
 import { profileSave, getProfile } from './profileActions'
@@ -14,27 +19,24 @@ export const checkAuthStatus = () => {
   return async (dispatch) => {
     dispatch({ type: CHECK_AUTH_STATUS })
 
-    // Retrieve user data from AsyncStorage if present
-    // await AsyncStorage.removeItem('knc-profile')
-    let user = await AsyncStorage.getItem('knc-profile')
+    // await firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) { userLoggedIn(dispatch, user) }
+    //   else { userLoggedOut(dispatch) }
+    // })
 
-    // If we have a profile stored in AsyncStorage, load it
+    let user = await AsyncStorage.getItem('knc-profile')
     if (user) { 
       userLoggedIn(dispatch, JSON.parse(user)) 
-      console.log('User logged in', user)
+      console.log('User', user)
     }
-    // If there's no profile, create one, THEN load it
     else { 
       userLoggedOut(dispatch) 
-      user = createUser()
-      console.log('User created', user)
-      userLoggedIn(dispatch, user) 
+      createUser()
       // await dispatch( getProfile() )
     }
   }
 }
 
-/* Indicates the user has run this app before */
 const userLoggedIn = (dispatch, user) => {
   dispatch({
     type: USER_LOGGED_IN,
@@ -42,14 +44,12 @@ const userLoggedIn = (dispatch, user) => {
   })
 }
 
-/* Indicates this is the first run of this app */
 const userLoggedOut = (dispatch) => {
   dispatch({
     type: USER_LOGGED_OUT
   })
 }
 
-/* Create a user profile, save it to AsyncStorage, return the data to the function that called it */
 const createUser = () => {
   const uid = generateUID()
   let user = {
@@ -69,7 +69,12 @@ const createUser = () => {
 
   AsyncStorage.setItem('knc-profile', JSON.stringify(user))
 
-  return user
+  return (dispatch) => {
+    dispatch({
+      type: USER_LOGGED_IN,
+      payload: user
+    })
+  }
 }
 
 /**

@@ -150,6 +150,7 @@ class SpeakerList extends Component {
           <SpeakerCardSmall screen={screen} speaker={speaker} updateList={() => this.updateList()} filter={this.props.filter} expanded={this.props.speakersExpanded} />
         }
         keyExtractor={(speaker) => String(speaker.id)}
+        contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
       />
     )
   }
@@ -176,6 +177,7 @@ class SpeakerList extends Component {
         }
         keyExtractor={item => item.id}
         updateList={this.updateList}
+        contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
       />
     )
   }
