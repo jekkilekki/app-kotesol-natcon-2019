@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, StyleSheet, Dimensions, TouchableOpacity, Platform } from 'react-native'
+import { View, Image, StyleSheet, Dimensions, TouchableOpacity, Platform, Linking } from 'react-native'
 import { MapView } from 'expo'
 import { connect } from 'react-redux'
 
@@ -139,24 +139,25 @@ class MapScreen extends Component {
    */
   renderTopMap() {
     if (Platform.OS === 'ios') {
-      return (
-        <MapView 
-          style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -10}} 
-          region={this.state.topMapRegion}
-          minZoomLevel={17}
-          provider={MapView.PROVIDER_GOOGLE}
-          onPanDrag={() => this._onTopRegionChange()} // iOS needs onPanDrag()
-          ref={ref => this.topmap = ref}
-        >
-          <Circle 
-            center={jjuStarCenterCoords}
-            radius={40}
-            fillColor={'rgba(0,221,221,0.2)'}
-            strokeColor={'rgba(0,0,0,0.2)'}
-          />
-          {this.renderMainMarker(true)}
-        </MapView>
-      )
+      return null
+      // (
+      //   <MapView 
+      //     style={{ alignSelf: 'stretch', height: 200, backgroundColor: '#232377', marginTop: -10}} 
+      //     region={this.state.topMapRegion}
+      //     minZoomLevel={17}
+      //     provider={MapView.PROVIDER_GOOGLE}
+      //     onPanDrag={() => this._onTopRegionChange()} // iOS needs onPanDrag()
+      //     ref={ref => this.topmap = ref}
+      //   >
+      //     <Circle 
+      //       center={jjuStarCenterCoords}
+      //       radius={40}
+      //       fillColor={'rgba(0,221,221,0.2)'}
+      //       strokeColor={'rgba(0,0,0,0.2)'}
+      //     />
+      //     {this.renderMainMarker(true)}
+      //   </MapView>
+      // )
     } else {
       return (
         <MapView 
@@ -187,20 +188,22 @@ class MapScreen extends Component {
     const { mapRegion } = this.state
 
     if (Platform.OS === 'ios') {
-      return (
-        <MapView 
-          style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
-          region={mapRegion} 
-          minZoomLevel={15}
-          provider={MapView.PROVIDER_GOOGLE}
-          ref={ref => this.map = ref}
-          onPanDrag={() => this._onRegionChange()}
-        >
-          {this.renderMainMarker()}
-          {this.renderMarkers()}
-        </MapView>
-      )
-    } else {
+      return null
+      // (
+      //   <MapView 
+      //     style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
+      //     region={mapRegion} 
+      //     minZoomLevel={15}
+      //     provider={MapView.PROVIDER_GOOGLE}
+      //     ref={ref => this.map = ref}
+      //     onPanDrag={() => this._onRegionChange()}
+      //   >
+      //     {this.renderMainMarker()}
+      //     {this.renderMarkers()}
+      //   </MapView>
+      // )
+    } 
+    else {
       return (
         <MapView 
           style={{ alignSelf: 'stretch', height: 400, backgroundColor: '#232377', marginLeft: -15, marginRight: -15 }} 
@@ -303,6 +306,8 @@ class MapScreen extends Component {
    * Function to render Location specific centering buttons (Gaeksa, Hanok, etc)
    */
   renderMapButtons() {
+    if (Platform.OS === 'ios') return null
+
     return (
       <View style={styles.mapMenu}>
         <View style={{flex: 1, width: width, maxWidth: 500, alignSelf: 'center', justifyContent: 'space-around', flexDirection: 'row', flexWrap: 'wrap', marginBottom: 5, paddingTop: 10, paddingBottom: 10}}>
@@ -437,9 +442,11 @@ class MapScreen extends Component {
               <View style={{width: width, maxWidth: 500, alignSelf: 'center'}}>
                 <View style={{flex: 1, flexDirection: 'row', marginTop: 15, paddingLeft: 15, paddingRight: 15}}>
                   <H2 dark center>Jeonju University</H2>
-                  <TouchableOpacity onPress={() => this._centerMap()}>
-                    <MaterialCommunityIcon name={'crosshairs-gps'} size={18} color={appPurple} style={{marginTop: 6, marginLeft: 8}} />
-                  </TouchableOpacity>
+                  {Platform.OS !== 'ios' &&
+                    <TouchableOpacity onPress={() => this._centerMap()}>
+                      <MaterialCommunityIcon name={'crosshairs-gps'} size={18} color={appPurple} style={{marginTop: 6, marginLeft: 8}} />
+                    </TouchableOpacity>
+                  }
                 </View>
 
                 <View style={{paddingLeft: 15, paddingRight: 15}}>
@@ -531,6 +538,16 @@ class MapScreen extends Component {
               <View>
                 {this.renderMapButtons()}
                 {this.renderMap()}
+                {Platform.OS === 'ios' &&
+                  <View style={{width: width, maxWidth: 500, alignSelf: 'center'}}>
+                    <ContentButton
+                      opaque
+                      title={'View Map Online'}
+                      // onPress={() => Linking.openURL('http://kko.to/nGzTIq0jj')}
+                      onPress={() => Linking.openURL('https://2019.conference.jnjkotesol.com/location')}
+                    />
+                  </View>
+                }
               </View>
 
               <ScreenBottomPadding size={120} />
